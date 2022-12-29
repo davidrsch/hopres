@@ -1,4 +1,4 @@
-# Prefacio {.unnumbered}
+# Prefacio {-}
 
 Este libro le enseñará cómo programar en R. Pasará de cargar datos a escribir sus propias funciones (que superarán las funciones de otros usuarios de R). Pero esta no es una introducción típica a R. Quiero ayudarlo a convertirse en científico de datos, así como en informático, por lo que este libro se centrará en las habilidades de programación que están más relacionadas con la ciencia de datos.
 

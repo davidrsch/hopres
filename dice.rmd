@@ -1,41 +1,41 @@
-# (PART) Part 1 {-}
+# (PART) Parte 1 {-}
 
-# Project 1: Weighted Dice
+# Proyecto 1: Dados Ponderados
 
-Computers let you assemble, manipulate, and visualize data sets, all at speeds that would have wowed yesterday's scientists. In short, computers give you scientific superpowers! But if you wish to use them, you'll need to pick up some programming skills.
+Las computadoras le permiten ensamblar, manipular y visualizar conjuntos de datos, todo a velocidades que habrían asombrado a los científicos de ayer. En resumen, ¡las computadoras te dan superpoderes científicos! Pero si desea usarlos, deberá adquirir algunas habilidades de programación.
 
-As a data scientist who knows how to program, you will improve your ability to:
+Como científico de datos que sabe programar, mejorará su capacidad para:
 
-* Memorize (store) entire data sets
-* Recall data values on demand
-* Perform complex calculations with large amounts of data
-* Do repetitive tasks without becoming careless or bored
+-   Memorizar (almacenar) conjuntos de datos completos
+-   Recuperar valores de datos demandados
+-   Realizar cálculos complejos con grandes cantidades de datos
+-   Realizar tareas repetitivas sin descuidarse ni aburrirse
 
-Computers can do all of these things quickly and error free, which lets your mind do the things _it_ does well: make decisions and assign meaning. 
+Las computadoras pueden hacer todas estas cosas rápidamente y sin errores, lo que le permite a su mente hacer lo que *mejor* hace bien: tomar decisiones y asignar significado.
 
-Sound exciting? Great! Let's begin.
+¿Suena emocionante? ¡Estupendo! Vamos a empezar.
 
-When I was a college student, I sometimes daydreamed of going to Las Vegas. I thought that knowing statistics might help me win big. If that's what led _you_ to data science, you better sit down; I have some bad news. Even a statistician will lose money in a casino over the long run. This is because the odds for each game are always stacked in the casino's favor. However, there is a loophole to this rule. You can make money--and reliably too. All you have to do is _be the casino_.
+Cuando era estudiante universitario, a veces soñaba despierto con ir a Las Vegas. Pensé que saber estadísticas podría ayudarme a ganar a lo grande. Si eso es lo que *te llevó* a la ciencia de datos, será mejor que te sientes; tengo algunas malas noticias. Incluso un estadístico perderá dinero en un casino a largo plazo. Esto se debe a que las probabilidades de cada juego siempre están a favor del casino, sin embargo, hay una laguna en esta regla. Puede ganar dinero--y también de manera confiable. Todo lo que tienes que hacer es *ser el casino*.
 
-Believe it or not, R can help you do that. Over the course of the book, you will use R to build three virtual objects: a pair of dice that you can roll to generate random numbers, a deck of cards that you can shuffle and deal from, and a slot machine modeled after some real-life video lottery terminals. After that, you'll just need to add some video graphics and a bank account (and maybe get a few government licenses), and you'll be in business. I'll leave those details to you. 
+Lo creas o no, R puede ayudarte a hacerlo. A lo largo del libro, usará R para construir tres objetos virtuales: un par de dados que puede lanzar para generar números aleatorios, una baraja de cartas que puede barajar y repartir, y una máquina tragamonedas inspirada en máquinas reales. Después de eso, solo necesitará agregar algunos gráficos de video y una cuenta bancaria (y tal vez obtener algunas licencias gubernamentales), y estará en el negocio. Te dejo esos detalles a ti.
 
-These projects are lighthearted, but they are also deep. As you complete them, you will become an expert at the skills you need to work with data as a data scientist. You will learn how to store data in your computer's memory, how to access data that is already there, and how to transform data values in memory when necessary. You will also learn how to write your own programs in R that you can use to analyze data and run simulations.
+Estos proyectos son ligeros, pero también profundos. A medida que los complete, se convertirá en un experto en las habilidades que necesita para trabajar con datos como científico de datos. Aprenderá cómo almacenar datos en la memoria de su computadora, cómo acceder a los datos que ya están allí y cómo transformar los valores de los datos en la memoria cuando sea necesario. También aprenderá a escribir sus propios programas en R que puede usar para analizar datos y ejecutar simulaciones.
 
-If simulating a slot machine (or dice, or cards) seems frivilous, think of it this way: playing a slot machine is a process. Once you can simulate it, you'll be able to simulate other processes, such as bootstrap sampling, Markov chain Monte Carlo, and other data-analysis procedures. Plus, these projects provide concrete examples for learning all of the components of R programming: objects, data types, classes, notation, functions, environments, `if` trees, loops, and vectorization. This first project will make it easier to study these things by teaching you the basics of R.
+Si simular una máquina tragamonedas (o dados o cartas) parece frívolo, piénselo de esta manera: jugar en una máquina tragamonedas es un proceso. Una vez que pueda simularlo, podrá simular otros procesos, como el muestreo de arranque, la cadena de Markov Monte Carlo y otros procedimientos de análisis de datos. Además, estos proyectos brindan ejemplos concretos para aprender todos los componentes de la programación R: objetos, tipos de datos, clases, notación, funciones, entornos, árboles `if`, bucles y vectorización. Este primer proyecto facilitará el estudio de estas cosas al enseñarle los conceptos básicos de R.
 
-Your first mission is simple: assemble R code that will simulate rolling a pair of dice, like at a craps table. Once you have done that, we'll weight the dice a bit in your favor, just to keep things interesting. 
+Su primera misión es simple: ensamblar código R que simulará lanzar un par de dados, como en una mesa de dados. Una vez que haya hecho eso, ponderaremos un poco los dados a su favor, solo para mantener las cosas interesantes.
 
-In this project, you will learn how to:
+En este proyecto, aprenderá cómo:
 
-* Use the R and RStudio interfaces
-* Run R commands
-* Create R objects
-* Write your own R functions and scripts
-* Load and use R packages
-* Generate random samples
-* Create quick plots
-* Get help when you need it 
+-   Utilizar las interfaces R y RStudio
+-   Ejecutar comandos R
+-   Crear objetos R
+-   Escribir sus propias funciones y scripts de R
+-   Cargar y usar paquetes R
+-   Generar muestras aleatorias
+-   Crear gráficos de manera rápida
+-   Obtener ayuda cuando la necesite
 
-Don't worry if it seems like we cover a lot of ground fast. This project is designed to give you a concise overview of the R language. You will return to many of the concepts we meet here in projects 2 and 3, where you will examine the concepts in depth.
+No se preocupe si parece que cubrimos mucho terreno de manera rápido. Este proyecto está diseñado para brindarle una descripción general concisa del lenguaje R. Regresará a muchos de los conceptos que aprederá en los proyectos 2 y 3, donde examinará los conceptos en profundidad.
 
-You'll need to have both R and RStudio installed on your computer before you can use them. Both are free and easy to download. See [Appendix A](#starting) for complete instructions. If you are ready to begin, open RStudio on your computer and read on. 
+Deberá tener R y RStudio instalados en su computadora antes de poder usarlos. Ambos son gratuitos y fáciles de descargar. Consulte el [Apéndice A](#starting) para obtener instrucciones completas. Si está listo para comenzar, abra RStudio en su computadora y siga leyendo.

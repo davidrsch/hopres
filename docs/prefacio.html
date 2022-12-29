@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Instalación de R y RStudio | Programación práctica con R</title>
+  <title>Prefacio | Programación práctica con R</title>
   <meta name="description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Instalación de R y RStudio | Programación práctica con R" />
+  <meta property="og:title" content="Prefacio | Programación práctica con R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://rstudio-education.github.io/hopr//cover.png" />
   <meta property="og:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="github-repo" content="rstudio-education/hopr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Instalación de R y RStudio | Programación práctica con R" />
+  <meta name="twitter:title" content="Prefacio | Programación práctica con R" />
   <meta name="twitter:site" content="@statgarrett" />
   <meta name="twitter:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="twitter:image" content="https://rstudio-education.github.io/hopr//cover.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="speed.html"/>
-<link rel="next" href="packages2.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="proyecto-1-dados-ponderados.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -374,83 +374,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="starting" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">A</span> Instalación de R y RStudio<a href="starting.html#starting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Para comenzar con R, debe adquirir su propia copia. Este apéndice le mostrará cómo descargar R así como RStudio, una aplicación de software que facilita el uso de R. Pasará de descargar R a abrir su primera sesión de R.</p>
-<p>Tanto R como RStudio son gratuitos y fáciles de descargar.</p>
-<div id="cómo-descargar-e-instalar-r" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">A.1</span> Cómo descargar e instalar R<a href="starting.html#cómo-descargar-e-instalar-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R es mantenido por un equipo internacional de desarrolladores que hacen que el lenguaje esté disponible a través de la página web de <a href="http://cran.r-project.org">The Comprehensive R Archive Network</a>. La parte superior de la página web proporciona tres enlaces para descargar R. Siga el enlace que describe su sistema operativo: Windows, Mac o Linux.</p>
-<div id="windows" class="section level3 hasAnchor" number="13.1.1">
-<h3><span class="header-section-number">A.1.1</span> Windows<a href="starting.html#windows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Para instalar R en Windows, haga clic en el enlace “Download R for Windows”. Luego haga clic en el enlace “base”. A continuación, haga clic en el primer enlace en la parte superior de la nueva página. Este enlace debería decir algo como “Descargar R 3.0.3 para Windows”, excepto que la 3.0.3 será reemplazada por la versión más reciente de R. El enlace descarga un programa de instalación, que instala la versión más actualizada de R para Windows. Ejecute este programa y siga los pasos del asistente de instalación que aparece. El asistente instalará R en sus carpetas de archivos de programa y colocará un acceso directo en su menú Inicio. Tenga en cuenta que deberá tener todos los privilegios de administración apropiados para instalar software nuevo en su máquina.</p>
+<div id="prefacio" class="section level1 unnumbered hasAnchor">
+<h1>Prefacio<a href="prefacio.html#prefacio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Este libro le enseñará cómo programar en R. Pasará de cargar datos a escribir sus propias funciones (que superarán las funciones de otros usuarios de R). Pero esta no es una introducción típica a R. Quiero ayudarlo a convertirse en científico de datos, así como en informático, por lo que este libro se centrará en las habilidades de programación que están más relacionadas con la ciencia de datos.</p>
+<p>Los capítulos del libro están ordenados de acuerdo con tres proyectos prácticos; dado que son proyectos bastante sustanciales, abarcan varios capítulos. Elegí estos proyectos por dos razones. Primero, cubren la amplitud del lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R, como declaraciones <code>if else</code>, bucles, clases S3, sistema de paquetes de R, y las herramientas de depuración de R. Los proyectos también le enseñarán cómo escribir código R vectorizado, un estilo de código ultrarrápido que aprovecha todas las cosas que R hace mejor.</p>
+<p>Pero, lo que es más importante, los proyectos le enseñarán cómo resolver los problemas logísticos de la ciencia de datos—y hay muchos problemas logísticos. Cuando trabaje con datos, deberá almacenar, recuperar y manipular grandes conjuntos de valores sin introducir errores. A medida que avance en el libro, le enseñaré no solo cómo programar con R, sino también cómo usar las habilidades de programación para respaldar su trabajo como científico de datos.</p>
+<p>No todos los programadores necesitan ser científicos de datos, por lo que no todos los programadores encontrarán útil este libro. Encontrará este libro útil si se encuentra en una de las siguientes categorías:</p>
+<ul>
+<li><p>Ya usas R como herramienta estadística, pero te gustaría aprender a escribir tus propias funciones y simulaciones con R.</p></li>
+<li><p>Te gustaría aprender a programar por tu cuenta y ves el sentido de aprender un lenguaje relacionado con la ciencia de datos.</p></li>
+</ul>
+<p>Una de las mayores sorpresas de este libro es que no cubro las aplicaciones tradicionales de R, como modelos y gráficos; en cambio, trato a R puramente como un lenguaje de programación. ¿Por qué este enfoque estrecho? R está diseñado para ser una herramienta que ayude a los científicos a analizar datos. Tiene muchas funciones excelentes que hacen gráficos y ajustan modelos a los datos. Como resultado, muchos estadísticos aprenden a usar R como si fuera una pieza de software: aprenden qué funciones hacen lo que quieren e ignoran el resto.</p>
+<p>Este es un enfoque comprensible para aprender R. La visualización y el modelado de datos son habilidades complicadas que requieren toda la atención de un científico. Se necesita experiencia, juicio y enfoque para extraer información confiable de un conjunto de datos. No recomendaría que ningún científico de datos se distraiga con la programación de computadoras hasta que se sienta cómodo con la teoría y la práctica básicas de su oficio. Si desea aprender el oficio de la ciencia de datos, le recomiendo el libro <a href="https://es.r4ds.hadley.nz/">R para la Ciencia de Datos</a>, mi volumen complementario a este libro, coescrito con Hadley Wickham.</p>
+<p>Sin embargo, aprender a programar <em>debería</em> estar en la lista de tareas de todos los científicos de datos. Saber programar lo convertirá en un analista más flexible y aumentará su dominio de la ciencia de datos en todos los sentidos. Mi metáfora favorita para describir esto fue presentada por Greg Snow en la lista de correo de ayuda de R en mayo de 2006. Usar funciones en R es como viajar en autobús. <em>Escribir</em> funciones en R es como conducir un coche.</p>
+<blockquote>
+<p>Los autobuses son muy fáciles de usar, solo necesita saber a qué autobús subir, dónde subir y dónde bajarse (y debe pagar su tarifa). Los autos, por otro lado, requieren mucho más trabajo: necesitas tener algún tipo de mapa o direcciones (incluso si el mapa está en tu cabeza), necesitas poner gasolina de vez en cuando, necesitas saber las reglas de la vía (tener algún tipo de licencia de conducir). La gran ventaja del automóvil es que puede llevarlo a muchos lugares a los que el autobús no llega y es más rápido para algunos viajes que requieren transbordo entre autobuses.</p>
+</blockquote>
+<blockquote>
+<p>Usando esta analogía, los programas como SPSS son buses, fáciles de usar para cosas estándar, pero muy frustrantes si quieres hacer algo que no está preprogramado.</p>
+</blockquote>
+<blockquote>
+<p>R es un todoterreno con tracción en las cuatro ruedas (aunque respetuoso con el medio ambiente) con una bicicleta en la parte trasera, un kayak en la parte superior, buenos zapatos para caminar y correr en el asiento del pasajero y equipo para escalar montañas y espeleología en la parte trasera.</p>
+</blockquote>
+<blockquote>
+<p>R puede llevarlo a donde quiera ir si se toma el tiempo para aprender a usar el equipo, pero eso llevará más tiempo que aprender dónde están las paradas de autobús en SPSS. - Greg Snow</p>
+</blockquote>
+<p>Greg compara R con SPSS, pero asume que usa todos los poderes de R; es decir, que aprendas a programar en R. Si solo usas funciones que ya existen en R, estás usando R como SPSS: es un bus que solo te puede llevar a ciertos lugares.</p>
+<p>Esta flexibilidad es importante para los científicos de datos. Los detalles exactos de un método o simulación cambiarán de un problema a otro. Si no puede crear un método adaptado a su situación, puede verse tentado a hacer suposiciones poco realistas solo para poder utilizar un método inadecuado que ya existe.</p>
+<p>Este libro te ayudará a dar el salto del autobús al automóvil. Lo he escrito para programadores principiantes. No hablo de la teoría de las ciencias de la computación—no hay discusiones sobre la gran <code>O()</code> y la pequeña <code>o()</code> en estas páginas. Tampoco entro en detalles avanzados como el funcionamiento de la <em>evaluación concisa</em>. Estas aspectos son interesantes si piensas en informática a nivel teórico, pero son una distracción cuando aprendes a programar por primera vez.</p>
+<p>En su lugar, te enseño a programar en R con tres ejemplos concretos. Estos ejemplos son cortos, fáciles de entender y cubren todo lo que necesita saber.</p>
+<p>He enseñado este material muchas veces en mi trabajo como Master Instructor en RStudio. Como docente, he descubierto que los estudiantes aprenden conceptos abstractos mucho más rápido cuando se ilustran con ejemplos concretos. Los ejemplos también tienen una segunda ventaja: proporcionan una práctica inmediata. Aprender a programar es como aprender a hablar otro idioma—yprogresas más rápido cuando practicas. De hecho, aprender a programar <em>es</em> aprender a hablar otro idioma. Obtendrá los mejores resultados si sigue los ejemplos del libro y experimenta cada vez que se le ocurre una idea.</p>
+<hr />
+<p>El libro es un complemento de <a href="https://es.r4ds.hadley.nz/">R para la Ciencia de Datos</a>. En ese libro, Hadley Wickham y yo explicamos cómo usar R para hacer diagramas, modelar datos y escribir informes. Ese libro enseña estas tareas como habilidades de ciencia de datos, que requieren juicio y experiencia—no como ejercicios de programación, que también lo son. Este libro le enseñará a programar en R. No se supone que haya dominado las habilidades de ciencia de datos que se enseñan en <em>R para la Ciencia de Datos</em> (ni que tenga la intención de hacerlo). Sin embargo, este conjunto de habilidades amplifica ese. Y si domina ambos, será un científico de datos con conocimientos de informática, apto para obtener un salario alto e influir en el diálogo científico.</p>
+<hr />
+<div id="convenciones-usadas-en-este-libro" class="section level2 hasAnchor" number="0.3">
+<h2><span class="header-section-number">0.3</span> Convenciones Usadas en Este Libro<a href="prefacio.html#convenciones-usadas-en-este-libro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este libro se utilizan las siguientes convenciones tipográficas:</p>
+<p><em>Cursiva</em>:: Indica nuevos términos, URL, direcciones de correo electrónico, nombres de archivo y extensiones de archivo.</p>
+<p><code>Ancho contante</code>:: se utiliza para listas de programas, así como dentro de párrafos para referirse a elementos de programas como nombres de variables o funciones, bases de datos, tipos de datos, variables de entorno, declaraciones y palabras clave.</p>
+<p><strong>`Negrita de ancho constante</strong>:: Smuestra comandos u otro texto que el usuario debe escribir literalmente.</p>
+<p><em><code>Cursiva de ancho constante</code></em>:: muestra texto que debe reemplazarse con valores proporcionados por el usuario o por valores determinados por el contexto.</p>
+<p>Para comentar o hacer preguntas técnicas sobre este libro, presente un issue en <a href="https://github.com/rstudio-education/hopr">github.com/rstudio-education/hopr</a>.</p>
 </div>
-<div id="mac" class="section level3 hasAnchor" number="13.1.2">
-<h3><span class="header-section-number">A.1.2</span> Mac<a href="starting.html#mac" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Para instalar R en una Mac, haga clic en el enlace “Download R for Mac”. A continuación, haga clic en el enlace del paquete <code>R-3.0.3</code> (o en el enlace del paquete para la versión más reciente de R). Se descargará un instalador para guiarlo a través del proceso de instalación, que es muy fácil. El instalador le permite personalizar su instalación, pero los valores predeterminados serán adecuados para la mayoría de los usuarios. Nunca he encontrado una razón para cambiarlos. Si su computadora requiere una contraseña antes de instalar nuevos programas, la necesitará aquí.</p>
-
-<div class="rmdnote">
-<p><strong>Binarios versus Fuente</strong></p>
-R se puede instalar a partir de archivos binarios precompilados o compilarse desde el origen en cualquier sistema operativo. Para máquinas Windows y Mac, instalar R desde binarios es extremadamente fácil. El binario viene precargado en su propio instalador. Aunque puede compilar R desde el origen en estas plataformas, el proceso es mucho más complicado y no brindará muchos beneficios a la mayoría de los usuarios. Para los sistemas Linux, ocurre lo contrario. Se pueden encontrar binarios precompilados para algunos sistemas, pero es mucho más común compilar R a partir de archivos fuente cuando se instala en Linux. Las páginas de descarga en el <a href="http://cran.r-project.org">sitio web de CRAN</a> brindan información sobre la creación de R desde el origen para las plataformas Windows, Mac y Linux.
-</div>
-</div>
-<div id="linux" class="section level3 hasAnchor" number="13.1.3">
-<h3><span class="header-section-number">A.1.3</span> Linux<a href="starting.html#linux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>R viene preinstalado en muchos sistemas Linux, pero querrá la versión más reciente de R si la suya no está actualizada. <a href="http://cran.r-project.org">El sitio web de CRAN</a> proporciona archivos para compilar R desde la fuente en los sistemas Debian, Redhat, SUSE y Ubuntu en el enlace “Descargar R para Linux”. Haga clic en el enlace y luego siga el rastro del directorio hasta la versión de Linux en la que desea instalar. El procedimiento de instalación exacto variará según el sistema Linux que utilice. CRAN guía el proceso agrupando cada conjunto de archivos fuente con documentación o archivos README que explican cómo instalar en su sistema.</p>
-
-<div class="rmdnote">
-<p><strong>32-bit Versus 64-bit</strong></p>
-<p>R viene en versiones de 32 y 64 bits. ¿Cuál deberías usar? En la mayoría de los casos, no importará. Ambas versiones usan números enteros de 32 bits, lo que significa que calculan números con la misma precisión numérica. La diferencia ocurre en la forma en que cada versión administra la memoria. R de 64 bits usa punteros de memoria de 64 bits y R de 32 bits usa punteros de memoria de 32 bits. Esto significa que R de 64 bits tiene un espacio de memoria más grande para usar (y buscar).</p>
-Como regla general, las compilaciones de R de 32 bits son más rápidas que las compilaciones de 64 bits, aunque no siempre. Por otro lado, las compilaciones de 64 bits pueden manejar archivos y conjuntos de datos más grandes con menos problemas de administración de memoria. En cualquiera de las versiones, el tamaño de vector máximo permitido alcanza un máximo de alrededor de 2 mil millones de elementos. Si su sistema operativo no es compatible con programas de 64 bits, o su memoria RAM es inferior a 4 GB, la versión R de 32 bits es para usted. Los instaladores de Windows y Mac instalarán automáticamente ambas versiones si su sistema es compatible con R de 64 bits.
-</div>
-</div>
-</div>
-<div id="usando-r" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">A.2</span> Usando R<a href="starting.html#usando-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R no es un programa que pueda abrir y comenzar a usar, como Microsoft Word o Internet Explorer. En cambio, R es un lenguaje de programación, como C, C++ o UNIX. Usas R escribiendo comandos en el lenguaje R y pidiéndole a tu computadora que los interprete. En los viejos tiempos, la gente ejecutaba código R en una ventana de terminal UNIX, como si fueran piratas informáticos en una película de los años ochenta. Ahora casi todo el mundo usa R con una aplicación llamada RStudio, y te recomiendo que tú también lo hagas.</p>
-
-<div class="rmdtip">
-<p><strong>R y UNIX</strong></p>
-<p>Todavía puede ejecutar R en una ventana de UNIX o BASH escribiendo el comando:</p>
-<pre><code>R</code></pre>
-que abre un intérprete de R. Luego puede hacer su trabajo y cerrar el intérprete ejecutando <em><code>q()</code></em> cuando haya terminado.
-</div>
-</div>
-<div id="rstudio" class="section level2 hasAnchor" number="13.3">
-<h2><span class="header-section-number">A.3</span> RStudio<a href="starting.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>RStudio <em>es</em> una applicación como Microsoft Word—excepto que en lugar de ayudarlo a escribir texto convencional, RStudio lo ayuda a escribir en R. Uso RStudio en todo el libro porque hace que usar R sea mucho más fácil. Además, la interfaz de RStudio tiene el mismo aspecto para Windows, Mac OS y Linux. Eso me ayudará a relacionar el libro con su experiencia personal.</p>
-<p>Puede <a href="https://posit.co/download/rstudio-desktop/">descargar RStudio</a> de fomra gratuita. Simplemente haga clic en el botón “Download RStudio” y siga las instrucciones. Una vez que haya instalado RStudio, puede abrirlo como cualquier otro programa en su computadora—generalmente haciendo clic en un ícono en su escritorio.</p>
-
-<div class="rmdtip">
-<p><strong>Las interfaces gráficas de usuario de R</strong></p>
-Los usuarios de Windows y Mac generalmente no programan desde una ventana de terminal, por lo que las descargas de Windows y Mac para R vienen con un programa simple que abre una ventana similar a una terminal para que pueda ejecutar el código R. Esto es lo que se abre cuando hace clic en el icono de R en su computadora con Windows o Mac. Estos programas hacen un poco más que la ventana de terminal básica, pero no mucho. Es posible que escuche que las personas se refieren a ellos como las interfarces gráficas de usuarios de R para Windows o Mac.
-</div>
-<p>Cuando abre RStudio, aparece una ventana con tres paneles, como en la Figura <span class="citation">@ref</span>(fig:layout). El panel más grande es una ventana de consola. Aquí es donde ejecutará su código R y verá los resultados. La ventana de la consola es exactamente lo que vería si ejecutara R desde una consola UNIX o las IGU de Windows o Mac. Todo lo demás que ve es exclusivo de RStudio. Ocultos en los otros paneles hay un editor de texto, una ventana de gráficos, un depurador, un administrador de archivos y mucho más. Aprenderá acerca de estos paneles a medida que se vuelvan útiles a lo largo de este libro.</p>
-<div class="figure"><span style="display:block;" id="fig:layout"></span>
-<img src="images/hopr_aa01.png" alt="El Entorno de Desarrollo Integrado de RStudio para R." width="782" />
-<p class="caption">
-Figure A.1: El Entorno de Desarrollo Integrado de RStudio para R.
-</p>
-</div>
-
-<div class="rmdtip">
-<p><strong>¿Todavía necesito descargar R?</strong></p>
-Incluso si usa RStudio, aún necesitará descargar R a su computadora. RStudio lo ayuda a usar la versión de R que vive en su computadora, pero no viene con una versión de R propia.
-</div>
-</div>
-<div id="abriendo-r" class="section level2 hasAnchor" number="13.4">
-<h2><span class="header-section-number">A.4</span> Abriendo R<a href="starting.html#abriendo-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Ahora que tiene R y RStudio en su computadora, puede comenzar a usar R abriendo el programa RStudio. Abra RStudio como lo haría con cualquier programa, haciendo clic en su icono o escribiendo “RStudio” en el indicador de ejecución de Windows.</p>
+<div id="reconocimientos" class="section level2 hasAnchor" number="0.4">
+<h2><span class="header-section-number">0.4</span> Reconocimientos<a href="prefacio.html#reconocimientos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Muchas personas excelentes me han ayudado a escribir este libro, desde mis dos editoras, Courtney Nash y Julie Steele, hasta el resto del equipo de O’Reilly, quienes diseñaron, corrigieron e indexaron el libro. Además, Greg Snow me permitió generosamente citarlo en este prefacio. Les ofrezco todo mi más sincero agradecimiento.</p>
+<p>También me gustaría agradecer a Hadley Wickham, quien ha moldeado la forma en que pienso y enseño R. Muchas de las ideas de este libro provienen de Estadística 405, un curso que ayudé a enseñar a Hadley cuando era estudiante de doctorado en la Universidad de Rice.</p>
+<p>Más ideas provinieron de los estudiantes y profesores de Introducción a la ciencia de datos con R, un taller que enseño en nombre de RStudio. Gracias a todos ustedes. Me gustaría agradecer especialmente a mis asistentes de enseñanza Josh Paulson, Winston Chang, Jaime Ramos, Jay Emerson y Vivian Zhang.</p>
+<p>Gracias también a JJ Allaire y al resto de mis colegas de RStudio que proporcionan el IDE de RStudio, una herramienta que hace que sea mucho más fácil usar, enseñar y escribir sobre R.</p>
+<p>Finalmente, quisiera agradecer a mi esposa, Kristin, por su apoyo y comprensión mientras escribía este libro.</p>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="speed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="packages2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="proyecto-1-dados-ponderados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -471,7 +456,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio-education/hopr/edit/master/a1-starting.rmd",
+"link": "https://github.com/rstudio-education/hopr/edit/master/preface.rmd",
 "text": "Edit"
 },
 "history": {

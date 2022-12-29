@@ -19,8 +19,8 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 ## Traducido
 
 -   Bienvenida
-
 -   Prefacio
+-   Apéndice 1
 
 # English
 
@@ -43,5 +43,5 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 ## Translated so far:
 
 -   Wellcome
-
 -   Preface
+-   Appendix 1
