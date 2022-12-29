@@ -40,7 +40,7 @@ Read the free online copy [here](https://rstudio-education.github.io/hopr).
 
 Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019).
 
-##Translated so far:
+## Translated so far:
 
 * Wellcome
 
