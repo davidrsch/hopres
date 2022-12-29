@@ -19,7 +19,7 @@ Si ya se siente cómodo con R y le gustaría enfocarse en cómo analizar datos u
 
 # Sobre la traducción {.unnumbered}
 
-Esta traducción de "Programación práctica con R" es un proyecto personal de David Díaz Rodríguez con el objetivo de facilitar el estudio del lenguje de programación R, tanto al propio traductor como a todas aquellas personas de habla hispana que deseen aprender.
+Esta traducción de "Programación práctica con R" es un proyecto personal de [David Díaz Rodríguez](https://github.com/davidrsch) con el objetivo de facilitar el estudio del lenguje de programación R, tanto al propio traductor como a todas aquellas personas de habla hispana que deseen aprender a programar con R.
 
 Señalar que esta es una traducción textual del libro por lo que en lo adelante cuando el autor se refiere así mismo en primera persona, será Garrett Grolemund y no el traductor, a excepción del prefacio que fue escrito por Hadley Wickham.
 
@@ -27,7 +27,7 @@ Señalar que esta es una traducción textual del libro por lo que en lo adelante
 
 Puede consultar la versión original del libro en [Hands-On Programming with R](https://rstudio-education.github.io/hopr/). Si desea una **copia física** del libro, puede solicitarla en [amazon](https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019); fue publicado por O'Reilly en julio de 2014.
 
-Si desea retribuir, considere informar un error tipográfico o realizar un pull request en [github.com/rstudio-education/hopr](https://github.com/rstudio-education/hopr) para la versión original y en []() para la traducción.
+Si desea retribuir, considere informar un error tipográfico o realizar un pull request en [github.com/rstudio-education/hopr](https://github.com/rstudio-education/hopr) para la versión original y en [github.com/davidrsch/hopres](https://github.com/davidrsch/hopres) para esta traducción.
 
 Este sitio web es (y siempre será) de uso gratuito y está licenciado bajo la licencia [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
