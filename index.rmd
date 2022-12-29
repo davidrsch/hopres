@@ -1,0 +1,34 @@
+---
+knit: "bookdown::render_book"
+title: "Programación práctica con R"
+author: ["Garrett Grolemund"]
+description: "Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos."
+url: 'https\://rstudio-education.github.io/hopr/'
+github-repo: rstudio-education/hopr
+twitter-handle: statgarrett
+cover-image: cover.png
+site: bookdown::bookdown_site
+documentclass: book
+---
+
+# Bienvenido {.unnumbered}
+
+<a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="cover.png" alt="Cover image" width="285" height="375" align="right" style="margin: 0 1em 0 1em"/></a> Este es el sitio web para la versión en español de **"Programación práctica con R"** de Garrett Grolemund. Este libro le enseñará cómo programar en R, con ejemplos prácticos. Fue escrito para personas que no son programadores con el objetivo de proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos.
+
+Si ya se siente cómodo con R y le gustaría enfocarse en cómo analizar datos usando los paquetes Tidyverse de R, se recomienda [R para la Ciencia de Datos](https://es.r4ds.hadley.nz/), un libro de Garrett Grolemund y Hadley Wickham.
+
+# Sobre la traducción {.unnumbered}
+
+Esta traducción de "Programación práctica con R" es un proyecto personal de David Díaz Rodríguez con el objetivo de facilitar el estudio del lenguje de programación R, tanto al propio traductor como a todas aquellas personas de habla hispana que deseen aprender.
+
+Señalar que esta es una traducción textual del libro por lo que en lo adelante cuando el autor se refiere así mismo en primera persona, será Garrett Grolemund y no el traductor, a excepción del prefacio que fue escrito por Hadley Wickham.
+
+# Sobre la versión original en inglés {.unnumbered}
+
+Puede consultar la versión original del libro en [Hands-On Programming with R](https://rstudio-education.github.io/hopr/). Si desea una **copia física** del libro, puede solicitarla en [amazon](https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019); fue publicado por O'Reilly en julio de 2014.
+
+Si desea retribuir, considere informar un error tipográfico o realizar un pull request en [github.com/rstudio-education/hopr](https://github.com/rstudio-education/hopr) para la versión original y en []() para la traducción.
+
+Este sitio web es (y siempre será) de uso gratuito y está licenciado bajo la licencia [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+El libro está escrito en [RMarkdown](https://rmarkdown.rstudio.com) con [bookdown](https://bookdown.org).
