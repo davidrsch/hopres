@@ -20,7 +20,15 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 
 ## Hands-On Programming with R
 
-<a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="cover_en.png" width="285" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a> This is the website for __"Hands-On Programming with R"__. This book will teach you how to program in R, with hands-on examples. I wrote it for non-programmers to provide a friendly introduction to the R language. You'll learn how to load data, assemble and disassemble data objects, navigate R's environment system, write your own functions, and use all of R's programming tools. Throughout the book, you'll use your newfound skills to solve practical data science problems.
+<a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="cover_en.png" width="285" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a> This is the website for __"Hands-On Programming with R"__ by Garrett Grolemund. This book will teach you how to program in R, with hands-on examples. The author wrote it for non-programmers to provide a friendly introduction to the R language. You'll learn how to load data, assemble and disassemble data objects, navigate R's environment system, write your own functions, and use all of R's programming tools. Throughout the book, you'll use your newfound skills to solve practical data science problems.
+
+## About the translation
+
+This translation of "Hands-On Programming with R" is a personal project by [David Díaz Rodríguez](https://github.com/davidrsch) with the aim of facilitating the study of the R programming language, both for the translator himself and for all those Spanish-speaking people who wish to learn to program with R.
+
+Note that this is a textual translation of the book so when the author refers to himself in the first person, it will be Garrett Grolemund and not the translator, except for the preface which was written by Hadley Wickham.
+
+## About the original version in English
 
 Read the free online copy [here](https://rstudio-education.github.io/hopr).
 
