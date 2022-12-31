@@ -20,7 +20,12 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 
 -   Bienvenida
 -   Prefacio
--   Apéndice 1
+-   Parte 1
+    -   1 Proyecto 1: Dados Ponderados
+    -   2 Lo Más Básico
+        -   2.1 La Interfaz de Usuario de R
+-   Apéndice
+    -   Instalando R y RStudio
 
 # English
 
@@ -44,4 +49,9 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 
 -   Wellcome
 -   Preface
--   Appendix 1
+-   Part 1
+    -   1 Project 1: Weighted Dice
+    -   2 The Very Basics
+        -   2.1 The R User Interface
+-   Appendix
+    -   Installing R and RStudio

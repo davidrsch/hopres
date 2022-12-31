@@ -93,9 +93,9 @@ sobre-la-versión-original-en-inglés
 convenciones-usadas-en-este-libro
 reconocimientos
 proyecto-1-dados-ponderados
-basics
-the-r-user-interface
-objects
+Básico
+la-interfaz-de-usuario-de-r
+objetos
 functions
 sample-with-replacement
 write-functions
