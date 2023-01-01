@@ -17,13 +17,13 @@ documentclass: book
 
 Si ya se siente cómodo con R y le gustaría enfocarse en cómo analizar datos usando los paquetes Tidyverse de R, se recomienda [R para la Ciencia de Datos](https://es.r4ds.hadley.nz/), un libro de Garrett Grolemund y Hadley Wickham.
 
-## Sobre la traducción
+## Sobre la traducción {-}
 
 <a href="https://github.com/davidrsch/hopres"><img src="projectlogo.png" alt="Cover image" width="285" height="285" align="right" style="margin: 0 1em 0 1em"/></a> Esta traducción de "Programación práctica con R" es un proyecto personal de [David Díaz Rodríguez](https://github.com/davidrsch) con el objetivo de facilitar el estudio del lenguje de programación R, tanto al propio traductor como a todas aquellas personas de habla hispana que deseen aprender a programar con R.
 
 Señalar que esta es una traducción textual del libro por lo que en lo adelante cuando el autor se refiere así mismo en primera persona, será Garrett Grolemund y no el traductor, a excepción del prefacio que fue escrito por Hadley Wickham.
 
-## Sobre la versión original en inglés
+## Sobre la versión original en inglés {-}
 
 Puede consultar la versión original del libro en [Hands-On Programming with R](https://rstudio-education.github.io/hopr/). Si desea una **copia física** del libro, puede solicitarla en [amazon](https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019); fue publicado por O'Reilly en julio de 2014.
 

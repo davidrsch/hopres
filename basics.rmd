@@ -122,16 +122,16 @@ Puede comenzar con el número 10 y luego seguir los siguientes pasos:
 
 ## Objetos
 
-Now that you know how to use R, let's use it to make a virtual die. The `:` operator from a couple of pages ago gives you a nice way to create a group of numbers from one to six. The `:` operator returns its results as a **vector**, a one-dimensional set of numbers:
+Ahora que sabes cómo usar R, usémoslo para hacer un dado virtual. El operador `:` de hace un par de páginas le brinda una buena manera de crear un grupo de números del uno al seis. El operador `:` devuelve sus resultados como un **vector**, un conjunto unidimensional de números:
 
 ``` r
 1:6
 ## 1 2 3 4 5 6
 ```
 
-That's all there is to how a virtual die looks! But you are not done yet. Running `1:6` generated a vector of numbers for you to see, but it didn't save that vector anywhere in your computer's memory. What you are looking at is basically the footprints of six numbers that existed briefly and then melted back into your computer's RAM. If you want to use those numbers again, you'll have to ask your computer to save them somewhere. You can do that by creating an R *object*.
+¡Eso es todo lo que hay sobre el aspecto de un dado virtual! Pero aún no has terminado. Ejecutar `1:6` generó un vector de números para que lo veas, pero no guardó ese vector en ninguna parte de la memoria de tu computadora. Lo que está viendo son básicamente las huellas de seis números que existieron brevemente y luego se fundieron de nuevo en la memoria RAM de tu computadora. Si desea volver a usar esos números, tendrá que pedirle a su computadora que los guarde en algún lugar. Puede hacerlo creando un *objeto* de R.
 
-R lets you save data by storing it inside an R object. What is an object? Just a name that you can use to call up stored data. For example, you can save data into an object like *`a`* or *`b`*. Wherever R encounters the object, it will replace it with the data saved inside, like so:
+R le permite guardar datos almacenándolos dentro de un objeto R. ¿Qué es un objeto? Solo un nombre que puede usar para recuperar datos almacenados. Por ejemplo, puede guardar datos en un objeto como *`a`* o *`b`*. Siempre que R encuentre el objeto, lo reemplazará con los datos guardados en su interior, así:
 
 ``` r
 a <- 1
@@ -143,51 +143,51 @@ a + 2
 ```
 
 ```{block2, objects, type = "rmdnote"}
-**What just happened?**
+**¿Qué acaba de suceder?**
   
-1. To create an R object, choose a name and then use the less-than symbol, `<`, followed by a minus sign, `-`, to save data into it. This combination looks like an arrow, `<-`. R will make an object, give it your name, and store in it whatever follows the arrow. So `a <- 1` stores `1` in an object named `a`.
-2. When you ask R what's in `a`, R tells you on the next line.
-3. You can use your object in new R commands, too. Since `a` previously stored the value of `1`, you're now adding `1` to `2`.
+1. Para crear un objeto R, elija un nombre y luego use el símbolo menor que, `<`, seguido de un signo menos, `-`, para guardar datos en él. Esta combinación parece una flecha, `<-`. R creará un objeto, le dará su nombre y almacenará en él lo que siga a la flecha. Entonces `a <- 1` almacena `1` en un objeto llamado `a`.
+2. Cuando le preguntas a R qué hay en `a`, R te dice en la siguiente línea.
+3. También puede usar su objeto en nuevos comandos R. Dado que `a` almacenó previamente el valor de `1`, ahora está agregando `1` a `2`.
 ```
 
-So, for another example, the following code would create an object named `die` that contains the numbers one through six. To see what is stored in an object, just type the object's name by itself:
+Entonces, para otro ejemplo, el siguiente código crearía un objeto llamado `dado` que contiene los números del uno al seis. Para ver lo que está almacenado en un objeto, simplemente escriba el nombre del objeto por sí mismo:
 
 ``` r
-die <- 1:6
+dado <- 1:6
 
-die
+dado
 ## 1 2 3 4 5 6
 ```
 
-When you create an object, the object will appear in the environment pane of RStudio, as shown in Figure \@ref(fig:environment). This pane will show you all of the objects you've created since opening RStudio.
+Cuando crea un objeto, el objeto aparecerá en el panel de Environment de RStudio, como se muestra en la Figura \@ref(fig:environment). Este panel le mostrará todos los objetos que ha creado desde que abrió RStudio.
 
-```{r, environment, echo = FALSE, fig.cap = "The RStudio environment pane keeps track of the R objects you create."}
+```{r, environment, echo = FALSE, fig.cap = "El panel de Environment de RStudio realiza un seguimiento de los objetos R que crea."}
 knitr::include_graphics("images/hopr_0102.png")
 ```
 
-You can name an object in R almost anything you want, but there are a few rules. First, a name cannot start with a number. Second, a name cannot use some special symbols, like `^`, `!`, `$`, `@`, `+`, `-`, `/`, or `*`:
+Puedes nombrar un objeto en R casi como quieras, pero hay algunas reglas. Primero, un nombre no puede comenzar con un número. Segundo, un nombre no puede usar algunos símbolos especiales, como `^`, `!`, `$`, `@`, `+`, `-`, `/`, or `*`:
 
-| Good names | Names that cause errors |
-|------------|-------------------------|
-| a          | 1trial                  |
-| b          | \$                      |
-| FOO        | \^mean                  |
-| my_var     | 2nd                     |
-| .day       | !bad                    |
+| Buenos nombres | Nombres que causan error |
+|----------------|--------------------------|
+| a              | 1trial                   |
+| b              | \$                       |
+| FOO            | \^mean                   |
+| my_var         | 2nd                      |
+| .day           | !bad                     |
 
 ```{block2, capitalization, type = "rmdwarning"}
-**Capitalization**
+**Mayúsculas**
   
-R is case-sensitive, so `name` and `Name` will refer to different objects:
+R distingue entre mayúsculas y minúsculas, por lo que `nombre` y `Nombre` se referirán a diferentes objetos:
 
-`Name <- 1`  
-`name <- 0`  
+`Nombre <- 1`  
+`nombre <- 0`  
   
-`Name + 1`  
+`Nombre + 1`  
 `## 2`  
 ```
 
-Finally, R will overwrite any previous information stored in an object without asking you for permission. So, it is a good idea to *not* use names that are already taken:
+Finalmente, R sobrescribirá cualquier información anterior almacenada en un objeto sin pedirle permiso. Por lo tanto, es una buena idea *no* usar nombres que ya están en uso:
 
 ``` r
 my_number <- 1
@@ -199,37 +199,37 @@ my_number
 ## 999
 ```
 
-You can see which object names you have already used with the function `ls`:
+Puedes ver qué nombres de objetos ya has usado con la función `ls`:
 
 ``` r
 ls()
-## "a"         "die"       "my_number" "name"     "Name"     
+## "a"         "dado"       "my_number" "nombre"     "Nombre"     
 ```
 
-You can also see which names you have used by examining RStudio's environment pane.
+También puede ver qué nombres ha utilizado examinando el panel de environment de RStudio.
 
-You now have a virtual die that is stored in your computer's memory. You can access it whenever you like by typing the word *`die`*. So what can you do with this die? Quite a lot. R will replace an object with its contents whenever the object's name appears in a command. So, for example, you can do all sorts of math with the die. Math isn't so helpful for rolling dice, but manipulating sets of numbers will be your stock and trade as a data scientist. So let's take a look at how to do that:
+Ahora tiene un dado virtual que está almacenado en la memoria de su computadora. Puedes acceder a él cuando quieras escribiendo la palabra *`dado`*. Entonces, ¿qué puedes hacer con este dado? Bastante. R reemplazará un objeto con su contenido siempre que el nombre del objeto aparezca en un comando. Entonces, por ejemplo, puedes hacer todo tipo de operaciones matemáticas con el dado. Las matemáticas no son tan útiles para lanzar dados, pero la manipulación de conjuntos de números será su día a día como científico de datos. Así que echemos un vistazo a cómo hacer eso:
 
 ``` r
-die - 1
+dado - 1
 ## 0 1 2 3 4 5
 
-die / 2
+dado / 2
 ## 0.5 1.0 1.5 2.0 2.5 3.0
 
-die * die
+dado * dado
 ## 1  4  9 16 25 36
 ```
 
-If you are a big fan of linear algebra (and who isn't?), you may notice that R does not always follow the rules of matrix multiplication. Instead, R uses *element-wise execution*. When you manipulate a set of numbers, R will apply the same operation to each element in the set. So for example, when you run *`die - 1`*, R subtracts one from each element of `die`.
+Si eres un gran fanático del álgebra lineal (¿y quién no lo es?), puedes notar que R no siempre sigue las reglas de la multiplicación de matrices. En su lugar, R utiliza *ejecución por elementos*. Cuando manipulas un conjunto de números, R aplicará la misma operación a cada elemento del conjunto. Entonces, por ejemplo, cuando ejecuta *`dado - 1`*, R resta uno de cada elemento de `dado`.
 
-When you use two or more vectors in an operation, R will line up the vectors and perform a sequence of individual operations. For example, when you run *`die * die`*, R lines up the two `die` vectors and then multiplies the first element of vector 1 by the first element of vector 2. R then multiplies the second element of vector 1 by the second element of vector 2, and so on, until every element has been multiplied. The result will be a new vector the same length as the first two, as shown in Figure \@ref(fig:elementwise).
+Cuando usa dos o más vectores en una operación, R alineará los vectores y realizará una secuencia de operaciones individuales. Por ejemplo, cuando ejecuta *`dado * dado`*, R alinea los dos vectores `dado` y luego multiplica el primer elemento del vector 1 por el primer elemento del vector 2. R luego multiplica el segundo elemento del vector 1 por el segundo elemento del vector 2, y así sucesivamente, hasta que se hayan multiplicado todos los elementos. El resultado será un nuevo vector de la misma longitud que los dos primeros, como se muestra en la Figura \@ref(fig:elementwise).
 
-```{r elementwise, echo = FALSE, fig.cap = "When R performs element-wise execution, it matches up vectors and then manipulates each pair of elements independently."}
+```{r elementwise, echo = FALSE, fig.cap = "Cuando R realiza una ejecución por elementos, hace coincidir los vectores y luego manipula cada par de elementos de forma independiente."}
 knitr::include_graphics("images/hopr_0103.png")
 ```
 
-If you give R two vectors of unequal lengths, R will repeat the shorter vector until it is as long as the longer vector, and then do the math, as shown in Figure \@ref(fig:recycle). This isn't a permanent change--the shorter vector will be its original size after R does the math. If the length of the short vector does not divide evenly into the length of the long vector, R will return a warning message. This behavior is known as *vector recycling*, and it helps R do element-wise operations:
+Si le da a R dos vectores de longitudes desiguales, R repetirá el vector más corto hasta que sea tan largo como el vector más largo y luego hará los cálculos, como se muestra en la Figura \@ref(fig:recycle). Este no es un cambio permanente: el vector más corto tendrá su tamaño original después de que R haga los cálculos. Si la longitud del vector largo no es divisible equitativamente por el vctor corto, R devolverá un mensaje de advertencia. Este comportamiento se conoce como *reciclado de vectores* y ayuda a R a realizar operaciones por elementos:
 
 ``` r
 1:2
@@ -238,32 +238,32 @@ If you give R two vectors of unequal lengths, R will repeat the shorter vector u
 1:4
 ## 1 2 3 4
 
-die
+dado
 ## 1 2 3 4 5 6
 
-die + 1:2
+dado + 1:2
 ## 2 4 4 6 6 8
 
-die + 1:4
+dado + 1:4
 ## 2 4 6 8 6 8
 Warning message:
-In die + 1:4 :
+In dado + 1:4 :
   longer object length is not a multiple of shorter object length
 ```
 
-```{r recycle, echo = FALSE, fig.cap = "R will repeat a short vector to do element-wise operations with two vectors of uneven lengths."}
+```{r recycle, echo = FALSE, fig.cap = "R repetirá un vector corto para realizar operaciones por elementos con dos vectores de longitud desigual."}
 knitr::include_graphics("images/hopr_0104edited.png")
 ```
 
-Element-wise operations are a very useful feature in R because they manipulate groups of values in an orderly way. When you start working with data sets, element-wise operations will ensure that values from one observation or case are only paired with values from the same observation or case. Element-wise operations also make it easier to write your own programs and functions in R.
+Las operaciones basadas en elementos son una característica muy útil en R porque manipulan grupos de valores de forma ordenada. Cuando comience a trabajar con conjuntos de datos, las operaciones por elementos garantizarán que los valores de una observación o caso solo se emparejen con valores de la misma observación o caso. Las operaciones basadas en elementos también facilitan la escritura de sus propios programas y funciones en R.
 
-But don't think that R has given up on traditional matrix multiplication. You just have to ask for it when you want it. You can do inner multiplication with the `%*%` operator and outer multiplication with the `%o%` operator:
+Pero no creas que R ha renunciado a la multiplicación de matrices tradicional. Solo tienes que pedirlo cuando quieras. Puedes hacer multiplicaciones internas con el operador `%*%` y multiplicaciones externas con el operador `%o%`:
 
 ``` r
-die %*% die
+dado %*% dado
 ## 91
 
-die %o% die
+dado %o% dado
 ##      [,1] [,2] [,3] [,4] [,5] [,6]
 ## [1,]    1    2    3    4    5    6
 ## [2,]    2    4    6    8   10   12
@@ -273,13 +273,13 @@ die %o% die
 ## [6,]    6   12   18   24   30   36
 ```
 
-You can also do things like transpose a matrix with `t` and take its determinant with `det`.
+También puedes hacer cosas como transponer una matriz con `t` y tomar su determinante con `det`.
 
-Don't worry if you're not familiar with these operations. They are easy to look up, and you won't need them for this book.
+No se preocupe si no está familiarizado con estas operaciones. Son fáciles de buscar y no los necesitará para este libro.
 
-Now that you can do math with your `die` object, let's look at how you could "roll" it. Rolling your die will require something more sophisticated than basic arithmetic; you'll need to randomly select one of the die's values. And for that, you will need a *function*.
+Ahora que puede hacer operaciones matemáticas con su objeto `dado`, veamos cómo podría "tirarlo". Lanzar el dado requerirá algo más sofisticado que la aritmética básica; deberá seleccionar aleatoriamente uno de los valores del dado. Y para eso, necesitarás una *función*.
 
-## Functions
+## Funciones
 
 R comes with many functions that you can use to do sophisticated tasks like random sampling. For example, you can round a number with the `round` function, or calculate its factorial with the `factorial` function. Using a function is pretty simple. Just write the name of the function and then the data you want the function to operate on in parentheses:
 

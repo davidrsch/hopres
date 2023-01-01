@@ -88,15 +88,11 @@ fig:hide-traceback
 fig:browser
 fig:browser-buttons
 fig:break-point
-sobre-la-traducción
-sobre-la-versión-original-en-inglés
-convenciones-usadas-en-este-libro
-reconocimientos
 proyecto-1-dados-ponderados
 Básico
 la-interfaz-de-usuario-de-r
 objetos
-functions
+funciones
 sample-with-replacement
 write-functions
 the-function-constructor

@@ -24,6 +24,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
     -   1 Proyecto 1: Dados Ponderados
     -   2 Lo Más Básico
         -   2.1 La Interfaz de Usuario de R
+        -   2.2 Objetos
 -   Apéndice
     -   Instalando R y RStudio
 
@@ -53,5 +54,6 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
     -   1 Project 1: Weighted Dice
     -   2 The Very Basics
         -   2.1 The R User Interface
+        -   2.2 Objects
 -   Appendix
     -   Installing R and RStudio

@@ -137,13 +137,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bienvenido</a>
 <ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#sobre-la-traducción"><i class="fa fa-check"></i><b>0.1</b> Sobre la traducción</a></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#sobre-la-versión-original-en-inglés"><i class="fa fa-check"></i><b>0.2</b> Sobre la versión original en inglés</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#sobre-la-traducción"><i class="fa fa-check"></i>Sobre la traducción</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#sobre-la-versión-original-en-inglés"><i class="fa fa-check"></i>Sobre la versión original en inglés</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="prefacio.html"><a href="prefacio.html"><i class="fa fa-check"></i>Prefacio</a>
 <ul>
-<li class="chapter" data-level="0.3" data-path="prefacio.html"><a href="prefacio.html#convenciones-usadas-en-este-libro"><i class="fa fa-check"></i><b>0.3</b> Convenciones Usadas en Este Libro</a></li>
-<li class="chapter" data-level="0.4" data-path="prefacio.html"><a href="prefacio.html#reconocimientos"><i class="fa fa-check"></i><b>0.4</b> Reconocimientos</a></li>
+<li class="chapter" data-level="" data-path="prefacio.html"><a href="prefacio.html#convenciones-usadas-en-este-libro"><i class="fa fa-check"></i>Convenciones Usadas en Este Libro</a></li>
+<li class="chapter" data-level="" data-path="prefacio.html"><a href="prefacio.html#reconocimientos"><i class="fa fa-check"></i>Reconocimientos</a></li>
 </ul></li>
 <li class="part"><span><b>I Parte 1</b></span></li>
 <li class="chapter" data-level="1" data-path="proyecto-1-dados-ponderados.html"><a href="proyecto-1-dados-ponderados.html"><i class="fa fa-check"></i><b>1</b> Proyecto 1: Dados Ponderados</a></li>
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="Básico.html"><a href="Básico.html#la-interfaz-de-usuario-de-r"><i class="fa fa-check"></i><b>2.1</b> La Interfaz de Usuario de R</a></li>
 <li class="chapter" data-level="2.2" data-path="Básico.html"><a href="Básico.html#objetos"><i class="fa fa-check"></i><b>2.2</b> Objetos</a></li>
-<li class="chapter" data-level="2.3" data-path="Básico.html"><a href="Básico.html#functions"><i class="fa fa-check"></i><b>2.3</b> Functions</a>
+<li class="chapter" data-level="2.3" data-path="Básico.html"><a href="Básico.html#funciones"><i class="fa fa-check"></i><b>2.3</b> Funciones</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="Básico.html"><a href="Básico.html#sample-with-replacement"><i class="fa fa-check"></i><b>2.3.1</b> Sample with Replacement</a></li>
 </ul></li>
@@ -471,11 +471,11 @@ Algunos comandos de R pueden tardar mucho tiempo en ejecutarse. Puede cancelar u
 </div>
 <div id="objetos" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Objetos<a href="Básico.html#objetos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now that you know how to use R, let’s use it to make a virtual die. The <code>:</code> operator from a couple of pages ago gives you a nice way to create a group of numbers from one to six. The <code>:</code> operator returns its results as a <strong>vector</strong>, a one-dimensional set of numbers:</p>
+<p>Ahora que sabes cómo usar R, usémoslo para hacer un dado virtual. El operador <code>:</code> de hace un par de páginas le brinda una buena manera de crear un grupo de números del uno al seis. El operador <code>:</code> devuelve sus resultados como un <strong>vector</strong>, un conjunto unidimensional de números:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Básico.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
 <span id="cb7-2"><a href="Básico.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4 5 6</span></span></code></pre></div>
-<p>That’s all there is to how a virtual die looks! But you are not done yet. Running <code>1:6</code> generated a vector of numbers for you to see, but it didn’t save that vector anywhere in your computer’s memory. What you are looking at is basically the footprints of six numbers that existed briefly and then melted back into your computer’s RAM. If you want to use those numbers again, you’ll have to ask your computer to save them somewhere. You can do that by creating an R <em>object</em>.</p>
-<p>R lets you save data by storing it inside an R object. What is an object? Just a name that you can use to call up stored data. For example, you can save data into an object like <em><code>a</code></em> or <em><code>b</code></em>. Wherever R encounters the object, it will replace it with the data saved inside, like so:</p>
+<p>¡Eso es todo lo que hay sobre el aspecto de un dado virtual! Pero aún no has terminado. Ejecutar <code>1:6</code> generó un vector de números para que lo veas, pero no guardó ese vector en ninguna parte de la memoria de tu computadora. Lo que está viendo son básicamente las huellas de seis números que existieron brevemente y luego se fundieron de nuevo en la memoria RAM de tu computadora. Si desea volver a usar esos números, tendrá que pedirle a su computadora que los guarde en algún lugar. Puede hacerlo creando un <em>objeto</em> de R.</p>
+<p>R le permite guardar datos almacenándolos dentro de un objeto R. ¿Qué es un objeto? Solo un nombre que puede usar para recuperar datos almacenados. Por ejemplo, puede guardar datos en un objeto como <em><code>a</code></em> o <em><code>b</code></em>. Siempre que R encuentre el objeto, lo reemplazará con los datos guardados en su interior, así:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Básico.html#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb8-2"><a href="Básico.html#cb8-2" aria-hidden="true" tabindex="-1"></a>a</span>
 <span id="cb8-3"><a href="Básico.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span>
@@ -484,31 +484,31 @@ Algunos comandos de R pueden tardar mucho tiempo en ejecutarse. Puede cancelar u
 <span id="cb8-6"><a href="Básico.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span></code></pre></div>
 
 <div class="rmdnote">
-<p><strong>What just happened?</strong></p>
+<p><strong>¿Qué acaba de suceder?</strong></p>
 <ol style="list-style-type: decimal">
-<li>To create an R object, choose a name and then use the less-than symbol, <code>&lt;</code>, followed by a minus sign, <code>-</code>, to save data into it. This combination looks like an arrow, <code>&lt;-</code>. R will make an object, give it your name, and store in it whatever follows the arrow. So <code>a &lt;- 1</code> stores <code>1</code> in an object named <code>a</code>.</li>
-<li>When you ask R what’s in <code>a</code>, R tells you on the next line.</li>
-<li>You can use your object in new R commands, too. Since <code>a</code> previously stored the value of <code>1</code>, you’re now adding <code>1</code> to <code>2</code>.
+<li>Para crear un objeto R, elija un nombre y luego use el símbolo menor que, <code>&lt;</code>, seguido de un signo menos, <code>-</code>, para guardar datos en él. Esta combinación parece una flecha, <code>&lt;-</code>. R creará un objeto, le dará su nombre y almacenará en él lo que siga a la flecha. Entonces <code>a &lt;- 1</code> almacena <code>1</code> en un objeto llamado <code>a</code>.</li>
+<li>Cuando le preguntas a R qué hay en <code>a</code>, R te dice en la siguiente línea.</li>
+<li>También puede usar su objeto en nuevos comandos R. Dado que <code>a</code> almacenó previamente el valor de <code>1</code>, ahora está agregando <code>1</code> a <code>2</code>.
 </div></li>
 </ol>
-<p>So, for another example, the following code would create an object named <code>die</code> that contains the numbers one through six. To see what is stored in an object, just type the object’s name by itself:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Básico.html#cb9-1" aria-hidden="true" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<p>Entonces, para otro ejemplo, el siguiente código crearía un objeto llamado <code>dado</code> que contiene los números del uno al seis. Para ver lo que está almacenado en un objeto, simplemente escriba el nombre del objeto por sí mismo:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Básico.html#cb9-1" aria-hidden="true" tabindex="-1"></a>dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
 <span id="cb9-2"><a href="Básico.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="Básico.html#cb9-3" aria-hidden="true" tabindex="-1"></a>die</span>
+<span id="cb9-3"><a href="Básico.html#cb9-3" aria-hidden="true" tabindex="-1"></a>dado</span>
 <span id="cb9-4"><a href="Básico.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4 5 6</span></span></code></pre></div>
-<p>When you create an object, the object will appear in the environment pane of RStudio, as shown in Figure <a href="Básico.html#fig:environment">2.2</a>. This pane will show you all of the objects you’ve created since opening RStudio.</p>
+<p>Cuando crea un objeto, el objeto aparecerá en el panel de Environment de RStudio, como se muestra en la Figura <a href="Básico.html#fig:environment">2.2</a>. Este panel le mostrará todos los objetos que ha creado desde que abrió RStudio.</p>
 <div class="figure"><span style="display:block;" id="fig:environment"></span>
-<img src="images/hopr_0102.png" alt="The RStudio environment pane keeps track of the R objects you create." width="499" />
+<img src="images/hopr_0102.png" alt="El panel de Environment de RStudio realiza un seguimiento de los objetos R que crea." width="499" />
 <p class="caption">
-Figure 2.2: The RStudio environment pane keeps track of the R objects you create.
+Figure 2.2: El panel de Environment de RStudio realiza un seguimiento de los objetos R que crea.
 </p>
 </div>
-<p>You can name an object in R almost anything you want, but there are a few rules. First, a name cannot start with a number. Second, a name cannot use some special symbols, like <code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, or <code>*</code>:</p>
+<p>Puedes nombrar un objeto en R casi como quieras, pero hay algunas reglas. Primero, un nombre no puede comenzar con un número. Segundo, un nombre no puede usar algunos símbolos especiales, como <code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, or <code>*</code>:</p>
 <table>
 <thead>
 <tr class="header">
-<th>Good names</th>
-<th>Names that cause errors</th>
+<th>Buenos nombres</th>
+<th>Nombres que causan error</th>
 </tr>
 </thead>
 <tbody>
@@ -536,14 +536,14 @@ Figure 2.2: The RStudio environment pane keeps track of the R objects you create
 </table>
 
 <div class="rmdwarning">
-<p><strong>Capitalization</strong></p>
-<p>R is case-sensitive, so <code>name</code> and <code>Name</code> will refer to different objects:</p>
-<p><code>Name &lt;- 1</code><br />
-<code>name &lt;- 0</code></p>
-<code>Name + 1</code><br />
+<p><strong>Mayúsculas</strong></p>
+<p>R distingue entre mayúsculas y minúsculas, por lo que <code>nombre</code> y <code>Nombre</code> se referirán a diferentes objetos:</p>
+<p><code>Nombre &lt;- 1</code><br />
+<code>nombre &lt;- 0</code></p>
+<code>Nombre + 1</code><br />
 <code>## 2</code>
 </div>
-<p>Finally, R will overwrite any previous information stored in an object without asking you for permission. So, it is a good idea to <em>not</em> use names that are already taken:</p>
+<p>Finalmente, R sobrescribirá cualquier información anterior almacenada en un objeto sin pedirle permiso. Por lo tanto, es una buena idea <em>no</em> usar nombres que ya están en uso:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Básico.html#cb10-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb10-2"><a href="Básico.html#cb10-2" aria-hidden="true" tabindex="-1"></a>my_number </span>
 <span id="cb10-3"><a href="Básico.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span>
@@ -551,57 +551,57 @@ Figure 2.2: The RStudio environment pane keeps track of the R objects you create
 <span id="cb10-5"><a href="Básico.html#cb10-5" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">999</span></span>
 <span id="cb10-6"><a href="Básico.html#cb10-6" aria-hidden="true" tabindex="-1"></a>my_number</span>
 <span id="cb10-7"><a href="Básico.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 999</span></span></code></pre></div>
-<p>You can see which object names you have already used with the function <code>ls</code>:</p>
+<p>Puedes ver qué nombres de objetos ya has usado con la función <code>ls</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Básico.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb11-2"><a href="Básico.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;a&quot;         &quot;die&quot;       &quot;my_number&quot; &quot;name&quot;     &quot;Name&quot;     </span></span></code></pre></div>
-<p>You can also see which names you have used by examining RStudio’s environment pane.</p>
-<p>You now have a virtual die that is stored in your computer’s memory. You can access it whenever you like by typing the word <em><code>die</code></em>. So what can you do with this die? Quite a lot. R will replace an object with its contents whenever the object’s name appears in a command. So, for example, you can do all sorts of math with the die. Math isn’t so helpful for rolling dice, but manipulating sets of numbers will be your stock and trade as a data scientist. So let’s take a look at how to do that:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Básico.html#cb12-1" aria-hidden="true" tabindex="-1"></a>die <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb11-2"><a href="Básico.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;a&quot;         &quot;dado&quot;       &quot;my_number&quot; &quot;nombre&quot;     &quot;Nombre&quot;     </span></span></code></pre></div>
+<p>También puede ver qué nombres ha utilizado examinando el panel de environment de RStudio.</p>
+<p>Ahora tiene un dado virtual que está almacenado en la memoria de su computadora. Puedes acceder a él cuando quieras escribiendo la palabra <em><code>dado</code></em>. Entonces, ¿qué puedes hacer con este dado? Bastante. R reemplazará un objeto con su contenido siempre que el nombre del objeto aparezca en un comando. Entonces, por ejemplo, puedes hacer todo tipo de operaciones matemáticas con el dado. Las matemáticas no son tan útiles para lanzar dados, pero la manipulación de conjuntos de números será su día a día como científico de datos. Así que echemos un vistazo a cómo hacer eso:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Básico.html#cb12-1" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb12-2"><a href="Básico.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 0 1 2 3 4 5</span></span>
 <span id="cb12-3"><a href="Básico.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="Básico.html#cb12-4" aria-hidden="true" tabindex="-1"></a>die <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb12-4"><a href="Básico.html#cb12-4" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">/</span> <span class="dv">2</span></span>
 <span id="cb12-5"><a href="Básico.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.5 1.0 1.5 2.0 2.5 3.0</span></span>
 <span id="cb12-6"><a href="Básico.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="Básico.html#cb12-7" aria-hidden="true" tabindex="-1"></a>die <span class="sc">*</span> die</span>
+<span id="cb12-7"><a href="Básico.html#cb12-7" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">*</span> dado</span>
 <span id="cb12-8"><a href="Básico.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1  4  9 16 25 36</span></span></code></pre></div>
-<p>If you are a big fan of linear algebra (and who isn’t?), you may notice that R does not always follow the rules of matrix multiplication. Instead, R uses <em>element-wise execution</em>. When you manipulate a set of numbers, R will apply the same operation to each element in the set. So for example, when you run <em><code>die - 1</code></em>, R subtracts one from each element of <code>die</code>.</p>
-<p>When you use two or more vectors in an operation, R will line up the vectors and perform a sequence of individual operations. For example, when you run <em><code>die * die</code></em>, R lines up the two <code>die</code> vectors and then multiplies the first element of vector 1 by the first element of vector 2. R then multiplies the second element of vector 1 by the second element of vector 2, and so on, until every element has been multiplied. The result will be a new vector the same length as the first two, as shown in Figure <a href="Básico.html#fig:elementwise">2.3</a>.</p>
+<p>Si eres un gran fanático del álgebra lineal (¿y quién no lo es?), puedes notar que R no siempre sigue las reglas de la multiplicación de matrices. En su lugar, R utiliza <em>ejecución por elementos</em>. Cuando manipulas un conjunto de números, R aplicará la misma operación a cada elemento del conjunto. Entonces, por ejemplo, cuando ejecuta <em><code>dado - 1</code></em>, R resta uno de cada elemento de <code>dado</code>.</p>
+<p>Cuando usa dos o más vectores en una operación, R alineará los vectores y realizará una secuencia de operaciones individuales. Por ejemplo, cuando ejecuta <em><code>dado * dado</code></em>, R alinea los dos vectores <code>dado</code> y luego multiplica el primer elemento del vector 1 por el primer elemento del vector 2. R luego multiplica el segundo elemento del vector 1 por el segundo elemento del vector 2, y así sucesivamente, hasta que se hayan multiplicado todos los elementos. El resultado será un nuevo vector de la misma longitud que los dos primeros, como se muestra en la Figura <a href="Básico.html#fig:elementwise">2.3</a>.</p>
 <div class="figure"><span style="display:block;" id="fig:elementwise"></span>
-<img src="images/hopr_0103.png" alt="When R performs element-wise execution, it matches up vectors and then manipulates each pair of elements independently." width="782" />
+<img src="images/hopr_0103.png" alt="Cuando R realiza una ejecución por elementos, hace coincidir los vectores y luego manipula cada par de elementos de forma independiente." width="782" />
 <p class="caption">
-Figure 2.3: When R performs element-wise execution, it matches up vectors and then manipulates each pair of elements independently.
+Figure 2.3: Cuando R realiza una ejecución por elementos, hace coincidir los vectores y luego manipula cada par de elementos de forma independiente.
 </p>
 </div>
-<p>If you give R two vectors of unequal lengths, R will repeat the shorter vector until it is as long as the longer vector, and then do the math, as shown in Figure <a href="Básico.html#fig:recycle">2.4</a>. This isn’t a permanent change–the shorter vector will be its original size after R does the math. If the length of the short vector does not divide evenly into the length of the long vector, R will return a warning message. This behavior is known as <em>vector recycling</em>, and it helps R do element-wise operations:</p>
+<p>Si le da a R dos vectores de longitudes desiguales, R repetirá el vector más corto hasta que sea tan largo como el vector más largo y luego hará los cálculos, como se muestra en la Figura <a href="Básico.html#fig:recycle">2.4</a>. Este no es un cambio permanente: el vector más corto tendrá su tamaño original después de que R haga los cálculos. Si la longitud del vector largo no es divisible equitativamente por el vctor corto, R devolverá un mensaje de advertencia. Este comportamiento se conoce como <em>reciclado de vectores</em> y ayuda a R a realizar operaciones por elementos:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Básico.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span></span>
 <span id="cb13-2"><a href="Básico.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2</span></span>
 <span id="cb13-3"><a href="Básico.html#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="Básico.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
 <span id="cb13-5"><a href="Básico.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4</span></span>
 <span id="cb13-6"><a href="Básico.html#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="Básico.html#cb13-7" aria-hidden="true" tabindex="-1"></a>die</span>
+<span id="cb13-7"><a href="Básico.html#cb13-7" aria-hidden="true" tabindex="-1"></a>dado</span>
 <span id="cb13-8"><a href="Básico.html#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4 5 6</span></span>
 <span id="cb13-9"><a href="Básico.html#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="Básico.html#cb13-10" aria-hidden="true" tabindex="-1"></a>die <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span></span>
+<span id="cb13-10"><a href="Básico.html#cb13-10" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span></span>
 <span id="cb13-11"><a href="Básico.html#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4 4 6 6 8</span></span>
 <span id="cb13-12"><a href="Básico.html#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="Básico.html#cb13-13" aria-hidden="true" tabindex="-1"></a>die <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb13-13"><a href="Básico.html#cb13-13" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
 <span id="cb13-14"><a href="Básico.html#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4 6 8 6 8</span></span>
 <span id="cb13-15"><a href="Básico.html#cb13-15" aria-hidden="true" tabindex="-1"></a>Warning message<span class="sc">:</span></span>
-<span id="cb13-16"><a href="Básico.html#cb13-16" aria-hidden="true" tabindex="-1"></a>In die <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">:</span></span>
+<span id="cb13-16"><a href="Básico.html#cb13-16" aria-hidden="true" tabindex="-1"></a>In dado <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">:</span></span>
 <span id="cb13-17"><a href="Básico.html#cb13-17" aria-hidden="true" tabindex="-1"></a>  longer object length is not a multiple of shorter object length</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:recycle"></span>
-<img src="images/hopr_0104edited.png" alt="R will repeat a short vector to do element-wise operations with two vectors of uneven lengths." width="360" />
+<img src="images/hopr_0104edited.png" alt="R repetirá un vector corto para realizar operaciones por elementos con dos vectores de longitud desigual." width="360" />
 <p class="caption">
-Figure 2.4: R will repeat a short vector to do element-wise operations with two vectors of uneven lengths.
+Figure 2.4: R repetirá un vector corto para realizar operaciones por elementos con dos vectores de longitud desigual.
 </p>
 </div>
-<p>Element-wise operations are a very useful feature in R because they manipulate groups of values in an orderly way. When you start working with data sets, element-wise operations will ensure that values from one observation or case are only paired with values from the same observation or case. Element-wise operations also make it easier to write your own programs and functions in R.</p>
-<p>But don’t think that R has given up on traditional matrix multiplication. You just have to ask for it when you want it. You can do inner multiplication with the <code>%*%</code> operator and outer multiplication with the <code>%o%</code> operator:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Básico.html#cb14-1" aria-hidden="true" tabindex="-1"></a>die <span class="sc">%*%</span> die</span>
+<p>Las operaciones basadas en elementos son una característica muy útil en R porque manipulan grupos de valores de forma ordenada. Cuando comience a trabajar con conjuntos de datos, las operaciones por elementos garantizarán que los valores de una observación o caso solo se emparejen con valores de la misma observación o caso. Las operaciones basadas en elementos también facilitan la escritura de sus propios programas y funciones en R.</p>
+<p>Pero no creas que R ha renunciado a la multiplicación de matrices tradicional. Solo tienes que pedirlo cuando quieras. Puedes hacer multiplicaciones internas con el operador <code>%*%</code> y multiplicaciones externas con el operador <code>%o%</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Básico.html#cb14-1" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">%*%</span> dado</span>
 <span id="cb14-2"><a href="Básico.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 91</span></span>
 <span id="cb14-3"><a href="Básico.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="Básico.html#cb14-4" aria-hidden="true" tabindex="-1"></a>die <span class="sc">%o%</span> die</span>
+<span id="cb14-4"><a href="Básico.html#cb14-4" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">%o%</span> dado</span>
 <span id="cb14-5"><a href="Básico.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4] [,5] [,6]</span></span>
 <span id="cb14-6"><a href="Básico.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,]    1    2    3    4    5    6</span></span>
 <span id="cb14-7"><a href="Básico.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,]    2    4    6    8   10   12</span></span>
@@ -609,12 +609,12 @@ Figure 2.4: R will repeat a short vector to do element-wise operations with two 
 <span id="cb14-9"><a href="Básico.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [4,]    4    8   12   16   20   24</span></span>
 <span id="cb14-10"><a href="Básico.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [5,]    5   10   15   20   25   30</span></span>
 <span id="cb14-11"><a href="Básico.html#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [6,]    6   12   18   24   30   36</span></span></code></pre></div>
-<p>You can also do things like transpose a matrix with <code>t</code> and take its determinant with <code>det</code>.</p>
-<p>Don’t worry if you’re not familiar with these operations. They are easy to look up, and you won’t need them for this book.</p>
-<p>Now that you can do math with your <code>die</code> object, let’s look at how you could “roll” it. Rolling your die will require something more sophisticated than basic arithmetic; you’ll need to randomly select one of the die’s values. And for that, you will need a <em>function</em>.</p>
+<p>También puedes hacer cosas como transponer una matriz con <code>t</code> y tomar su determinante con <code>det</code>.</p>
+<p>No se preocupe si no está familiarizado con estas operaciones. Son fáciles de buscar y no los necesitará para este libro.</p>
+<p>Ahora que puede hacer operaciones matemáticas con su objeto <code>dado</code>, veamos cómo podría “tirarlo”. Lanzar el dado requerirá algo más sofisticado que la aritmética básica; deberá seleccionar aleatoriamente uno de los valores del dado. Y para eso, necesitarás una <em>función</em>.</p>
 </div>
-<div id="functions" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Functions<a href="Básico.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="funciones" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Funciones<a href="Básico.html#funciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R comes with many functions that you can use to do sophisticated tasks like random sampling. For example, you can round a number with the <code>round</code> function, or calculate its factorial with the <code>factorial</code> function. Using a function is pretty simple. Just write the name of the function and then the data you want the function to operate on in parentheses:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Básico.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>)</span>
 <span id="cb15-2"><a href="Básico.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>

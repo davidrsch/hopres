@@ -42,7 +42,7 @@ El libro es un complemento de [R para la Ciencia de Datos](https://es.r4ds.hadle
 
 ------------------------------------------------------------------------
 
-## Convenciones Usadas en Este Libro
+## Convenciones Usadas en Este Libro {-}
 
 En este libro se utilizan las siguientes convenciones tipográficas:
 
@@ -56,7 +56,7 @@ En este libro se utilizan las siguientes convenciones tipográficas:
 
 Para comentar o hacer preguntas técnicas sobre este libro, presente un issue en [github.com/rstudio-education/hopr](https://github.com/rstudio-education/hopr).
 
-## Reconocimientos
+## Reconocimientos {-}
 
 Muchas personas excelentes me han ayudado a escribir este libro, desde mis dos editoras, Courtney Nash y Julie Steele, hasta el resto del equipo de O'Reilly, quienes diseñaron, corrigieron e indexaron el libro. Además, Greg Snow me permitió generosamente citarlo en este prefacio. Les ofrezco todo mi más sincero agradecimiento.
 
