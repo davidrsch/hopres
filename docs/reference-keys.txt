@@ -93,8 +93,8 @@ Básico
 la-interfaz-de-usuario-de-r
 objetos
 funciones
-sample-with-replacement
-write-functions
+muestra-con-reemplazo
+Escribir-funciones
 the-function-constructor
 arguments
 scripts

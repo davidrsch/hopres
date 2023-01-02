@@ -25,6 +25,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
     -   2 Lo Más Básico
         -   2.1 La Interfaz de Usuario de R
         -   2.2 Objetos
+        -   2.3 Funciones
 -   Apéndice
     -   Instalando R y RStudio
 
@@ -55,5 +56,6 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
     -   2 The Very Basics
         -   2.1 The R User Interface
         -   2.2 Objects
+        -   2.3 Functions
 -   Appendix
     -   Installing R and RStudio

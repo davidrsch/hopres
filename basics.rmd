@@ -252,7 +252,7 @@ In dado + 1:4 :
 ```
 
 ```{r recycle, echo = FALSE, fig.cap = "R repetirá un vector corto para realizar operaciones por elementos con dos vectores de longitud desigual."}
-knitr::include_graphics("images/hopr_0104edited.png")
+knitr::include_graphics("images/hopr_0104.png")
 ```
 
 Las operaciones basadas en elementos son una característica muy útil en R porque manipulan grupos de valores de forma ordenada. Cuando comience a trabajar con conjuntos de datos, las operaciones por elementos garantizarán que los valores de una observación o caso solo se emparejen con valores de la misma observación o caso. Las operaciones basadas en elementos también facilitan la escritura de sus propios programas y funciones en R.
@@ -281,7 +281,7 @@ Ahora que puede hacer operaciones matemáticas con su objeto `dado`, veamos cóm
 
 ## Funciones
 
-R comes with many functions that you can use to do sophisticated tasks like random sampling. For example, you can round a number with the `round` function, or calculate its factorial with the `factorial` function. Using a function is pretty simple. Just write the name of the function and then the data you want the function to operate on in parentheses:
+R viene con muchas funciones que puede usar para realizar tareas sofisticadas como el muestreo aleatorio. Por ejemplo, puede redondear un número con la función `round` o calcular su factorial con la función `factorial`. Usar una función es bastante simple. Simplemente escriba el nombre de la función y luego los datos sobre los que desea que opere la función entre paréntesis::
 
 ``` r
 round(3.1415)
@@ -291,62 +291,62 @@ factorial(3)
 ## 6
 ```
 
-The data that you pass into the function is called the function's *argument*. The argument can be raw data, an R object, or even the results of another R function. In this last case, R will work from the innermost function to the outermost, as in Figure \@ref(fig:pemdas).
+Los datos que pasa a la función se denominan *argumento* de la función. El argumento puede ser datos sin procesar, un objeto R o incluso los resultados de otra función R. En este último caso, R trabajará desde la función más interna hacia la más externa, como en la Figura \@ref(fig:pemdas).
 
 ``` r
 mean(1:6)
 ## 3.5
 
-mean(die)
+mean(dado)
 ## 3.5
 
-round(mean(die))
+round(mean(dado))
 ## 4
 ```
 
-```{r, pemdas, echo = FALSE, fig.cap = "When you link functions together, R will resolve them from the innermost operation to the outermost. Here R first looks up die, then calculates the mean of one through six, then rounds the mean."}
+```{r, pemdas, echo = FALSE, fig.cap = "Cuando vincula funciones, R las resolverá desde la operación más interna hasta la más externa. Aquí R primero busca el dado, luego calcula la media de uno a seis y luego redondea la media."}
 knitr::include_graphics("images/hopr_0105.png")
 ```
 
-Lucky for us, there is an R function that can help "roll" the die. You can simulate a roll of the die with R's `sample` function. `sample` takes *two* arguments: a vector named `x` and a number named `size`. `sample` will return `size` elements from the vector:
+Por suerte para nosotros, hay una función R que puede ayudar a "tirar" el dado. Puede simular una tirada del dado con la función `sample` de R. `sample` toma *dos* argumentos: un vector llamado `x` y un número llamado `size`. `sample` devolverá elementos de `size` del vector:
 
 ``` r
 sample(x = 1:4, size = 2)
 ## 3 2
 ```
 
-To roll your die and get a number back, set `x` to `die` and sample one element from it. You'll get a new (maybe different) number each time you roll it:
+Para tirar el dado y obtener un número de vuelta, establezca `x` en `dado` y muestree un elemento de él. Obtendrá un número nuevo (quizás diferente) cada vez que lo haga rodar:
 
 ``` r
-sample(x = die, size = 1)
+sample(x = dado, size = 1)
 ## 2
 
-sample(x = die, size = 1)
+sample(x = dado, size = 1)
 ## 1
 
-sample(x = die, size = 1)
+sample(x = dado, size = 1)
 ## 6
 ```
 
-Many R functions take multiple arguments that help them do their job. You can give a function as many arguments as you like as long as you separate each argument with a comma.
+Muchas funciones de R toman múltiples argumentos que las ayudan a hacer su trabajo. Puede dar a una función tantos argumentos como desee siempre que separe cada argumento con una coma.
 
-You may have noticed that I set `die` and `1` equal to the names of the arguments in `sample`, `x` and `size`. Every argument in every R function has a name. You can specify which data should be assigned to which argument by setting a name equal to data, as in the preceding code. This becomes important as you begin to pass multiple arguments to the same function; names help you avoid passing the wrong data to the wrong argument. However, using names is optional. You will notice that R users do not often use the name of the first argument in a function. So you might see the previous code written as:
+Es posible que hayas notado que establecí `dado` y `1` iguales a los nombres de los argumentos en `sample`, `x` y `size`. Cada argumento en cada función de R tiene un nombre. Puede especificar qué datos deben asignarse a qué argumento estableciendo un nombre igual a data, como en el código anterior. Esto se vuelve importante a medida que comienza a pasar múltiples argumentos a la misma función; los nombres lo ayudan a evitar pasar los datos incorrectos al argumento incorrecto. Sin embargo, el uso de nombres es opcional. Notará que los usuarios de R no suelen usar el nombre del primer argumento en una función. Por lo tanto, es posible que vea el código anterior escrito como:
 
 ``` r
-sample(die, size = 1)
+sample(dado, size = 1)
 ## 2
 ```
 
-Often, the name of the first argument is not very descriptive, and it is usually obvious what the first piece of data refers to anyways.
+A menudo, el nombre del primer argumento no es muy descriptivo y, de todos modos, suele ser obvio a qué se refiere el primer dato.
 
-But how do you know which argument names to use? If you try to use a name that a function does not expect, you will likely get an error:
+Pero, ¿cómo saber qué nombres de argumento usar? Si intenta usar un nombre que una función no espera, es probable que obtenga un error:
 
 ``` r
 round(3.1415, corners = 2)
 ## Error in round(3.1415, corners = 2) : unused argument(s) (corners = 2)
 ```
 
-If you're not sure which names to use with a function, you can look up the function's arguments with `args`. To do this, place the name of the function in the parentheses behind `args`. For example, you can see that the `round` function takes two arguments, one named `x` and one named `digits`:
+Si no está seguro de qué nombres usar con una función, puede buscar los argumentos de la función con `args`. Para hacer esto, coloque el nombre de la función entre paréntesis detrás de `args`. Por ejemplo, puede ver que la función `round` toma dos argumentos, uno llamado `x` y otro llamado `digits`:
 
 ``` r
 args(round)
@@ -354,7 +354,7 @@ args(round)
 ## NULL
 ```
 
-Did you notice that `args` shows that the `digits` argument of `round` is already set to 0? Frequently, an R function will take optional arguments like `digits`. These arguments are considered optional because they come with a default value. You can pass a new value to an optional argument if you want, and R will use the default value if you do not. For example, `round` will round your number to 0 digits past the decimal point by default. To override the default, supply your own value for `digits`:
+¿Notaste que `args` muestra que el argumento `digits` de `round` ya está establecido en 0? Con frecuencia, una función R tomará argumentos opcionales como `digits`. Estos argumentos se consideran opcionales porque vienen con un valor predeterminado. Puede pasar un nuevo valor a un argumento opcional si así lo desea, y R utilizará el valor predeterminado si no proporciona uno nuevo. Por ejemplo, "round" redondeará su número a 0 dígitos más allá del punto decimal de forma predeterminada. Para anular el valor predeterminado, proporcione su propio valor para `digits`:
 
 ``` r
 round(3.1415)
@@ -364,80 +364,80 @@ round(3.1415, digits = 2)
 ## 3.14
 ```
 
-You should write out the names of each argument after the first one or two when you call a function with multiple arguments. Why? First, this will help you and others understand your code. It is usually obvious which argument your first input refers to (and sometimes the second input as well). However, you'd need a large memory to remember the third and fourth arguments of every R function. Second, and more importantly, writing out argument names prevents errors.
+Debe escribir los nombres de cada argumento después del primero o dos cuando llame a una función con múltiples argumentos. ¿Por qué? Primero, esto lo ayudará a usted y a otros a comprender su código. Por lo general, es obvio a qué argumento se refiere su primera entrada (y, a veces, también la segunda entrada). Sin embargo, necesitaría una memoria grande para recordar los argumentos tercero y cuarto de cada función R. En segundo lugar, y más importante, escribir los nombres de los argumentos evita errores.
 
-If you do not write out the names of your arguments, R will match your values to the arguments in your function by order. For example, in the following code, the first value, `die`, will be matched to the first argument of `sample`, which is named `x`. The next value, `1`, will be matched to the next argument, `size`:
+Si no escribe los nombres de sus argumentos, R hará coincidir sus valores con los argumentos de su función por orden. Por ejemplo, en el siguiente código, el primer valor, `dado`, coincidirá con el primer argumento de `sample`, que se llama `x`. El siguiente valor, `1`, coincidirá con el siguiente argumento, `size`:
 
 ``` r
-sample(die, 1)
+sample(dado, 1)
 ## 2
 ```
 
-As you provide more arguments, it becomes more likely that your order and R's order may not align. As a result, values may get passed to the wrong argument. Argument names prevent this. R will always match a value to its argument name, no matter where it appears in the order of arguments:
+A medida que proporciona más argumentos, es más probable que su orden y el orden de R no coincidan. Como resultado, los valores pueden pasarse al argumento incorrecto. Los nombres de los argumentos evitan esto. R siempre hará coincidir un valor con el nombre de su argumento, sin importar dónde aparezca en el orden de los argumentos:
 
 ``` r
-sample(size = 1, x = die)
+sample(size = 1, x = dado)
 ## 2
 ```
 
-### Sample with Replacement
+### Muestra con reemplazo
 
-If you set `size = 2`, you can *almost* simulate a pair of dice. Before we run that code, think for a minute why that might be the case. `sample` will return two numbers, one for each die:
+Si configura `size = 2`, puede *casi* simular un par de dados. Antes de ejecutar ese código, piense por un minuto por qué ese podría ser el caso. `sample` devolverá dos números, uno para cada dado:
 
 ``` r
-sample(die, size = 2)
+sample(dado, size = 2)
 ## 3 4
 ```
 
-I said this "almost" works because this method does something funny. If you use it many times, you'll notice that the second die never has the same value as the first die, which means you'll never roll something like a pair of threes or snake eyes. What is going on?
+Dije que esto "casi" funciona porque este método hace algo divertido. Si lo usa muchas veces, notará que el segundo dado nunca tiene el mismo valor que el primero, lo que significa que nunca obtendrá algo como un par de tres o un par de unos. ¿Qué esta pasando?
 
-By default, `sample` builds a sample *without replacement*. To see what this means, imagine that `sample` places all of the values of `die` in a jar or urn. Then imagine that `sample` reaches into the jar and pulls out values one by one to build its sample. Once a value has been drawn from the jar, `sample` sets it aside. The value doesn't go back into the jar, so it cannot be drawn again. So if `sample` selects a six on its first draw, it will not be able to select a six on the second draw; six is no longer in the jar to be selected. Although `sample` creates its sample electronically, it follows this seemingly physical behavior.
+Por defecto, `sample` construye una muestra *sin reemplazo*. Para ver lo que esto significa, imagina que `sample` coloca todos los valores de `dado` en un frasco o urna. Luego imagine que `sample` alcanza el frasco y extrae valores uno por uno para construir su muestra. Una vez que se ha extraído un valor del frasco, `sample` lo deja a un lado. El valor no vuelve al frasco, por lo que no se puede volver a extraer. Entonces, si `sample` selecciona un seis en su primer sorteo, no podrá seleccionar un seis en el segundo sorteo; seis ya no está en el frasco para ser seleccionado. Aunque `sample` crea su muestra electrónicamente, sigue este comportamiento aparentemente físico.
 
-One side effect of this behavior is that each draw depends on the draws that come before it. In the real world, however, when you roll a pair of dice, each die is independent of the other. If the first die comes up six, it does not prevent the second die from coming up six. In fact, it doesn't influence the second die in any way whatsoever. You can recreate this behavior in `sample` by adding the argument `replace = TRUE`:
+Un efecto secundario de este comportamiento es que cada sorteo depende de los sorteos anteriores. Sin embargo, en el mundo real, cuando lanzas un par de dados, cada dado es independiente del otro. Si el primer dado sale seis, no impide que el segundo dado salga seis. De hecho, no influye en el segundo dado de ninguna manera. Puede recrear este comportamiento en `sample` agregando el argumento `replace = TRUE`:
 
 ``` r
-sample(die, size = 2, replace = TRUE)
+sample(dado, size = 2, replace = TRUE)
 ## 5 5
 ```
 
-The argument `replace = TRUE` causes `sample` to sample *with replacement*. Our jar example provides a good way to understand the difference between sampling with replacement and without. When `sample` uses replacement, it draws a value from the jar and records the value. Then it puts the value back into the jar. In other words, `sample` *replaces* each value after each draw. As a result, `sample` may select the same value on the second draw. Each value has a chance of being selected each time. It is as if every draw were the first draw.
+El argumento `replace = TRUE` hace que `sample` muestree *con reemplazo*. Nuestro ejemplo de frasco proporciona una buena manera de comprender la diferencia entre el muestreo con reemplazo y sin reemplazo. Cuando `sample` usa reemplazo, extrae un valor del frasco y registra el valor. Luego vuelve a poner el valor en el frasco. En otras palabras, `sample` *reemplaza* cada valor después de cada sorteo. Como resultado, `sample` puede seleccionar el mismo valor en el segundo sorteo. Cada valor tiene la posibilidad de ser seleccionado cada vez. Es como si cada sorteo fuera el primer sorteo.
 
-Sampling with replacement is an easy way to create *independent random samples*. Each value in your sample will be a sample of size one that is independent of the other values. This is the correct way to simulate a pair of dice:
+El muestreo con reemplazo es una manera fácil de crear *muestras aleatorias independientes*. Cada valor en su muestra será una muestra de tamaño uno que es independiente de los otros valores. Esta es la forma correcta de simular un par de dados.
 
 ``` r
-sample(die, size = 2, replace = TRUE)
+sample(dado, size = 2, replace = TRUE)
 ## 2 4
 ```
 
-Congratulate yourself; you've just run your first simulation in R! You now have a method for simulating the result of rolling a pair of dice. If you want to add up the dice, you can feed your result straight into the `sum` function:
+Felicítate a ti mismo; ¡Acabas de ejecutar tu primera simulación en R! Ahora tiene un método para simular el resultado de lanzar un par de dados. Si desea sumar los dados, puede ingresar su resultado directamente en la función `sum`:
 
 ``` r
-dice <- sample(die, size = 2, replace = TRUE)
-dice
+dados <- sample(dado, size = 2, replace = TRUE)
+dados
 ## 2 4
 
-sum(dice)
+sum(dados)
 ## 6
 ```
 
-What would happen if you call `dice` multiple times? Would R generate a new pair of dice values each time? Let's give it a try:
+¿Qué pasaría si llamas `dados` varias veces? ¿Generaría R un nuevo par de valores de dados cada vez? Probemos:
 
 ``` r
-dice
+dados
 ## 2 4
 
-dice
+dados
 ## 2 4
 
-dice
+dados
 ## 2 4
 ```
 
-Nope. Each time you call `dice`, R will show you the result of that one time you called `sample` and saved the output to `dice`. R won't rerun `sample(die, 2, replace = TRUE)` to create a new roll of the dice. This is a relief in a way. Once you save a set of results to an R object, those results do not change. Programming would be quite hard if the values of your objects changed each time you called them.
+No. Cada vez que llame a `dados`, R le mostrará el resultado de esa vez que llamó a `sample` y guardó la salida en `dados`. R no volverá a ejecutar `sample(dado, 2, replace = TRUE)` para crear una nueva tirada de dados. Esto es un alivio en cierto modo. Una vez que guarda un conjunto de resultados en un objeto de R, esos resultados no cambian. La programación sería bastante difícil si los valores de sus objetos cambiaran cada vez que los llama.
 
-However, it *would* be convenient to have an object that can re-roll the dice whenever you call it. You can make such an object by writing your own R function.
+Sin embargo, *sería* conveniente tener un objeto que pueda volver a tirar los dados cada vez que lo llames. Puede hacer tal objeto escribiendo su propia función de R.
 
-## Writing Your Own Functions {#write-functions}
+## Escribiendo Sus Propias Funciones {#Escribir-funciones}
 
 To recap, you already have working R code that simulates rolling a pair of dice:
 

@@ -153,9 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="Básico.html"><a href="Básico.html#objetos"><i class="fa fa-check"></i><b>2.2</b> Objetos</a></li>
 <li class="chapter" data-level="2.3" data-path="Básico.html"><a href="Básico.html#funciones"><i class="fa fa-check"></i><b>2.3</b> Funciones</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="Básico.html"><a href="Básico.html#sample-with-replacement"><i class="fa fa-check"></i><b>2.3.1</b> Sample with Replacement</a></li>
+<li class="chapter" data-level="2.3.1" data-path="Básico.html"><a href="Básico.html#muestra-con-reemplazo"><i class="fa fa-check"></i><b>2.3.1</b> Muestra con reemplazo</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="Básico.html"><a href="Básico.html#write-functions"><i class="fa fa-check"></i><b>2.4</b> Writing Your Own Functions</a>
+<li class="chapter" data-level="2.4" data-path="Básico.html"><a href="Básico.html#Escribir-funciones"><i class="fa fa-check"></i><b>2.4</b> Escribiendo Sus Propias Funciones</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="Básico.html"><a href="Básico.html#the-function-constructor"><i class="fa fa-check"></i><b>2.4.1</b> The Function Constructor</a></li>
 </ul></li>
@@ -1036,7 +1036,7 @@ To convert an <code>if</code> tree to a lookup table, identify the values to be 
 <span id="cb296-17"><a href="programs.html#cb296-17" aria-hidden="true" tabindex="-1"></a><span class="co"># adjust for diamonds</span></span>
 <span id="cb296-18"><a href="programs.html#cb296-18" aria-hidden="true" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">sum</span>(symbols <span class="sc">==</span> <span class="st">&quot;DD&quot;</span>)</span>
 <span id="cb296-19"><a href="programs.html#cb296-19" aria-hidden="true" tabindex="-1"></a>prize <span class="sc">*</span> <span class="dv">2</span> <span class="sc">^</span> diamonds</span></code></pre></div>
-<p>Now that each part of your code works, you can wrap it into a function with the methods you learned in <a href="Básico.html#write-functions">Writing Your Own Functions</a>. Either use RStudio’s Extract Function option in the menu bar under Code, or use the <code>function</code> function. Ensure that the last line of the function returns a result (it does), and identify any arguments used by your function. Often the concrete examples that you used to test your code, like <code>symbols</code>, will become the arguments of your function. Run the following code to start using the <code>score</code> function:</p>
+<p>Now that each part of your code works, you can wrap it into a function with the methods you learned in <a href="#write-functions">Writing Your Own Functions</a>. Either use RStudio’s Extract Function option in the menu bar under Code, or use the <code>function</code> function. Ensure that the last line of the function returns a result (it does), and identify any arguments used by your function. Often the concrete examples that you used to test your code, like <code>symbols</code>, will become the arguments of your function. Run the following code to start using the <code>score</code> function:</p>
 <div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="programs.html#cb297-1" aria-hidden="true" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="cf">function</span> (symbols) {</span>
 <span id="cb297-2"><a href="programs.html#cb297-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># identify case</span></span>
 <span id="cb297-3"><a href="programs.html#cb297-3" aria-hidden="true" tabindex="-1"></a>  same <span class="ot">&lt;-</span> symbols[<span class="dv">1</span>] <span class="sc">==</span> symbols[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> symbols[<span class="dv">2</span>] <span class="sc">==</span> symbols[<span class="dv">3</span>]</span>
