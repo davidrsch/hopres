@@ -157,9 +157,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="Básico.html"><a href="Básico.html#Escribir-funciones"><i class="fa fa-check"></i><b>2.4</b> Escribiendo Sus Propias Funciones</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="Básico.html"><a href="Básico.html#the-function-constructor"><i class="fa fa-check"></i><b>2.4.1</b> The Function Constructor</a></li>
+<li class="chapter" data-level="2.4.1" data-path="Básico.html"><a href="Básico.html#el-constructor-de-funciones"><i class="fa fa-check"></i><b>2.4.1</b> El Constructor de Funciones</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="Básico.html"><a href="Básico.html#arguments"><i class="fa fa-check"></i><b>2.5</b> Arguments</a></li>
+<li class="chapter" data-level="2.5" data-path="Básico.html"><a href="Básico.html#argumentos"><i class="fa fa-check"></i><b>2.5</b> Argumentos</a></li>
 <li class="chapter" data-level="2.6" data-path="Básico.html"><a href="Básico.html#scripts"><i class="fa fa-check"></i><b>2.6</b> Scripts</a></li>
 <li class="chapter" data-level="2.7" data-path="Básico.html"><a href="Básico.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a></li>
 </ul></li>
@@ -709,62 +709,62 @@ Figure 2.5: Cuando vincula funciones, R las resolverá desde la operación más 
 </div>
 <div id="Escribir-funciones" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Escribiendo Sus Propias Funciones<a href="Básico.html#Escribir-funciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To recap, you already have working R code that simulates rolling a pair of dice:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="Básico.html#cb30-1" aria-hidden="true" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb30-2"><a href="Básico.html#cb30-2" aria-hidden="true" tabindex="-1"></a>dice <span class="ot">&lt;-</span> <span class="fu">sample</span>(die, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb30-3"><a href="Básico.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dice)</span></code></pre></div>
-<p>You can retype this code into the console anytime you want to re-roll your dice. However, this is an awkward way to work with the code. It would be easier to use your code if you wrapped it into its own function, which is exactly what we’ll do now. We’re going to write a function named <code>roll</code> that you can use to roll your virtual dice. When you’re finished, the function will work like this: each time you call <code>roll()</code>, R will return the sum of rolling two dice:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="Básico.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">roll</span>()</span>
+<p>Para recapitular, ya tiene un código de R en funcionamiento que simula lanzar un par de dados:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="Básico.html#cb30-1" aria-hidden="true" tabindex="-1"></a>dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb30-2"><a href="Básico.html#cb30-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-3"><a href="Básico.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dados)</span></code></pre></div>
+<p>Puede volver a escribir este código en la consola en cualquier momento que desee volver a tirar los dados. Sin embargo, esta es una forma incómoda de trabajar con el código. Sería más fácil usar su código si lo envolviera en su propia función, que es exactamente lo que haremos ahora. Vamos a escribir una función llamada <code>tirar</code> que puedes usar para lanzar tus dados virtuales. Cuando hayas terminado, la función funcionará así: cada vez que llames a <code>tirar()</code>, R devolverá la suma de tirar dos dados:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="Básico.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
 <span id="cb31-2"><a href="Básico.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 8 </span></span>
 <span id="cb31-3"><a href="Básico.html#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="Básico.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">roll</span>()</span>
+<span id="cb31-4"><a href="Básico.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
 <span id="cb31-5"><a href="Básico.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>
 <span id="cb31-6"><a href="Básico.html#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="Básico.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">roll</span>()</span>
+<span id="cb31-7"><a href="Básico.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
 <span id="cb31-8"><a href="Básico.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 7</span></span></code></pre></div>
-<p>Functions may seem mysterious or fancy, but they are just another type of R object. Instead of containing data, they contain code. This code is stored in a special format that makes it easy to reuse the code in new situations. You can write your own functions by recreating this format.</p>
-<div id="the-function-constructor" class="section level3 hasAnchor" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> The Function Constructor<a href="Básico.html#the-function-constructor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Every function in R has three basic parts: a name, a body of code, and a set of arguments. To make your own function, you need to replicate these parts and store them in an R object, which you can do with the <code>function</code> function. To do this, call <code>function()</code> and follow it with a pair of braces, <code>{}</code>:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="Básico.html#cb32-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {}</span></code></pre></div>
-<p><code>function</code> will build a function out of whatever R code you place between the braces. For example, you can turn your dice code into a function by calling:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="Básico.html#cb33-1" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb33-2"><a href="Básico.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  die <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb33-3"><a href="Básico.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  dice <span class="ot">&lt;-</span> <span class="fu">sample</span>(die, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb33-4"><a href="Básico.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dice)</span>
+<p>Las funciones pueden parecer misteriosas o sofisticadas, pero son solo otro tipo de objeto de R. En lugar de contener datos, contienen código. Este código se almacena en un formato especial que facilita su reutilización en situaciones nuevas. Puede escribir sus propias funciones recreando este formato.</p>
+<div id="el-constructor-de-funciones" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> El Constructor de Funciones<a href="Básico.html#el-constructor-de-funciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cada función en R tiene tres partes básicas: un nombre, un cuerpo de código y un conjunto de argumentos. Para crear su propia función, debe replicar estas partes y almacenarlas en un objeto de R, esto lo puede hacer con la función <code>function</code>. Para hacer esto, llama a <code>function()</code> y sigue con un par de llaves, <code>{}</code>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="Básico.html#cb32-1" aria-hidden="true" tabindex="-1"></a>mi_funcion <span class="ot">&lt;-</span> <span class="cf">function</span>() {}</span></code></pre></div>
+<p><code>function</code> construirá una función a partir de cualquier código R que coloque entre las llaves. Por ejemplo, puede convertir su código de dados en una función llamando:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="Básico.html#cb33-1" aria-hidden="true" tabindex="-1"></a>tirar <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb33-2"><a href="Básico.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb33-3"><a href="Básico.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-4"><a href="Básico.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dados)</span>
 <span id="cb33-5"><a href="Básico.html#cb33-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 
 <div class="rmdnote">
-Notice that I indented each line of code between the braces. This makes the code easier for you and me to read but has no impact on how the code runs. R ignores spaces and line breaks and executes one complete expression at a time.
+Observe que he aplicado sangría a cada línea de código entre las llaves. Esto hace que el código sea más fácil de leer para usted y para mí, pero no tiene impacto en cómo se ejecuta el código. R ignora los espacios y los saltos de línea y ejecuta una expresión completa a la vez.
 </div>
-<p>Just hit the Enter key between each line after the first brace, <code>{</code>. R will wait for you to type the last brace, <code>}</code>, before it responds.</p>
-<p>Don’t forget to save the output of <code>function</code> to an R object. This object will become your new function. To use it, write the object’s name followed by an open and closed parenthesis:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="Básico.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">roll</span>()</span>
+<p>Simplemente presione la tecla Enter entre cada línea después de la primera llave, <code>{</code>. R esperará a que escribas la última llave, <code>}</code>, antes de responder.</p>
+<p>No olvide guardar la salida de <code>function</code> en un objeto de R. Este objeto se convertirá en su nueva función. Para usarlo, escriba el nombre del objeto seguido de un paréntesis de apertura y cierre:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="Básico.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
 <span id="cb34-2"><a href="Básico.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 9</span></span></code></pre></div>
-<p>You can think of the parentheses as the “trigger” that causes R to run the function. If you type in a function’s name <em>without</em> the parentheses, R will show you the code that is stored inside the function. If you type in the name <em>with</em> the parentheses, R will run that code:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="Básico.html#cb35-1" aria-hidden="true" tabindex="-1"></a>roll</span>
+<p>Puede pensar en los paréntesis como el “disparador” que hace que R ejecute la función. Si escribe el nombre de una función <em>sin</em> los paréntesis, R le mostrará el código que está almacenado dentro de la función. Si escribe el nombre <em>con</em> los paréntesis, R ejecutará ese código:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="Básico.html#cb35-1" aria-hidden="true" tabindex="-1"></a>tirar</span>
 <span id="cb35-2"><a href="Básico.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="do">## function() {</span></span>
-<span id="cb35-3"><a href="Básico.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   die &lt;- 1:6</span></span>
-<span id="cb35-4"><a href="Básico.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   dice &lt;- sample(die, size = 2, replace = TRUE)</span></span>
-<span id="cb35-5"><a href="Básico.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   sum(dice)</span></span>
+<span id="cb35-3"><a href="Básico.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   dado &lt;- 1:6</span></span>
+<span id="cb35-4"><a href="Básico.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   dados &lt;- sample(dado, size = 2, replace = TRUE)</span></span>
+<span id="cb35-5"><a href="Básico.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   sum(dados)</span></span>
 <span id="cb35-6"><a href="Básico.html#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="do">## }</span></span>
 <span id="cb35-7"><a href="Básico.html#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-8"><a href="Básico.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">roll</span>()</span>
+<span id="cb35-8"><a href="Básico.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
 <span id="cb35-9"><a href="Básico.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 6</span></span></code></pre></div>
-<p>The code that you place inside your function is known as the <em>body</em> of the function. When you run a function in R, R will execute all of the code in the body and then return the result of the last line of code. If the last line of code doesn’t return a value, neither will your function, so you want to ensure that your final line of code returns a value. One way to check this is to think about what would happen if you ran the body of code line by line in the command line. Would R display a result after the last line, or would it not?</p>
-<p>Here’s some code that would display a result:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="Básico.html#cb36-1" aria-hidden="true" tabindex="-1"></a>dice</span>
+<p>El código que coloca dentro de su función se conoce como el <em>cuerpo</em> de la función. Cuando ejecuta una función en R, R ejecutará todo el código en el cuerpo y luego devolverá el resultado de la última línea de código. Si la última línea de código no devuelve un valor, tampoco lo hará su función, por lo que debe asegurarse de que su última línea de código devuelva un valor. Una forma de verificar esto es pensar en lo que sucedería si ejecutara el cuerpo del código línea por línea en la consola. ¿Mostraría R un resultado después de la última línea, o no?</p>
+<p>Aquí hay un código que mostraría un resultado:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="Básico.html#cb36-1" aria-hidden="true" tabindex="-1"></a>dados</span>
 <span id="cb36-2"><a href="Básico.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb36-3"><a href="Básico.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
-<p>And here’s some code that would not:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="Básico.html#cb37-1" aria-hidden="true" tabindex="-1"></a>dice <span class="ot">&lt;-</span> <span class="fu">sample</span>(die, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb37-2"><a href="Básico.html#cb37-2" aria-hidden="true" tabindex="-1"></a>two <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<p>Y aquí hay un código que no:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="Básico.html#cb37-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb37-2"><a href="Básico.html#cb37-2" aria-hidden="true" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb37-3"><a href="Básico.html#cb37-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
-<p>Do you notice the pattern? These lines of code do not return a value to the command line; they save a value to an object.</p>
+<p>¿Notas el patrón? Estas líneas de código no devuelven un valor a la línea de comando; guardan un valor a un objeto.</p>
 </div>
 </div>
-<div id="arguments" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Arguments<a href="Básico.html#arguments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="argumentos" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Argumentos<a href="Básico.html#argumentos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>What if we removed one line of code from our function and changed the name <code>die</code> to <code>bones</code>, like this?</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="Básico.html#cb38-1" aria-hidden="true" tabindex="-1"></a>roll2 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb38-2"><a href="Básico.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  dice <span class="ot">&lt;-</span> <span class="fu">sample</span>(bones, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>

@@ -95,8 +95,8 @@ objetos
 funciones
 muestra-con-reemplazo
 Escribir-funciones
-the-function-constructor
-arguments
+el-constructor-de-funciones
+argumentos
 scripts
 summary
 packages
