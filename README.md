@@ -22,7 +22,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Prefacio
 -   Parte 1
     -   1 Proyecto 1: Dados Ponderados
-    -   2 Lo Más Básico (Las imagenes necesitan ser traducidas)
+    -   2 Lo Más Básico
 -   Apéndice
     -   Instalando R y RStudio
 
@@ -50,6 +50,6 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Preface
 -   Part 1
     -   1 Project 1: Weighted Dice
-    -   2 The Very Basics (Images needs to be translated)
+    -   2 The Very Basics
 -   Appendix
     -   Installing R and RStudio
