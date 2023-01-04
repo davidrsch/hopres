@@ -27,6 +27,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
         -   2.2 Objetos
         -   2.3 Funciones
         -   2.4 Escribiendo Sus Propias Funciones
+        -   2.5 Argumentos
 -   Apéndice
     -   Instalando R y RStudio
 
@@ -59,5 +60,6 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
         -   2.2 Objects
         -   2.3 Functions
         -   2.4 Writing Your Own Functions
+        -   2.5 Arguments
 -   Appendix
     -   Installing R and RStudio

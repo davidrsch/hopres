@@ -529,78 +529,78 @@ a <- sqrt(2)
 
 ## Argumentos
 
-What if we removed one line of code from our function and changed the name `die` to `bones`, like this?
+¿Qué pasa si eliminamos una línea de código de nuestra función y cambiamos el nombre `dado` a `bones`, así?
 
 ``` r
-roll2 <- function() {
-  dice <- sample(bones, size = 2, replace = TRUE)
-  sum(dice)
+tirar2 <- function() {
+  dados <- sample(bones, size = 2, replace = TRUE)
+  sum(dados)
 }
 ```
 
-Now I'll get an error when I run the function. The function needs the object `bones` to do its job, but there is no object named `bones` to be found:
+Ahora obtendré un error cuando ejecute la función. La función necesita el objeto `bones` para hacer su trabajo, pero no se puede encontrar ningún objeto llamado `bones`:
 
 ``` r
-roll2()
+tirar2()
 ## Error in sample(bones, size = 2, replace = TRUE) : 
 ##   object 'bones' not found
 ```
 
-You can supply `bones` when you call `roll2` if you make `bones` an argument of the function. To do this, put the name `bones` in the parentheses that follow `function` when you define `roll2`:
+Puedes proporcionar `bones` cuando llamas a `tirar2` si conviertes a `bones` en un argumento de la función. Para hacer esto, pon el nombre `bones` entre los paréntesis que siguen a `function` cuando definas `tirar2`:
 
 ``` r
-roll2 <- function(bones) {
-  dice <- sample(bones, size = 2, replace = TRUE)
-  sum(dice)
+tirar2 <- function(bones) {
+  dados <- sample(bones, size = 2, replace = TRUE)
+  sum(dados)
 }
 ```
 
-Now `roll2` will work as long as you supply `bones` when you call the function. You can take advantage of this to roll different types of dice each time you call `roll2`. Dungeons and Dragons, here we come!
+Ahora `tirar2` funcionará siempre y cuando proporciones `bones` cuando llames a la función. Puede aprovechar esto para lanzar diferentes tipos de dados cada vez que llamas `tirar2`. ¡Calabozos y Dragones, aquí vamos!
 
-Remember, we're rolling pairs of dice:
+Recuerda, estamos lanzando pares de dados:
 
 ``` r
-roll2(bones = 1:4)
+tirar2(bones = 1:4)
 ##  3
 
-roll2(bones = 1:6)
+tirar2(bones = 1:6)
 ## 10
 
-roll2(1:20)
+tirar2(1:20)
 ## 31
 ```
 
-Notice that `roll2` will still give an error if you do not supply a value for the `bones` argument when you call `roll2`:
+Tenga en cuenta que `tirar2` seguirá dando un error si no proporciona un valor para el argumento `bones` cuando llame a `tirar2`:
 
 ``` r
-roll2()
+tirar2()
 ## Error in sample(bones, size = 2, replace = TRUE) : 
 ##   argument "bones" is missing, with no default
 ```
 
-You can prevent this error by giving the `bones` argument a default value. To do this, set `bones` equal to a value when you define `roll2`:
+Puede evitar este error dando al argumento `bones` un valor predeterminado. Para hacer esto, establece `bones` igual a un valor cuando definas `tirar2`:
 
 ``` r
-roll2 <- function(bones = 1:6) {
-  dice <- sample(bones, size = 2, replace = TRUE)
-  sum(dice)
+tirar2 <- function(bones = 1:6) {
+  dados <- sample(bones, size = 2, replace = TRUE)
+  sum(dados)
 }
 ```
 
-Now you can supply a new value for `bones` if you like, and `roll2` will use the default if you do not:
+Ahora puede proporcionar un nuevo valor para `bones` si lo desea, y `tirar2` usará el valor predeterminado si no lo desea:
 
 ``` r
-roll2()
+tirar2()
 ## 9
 ```
 
-You can give your functions as many arguments as you like. Just list their names, separated by commas, in the parentheses that follow `function`. When the function is run, R will replace each argument name in the function body with the value that the user supplies for the argument. If the user does not supply a value, R will replace the argument name with the argument's default value (if you defined one).
+Puede dar a sus funciones tantos argumentos como desee. Simplemente enumere sus nombres, separados por comas, entre los paréntesis que siguen a `function`.Cuando se ejecuta la función, R reemplazará cada nombre de argumento en el cuerpo de la función con el valor que el usuario proporciona para el argumento. Si el usuario no proporciona un valor, R reemplazará el nombre del argumento con el valor predeterminado del argumento (si definió uno).
 
-To summarize, `function` helps you construct your own R functions. You create a body of code for your function to run by writing code between the braces that follow `function`. You create arguments for your function to use by supplying their names in the parentheses that follow `function`. Finally, you give your function a name by saving its output to an R object, as shown in Figure \@ref(fig:functions).
+Para resumir, `function` te ayuda a construir tus propias funciones de R. Usted crea un cuerpo de código para que su función se ejecute escribiendo código entre las llaves que siguen a `function`. Usted crea argumentos para que su función los use proporcionando sus nombres entre los paréntesis que siguen a `function`. Finalmente, le da un nombre a su función guardando su salida en un objeto de R, como se muestra en la Figura \@ref(fig:functions).
 
-Once you've created your function, R will treat it like every other function in R. Think about how useful this is. Have you ever tried to create a new Excel option and add it to Microsoft's menu bar? Or a new slide animation and add it to Powerpoint's options? When you work with a programming language, you can do these types of things. As you learn to program in R, you will be able to create new, customized, reproducible tools for yourself whenever you like. [Project 3: Slot Machine](#slots) will teach you much more about writing functions in R.
+Una vez que haya creado su función, R la tratará como cualquier otra función en R. Piense en lo útil que es. ¿Alguna vez ha intentado crear una nueva opción de Excel y agregarla a la barra de menú de Microsoft? ¿O una nueva animación de diapositivas y agregarla a las opciones de Powerpoint? Cuando trabajas con un lenguaje de programación, puedes hacer este tipo de cosas. A medida que aprenda a programar en R, podrá crear herramientas nuevas, personalizadas y reproducibles para usted cuando lo desee. [Proyecto 3: Máquina Tragamonedas](#slots) te enseñará mucho más sobre escribir funciones en R.
 
-```{r functions, echo = FALSE, fig.cap = "Every function in R has the same parts, and you can use function to create these parts. Assign the result to a name, so you can call the function later."}
+```{r functions, echo = FALSE, fig.cap = "Cada función en R tiene las mismas partes y puede usar `function` para crear estas partes. Asigne el resultado a un nombre, para que pueda llamar a la función más tarde."}
 knitr::include_graphics("images/hopr_0106.png")
 ```
 
