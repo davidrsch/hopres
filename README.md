@@ -22,12 +22,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Prefacio
 -   Parte 1
     -   1 Proyecto 1: Dados Ponderados
-    -   2 Lo Más Básico
-        -   2.1 La Interfaz de Usuario de R
-        -   2.2 Objetos
-        -   2.3 Funciones
-        -   2.4 Escribiendo Sus Propias Funciones
-        -   2.5 Argumentos
+    -   2 Lo Más Básico (Las imagenes necesitan ser traducidas)
 -   Apéndice
     -   Instalando R y RStudio
 
@@ -55,11 +50,6 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Preface
 -   Part 1
     -   1 Project 1: Weighted Dice
-    -   2 The Very Basics
-        -   2.1 The R User Interface
-        -   2.2 Objects
-        -   2.3 Functions
-        -   2.4 Writing Your Own Functions
-        -   2.5 Arguments
+    -   2 The Very Basics (Images needs to be translated)
 -   Appendix
     -   Installing R and RStudio

@@ -605,39 +605,38 @@ knitr::include_graphics("images/hopr_0106.png")
 ```
 
 ## Scripts
+¿Qué pasa si quieres editar `tirar2` de nuevo? Podría regresar y volver a escribir cada línea de código en `tirar2`, pero sería mucho más fácil si tuviera un borrador del código para empezar. Puede crear un borrador de su código a medida que avanza utilizando un *script* de R. Un script de R es solo un archivo de texto sin formato en el que guarda el código R. Puede abrir un script de R en RStudio yendo a `File> New File> R script` en la barra de menú. RStudio luego abrirá un script nuevo sobre el panel de su consola, como se muestra en la Figura \@ref(fig:script).
 
-What if you want to edit `roll2` again? You could go back and retype each line of code in `roll2`, but it would be so much easier if you had a draft of the code to start from. You can create a draft of your code as you go by using an R *script*. An R script is just a plain text file that you save R code in. You can open an R script in RStudio by going to `File > New File > R script` in the menu bar. RStudio will then open a fresh script above your console pane, as shown in Figure \@ref(fig:script).
+Le recomiendo encarecidamente que escriba y edite todo su código de R en un script antes de ejecutarlo en la consola. ¿Por qué? Este hábito crea un registro reproducible de su trabajo. Cuando termine el día, puede guardar su secuencia de comandos y luego usarla para volver a ejecutar todo el análisis al día siguiente. Los scripts también son muy útiles para editar y corregir su código, y hacen una buena copia de su trabajo para compartir con otros. Para guardar un script, haga clic en el panel de scripts y luego vaya a `File > Save as` en la barra de menú.
 
-I strongly encourage you to write and edit all of your R code in a script before you run it in the console. Why? This habit creates a reproducible record of your work. When you're finished for the day, you can save your script and then use it to rerun your entire analysis the next day. Scripts are also very handy for editing and proofreading your code, and they make a nice copy of your work to share with others. To save a script, click the scripts pane, and then go to `File > Save As` in the menu bar.
-
-```{r script, echo = FALSE, fig.cap = "When you open an R Script (File > New File > R Script in the menu bar), RStudio creates a fourth pane above the console where you can write and edit your code."}
+```{r script, echo = FALSE, fig.cap = "Cuando abre un R Script (File > New File > R Script in the menu bar), RStudio crea un cuarto panel encima de la consola donde puede escribir y editar su código."}
 knitr::include_graphics("images/hopr_0107.png")
 ```
 
-RStudio comes with many built-in features that make it easy to work with scripts. First, you can automatically execute a line of code in a script by clicking the Run button, as shown in Figure \@ref(fig:run).
+RStudio viene con muchas funciones integradas que facilitan el trabajo con scripts. Primero, puede ejecutar automáticamente una línea de código en un script haciendo clic en el botón Run, como se muestra en la Figura \@ref(fig:run).
 
-R will run whichever line of code your cursor is on. If you have a whole section highlighted, R will run the highlighted code. Alternatively, you can run the entire script by clicking the Source button. Don't like clicking buttons? You can use Control + Return as a shortcut for the Run button. On Macs, that would be Command + Return.
+R ejecutará cualquier línea de código en la que esté el cursor. Si tiene una sección completa resaltada, R ejecutará el código resaltado. Como alternativa, puede ejecutar todo el script haciendo clic en el botón Source. ¿No te gusta hacer clic en los botones? Puede usar Control + Enter como acceso directo para el botón Ejecutar. En Mac, eso sería Comando + Enter.
 
-```{r run, echo = FALSE, fig.cap = "You can run a highlighted portion of code in your script if you click the Run button at the top of the scripts pane. You can run the entire script by clicking the Source button."}
+```{r run, echo = FALSE, fig.cap = "Puede ejecutar una parte resaltada del código en su secuencia de comandos si hace clic en el botón Run en la parte superior del panel de Scripts. Puede ejecutar todo el script haciendo clic en el botón Source."}
 knitr::include_graphics("images/hopr_0108.png")
 ```
 
-If you're not convinced about scripts, you soon will be. It becomes a pain to write multi-line code in the console's single-line command line. Let's avoid that headache and open your first script now before we move to the next chapter.
+Si no está convencido acerca de los scripts, pronto lo estará. Se convierte en una molestia escribir código de varias líneas en la línea de comando de una sola línea de la consola. Evitemos ese dolor de cabeza y abramos su primer script ahora antes de pasar al siguiente capítulo.
 
 ```{block2, extract, type = "rmdtip"}
-**Extract function**
+**Extraer función**
 
-RStudio comes with a tool that can help you build functions. To use it, highlight the lines of code in your R script that you want to turn into a function. Then click `Code > Extract Function` in the menu bar. RStudio will ask you for a function name to use and then wrap your code in a `function` call. It will scan the code for undefined variables and use these as arguments.
+RStudio viene con una herramienta que puede ayudarlo a crear funciones. Para usarlo, resalte las líneas de código en su secuencia de comandos R que desea convertir en una función. Luego haga clic en `Code > Extract Function` en la barra de menú. RStudio le pedirá un nombre de función para usar y luego envolverá su código en una llamada de `function`. Escaneará el código en busca de variables indefinidas y las usará como argumentos.
 
-You may want to double-check RStudio's work. It assumes that your code is correct, so if it does something surprising, you may have a problem in your code.
+Es posible que desee volver a comprobar el trabajo de RStudio. Asume que su código es correcto, por lo que si hace algo sorprendente, es posible que tenga un problema en su código.
 ```
 
-## Summary
+## Resumen
 
-You've covered a lot of ground already. You now have a virtual die stored in your computer's memory, as well as your own R function that rolls a pair of dice. You've also begun speaking the R language.
+Ya has cubierto mucho terreno. Ahora tiene un dado virtual almacenado en la memoria de su computadora, así como su propia función de R que lanza un par de dados. También ha comenzado a hablar el lenguaje R.
 
-As you've seen, R is a language that you can use to talk to your computer. You write commands in R and run them at the command line for your computer to read. Your computer will sometimes talk back--for example, when you commit an error--but it usually just does what you ask and then displays the result.
+Como has visto, R es un lenguaje que puedes usar para hablar con tu computadora. Escribes comandos en R y los ejecutas en la línea de comandos para que tu computadora los lea. Su computadora a veces responderá--por ejemplo, cuando cometa un error--pero generalmente solo hace lo que le pide y luego muestra el resultado.
 
-The two most important components of the R language are objects, which store data, and functions, which manipulate data. R also uses a host of operators like `+`, `-`, `*`, `/`, and `<-` to do basic tasks. As a data scientist, you will use R objects to store data in your computer's memory, and you will use functions to automate tasks and do complicated calculations. We will examine objects in more depth later in [Project 2: Playing Cards] and dig further into functions in [Project 3: Slot Machine]. The vocabulary you have developed here will make each of those projects easier to understand. However, we're not done with your dice yet.
+Los dos componentes más importantes del lenguaje R son los objetos, que almacenan datos, y las funciones, que manipulan datos. R también usa una gran cantidad de operadores como `+`, `-`, `*`, `/` y `<-` para realizar tareas básicas. Como científico de datos, usará objetos de R para almacenar datos en la memoria de su computadora y usará funciones para automatizar tareas y realizar cálculos complicados. Examinaremos los objetos con más profundidad más adelante en [Proyecto 2: Baraja de Cartas] y profundizaremos en las funciones en [Proyecto 3: Máquina Tragamonedas]. El vocabulario que ha desarrollado aquí hará que cada uno de esos proyectos sea más fácil de entender. Sin embargo, aún no hemos terminado con tus dados.
 
-In [Packages and Help Pages](#packages), you'll run some simulations on your dice and build your first graphs in R. You'll also look at two of the most useful components of the R language: R *packages*, which are collections of functions writted by R's talented community of developers, and R documentation, which is a collection of help pages built into R that explains every function and data set in the language.
+En [Paquetes y páginas de ayuda](#packages), , ejecutará algunas simulaciones con sus dados y construirá sus primeros gráficos en R. También verá dos de los componentes más útiles del lenguaje R: *Paquetes* de R, que son colecciones de funciones escritas por la talentosa comunidad de desarrolladores de R, y documentación de R, que es una colección de páginas de ayuda integradas en R que explica cada función y conjunto de datos en el lenguaje.
