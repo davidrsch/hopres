@@ -163,7 +163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="Básico.html"><a href="Básico.html#scripts"><i class="fa fa-check"></i><b>2.6</b> Scripts</a></li>
 <li class="chapter" data-level="2.7" data-path="Básico.html"><a href="Básico.html#resumen"><i class="fa fa-check"></i><b>2.7</b> Resumen</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>3</b> Packages and Help Pages</a>
+<li class="chapter" data-level="3" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>3</b> Paquetes y páginas de ayuda</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="packages.html"><a href="packages.html#packages-1"><i class="fa fa-check"></i><b>3.1</b> Packages</a>
 <ul>
@@ -423,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To create your card deck, you will need to use different types of atomic vectors to save different types of information (text and numbers). You can do this by using some simple conventions when you enter your data. For example, you can create an integer vector by including a capital <code>L</code> with your input. You can create a character vector by surrounding your input in quotation marks:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="r-objects.html#cb67-1" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> 1L</span>
 <span id="cb67-2"><a href="r-objects.html#cb67-2" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">&quot;ace&quot;</span></span></code></pre></div>
-<p>Each type of atomic vector has its own convention (described below). R will recognize the convention and use it to create an atomic vector of the appropriate type. If you’d like to make atomic vectors that have more than one element in them, you can combine an element with the <code>c</code> function from <a href="packages.html#packages">Packages and Help Pages</a>. Use the same convention with each element:</p>
+<p>Each type of atomic vector has its own convention (described below). R will recognize the convention and use it to create an atomic vector of the appropriate type. If you’d like to make atomic vectors that have more than one element in them, you can combine an element with the <code>c</code> function from [Packages and Help Pages]. Use the same convention with each element:</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="r-objects.html#cb68-1" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 5L)</span>
 <span id="cb68-2"><a href="r-objects.html#cb68-2" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ace&quot;</span>, <span class="st">&quot;hearts&quot;</span>)</span></code></pre></div>
 <p>You may wonder why R uses multiple types of vectors. Vector types help R behave as you would expect. For example, R will do math with atomic vectors that contain numbers, but not with atomic vectors that contain character strings:</p>
