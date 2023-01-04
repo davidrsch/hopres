@@ -25,6 +25,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
     -   2 Lo Más Básico
 -   Apéndice
     -   Instalando R y RStudio
+    -   Paquetes de R
 
 # English
 
@@ -53,3 +54,4 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
     -   2 The Very Basics
 -   Appendix
     -   Installing R and RStudio
+    -   R Packages

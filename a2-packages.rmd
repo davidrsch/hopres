@@ -1,62 +1,62 @@
-# R Packages {#packages2}
+# Paquetes de R {#packages2}
 
-Many of R's most useful functions do not come preloaded when you start R, but reside in _packages_ that can be installed on top of R. R packages are similar to libraries in C, C++, and Javascript, packages in Python, and gems in Ruby. An R package bundles together useful functions, help files, and data sets. You can use these functions within your own R code once you load the package they live in. Usually the contents of an R package are all related to a single type of task, which the package helps solve. R packages will let you take advantage of R's most useful features: its large community of package writers (many of whom are active data scientists) and its prewritten routines for handling many common (and exotic) data-science tasks.
+Muchas de las funciones más útiles de R no vienen precargadas cuando inicia R, sino que residen en _paquetes_ que se pueden instalar encima de R. Los paquetes de R son similares a las bibliotecas en C, C++ y Javascript, los paquetes en Python y las gemas en Ruby. Un paquete de R agrupa funciones útiles, archivos de ayuda y conjuntos de datos. Puede usar estas funciones dentro de su propio código de R una vez que cargue el paquete en el que se encuentran. Por lo general, el contenido de un paquete de R está relacionado con un solo tipo de tarea, que el paquete ayuda a resolver. Los paquetes R le permitirán aprovechar las características más útiles de R: su gran comunidad de creadores de paquetes (muchos de los cuales son científicos de datos activos) y sus rutinas preescritas para manejar muchas tareas comunes (y exóticas) de ciencia de datos.
 
 ```{block2, type = "rmdtip"}
-**Base R**
+**R Básico**
   
-You may hear R users (or me) refer to "base R." What is base R? It is just the collection of R functions that gets loaded every time you start R. These functions provide the basics of the language, and you don't have to load a package before you can use them.
+Es posible que escuche a los usuarios de R (o a mí) referirse a "R básico" (o base R, en inglés). ¿Qué es R básico? Es solo la colección de funciones de R que se carga cada vez que inicia R. Estas funciones proporcionan los conceptos básicos del lenguaje, y no tiene que cargar un paquete antes de poder usarlas..
 ```
 
-## Installing Packages
+## Instalando Paquetes
 
-To use an R package, you must first install it on your computer and then load it in your current R session. The easiest way to install an R package is with the `install.packages` R function. Open R and type the following into the command line:  
+Para usar un paquete de R, primero debe instalarlo en su computadora y luego cargarlo en su sesión de R actual. La forma más fácil de instalar un paquete de R es con la función de R `install.packages`. Abra R y escriba lo siguiente en la línea de comando:  
 
 ```r
-install.packages("<package name>")
+install.packages("<nombre del paquete>")
 ```
 
-This will search for the specified package in the collection of packages hosted on the CRAN site. When R finds the package, it will download it into a libraries folder on your computer. R can access the package here in future R sessions without reinstalling it. Anyone can write an R package and disseminate it as they like; however, almost all R packages are published through the CRAN website. CRAN tests each R package before publishing it. This doesn't eliminate every bug inside a package, but it does mean that you can trust a package on CRAN to run in the current version of R on your OS.
+Esto buscará el paquete especificado en la colección de paquetes alojados en el sitio CRAN. Cuando R encuentre el paquete, lo descargará en una carpeta de bibliotecas en su computadora. R puede acceder al paquete aquí en futuras sesiones de R sin reinstalarlo. Cualquiera puede escribir un paquete R y distribuirlo como quiera; sin embargo, casi todos los paquetes de R se publican a través del sitio web de CRAN. CRAN prueba cada paquete R antes de publicarlo. Esto no elimina todos los errores dentro de un paquete, pero significa que puede confiar en que un paquete en CRAN se ejecutará en la versión actual de R en su sistema operativo.
 
-You can install multiple packages at once by linking their names with R's concatenate function, `c`. For example, to install the ggplot2, reshape2, and dplyr packages, run:
+Puede instalar varios paquetes a la vez vinculando sus nombres con la función de concatenación de R, `c`. Por ejemplo, para instalar los paquetes ggplot2, reshape2 y dplyr, ejecute:
 
 ```r
 install.packages(c("ggplot2", "reshape2", "dplyr"))
 ```
 
-If this is your first time installing a package, R will prompt you to choose an online mirror of to install from. Mirrors are listed by location. Your downloads should be quickest if you select a mirror that is close to you. If you want to download a new package, try the Austria mirror first. This is the main CRAN repository, and new packages can sometimes take a couple of days to make it around to all of the other mirrors. 
+Si es la primera vez que instala un paquete, R le pedirá que elija un espejo en línea para instalarlo. Los espejos se enumeran por ubicación. Sus descargas deberían ser más rápidas si selecciona un espejo que esté cerca de usted. Si desea descargar un nuevo paquete, pruebe primero el espejo de Austria. Este es el repositorio principal de CRAN y, a veces, los nuevos paquetes pueden tardar un par de días en llegar a todos los demás espejos. 
 
-## Loading Packages
+## Cargando Paquetes
 
-Installing a package doesn't immediately place its functions at your fingertips. It just places them on your computer. To use an R package, you next have to load it in your R session with the command:
+La instalación de un paquete no pone inmediatamente sus funciones al alcance de su mano. Simplemente los coloca en su computadora. Para usar un paquete de R, luego debe cargarlo en su sesión de R con el comando:
 
 ```r
-library(<package name>)
+library(<nombre del paquete>)
 ```
 
-Notice that the quotation marks have disappeared. You can use them if you like, but quotation marks are optional for the `library` command. (This is not true for the `install.packages` command).
+Observe que las comillas han desaparecido. Puede usarlos si lo desea, pero las comillas son opcionales para el comando `library`. (Esto no es cierto para el comando `install.packages`).
 
-`library` will make all of the package's functions, data sets, and help files available to you until you close your current R session. The next time you begin an R session, you'll have to reload the package with `library` if you want to use it, but you won't have to reinstall it. You only have to install each package once. After that, a copy of the package will live in your R library. To see which packages you currently have in your R library, run:
+`library` pondrá a su disposición todas las funciones, conjuntos de datos y archivos de ayuda del paquete hasta que cierre su sesión de R actual. La próxima vez que inicie una sesión de R, deberá volver a cargar el paquete con `library` si desea utilizarlo, pero no tendrá que volver a instalarlo. Solo tiene que instalar cada paquete una vez. Después de eso, una copia del paquete vivirá en su biblioteca de R. Para ver qué paquetes tiene actualmente en su biblioteca de R, ejecute:
 
 ```r
 library()
 ```
 
-`library()` also shows the path to your actual R library, which is the folder that contains your R packages. You may notice many packages that you don't remember installing. This is because R automatically downloads a set of useful packages when you first install R.
+`library()` también muestra la ruta a su biblioteca de R actual, que es la carpeta que contiene sus paquetes de R. Puede notar muchos paquetes que no recuerda haber instalado. Esto se debe a que R descarga automáticamente un conjunto de paquetes útiles cuando instala R por primera vez.
 
 ```{block2, type = "rmdtip"}
-**Install packages from (almost) anywhere**
+**Instalar paquetes desde (casi) cualquier sitio**
   
-The `devtools` R package makes it easy to install packages from locations other than the CRAN website. devtools provides functions like `install_github`, `install_gitorious`, `install_bitbucket`, and `install_url`. These work similar to `install.packages`, but they search new locations for R packages. `install_github` is especially useful because many R developers provide development versions of their packages on GitHub. The development version of a package will contain a sneak peek of new functions and patches but may not be as stable or as bug free as the CRAN version.
+El paquete `devtools` de R facilita la instalación de paquetes desde ubicaciones distintas al sitio web de CRAN. devtools proporciona funciones como `install_github`, `install_gitorious`, `install_bitbucket` e `install_url`. Estos funcionan de manera similar a `install.packages`, pero buscan nuevas ubicaciones para paquetes de R. `install_github` es especialmente útil porque muchos desarrolladores de R proporcionan versiones de desarrollo de sus paquetes en GitHub. La versión de desarrollo de un paquete contendrá un adelanto de nuevas funciones y parches, pero puede que no sea tan estable o libre de errores como la versión CRAN.
 ```
 
-Why does R make you bother with installing and loading packages? You can imagine an R where every package came preloaded, but this would be a very large and slow program. As of May 6, 2014, the CRAN website hosts 5,511 packages. It is simpler to only install and load the packages that you want to use when you want to use them. This keeps your copy of R fast because it has fewer functions and help pages to search through at any one time. The arrangement has other benefits as well. For example, it is possible to update your copy of an R package without updating your entire copy of R.
+¿Por qué R hace que te molestes en instalar y cargar paquetes? Puede imaginar una versión de R en la que todos los paquetes vengan precargados, pero este sería un programa muy grande y lento. A fecha del 6 de mayo de 2014, el sitio web de CRAN albergaba 5511 paquetes. Es más simple instalar y cargar solo los paquetes que desea usar cuando desea usarlos. Esto mantiene su copia de R rápida porque tiene menos funciones y páginas de ayuda para buscar en cualquier momento. Esto también tiene otros beneficios, por ejemplo, es posible actualizar su copia de un paquete de R sin actualizar toda su copia de R.
 
 
 ```{block2, type = "rmdtip"}
-**What's the best way to learn about R packages? **
+**¿Cuál es la mejor manera de aprender sobre los paquetes de R?**
 
-It is difficult to use an R package if you don't know that it exists. You could go to the CRAN website and click the Packages link to see a list of available packages, but you'll have to wade through thousands of them. Moreover, many R packages do the same things. 
+Es difícil usar un paquete de R si no sabe que existe. Puede ir al sitio web de CRAN y hacer clic en el enlace Paquetes para ver una lista de paquetes disponibles, pero tendrá que leer miles de ellos. Además, muchos paquetes de R hacen lo mismo. 
 
-How do you know which package does them best? The R-packages [mailing list](http://stat.ethz.ch/mailman/listinfo/r-packages) is a place to start. It sends out announcements of new packages and maintains an archive of old announcements. Blogs that aggregate posts about R can also provide valuable leads. I recommend [R-bloggers](www.r-bloggers.com). RStudio maintains a list of some of the most useful R packages in the Getting Started section of [http://support.rstudio.com](http://support.rstudio.com). Finally, CRAN groups together some of the most useful—and most respected—packages by [subject area](http://cran.r-project.org/web/views). This is an excellent place to learn about the packages designed for your area of work.
+¿Cómo sabe qué paquete los hace mejor? Los paquetes de R [lista de correo](http://stat.ethz.ch/mailman/listinfo/r-packages) es un lugar para comenzar. Envía anuncios de nuevos paquetes y mantiene un archivo de anuncios antiguos.Los blogs que agregan publicaciones sobre R también pueden proporcionar pistas valiosas, recomiendo [R-bloggers](www.r-bloggers.com). Posit mantiene una lista de algunos de los paquetes R más útiles en la sección de Getting Started de [https://support.posit.co/](https://support.posit.co/). Finalmente, CRAN agrupa algunos de los paquetes más útiles y más respetados por [área temática](http://cran.r-project.org/web/views). Este es un excelente lugar para conocer los paquetes diseñados para su área de trabajo.
 ```

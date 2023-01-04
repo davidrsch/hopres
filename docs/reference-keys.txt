@@ -205,8 +205,8 @@ usando-r
 rstudio
 abriendo-r
 packages2
-installing-packages
-loading-packages
+instalando-paquetes
+cargando-paquetes
 updating
 r-packages
 dataio
