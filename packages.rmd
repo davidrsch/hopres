@@ -162,7 +162,7 @@ Puede cambiar las probabilidades agregando un nuevo argumento a la función `sam
 
 ## Obteniendo Ayuda con las Páginas de Ayuda
 
-There are over 1,000 functions at the core of R, and new R functions are created all of the time. This can be a lot of material to memorize and learn! Luckily, each R function comes with its own help page, which you can access by typing the function's name after a question mark. For example, each of these commands will open a help page. Look for the pages to appear in the Help tab of RStudio's bottom-right pane:
+Hay más de 1000 funciones en el núcleo de R, y se crean nuevas funciones todo el tiempo. ¡Esto puede ser mucho material para memorizar y aprender! Afortunadamente, cada función de R viene con su propia página de ayuda, a la que puede acceder escribiendo el nombre de la función después de un signo de interrogación. Por ejemplo, cada uno de estos comandos abrirá una página de ayuda. Busque las páginas que aparecerán en la pestaña Ayuda del panel inferior derecho de RStudio:
 
 ```r
 ?sqrt
@@ -170,47 +170,51 @@ There are over 1,000 functions at the core of R, and new R functions are created
 ?sample
 ```
 
-Help pages contain useful information about what each function does. These help pages also serve as code documentation, so reading them can be bittersweet. They often seem to be written for people who already understand the function and do not need help. 
+Las páginas de ayuda contienen información útil sobre lo que hace cada función. Estas páginas de ayuda también sirven como documentación del código, por lo que leerlas puede resultar agridulce. A menudo parecen estar escritas para personas que ya entienden la función y no necesitan ayuda. 
 
-Don't let this bother you—you can gain a lot from a help page by scanning it for information that makes sense and glossing over the rest. This technique will inevitably bring you to the most helpful part of each help page: the bottom. Here, almost every help page includes some example code that puts the function in action. Running this code is a great way to learn by example.
+No deje que esto le moleste: puede obtener mucho de una página de ayuda si la escanea buscando información que tenga sentido y pasa por alto el resto. Esta técnica inevitablemente lo llevará a la parte más útil de cada página de ayuda: la parte inferior. Aquí, casi todas las páginas de ayuda incluyen algún código de ejemplo que pone la función en acción. Ejecutar este código es una excelente manera de aprender con el ejemplo.
 
 ```{block2, type = "rmdwarning"}
-If a function comes in an R package, R won't be able to find its help page unless the package is loaded.
+Si una función viene en un paquete R, R no podrá encontrar su página de ayuda a menos que se cargue el paquete.
 ```
 
-### Parts of a Help Page
+### Partes de una Página de Ayuda
 
-Each help page is divided into sections. Which sections appear can vary from help page to help page, but you can usually expect to find these useful topics:
+Cada página de ayuda está dividida en secciones. Las secciones que aparecen pueden variar de una página de ayuda a otra, pero normalmente puede esperar encontrar estos temas útiles
 
-**Description** - A short summary of what the function does.
+**Descripción** - Un breve resumen de lo que hace la función.
 
-**Usage** - An example of how you would type the function. Each argument of the function will appear in the order R expects you to supply it (if you don't use argument names).
+**Uso** - Un ejemplo de cómo escribiría la función. Cada argumento de la función aparecerá en el orden en que R espera que lo proporciones (si no usas nombres de argumentos).
 
-**Arguments** -  A list of each argument the function takes, what type of information R expects you to supply for the argument, and what the function will do with the information.
+**Argumentos** -  Una lista de cada argumento que toma la función, qué tipo de información R espera que proporcione para el argumento y qué hará la función con la información.
 
-**Details** - A more in-depth description of the function and how it operates. The details section also gives the function author a chance to alert you to anything you might want to know when using the function.
+**Detalles** - Una descripción más detallada de la función y cómo opera. La sección de detalles también le da al autor de la función la oportunidad de alertarlo sobre cualquier cosa que desee saber al usar la función.
 
-**Value** - A description of what the function returns when you run it.
+**Valor** - Una descripción de lo que devuelve la función cuando la ejecuta.
 
-**See Also** - A short list of related R functions.
+**Vea También** - Una breve lista de funciones de R relacionadas.
 
-**Examples** - Example code that uses the function and is guaranteed to work. The examples section of a help page usually demonstrates a couple different ways to use a function. This helps give you an idea of what the function is capable of.
+**Ejemplos** - Código de ejemplo que usa la función y se garantiza que funcionará. La sección de ejemplos de una página de ayuda generalmente demuestra un par de formas diferentes de usar una función. Esto ayuda a darle una idea de lo que la función es capaz de hacer.
 
-If you'd like to look up the help page for a function but have forgotten the function's name, you can search by keyword. To do this, type two question marks followed by a keyword in R's command line. R will pull up a list of links to help pages related to the keyword. You can think of this as the help page for the help page:
+Si desea buscar una función en la página de ayuda pero ha olvidado el nombre de la función, puede buscar por palabra clave. Para ello, escriba dos signos de interrogación seguidos de una palabra clave en la línea de comandos de R. R mostrará una lista de enlaces a páginas de ayuda relacionadas con la palabra clave. Puede pensar en esto como la página de ayuda para la página de ayuda:
 
 ```r
 ??log
 ```
 
-Let's take a stroll through `sample`'s help page. Remember: we're searching for anything that could help you change the probabilities involved in the sampling process. I'm not going to reproduce the whole help page here (just the juiciest parts), so you should follow along on your computer.
+Demos un paseo por la página de ayuda de `sample`. Recuerde: estamos buscando cualquier cosa que pueda ayudarlo a cambiar las probabilidades involucradas en el proceso de muestreo. No voy a reproducir toda la página de ayuda aquí (solo las partes más jugosas), por lo que debe seguirla en su computadora.
 
-First, open the help page. It will appear in the same pane in RStudio as your plots did (but in the Help tab, not the Plots tab):
+Primero, abra la página de ayuda. Aparecerá en el mismo panel en RStudio que sus gráficos (pero en la pestaña Help, no en la pestaña Plots):
 
 ```r
 ?sample
 ```
 
-What do you see? Starting from the top:
+```{block2, helppages-translation, type='rmdimportant'}
+Como verá a continuación y en su panel Help de la ventana inferior derecha de RStudio las páginas de ayuda de R solo se encuntran en idioma inglés. Por lo que las secciones, de la página de ayuda de la función `sample`, que se exponen a continuación se mostrarán en inglés. Si no posee un nivel de inglés que le permita leer y entender las páginas de ayuda de R, el traductor le recomienda traducir las mismas usando algún traductor online de documentos, aunque estos pueden ser muy textuales en ocasiones.
+```
+
+¿Que ves? Comenzando desde arriba:
 
 ```
 
@@ -221,21 +225,21 @@ Description
 either with or without replacement.
 ```
 
-So far, so good. You knew all of that. The next section, Usage, has a possible clue. It mentions an argument called `prob`:
+Hasta ahora todo bien. Ya sabías todo eso. La siguiente sección, Uso, tiene una posible pista. Menciona un argumento llamado `prob`:
 
 ```
 Usage
     sample(x, size, replace = FALSE, prob = NULL)
 ```
 
-If you scroll down to the arguments section, the description of +prob+ sounds _very_ promising:
+Si se desplaza hacia abajo hasta la sección de argumentos, la descripción de +prob+ suena _muy_ prometedora:
 
 ```
 A vector of probability weights for obtaining the elements of the vector being 
 sampled.
 ```
 
-The Details section confirms our suspicions. In this case, it also tells you how to proceed:
+La sección Detalles confirma nuestras sospechas. En este caso, también te indica cómo proceder:
 
 ```
 The optional prob argument can be used to give a vector of weights for obtaining 
@@ -243,85 +247,85 @@ the elements of the vector being sampled. They need not sum to one, but they
 should be nonnegative and not all zero.
 ```
 
-Although the help page does not say it here, these weights will be matched up to the elements being sampled in element-wise fashion. The first weight will describe the first element, the second weight the second element, and so on. This is common practice in R.
+Aunque la página de ayuda no lo dice aquí, estos pesos se emparejaran de manera individual con los elementos que se muestrean.El primer peso describirá el primer elemento, el segundo peso el segundo elemento, y así sucesivamente. Esta es una práctica común en R.
 
-Reading on:
+Leer:
 
 ```
 If replace is true, Walker's alias method (Ripley, 1987) is used...
 ```
 
-Okay, that looks like time to start skimming. We should have enough info now to figure out how to weight our dice.
+Vale, parece que es hora de empezar a hojear. Deberíamos tener suficiente información ahora para descubrir cómo manipular nuestros dados.
 
 ```{exercise, name = "Roll a Pair of Dice"}
-Rewrite the `roll` function below to roll a pair of weighted dice:
+Vuelva a escribir la función `tirar` a continuación para lanzar un par de dados ponderados:
 ```
 
 ```r
-roll <- function() {
-  die <- 1:6
-  dice <- sample(die, size = 2, replace = TRUE)
-  sum(dice)
+tirar <- function() {
+  dado <- 1:6
+  dados <- sample(dado, size = 2, replace = TRUE)
+  sum(dados)
 }
 ```
-You will need to add a `prob` argument to the `sample` function inside of `roll`. This argument should tell `sample` to sample the numbers one through five with probability 1/8 and the number 6 with probability 3/8.
+Deberá agregar un argumento `prob` a la función `sample` dentro de `tirar`. Este argumento debería decirle a `sample` que muestree los números del uno al cinco con una probabilidad de 1/8 y el número 6 con una probabilidad de 3/8.
 
-When you are finished, read on for a model answer.
+Cuando haya terminado, siga leyendo para ver un ejemplo de respuesta.
 
 ```{solution}
-To weight your dice, you need to add a `prob` argument with a vector of weights to `sample`, like this:
+Para ponderar sus dados, debe agregar un argumento `prob` con un vector de pesos a `sample`, como este:
 ```
 
 ```r
-roll <- function() {
-  die <- 1:6
-  dice <- sample(die, size = 2, replace = TRUE, 
+tirar <- function() {
+  dado <- 1:6
+  dados <- sample(dado, size = 2, replace = TRUE, 
     prob = c(1/8, 1/8, 1/8, 1/8, 1/8, 3/8))
-  sum(dice)
+  sum(dados)
 }
 ```
 
-This will cause `roll` to pick 1 through 5 with probability 1/8 and 6 with probability 3/8.
+Esto hará que `tirar` elija del 1 al 5 con una probabilidad de 1/8 y 6 con una probabilidad de 3/8.
 
-Overwrite your previous version of `roll` with the new function (by running the previous code snippet in your command line). Then visualize the new long-term behavior of your dice. I've put the results in Figure \@ref(fig:weighted) next to our original results:
+Sobrescriba su versión anterior de `tirar` con la nueva función (ejecutando el fragmento de código anterior en su línea de comando). Luego visualiza el nuevo comportamiento a largo plazo de tus dados. He puesto los resultados en la Figura \@ref(fig:weighted) junto a nuestros resultados originales:
 
 ```r
-rolls <- replicate(10000, roll())
-qplot(rolls, binwidth = 1)
+lanzamientos <- replicate(10000, tirar())
+qplot(lanzamientos, binwidth = 1)
 ```
 
-This confirms that we've effectively weighted the dice. High numbers occur much more often than low numbers. The remarkable thing is that this behavior will only be apparent when you examine long-term frequencies. On any single roll, the dice will appear to behave randomly. This is great news if you play Settlers of Catan (just tell your friends you lost the dice), but it should be disturbing if you analyze data, because it means that bias can easily occur without anyone noticing it in the short run.
+Esto confirma que efectivamente hemos ponderado los dados. Los números altos ocurren con mucha más frecuencia que los números bajos. Lo notable es que este comportamiento solo será evidente cuando examine las frecuencias a largo plazo. En cualquier tirada individual, los dados parecerán comportarse aleatoriamente. Esta es una gran noticia si juegas a Settlers of Catan (solo dile a tus amigos que perdiste los dados), pero debería ser perturbador si analizas los datos, porque significa que el sesgo puede ocurrir fácilmente sin que nadie lo note a corto plazo.
 
-```{r weighted, echo = FALSE, fig.cap = "The dice are now clearly biased towards high numbers, since high sums occur much more often than low sums."}
+```{r weighted, echo = FALSE, fig.cap = "Los dados ahora están claramente sesgados hacia números altos, ya que las sumas altas ocurren con mucha más frecuencia que las sumas bajas."}
 knitr::include_graphics("images/hopr_0205.png")
 ```
 
-### Getting More Help
+### Obteniendo Más Ayuda
 
-R also comes with a super active community of users that you can turn to for [help on the R-help mailing list](http://bit.ly/r-help). You can email the list with questions, but there's a great chance that your question has already been answered. Find out by searching the [archives](http://bit.ly/R_archives).
+R también viene con una comunidad súper activa de usuarios a la que puede acudir para obtener [ayuda en la lista de correo de R-help](http://bit.ly/r-help). Puede enviar un correo electrónico a la lista con preguntas, pero existe una gran posibilidad de que su pregunta ya haya sido respondida. Descúbrelo buscando en los [archivos](http://bit.ly/R_archives).
 
-Even better than the R-help list is [Stack Overflow](http://stackoverflow.com), a website that allows programmers to answer questions and users to rank answers based on helpfulness. Personally, I find the Stack Overflow format to be more user-friendly than the R-help email list (and the respondents to be more human friendly). You can submit your own question or search through Stack Overflow's previously answered questions related to R. There are over 30,000.
+Incluso mejor que la lista R-help es [Stack Overflow](http://stackoverflow.com), un sitio web que permite a los programadores responder preguntas y a los usuarios clasificar las respuestas según su utilidad. Personalmente, creo que el formato Stack Overflow es más fácil de usar que la lista de correo electrónico R-help (y los encuestados son más amigables con los humanos). Puede enviar su propia pregunta o buscar a través de las preguntas respondidas anteriormente de Stack Overflow relacionadas con R. Hay más de 30,000.
 
-Best of all is [community.rstudio.com](http://community.rstudio.com), a friendly, inclusive place to share questions related to R. community.rstudio.com is a very active forum focused on R. Don't be surprised if you ask a question about an R package, and the author of the package shows up to answer.
+Lo mejor de todo es [Posit Community](http://community.rstudio.com), un lugar amigable e inclusivo para compartir preguntas relacionadas con R. Posit Community es un foro muy activo centrado en R. No se sorprenda si hace una pregunta sobre un paquete de R y el autor del paquete aparece para dar respuesta.
 
-For all of the R help list, Stack Overflow, and community.rstudio.com, you're more likely to get a useful answer if you provide a reproducible example with your question. This means pasting in a short snippet of code that users can run to arrive at the bug or question you have in mind.
+Para toda la lista de ayuda de R, Stack Overflow y Posit Community, es más probable que obtenga una respuesta útil si proporciona un ejemplo reproducible con su pregunta. Esto significa pegar un pequeño fragmento de código que los usuarios pueden ejecutar para llegar al error o pregunta que tiene en mente.
 
-## Summary
+## Resumen
 
-R's packages and help pages can make you a more productive programmer. You saw in [The Very Basics](#basics) that R gives you the power to write your own functions that do specific things, but often the function that you want to write will already exist in an R package. Professors, programmers, and scientists have developed over 13,000 packages for you to use, which can save you valuable programming time. To use a package, you need to install it to your computer once with `install.packages`, and then load it into each new R session with `library`.
+Los paquetes y las páginas de ayuda de R pueden convertirlo en un programador más productivo. Viste en [Lo Más Básico] (#Básico) que R te da el poder de escribir tus propias funciones que hacen cosas específicas, pero a menudo la función que deseas escribir ya existirá en un paquete de R. Profesores, programadores y científicos han desarrollado más de 13.000 paquetes para su uso, lo que puede ahorrarle un valioso tiempo de programación. Para usar un paquete, debe instalarlo en su computadora una vez con `install.packages` y luego cargarlo en cada nueva sesión de R con `library`.
 
-R's help pages will help you master the functions that appear in R and its packages. Each function and data set in R has its own help page. Although help pages often contain advanced content, they also contain valuable clues and examples that can help you learn how to use a function.
+Las páginas de ayuda de R lo ayudarán a dominar las funciones que aparecen en R y sus paquetes. Cada función y conjunto de datos en R tiene su propia página de ayuda. Aunque las páginas de ayuda a menudo contienen contenido avanzado, también contienen pistas y ejemplos valiosos que pueden ayudarlo a aprender a usar una función.
 
-You have now seen enough of R to learn by doing, which is the best way to learn R. You can make your own R commands, run them, and get help when you need to understand something that I have not explained. I encourage you to experiment with your own ideas in R as you read through the next two projects.
+Ya ha visto suficiente de R para aprender haciendo, que es la mejor manera de aprender R. Puede crear sus propios comandos de R, ejecutarlos y obtener ayuda cuando necesite comprender algo que no he explicado. Lo animo a que experimente con sus propias ideas en R mientras lee los próximos dos proyectos.
 
-## Project 1 Wrap-up
+## Resumen del Proyecto 1
 
-You've done more in this project than enable fraud and gambling; you've also learned how to speak to your computer in the language of R. R is a language like English, Spanish, or German, except R helps you talk to computers, not humans.
+Has hecho más en este proyecto que permitir el fraude y las apuestas; también aprendió a hablarle a su computadora en el idioma de R. R es un idioma como inglés, español o alemán, excepto que R lo ayuda a hablar con computadoras, no con humanos.
 
-You've met the nouns of the R language, objects. And hopefully you guessed that functions are the verbs (I suppose function arguments would be the adverbs). When you combine functions and objects, you express a complete thought. By stringing thoughts together in a logical sequence, you can build eloquent, even artistic statements. In that respect, R is not that different than any other language.
+Has conocido los sustantivos del lenguaje R, objetos. Y espero que hayas adivinado que las funciones son los verbos (supongo que los argumentos de función serían los adverbios). Cuando combinas funciones y objetos, expresas un pensamiento completo. Al unir pensamientos en una secuencia lógica, puede construir declaraciones elocuentes e incluso artísticas. En ese sentido, R no es tan diferente de cualquier otro idioma.
 
-R shares another characteristic of human languages: you won't feel very comfortable speaking R until you build up a vocabulary of R commands to use. Fortunately, you don't have to be bashful. Your computer will be the only one to "hear" you speak R. Your computer is not very forgiving, but it also doesn't judge. Not that you need to worry; you'll broaden your R vocabulary tremendously between here and the end of the book. 
+R comparte otra característica de los lenguajes humanos: no te sentirás muy cómodo hablando R hasta que construyas un vocabulario de comandos de R para usar. Afortunadamente, no tienes que ser tímido. Tu computadora será la única que "escuchará" "hablando" R. Tu computadora no es muy indulgente, pero tampoco juzga. No es que tengas que preocuparte; ampliará enormemente su vocabulario de R entre aquí y el final del libro. 
 
-Now that you can use R, it is time to become an expert at using R to do data science. The foundation of data science is the ability to store large amounts of data and recall values on demand. From this, all else follows—manipulating data, visualizing data, modeling data, and more. However, you cannot easily store a data set in your mind by memorizing it. Nor can you easily store a data set on paper by writing it down. The only efficient way to store large amounts of data is with a computer. In fact, computers are so efficient that their development over the last three decades has completely changed the type of data we can accumulate and the methods we can use to analyze it. In short, computer data storage has driven the revolution in science that we call data science.
+Ahora que puede usar R, es hora de convertirse en un experto en el uso de R para hacer ciencia de datos. La base de la ciencia de datos es la capacidad de almacenar grandes cantidades de datos y recuperar valores a pedido. A partir de esto, sigue todo lo demás: manipulación de datos, visualización de datos, modelado de datos y más. Sin embargo, no puede almacenar fácilmente un conjunto de datos en su mente al memorizarlo. Tampoco puede almacenar fácilmente un conjunto de datos en papel escribiéndolo. La única forma eficiente de almacenar grandes cantidades de datos es con una computadora. De hecho, las computadoras son tan eficientes que su desarrollo en las últimas tres décadas ha cambiado por completo el tipo de datos que podemos acumular y los métodos que podemos usar para analizarlos. En resumen, el almacenamiento de datos informáticos ha impulsado la revolución en la ciencia que llamamos ciencia de datos.
 
-[Project 2: Playing Cards] will make you part of this revolution by teaching you how to use R to store data sets in your computer's memory and how to retrieve and manipulate data once it's there. 
+[Proyecto 2: Baraja de Cartas] lo hará parte de esta revolución enseñándole cómo usar R para almacenar conjuntos de datos en la memoria de su computadora y cómo recuperar y manipular datos una vez que están allí. 
