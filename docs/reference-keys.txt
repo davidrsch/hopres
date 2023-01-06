@@ -100,10 +100,10 @@ argumentos
 scripts
 resumen
 packages
-packages-1
+paquetes
 install.packages
 library
-getting-help-with-help-pages
+obteniendo-ayuda-con-las-páginas-de-ayuda
 parts-of-a-help-page
 getting-more-help
 summary

@@ -1,58 +1,58 @@
 # Paquetes y páginas de ayuda {#packages}
 
-You now have a function that simulates rolling a pair of dice. Let's make things a little more interesting by weighting the dice in your favor. The house always wins, right? Let's make the dice roll high numbers slightly more often than it rolls low numbers. 
+Ahora tiene una función que simula lanzar un par de dados. Hagamos las cosas un poco más interesantes ponderando los dados a tu favor. La casa siempre gana, ¿verdad? Hagamos que los dados arrojen números altos un poco más a menudo que los números bajos. 
 
-Before we weight the dice, we should make sure that they are fair to begin with. Two tools will help you do this: _repetition_ and _visualization_. By coincidence, these tools are also two of the most useful superpowers in the world of data science. 
+Antes de ponderar los dados, debemos asegurarnos de que sean justos para empezar. Dos herramientas te ayudarán a hacer esto: _repetición_ y _visualización_. Por coincidencia, estas herramientas también son dos de los superpoderes más útiles en el mundo de la ciencia de datos. 
 
-We will repeat our dice rolls with a function called `replicate`, and we will visualize our rolls with a function called `qplot`. `qplot` does not come with R when you download it; `qplot` comes in a standalone R package. Many of the most useful R tools come in R packages, so let's take a moment to look at what R packages are and how you can use them.
+Repetiremos nuestras tiradas de dados con una función llamada `replicate` y visualizaremos nuestras tiradas con una función llamada `qplot`. `qplot` no viene con R cuando lo descargas; `qplot` viene en un paquete de R independiente. Muchas de las herramientas de R más útiles vienen en paquetes de R, así que tomemos un momento para ver qué son los paquetes de R y cómo puede usarlos.
 
-## Packages
+## Paquetes
 
-You're not the only person writing your own functions with R. Many professors, programmers, and statisticians use R to design tools that can help people analyze data. They then make these tools free for anyone to use. To use these tools, you just have to download them. They come as preassembled collections of functions and objects called packages. [Appendix 2: R Packages](#packages2) contains detailed instructions for downloading and updating R packages, but we'll look at the basics here.
+No es la única persona que escribe sus propias funciones con R. Muchos profesores, programadores y estadísticos usan R para diseñar herramientas que pueden ayudar a las personas a analizar datos. Luego hacen que estas herramientas sean gratuitas para que cualquiera las use. Para usar estas herramientas, solo tienes que descargarlas. Vienen como colecciones preensambladas de funciones y objetos llamados paquetes. [Apéndice 2: Paquetes de R](#packages2) contiene instrucciones detalladas para descargar y actualizar paquetes R, pero aquí veremos los conceptos básicos.
 
-We're going to use the `qplot` function to make some quick plots. `qplot` comes in the _ggplot2_ package, a popular package for making graphs. Before you can use `qplot`, or anything else in the ggplot2 package, you need to download and install it.
+Vamos a usar la función `qplot` para hacer algunos gráficos rápidos. `qplot` viene en el paquete _ggplot2_, un paquete popular para hacer gráficos. Antes de que pueda usar `qplot`, o cualquier otra cosa en el paquete ggplot2, debe descargarlo e instalarlo.
 
 ### install.packages
 
-Each R package is hosted at [http://cran.r-project.org](http://cran.r-project.org), the same website that hosts R. However, you don't need to visit the website to download an R package; you can download packages straight from R's command line. Here's how: 
+Cada paquete R está alojado en [http://cran.r-project.org](http://cran.r-project.org), el mismo sitio web que aloja R. Sin embargo, no necesita visitar el sitio web para descargar un paquete R; puede descargar paquetes directamente desde la línea de comandos de R. Así es cómo: 
 
-* Open RStudio.
-* Make sure you are connected to the Internet.
-* Run *`install.packages("ggplot2")`* at the command line.
+* Abre RStudio.
+* Asegúrate de estar conectado a Internet.
+* Ejecute *`install.packages("ggplot2")`* en la línea de comando.
 
-That's it. R will have your computer visit the website, download ggplot2, and install the package in your hard drive right where R wants to find it. You now have the ggplot2 package. If you would like to install another package, replace ggplot2 with your package name in the code.
+Eso es. R hará que su computadora visite el sitio web, descargue ggplot2 e instale el paquete en su disco duro justo donde R quiere encontrarlo. Ahora tiene el paquete ggplot2. Si desea instalar otro paquete, reemplace ggplot2 con el nombre de su paquete en el código.
 
 ### library
 
-Installing a package doesn't place its functions at your fingertips just yet: it simply places them in your hard drive. To use an R package, you next have to load it in your R session with the command *`library("ggplot2")`*. If you would like to load a different package, replace ggplot2 with your package name in the code.
+La instalación de un paquete no pone sus funciones al alcance de su mano todavía: simplemente las coloca en su disco duro. Para usar un paquete de R, luego debe cargarlo en su sesión de R con el comando *`library("ggplot2")`*. Si desea cargar un paquete diferente, reemplace ggplot2 con el nombre de su paquete en el código.
 
-To see what this does, try an experiment. First, ask R to show you the `qplot` function. R won't be able to find `qplot` because `qplot` lives in the ggplot2 package, which you haven't loaded:
+Para ver lo que esto hace, intente un experimento. Primero, pide a R que te muestre la función `qplot`. R no podrá encontrar `qplot` porque `qplot` vive en el paquete ggplot2, que no ha cargado:
 
 ```r
 qplot
 ## Error: object 'qplot' not found
 ```
 
-Now load the ggplot2 package:
+Ahora cargue el paquete ggplot2:
 
 ```r
 library("ggplot2")
 ```
 
-If you installed the package with `install.packages` as instructed, everything should go fine. Don't worry if you don't see any results or messages. No news is fine news when loading a package. Don't worry if you do see a message either; ggplot2 sometimes displays helpful start up messages. As long as you do not see anything that says "Error," you are doing fine.
+Si instaló el paquete con `install.packages` según las instrucciones, todo debería ir bien. No se preocupe si no ve ningún resultado o mensaje. No tener noticias es una buena noticia a la hora de cargar un paquete. No se preocupe si ve un mensaje tampoco; ggplot2 a veces muestra mensajes de inicio útiles. Mientras no vea nada que diga "Error", lo está haciendo bien.
 
-Now if you ask to see `qplot`, R will show you quite a bit of code (`qplot` is a long function):
+Ahora, si pide ver `qplot`, R le mostrará bastante código (`qplot` es una función larga):
 
 ```r
 qplot
 ## (quite a bit of code)
 ```
 
-[Appendix 2: R Packages](#packages2) contains many more details about acquiring and using packages. I recommend that you read it if you are unfamiliar with R's package system. The main thing to remember is that you only need to install a package once, but you need to load it with `library` each time you wish to use it in a new R session. R will unload all of its packages each time you close RStudio.
+[Apéndice 2: Paquetes de R](#packages2) contiene muchos más detalles sobre la adquisición y el uso de paquetes. Le recomiendo que lo lea si no está familiarizado con el sistema de paquetes de R. Lo más importante que debe recordar es que solo necesita instalar un paquete una vez, pero debe cargarlo con `library` cada vez que desee usarlo en una nueva sesión de R. R descargará todos sus paquetes cada vez que cierre RStudio.
 
-Now that you've loaded `qplot`, let's take it for a spin. `qplot` makes "quick plots." If you give `qplot` two vectors of equal lengths, `qplot` will draw a scatterplot for you. `qplot` will use the first vector as a set of x values and the second vector as a set of y values. Look for the plot to appear in the Plots tab of the bottom-right pane in your RStudio window. 
+Ahora que ha cargado `qplot`, vamos a probarlo. `qplot` hace "gráficos rápidos". Si le das a `qplot` dos vectores de igual longitud, `qplot` dibujará un diagrama de dispersión por ti. `qplot` usará el primer vector como un conjunto de valores x y el segundo vector como un conjunto de valores y. Busque el gráfico que aparecerá en la pestaña Gráficos del panel inferior derecho de la ventana de RStudio. 
 
-The following code will make the plot that appears in Figure \@ref(fig:qplot). Until now, we've been creating sequences of numbers with the `:` operator; but you can also create vectors of numbers with the `c` function. Give `c` all of the numbers that you want to appear in the vector, separated by a comma. `c` stands for _concatenate_, but you can think of it as "collect" or "combine":
+El siguiente código creará el gráfico que aparece en la Figura \@ref(fig:qplot). Hasta ahora, hemos estado creando secuencias de números con el operador `:`; pero también puedes crear vectores de números con la función `c`. Proporcione a `c` todos los números que desea que aparezcan en el vector, separados por una coma. `c` significa _concatenar_, pero puedes pensar en ello como "recolectar" o "combinar":
 
 ```r
 x <- c(-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1)
@@ -67,89 +67,89 @@ y
 qplot(x, y)
 ```
 
-```{r qplot, echo = FALSE, fig.cap = "qplot makes a scatterplot when you give it two vectors."}
+```{r qplot, echo = FALSE, fig.cap = "qplot hace un diagrama de dispersión cuando le das dos vectores."}
 knitr::include_graphics("images/hopr_0201.png")
 ```
 
-You don't need to name your vectors `x` and `y`. I just did that to make the example clear. As you can see in Figure \@ref(fig:qplot), a scatterplot is a set of points, each plotted according to its x and y values. Together, the vectors `x` and `y` describe a set of 10 points. How did R match up the values in `x` and `y` to make these points? With element-wise execution, as we saw in Figure \@ref(fig:elementwise).
+No necesitas nombrar tus vectores `x` e `y`. Solo hice eso para aclarar el ejemplo. Como puede ver en la figura \@ref(fig:qplot), un diagrama de dispersión es un conjunto de puntos, cada uno representado de acuerdo con sus valores x e y. Juntos, los vectores `x` e `y` describen un conjunto de 10 puntos. ¿Cómo hizo coincidir R los valores en `x` e `y` para hacer estos puntos? Con ejecución por elementos, como vimos en la Figura \@ref(fig:elementwise).
 
-Scatterplots are useful for visualizing the relationship between two variables. However, we're going to use a different type of graph, a _histogram_. A histogram visualizes the distribution of a single variable; it displays how many data points appear at each value of x. 
+Los diagramas de dispersión son útiles para visualizar la relación entre dos variables. Sin embargo, vamos a utilizar un tipo diferente de gráfico, un _histograma_. Un histograma visualiza la distribución de una sola variable; muestra cuántos puntos de datos aparecen en cada valor de x. 
 
-Let's take a look at a histogram to see if this makes sense. `qplot` will make a histogram whenever you give it only _one_ vector to plot. The following code makes the left-hand plot in Figure \@ref(fig:hist) (we'll worry about the right-hand plot in just second). To make sure our graphs look the same, use the extra argument *`binwidth = 1`*:
+Echemos un vistazo a un histograma para ver si esto tiene sentido. `qplot` hará un histograma cada vez que le des solo _un_ vector para graficar. El siguiente código crea el gráfico de la izquierda en la Figura \@ref(fig:hist) (nos preocuparemos del gráfico de la derecha en un segundo). Para asegurarse de que nuestros gráficos tengan el mismo aspecto, utilice el argumento extra *`binwidth = 1`*:
 
 ```r
 x <- c(1, 2, 2, 2, 3, 3)
 qplot(x, binwidth = 1)
 ```
 
-```{r hist, echo = FALSE, fig.cap = "qplot makes a histogram when you give it a single vector."}
+```{r hist, echo = FALSE, fig.cap = "qplot hace un histograma cuando le das un solo vector."}
 knitr::include_graphics("images/hopr_0202.png")
 ```
 
-This plot shows that our vector contains one value in the interval `[1, 2)` by placing a bar of height 1 above that interval. Similarly, the plot shows that the vector contains three values in the interval `[2, 3)` by placing a bar of height 3 in that interval. It shows that the vector contains two values in the interval `[3, 4)` by placing a bar of height 2 in that interval. In these intervals, the hard bracket, `[`, means that the first number is included in the interval. The parenthesis, `)`, means that the last number is _not_ included.
+Este gráfico muestra que nuestro vector contiene un valor en el intervalo `[1, 2)` colocando una barra de altura 1 sobre ese intervalo. De manera similar, la gráfica muestra que el vector contiene tres valores en el intervalo `[2, 3)` colocando una barra de altura 3 en ese intervalo. Muestra que el vector contiene dos valores en el intervalo `[3, 4)` colocando una barra de altura 2 en ese intervalo. En estos intervalos, el corchete, `[`, significa que el primer número está incluido en el intervalo. El paréntesis, `)`, significa que el último número _no_ está incluido.
 
-Let's try another histogram. This code makes the right-hand plot in Figure \@ref(fig:hist). Notice that there are five points with a value of 1 in `x2`. The histogram displays this by plotting a bar of height 5 above the interval x2 = [1, 2):
+Probemos con otro histograma. Este código crea el gráfico de la derecha en la Figura \@ref(fig:hist). Observe que hay cinco puntos con un valor de 1 en `x2`. El histograma muestra esto trazando una barra de altura 5 sobre el intervalo x2 = [1, 2):
 
 ```r
 x2 <- c(1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4)
 qplot(x2, binwidth = 1)
 ```
 
-```{exercise, name = "Visualize a Histogram"}
-Let `x3` be the following vector:
+```{exercise, name = "Visualizar un histograma"}
+Sea `x3` el siguiente vector:
 ```
 
 `x3 <- c(0, 1, 1, 2, 2, 2, 3, 3, 4)`
 
-Imagine what a histogram of `x3` would look like. Assume that the histogram has a bin width of 1. How many bars will the histogram have? Where will they appear? How high will each be?
+Imagina cómo se vería un histograma de `x3`. Suponga que el histograma tiene un ancho de intervalo de 1. ¿Cuántas barras tendrá el histograma? ¿Dónde aparecerán? ¿Qué altura tendrá cada uno?
 
-When you are done, plot a histogram of `x3` with `binwidth = 1`, and see if you are right.
+Cuando haya terminado, trace un histograma de `x3` con `binwidth = 1`, y vea si tiene razón.
 
 
 ```{solution}
-You can make a histogram of `x3` with `qplot(x3, binwidth = 1)`. The histogram will look like a symmetric pyramid. The middle bar will have a height of 3 and will appear above `[2, 3)`, but be sure to try it and see for yourself.
+Puedes hacer un histograma de `x3` con `qplot(x3, binwidth = 1)`. El histograma se verá como una pirámide simétrica. La barra del medio tendrá una altura de 3 y aparecerá encima de `[2, 3)`, pero asegúrese de probarlo y verlo por sí mismo.
 ```
 
-You can use a histogram to display visually how common different values of `x` are. Numbers covered by a tall bar are more common than numbers covered by a short bar.
+Puede usar un histograma para mostrar visualmente qué tan comunes son los diferentes valores de `x`. Los números cubiertos por una barra alta son más comunes que los números cubiertos por una barra corta.
 
-How can you use a histogram to check the accuracy of your dice? 
+¿Cómo puedes usar un histograma para verificar la precisión de tus dados? 
 
-Well, if you roll your dice many times and keep track of the results, you would expect some numbers to occur more than others. This is because there are more ways to get some numbers by adding two dice together than to get other numbers, as shown in Figure \@ref(fig:probs). 
+Bueno, si tiras los dados muchas veces y haces un seguimiento de los resultados, esperarás que algunos números ocurran más que otros. Esto se debe a que hay más formas de obtener algunos números sumando dos dados que de obtener otros números, como se muestra en la Figura \@ref(fig:probs). 
 
-If you roll your dice many times and plot the results with `qplot`, the histogram will show you how often each sum appeared. The sums that occurred most often will have the highest bars. The histogram should look like the pattern in Figure \@ref(fig:probs) if the dice are fairly weighted.
+Si tira los dados muchas veces y grafica los resultados con `qplot`, el histograma le mostrará con qué frecuencia apareció cada suma. Las sumas que ocurrieron con mayor frecuencia tendrán las barras más altas. El histograma debería parecerse al patrón de la Figura \@ref(fig:probs) si los dados tienen un peso justo.
 
-This is where `replicate` comes in. `replicate` provides an easy way to repeat an R command many times. To use it, first give `replicate` the number of times you wish to repeat an R command, and then give it the command you wish to repeat. `replicate` will run the command multiple times and store the results as a vector:
+Aquí es donde entra `replicate`. `replicate` proporciona una manera fácil de repetir un comando de R muchas veces. Para usarlo, primero dale a `replicate` el número de veces que deseas repetir un comando de R, y luego dale el comando que deseas repetir. `replicate` ejecutará el comando varias veces y almacenará los resultados como un vector:
 
 ```r
 replicate(3, 1 + 1)
 ## 2 2 2
 
-replicate(10, roll())
+replicate(10, tirar())
 ## 3  7  5  3  6  2  3  8 11  7
 ```
 
-```{r probs, echo = FALSE, fig.cap = "Each individual dice combination should occur with the same frequency. As a result, some sums will occur more often than others. With fair dice, each sum should appear in proportion to the number of combinations that make it."}
+```{r probs, echo = FALSE, fig.cap = "Cada combinación individual de dados debe ocurrir con la misma frecuencia. Como resultado, algunas sumas ocurrirán con más frecuencia que otras. Con dados justos, cada suma debe aparecer en proporción al número de combinaciones que la forman."}
 knitr::include_graphics("images/hopr_0203.png")
 ```
 
-A histogram of your first 10 rolls probably won't look like the pattern shown in Figure \@ref(fig:probs). Why not? There is too much randomness involved. Remember that we use dice in real life because they are effective random number generators. Patterns of long run frequencies will only appear _over the long run_. So let's simulate 10,000 dice rolls and plot the results. Don't worry; `qplot` and `replicate` can handle it. The results appear in Figure \@ref(fig:fair):
+Un histograma de sus las primeras 10 tiradas de los dados probablemente no se verá como el patrón que se muestra en la Figura \@ref(fig:probs). ¿Por qué no? Hay demasiada aleatoriedad involucrada. Recuerda que usamos dados en la vida real porque son generadores efectivos de números aleatorios. Los patrones de frecuencias de largo plazo solo aparecerán _en el largo plazo_. Así que simulemos 10.000 lanzamientos de dados y representemos los resultados. No te preocupes; `qplot` y `replicate` pueden manejarlo. Los resultados aparecen en la Figura \@ref(fig:fair):
 
 ```r
-rolls <- replicate(10000, roll())
-qplot(rolls, binwidth = 1)
+lanzamientos <- replicate(10000, tirar())
+qplot(lanzamientos, binwidth = 1)
 ```
 
-The results suggest that the dice are fair. Over the long run, each number occurs in proportion to the number of combinations that generate it.
+Los resultados sugieren que los dados son justos. A la larga, cada número aparece en proporción al número de combinaciones que lo generan.
 
-Now how can you bias these results? The previous pattern occurs because each underlying combination of dice (e.g., (3,4)) occurs with the same frequency. If you could increase the probability that a 6 is rolled on either die, then any combination with a six in it will occur more often than any combination without a six in it. The combination (6, 6) would occur most of all. This won't make the dice add up to 12 more often than they add up to seven, but it will skew the results toward the higher numbers.
+Ahora, ¿cómo puedes sesgar estos resultados? El patrón anterior ocurre porque cada combinación subyacente de dados (por ejemplo, (3,4)) ocurre con la misma frecuencia. Si pudieras aumentar la probabilidad de que salga un 6 en cualquiera de los dados, entonces cualquier combinación con un seis ocurrirá con más frecuencia que cualquier combinación sin un seis. La combinación (6, 6) ocurriría más frequente que todas las demás. Esto no hará que los dados sumen 12 con más frecuencia que siete, pero sesgará los resultados hacia los números más altos
 
-```{r fair, echo = FALSE, fig.cap = "The behavior of our dice suggests that they are fair. Seven occurs more often than any other number, and frequencies diminish in proportion to the number of die combinations that create each number."}
+```{r fair, echo = FALSE, fig.cap = "El comportamiento de nuestros dados sugiere que son justos. Siete ocurre con más frecuencia que cualquier otro número, y las frecuencias disminuyen en proporción al número de combinaciones de dados que crean cada número."}
 knitr::include_graphics("images/hopr_0204.png")
 ```
 
-To put it another way, the probability of rolling any single number on a fair die is 1/6. I'd like you to change the probability to 1/8 for each number below six, and then increase the probability of rolling a six to 3/8:
+Para decirlo de otra manera, la probabilidad de sacar cualquier número en un dado justo es 1/6. Me gustaría que cambiara la probabilidad a 1/8 para cada número por debajo de seis y luego aumentara la probabilidad de sacar un seis a 3/8:
 
-|Number|Fair probability|Weighted probability
+|Número|Probabilidad justa|Probabilidad sesgada
 |------|----------------|--------------------
 |1|1/6|1/8
 |2|1/6|1/8
@@ -158,9 +158,9 @@ To put it another way, the probability of rolling any single number on a fair di
 |5|1/6|1/8
 |6|1/6|3/8
 
-You can change the probabilities by adding a new argument to the `sample` function. I'm not going to tell you what the argument is; instead I'll point you to the help page for the `sample` function. What's that? R functions come with help pages? Yes they do, so let's learn how to read one. 
+Puede cambiar las probabilidades agregando un nuevo argumento a la función `sample`. No te voy a decir cuál es el argumento; en su lugar, le indicaré la página de ayuda para la función `sample`. ¿Que es eso? ¿Las funciones de R vienen con páginas de ayuda? Sí, así que aprendamos a leer una. 
 
-## Getting Help with Help Pages
+## Obteniendo Ayuda con las Páginas de Ayuda
 
 There are over 1,000 functions at the core of R, and new R functions are created all of the time. This can be a lot of material to memorize and learn! Luckily, each R function comes with its own help page, which you can access by typing the function's name after a question mark. For example, each of these commands will open a help page. Look for the pages to appear in the Help tab of RStudio's bottom-right pane:
 

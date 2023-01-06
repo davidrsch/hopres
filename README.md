@@ -23,6 +23,8 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Parte 1
     -   1 Proyecto 1: Dados Ponderados
     -   2 Lo Más Básico
+    -   3 Paquetes y páginas de ayuda
+        - 3.1 Paquetes
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -52,6 +54,8 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Part 1
     -   1 Project 1: Weighted Dice
     -   2 The Very Basics
+    -   3 Packages and Help Pages
+        - 3.1 Packages
 -   Appendix
     -   Installing R and RStudio
     -   R Packages
