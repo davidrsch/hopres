@@ -95,9 +95,7 @@ x2 <- c(1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4)
 qplot(x2, binwidth = 1)
 ```
 
-```{exercise, name = "Visualizar un histograma"}
-Sea `x3` el siguiente vector:
-```
+**Ejercicio 3.1 (Visualizar un Histograma)** Sea `x3` el siguiente vector:
 
 `x3 <- c(0, 1, 1, 2, 2, 2, 3, 3, 4)`
 
@@ -211,7 +209,7 @@ Primero, abra la página de ayuda. Aparecerá en el mismo panel en RStudio que s
 ```
 
 ```{block2, helppages-translation, type='rmdimportant'}
-Como verá a continuación y en su panel Help de la ventana inferior derecha de RStudio las páginas de ayuda de R solo se encuntran en idioma inglés. Por lo que las secciones, de la página de ayuda de la función `sample`, que se exponen a continuación se mostrarán en inglés. Si no posee un nivel de inglés que le permita leer y entender las páginas de ayuda de R, el traductor le recomienda traducir las mismas usando algún traductor online de documentos, aunque estos pueden ser muy textuales en ocasiones.
+Como verá a continuación y en su panel Help de la ventana inferior derecha de RStudio las páginas de ayuda de R solo se encuntran en idioma inglés. Por lo que las secciones, de la página de ayuda de la función `sample`, que se exponen a continuación se mostrarán en inglés. Si no posee un nivel de inglés que le permita leer y entender las páginas de ayuda de R, el traductor le recomienda traducir las mismas usando algún traductor de documentos online, aunque estos pueden ser muy textuales en ocasiones.
 ```
 
 ¿Que ves? Comenzando desde arriba:
@@ -257,9 +255,7 @@ If replace is true, Walker's alias method (Ripley, 1987) is used...
 
 Vale, parece que es hora de empezar a hojear. Deberíamos tener suficiente información ahora para descubrir cómo manipular nuestros dados.
 
-```{exercise, name = "Roll a Pair of Dice"}
-Vuelva a escribir la función `tirar` a continuación para lanzar un par de dados ponderados:
-```
+**Ejercicio 3.2 (Lanzar un par de Dados)** Vuelva a escribir la función `tirar` a continuación para lanzar un par de dados ponderados:
 
 ```r
 tirar <- function() {

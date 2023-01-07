@@ -3,9 +3,8 @@ knit: "bookdown::render_book"
 title: "Programación práctica con R"
 author: ["Garrett Grolemund"]
 description: "Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos."
-url: 'https\://rstudio-education.github.io/hopr/'
-github-repo: rstudio-education/hopr
-twitter-handle: statgarrett
+url: 'https://github.com/davidrsch/hopres'
+github-repo: davidrsch/hopres
 cover-image: cover.png
 site: bookdown::bookdown_site
 documentclass: book

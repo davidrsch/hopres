@@ -91,14 +91,13 @@ En el resto del libro, usaré hashtags para mostrar los resultados de las lineas
 Algunos comandos de R pueden tardar mucho tiempo en ejecutarse. Puede cancelar un comando una vez que ha comenzado presionando ctrl + c. Tenga en cuenta que R también puede tardar mucho tiempo en cancelar el comando. 
 ```
 
-```{exercise, name="Magic with Numbers"}
-Esa es la interfaz básica para ejecutar código R en RStudio. ¿Crees que lo tienes? Si es así, intente realizar estas sencillas tareas. Si ejecuta todo correctamente, debería terminar con el mismo número con el que comenzó:
+**Ejercicio 2.1 (Magia con Numeros)** Esa es la interfaz básica para ejecutar código R en RStudio. ¿Crees que lo tienes? Si es así, intente realizar estas sencillas tareas. Si ejecuta todo correctamente, debería terminar con el mismo número con el que comenzó:
 
 1. Elige cualquier número y súmale 2.
 2. Multiplica el resultado por 3.
 3. Resta 6 de la respuesta.
 4. Divide lo que obtienes por 3.
-```
+
 
 A lo largo del libro, pondré ejercicios en partes, como el de arriba. Seguiré cada ejercicio con una respuesta modelo, como la siguiente.
 
