@@ -21,6 +21,8 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Bienvenida
 -   Prefacio
 -   Parte 1
+-   Parte 2
+    - 4 Proyecto 2: Baraja de Cartas
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -48,6 +50,8 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Wellcome
 -   Preface
 -   Part 1
+-   Part 2
+    - 4 Project 2: Playing Cards
 -   Appendix
     -   Installing R and RStudio
     -   R Packages

@@ -106,7 +106,7 @@ obteniendo-más-ayuda
 resumen-1
 resumen-del-proyecto-1
 proyecto-2-baraja-de-cartas
-r-objects
+objectos-de-r
 atomic-vectors
 doubles
 integers
