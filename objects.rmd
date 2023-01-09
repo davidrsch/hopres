@@ -238,108 +238,108 @@ Esto crea un grupo unidimensional de nombres de cartas. ¡Excelente trabajo! Aho
 
 ## Atributos {#attributes}
 
-An attribute is a piece of information that you can attach to an atomic vector (or any R object). The attribute won't affect any of the values in the object, and it will not appear when you display your object. You can think of an attribute as "metadata"; it is just a convenient place to put information associated with an object. R will normally ignore this metadata, but some R functions will check for specific attributes. These functions may use the attributes to do special things with the data.
+Un atributo es una pieza de información que puede adjuntar a un vector atómico (o cualquier objeto de R). El atributo no afectará ninguno de los valores del objeto y no aparecerá cuando muestre su objeto. Puede pensar en un atributo como "metadatos"; es solo un lugar conveniente para colocar información asociada con un objeto. R normalmente ignorará estos metadatos, pero algunas funciones de R verificarán atributos específicos. Estas funciones pueden usar los atributos para hacer cosas especiales con los datos.
 
-You can see which attributes an object has with `attributes`. `attributes` will return `NULL` if an object has no attributes. An atomic vector, like `die`, won't have any attributes unless you give it some: 
+Puedes ver qué atributos tiene un objeto con `attributes`. `attributes` devolverá `NULL` si un objeto no tiene atributos. Un vector atómico, como `dado`, no tendrá ningún atributo a menos que le des alguno: 
 
 ```r
-attributes(die)
+attributes(dado)
 ## NULL
 ```
 
 ```{block2, type = "rmdtip"}
 **NULL**
   
-R uses `NULL` to represent the null set, an empty object. `NULL` is often returned by functions whose values are undefined. You can create a `NULL` object by typing `NULL` in capital letters.
+R usa `NULL` para representar el conjunto nulo, un objeto vacío. `NULL` a menudo es devuelto por funciones cuyos valores no están definidos. Puede crear un objeto `NULL` escribiendo `NULL` en letras mayúsculas.
 ```
 
-### Names {#names}
+### Nombres {#names}
 
-The most common attributes to give an atomic vector are names, dimensions (dim), and classes. Each of these attributes has its own helper function that you can use to give attributes to an object. You can also use the helper functions to look up the value of these attributes for objects that already have them. For example, you can look up the value of the names attribute of `die` with `names`:
+Los atributos más comunes para dar un vector atómico son nombres, dimensiones (dim) y clases. Cada uno de estos atributos tiene su propia función auxiliar que puede usar para otorgar atributos a un objeto. También puede usar las funciones auxiliares para buscar el valor de estos atributos para los objetos que ya los tienen. Por ejemplo, puedes buscar el valor del atributo de nombres de `dado` con `names`:
 
 ```r
-names(die)
+names(dado)
 ## NULL
 ```
 
-`NULL` means that `die` does not have a names attribute. You can give one to `die` by assigning a character vector to the output of `names`. The vector should include one name for each element in `die`: 
+`NULL` significa que `dado` no tiene un atributo de nombres. Puedes darle uno a `dado` asignando un vector de caracteres a la salida de `names`. El vector debe incluir un nombre para cada elemento en `dado`: 
 
 ```r
-names(die) <- c("one", "two", "three", "four", "five", "six")
+names(dado) <- c("uno", "dos", "tres", "cuatro", "cinco", "seis")
 ```
 
-Now `die` has a names attribute:
+Ahora `dado` tiene el atributo nombres:
 
 ```r
-names(die)
-## "one"   "two"   "three" "four"  "five"  "six" 
+names(dado)
+## "uno"   "dos"   "tres" "cuatro"  "cinco"  "seis" 
 
-attributes(die)
+attributes(dado)
 ## $names
-## [1] "one"   "two"   "three" "four"  "five"  "six"
+## [1] "uno"   "dos"   "tres" "cuatro"  "cinco"  "seis"
 ```
 
-R will display the names above the elements of `die` whenever you look at the vector:
+R mostrará los nombres sobre los elementos de `dado` cada vez que mires el vector:
 
 ```r
-die
-##  one   two three  four  five   six 
-##    1     2     3     4     5     6 
+dado
+##  uno   dos  tres  cuatro  cinco   seis 
+##    1     2     3       4      5      6  
 ```
 
-However, the names won't affect the actual values of the vector, nor will the names be affected when you manipulate the values of the vector:
+Sin embargo, los nombres no afectarán los valores reales del vector, ni los nombres se verán afectados cuando manipule los valores del vector:
 
 ```r
-die + 1
-##  one   two three  four  five   six 
-##    2     3     4     5     6     7
+dado + 1
+##  uno   dos  tres  cuatro  cinco   seis 
+##    2     3     4       5      6      7
 ```
 
-You can also use `names` to change the names attribute or remove it all together. To change the names, assign a new set of labels to `names`: 
+También puede usar `names` para cambiar el atributo de nombres o eliminarlo todo junto. Para cambiar los nombres, asigna un nuevo conjunto de etiquetas a `names`:
 
 ```r
-names(die) <- c("uno", "dos", "tres", "quatro", "cinco", "seis")
-die
-##   uno    dos   tres quatro  cinco   seis 
-##     1      2      3      4      5      6 
+names(dado) <- c("one", "two", "three", "four", "five", "six")
+dado
+##   one    two   three four  five   six 
+##     1      2       3    4     5     6 
 ```
 
-To remove the names attribute, set it to `NULL`:
+Para eliminar el atributo de nombres, configúrelo en `NULL`:
 
 ```r
-names(die) <- NULL
-die
+names(dado) <- NULL
+dado
 ##  1 2 3 4 5 6
 ```
 
-### Dim
+### Dimensiones
 
-You can transform an atomic vector into an _n_-dimensional array by giving it a dimensions attribute with `dim`. To do this, set the `dim` attribute to a numeric vector of length _n_. R will reorganize the elements of the vector into _n_ dimensions. Each dimension will have as many rows (or columns, etc.) as the _nth_ value of the `dim` vector. For example, you can reorganize `die` into a 2 &#x00D7; 3 matrix (which has 2 rows and 3 columns):
+Puede transformar un vector atómico en una matriz _n_-dimensional dándole un atributo de dimensiones con `dim`. Para hacer esto, establezca el atributo `dim` en un vector numérico de longitud _n_. R reorganizará los elementos del vector en _n_ dimensiones. Cada dimensión tendrá tantas filas (o columnas, etc.) como el valor _n_ del vector `dim`. Por ejemplo, puede reorganizar `dado` en una matriz de 2 &#x00D7; 3 (que tiene 2 filas y 3 columnas):
 
 ```r
-dim(die) <- c(2, 3)
-die
+dim(dado) <- c(2, 3)
+dado
 ##      [,1] [,2] [,3]
 ## [1,]    1    3    5
 ## [2,]    2    4    6
 ```
 
-or a 3 &#x00D7; 2 matrix (which has 3 rows and 2 columns):
+o en una mariz de 3 &#x00D7; 2 (que tiene 3 filas y 2 columnas):
 
 ```r
-dim(die) <- c(3, 2)
-die
+dim(dado) <- c(3, 2)
+dado
 ##      [,1] [,2]
 ## [1,]    1    4
 ## [2,]    2    5
 ## [3,]    3    6
 ```
 
-or a 1 &#x00D7; 2 &#x00D7; 3 hypercube (which has 1 row, 2 columns, and 3 "slices"). This is a three-dimensional structure, but R will need to show it slice by slice by slice on your two-dimensional computer screen:
+o en hipercubo de 1 &#x00D7; 2 &#x00D7; 3 (que tiene 1 fila, 2 columnas, y 3 "rebanadas"). Esta es una estructura tridimensional, pero R necesitará mostrarla rebanada por rebanada en la pantalla bidimensional de su computadora:
 
 ```r
-dim(die) <- c(1, 2, 3)
-die
+dim(dado) <- c(1, 2, 3)
+dado
 ## , , 1
 ## 
 ##      [,1] [,2]
@@ -357,37 +357,37 @@ die
 
 ```
 
-R will always use the first value in `dim` for the number of rows and the second value for the number of columns. In general, rows always come first in R operations that deal with both rows and columns. 
+R siempre usará el primer valor en `dim` para el número de filas y el segundo valor para el número de columnas. En general, las filas siempre van primero en las operaciones de R que se ocupan tanto de filas como de columnas. 
 
-You may notice that you don't have much control over how R reorganizes the values into rows and columns. For example, R always fills up each matrix by columns, instead of by rows. If you'd like more control over this process, you can use one of R's helper functions, `matrix` or `array`. They do the same thing as changing the `dim` attribute, but they provide extra arguments to customize the process.
+Puede notar que no tiene mucho control sobre cómo R reorganiza los valores en filas y columnas. Por ejemplo, R siempre llena cada matriz por columnas, en lugar de por filas. Si desea tener más control sobre este proceso, puede usar una de las funciones auxiliares de R, `matrix` o `array`. Hacen lo mismo que cambiar el atributo `dim`, pero proporcionan argumentos adicionales para personalizar el proceso.
 
 ## Matrices
 
-Matrices store values in a two-dimensional array, just like a matrix from linear algebra. To create one, first give `matrix` an atomic vector to reorganize into a matrix. Then, define how many rows should be in the matrix by setting the `nrow` argument to a number. `matrix` will organize your vector of values into a matrix with the specified number of rows. Alternatively, you can set the `ncol` argument, which tells R how many columns to include in the matrix: 
+Las matrices almacenan valores en una matriz bidimensional, como una matriz de álgebra lineal. Para crear uno, primero dale a `matrix` un vector atómico para reorganizar en una matriz. Luego, defina cuántas filas debe haber en la matriz configurando el argumento `nrow` en un número. `matrix` organizará su vector de valores en una matriz con el número especificado de filas. Alternativamente, puede establecer el argumento `ncol`, que le dice a R cuántas columnas incluir en la matriz:
 
 ```r
-m <- matrix(die, nrow = 2)
+m <- matrix(dado, nrow = 2)
 m
 ##      [,1] [,2] [,3]
 ## [1,]    1    3    5
 ## [2,]    2    4    6
 ```
 
-`matrix` will fill up the matrix column by column by default, but you can fill the matrix row by row if you include the argument `byrow = TRUE`:
+`matrix` llenará la matriz columna por columna por defecto, pero puedes llenar la matriz fila por fila si incluyes el argumento `byrow = TRUE`:
 
 ```r
-m <- matrix(die, nrow = 2, byrow = TRUE)
+m <- matrix(dado, nrow = 2, byrow = TRUE)
 m
 ##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    4    5    6
 ```
 
-`matrix` also has other default arguments that you can use to customize your matrix. You can read about them at `matrix`'s help page (accessible by `?matrix`).
+`matrix` también tiene otros argumentos predeterminados que puede usar para personalizar su matriz. Puede leer sobre ellos en la página de ayuda de `matrix` (accesible por `?matrix`).
 
-## Arrays
+## Arreglos
 
-The `array` function creates an n-dimensional array. For example, you could use `array` to sort values into a cube of three dimensions or a hypercube in 4, 5, or _n_ dimensions. `array` is not as customizeable as `matrix` and basically does the same thing as setting the `dim` attribute. To use `array`, provide an atomic vector as the first argument, and a vector of dimensions as the second argument, now called `dim`:
+La función `array` crea una matriz de n dimensiones. Por ejemplo, podría usar `array` para clasificar los valores en un cubo de tres dimensiones o un hipercubo en 4, 5 o _n_ dimensiones. `array` no es tan personalizable como `matrix` y básicamente hace lo mismo que configurar el atributo `dim`. Para usar `array`, proporcione un vector atómico como primer argumento y un vector de dimensiones como segundo argumento, ahora llamado `dim`:
 
 ```r
 ar <- array(c(11:14, 21:24, 31:34), dim = c(2, 2, 3))
@@ -411,42 +411,40 @@ ar
 ## [2,]   32   34
 ```
 
-```{exercise, name = "Make a Matrix"}
-Create the following matrix, which stores the name and suit of every card in a royal flush.
-```
+**Ejercicio 5.3 (Hacer una Matriz)** Cree la siguiente matriz, que almacena el nombre y el palo de cada carta en una escalera real.
 
 ```r
-##      [,1]    [,2]    
-## [1,] "ace"   "spades"
-## [2,] "king"  "spades"
-## [3,] "queen" "spades"
-## [4,] "jack"  "spades"
-## [5,] "ten"   "spades"
+##      [,1]       [,2]    
+## [1,] "as"      "picas"
+## [2,] "rey"     "picas"
+## [3,] "reina"   "picas"
+## [4,] "jota"    "picas"
+## [5,] "diez"    "picas"
 ```
 
 ```{solution}
-There is more than one way to build this matrix, but in every case, you will need to start by making a character vector with 10 values. If you start with the following character vector, you can turn it into a matrix with any of the following three commands:
+Hay más de una forma de construir esta matriz, pero en todos los casos, deberá comenzar creando un vector de caracteres con 10 valores. Si comienza con el siguiente vector de caracteres, puede convertirlo en una matriz con cualquiera de los siguientes tres comandos:
 ```
 
 ```r
-hand1 <- c("ace", "king", "queen", "jack", "ten", "spades", "spades", 
-  "spades", "spades", "spades")
+mano1 <- c("as", "rey", "reina", "jota", "diez", "picas", "picas",
+  "picas", "picas", "picas")
 
-matrix(hand1, nrow = 5)
-matrix(hand1, ncol = 2)
-dim(hand1) <- c(5, 2)
+matrix(mano1, nrow = 5)
+matrix(mano1, ncol = 2)
+dim(mano1) <- c(5, 2)
 ```
-You can also start with a character vector that lists the cards in a slightly different order. In this case, you will need to ask R to fill the matrix row by row instead of column by column:
+También puede comenzar con un vector de caracteres que enumere las cartas en un orden ligeramente diferente. En este caso, deberá pedirle a R que llene la matriz fila por fila en lugar de columna por columna:
 
 ```r
-hand2 <- c("ace", "spades", "king", "spades", "queen", "spades", "jack", 
-  "spades", "ten", "spades")
+mano2 <- c("as", "picas", "rey", "picas", "reina", "picas", "jota", 
+  "picas", "diez", "picas")
 
-matrix(hand2, nrow = 5, byrow = TRUE)
-matrix(hand2, ncol = 2, byrow = TRUE)
+matrix(mano2, nrow = 5, byrow = TRUE)
+matrix(mano2, ncol = 2, byrow = TRUE)
 ```
 
-## Class
+## Clases
 
 Notice that changing the dimensions of your object will not change the type of the object, but it _will_ change the object's `class` attribute:
 

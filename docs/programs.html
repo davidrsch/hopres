@@ -192,12 +192,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#attributes"><i class="fa fa-check"></i><b>5.2</b> Atributos</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#names"><i class="fa fa-check"></i><b>5.2.1</b> Names</a></li>
-<li class="chapter" data-level="5.2.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dim"><i class="fa fa-check"></i><b>5.2.2</b> Dim</a></li>
+<li class="chapter" data-level="5.2.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#names"><i class="fa fa-check"></i><b>5.2.1</b> Nombres</a></li>
+<li class="chapter" data-level="5.2.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dimensiones"><i class="fa fa-check"></i><b>5.2.2</b> Dimensiones</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="objectos-de-r.html"><a href="objectos-de-r.html#matrices"><i class="fa fa-check"></i><b>5.3</b> Matrices</a></li>
-<li class="chapter" data-level="5.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#arrays"><i class="fa fa-check"></i><b>5.4</b> Arrays</a></li>
-<li class="chapter" data-level="5.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#class"><i class="fa fa-check"></i><b>5.5</b> Class</a>
+<li class="chapter" data-level="5.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#arreglos"><i class="fa fa-check"></i><b>5.4</b> Arreglos</a></li>
+<li class="chapter" data-level="5.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#clases"><i class="fa fa-check"></i><b>5.5</b> Clases</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dates-and-times"><i class="fa fa-check"></i><b>5.5.1</b> Dates and Times</a></li>
 <li class="chapter" data-level="5.5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#factors"><i class="fa fa-check"></i><b>5.5.2</b> Factors</a></li>
@@ -592,7 +592,7 @@ Figure 10.3: The complete slot machine simulation will involve subtasks that are
 <span id="cb251-14"><a href="programs.html#cb251-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span></code></pre></div>
 <p>Try the following quizzes to develop your understanding of <code>if</code> statements.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-45" class="exercise"><strong>Exercise 10.1  (Quiz A) </strong></span>What will this return?</p>
+<p><span id="exr:unnamed-chunk-44" class="exercise"><strong>Exercise 10.1  (Quiz A) </strong></span>What will this return?</p>
 </div>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="programs.html#cb252-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb252-2"><a href="programs.html#cb252-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span>) {</span>
@@ -603,7 +603,7 @@ Figure 10.3: The complete slot machine simulation will involve subtasks that are
 <p><span id="unlabeled-div-17" class="solution"><em>Solution</em>. </span>The code will return the number 2. <code>x</code> begins as 1, and then R encounters the <code>if</code> statement. Since the condition evaluates to <code>TRUE</code>, R will run <code>x &lt;- 2</code>, changing the value of <code>x</code>.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-47" class="exercise"><strong>Exercise 10.2  (Quiz B) </strong></span>What will this return?</p>
+<p><span id="exr:unnamed-chunk-46" class="exercise"><strong>Exercise 10.2  (Quiz B) </strong></span>What will this return?</p>
 </div>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="programs.html#cb253-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb253-2"><a href="programs.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="cn">TRUE</span>) {</span>
@@ -614,7 +614,7 @@ Figure 10.3: The complete slot machine simulation will involve subtasks that are
 <p><span id="unlabeled-div-18" class="solution"><em>Solution</em>. </span>This code will also return the number 2. It works the same as the code in Quiz A, except the condition in this statement is already <code>TRUE</code>. R doesn’t even need to evaluate it. As a result, the code inside the <code>if</code> statement will be run, and <code>x</code> will be set to 2.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-49" class="exercise"><strong>Exercise 10.3  (Quiz C) </strong></span>What will this return?</p>
+<p><span id="exr:unnamed-chunk-48" class="exercise"><strong>Exercise 10.3  (Quiz C) </strong></span>What will this return?</p>
 </div>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="programs.html#cb254-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb254-2"><a href="programs.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) {</span>
@@ -722,7 +722,7 @@ Figure 10.4: score can navigate three cases with two if else decisions. We can a
 <p>Our first subtask asks us to “test whether the symbols are three of a kind.” This phrase does not suggest any useful R code to me. However, I could describe a more precise test for three of a kind: three symbols will be the same if the first symbol is equal to the second and the second symbol is equal to the third. Or, even more precisely:</p>
 <p><em>A vector named <code>symbols</code> will contain three of the same symbol if the first element of <code>symbols</code> is equal to the second element of <code>symbols</code> and the second element of <code>symbols</code> is equal to the third element of <code>symbols</code></em>.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-53" class="exercise"><strong>Exercise 10.4  (Write a Test) </strong></span>Turn the preceding statement into a logical test written in R. Use your knowledge of logical tests, Boolean operators, and subsetting from <a href="r-notation.html#r-notation">R Notation</a>. The test should work with the vector <code>symbols</code> and return a <code>TRUE</code> <em>if and only if</em> each element in <code>symbols</code> is the same. Be sure to test your code on <code>symbols</code>.</p>
+<p><span id="exr:unnamed-chunk-52" class="exercise"><strong>Exercise 10.4  (Write a Test) </strong></span>Turn the preceding statement into a logical test written in R. Use your knowledge of logical tests, Boolean operators, and subsetting from <a href="r-notation.html#r-notation">R Notation</a>. The test should work with the vector <code>symbols</code> and return a <code>TRUE</code> <em>if and only if</em> each element in <code>symbols</code> is the same. Be sure to test your code on <code>symbols</code>.</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-20" class="solution"><em>Solution</em>. </span>Here are a couple of ways to test that <code>symbols</code> contains three of the same symbol. The first method parallels the English suggestion above, but there are other ways to do the same test. There is no right or wrong answer, so long as your solution works, which is easy to check because you’ve created a vector named <code>symbols</code>:</p>
@@ -762,7 +762,7 @@ Figure 10.4: score can navigate three cases with two if else decisions. We can a
 <p>The second prize case occurs when all the symbols are a type of bar, for example, <code>B</code>, <code>BB</code>, and <code>BBB</code>. Let’s begin by creating a concrete example to work with:</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="programs.html#cb267-1" aria-hidden="true" tabindex="-1"></a>symbols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;BBB&quot;</span>, <span class="st">&quot;BB&quot;</span>)</span></code></pre></div>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-56" class="exercise"><strong>Exercise 10.5  (Test for All Bars) </strong></span>Use R’s logical and Boolean operators to write a test that will determine whether a vector named <code>symbols</code> contains only symbols that are a type of bar. Check whether your test works with our example <code>symbols</code> vector. Remember to describe how the test should work in English, and then convert the solution to R.</p>
+<p><span id="exr:unnamed-chunk-55" class="exercise"><strong>Exercise 10.5  (Test for All Bars) </strong></span>Use R’s logical and Boolean operators to write a test that will determine whether a vector named <code>symbols</code> contains only symbols that are a type of bar. Check whether your test works with our example <code>symbols</code> vector. Remember to describe how the test should work in English, and then convert the solution to R.</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-21" class="solution"><em>Solution</em>. </span>As with many things in R, there are multiple ways to test whether <code>symbols</code> contains all bars. For example, you could write a very long test that uses multiple Boolean operators, like this:</p>
@@ -887,7 +887,7 @@ Figure 10.4: score can navigate three cases with two if else decisions. We can a
 <span id="cb278-16"><a href="programs.html#cb278-16" aria-hidden="true" tabindex="-1"></a><span class="co"># double the prize if necessary</span></span></code></pre></div>
 <p>Now we can work on the last case. Here, you’ll need to know how many cherries are in <code>symbols</code> before you can calculate a prize.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-58" class="exercise"><strong>Exercise 10.6  (Find C's) </strong></span>How can you tell which elements of a vector named <code>symbols</code> are a <code>C</code>? Devise a test and try it out.</p>
+<p><span id="exr:unnamed-chunk-57" class="exercise"><strong>Exercise 10.6  (Find C's) </strong></span>How can you tell which elements of a vector named <code>symbols</code> are a <code>C</code>? Devise a test and try it out.</p>
 </div>
 
 <div class="rmdnote">
@@ -990,7 +990,7 @@ To convert an <code>if</code> tree to a lookup table, identify the values to be 
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="programs.html#cb293-1" aria-hidden="true" tabindex="-1"></a>prize <span class="sc">*</span> <span class="dv">8</span>      <span class="co"># 8 = 2 ^ 3</span></span></code></pre></div>
 <p>Can you think of an easy way to handle this? How about something similar to these examples?</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-62" class="exercise"><strong>Exercise 10.7  (Adjust for Diamonds) </strong></span>Write a method for adjusting <code>prize</code> based on <code>diamonds</code>. Describe a solution in English first, and then write your code.</p>
+<p><span id="exr:unnamed-chunk-61" class="exercise"><strong>Exercise 10.7  (Adjust for Diamonds) </strong></span>Write a method for adjusting <code>prize</code> based on <code>diamonds</code>. Describe a solution in English first, and then write your code.</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-23" class="solution"><em>Solution</em>. </span>Here is a concise solution inspired by the previous pattern. The adjusted prize will equal:</p>

@@ -192,12 +192,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#attributes"><i class="fa fa-check"></i><b>5.2</b> Atributos</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#names"><i class="fa fa-check"></i><b>5.2.1</b> Names</a></li>
-<li class="chapter" data-level="5.2.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dim"><i class="fa fa-check"></i><b>5.2.2</b> Dim</a></li>
+<li class="chapter" data-level="5.2.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#names"><i class="fa fa-check"></i><b>5.2.1</b> Nombres</a></li>
+<li class="chapter" data-level="5.2.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dimensiones"><i class="fa fa-check"></i><b>5.2.2</b> Dimensiones</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="objectos-de-r.html"><a href="objectos-de-r.html#matrices"><i class="fa fa-check"></i><b>5.3</b> Matrices</a></li>
-<li class="chapter" data-level="5.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#arrays"><i class="fa fa-check"></i><b>5.4</b> Arrays</a></li>
-<li class="chapter" data-level="5.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#class"><i class="fa fa-check"></i><b>5.5</b> Class</a>
+<li class="chapter" data-level="5.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#arreglos"><i class="fa fa-check"></i><b>5.4</b> Arreglos</a></li>
+<li class="chapter" data-level="5.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#clases"><i class="fa fa-check"></i><b>5.5</b> Clases</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dates-and-times"><i class="fa fa-check"></i><b>5.5.1</b> Dates and Times</a></li>
 <li class="chapter" data-level="5.5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#factors"><i class="fa fa-check"></i><b>5.5.2</b> Factors</a></li>
@@ -565,7 +565,7 @@ Be careful not to confuse <code>=</code> with <code>==</code>. <code>=</code> do
 </div>
 <p>You can compare any two R objects with a logical operator; however, logical operators make the most sense if you compare two objects of the same data type. If you compare objects of different data types, R will use its coercion rules to coerce the objects to the same type before it makes the comparison.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-29" class="exercise"><strong>Exercise 7.1  (How many Aces?) </strong></span>Extract the <code>face</code> column of <code>deck2</code> and test whether each value is equal to <code>ace</code>. As a challenge, use R to quickly count how many cards are equal to <code>ace</code>.</p>
+<p><span id="exr:unnamed-chunk-28" class="exercise"><strong>Exercise 7.1  (How many Aces?) </strong></span>Extract the <code>face</code> column of <code>deck2</code> and test whether each value is equal to <code>ace</code>. As a challenge, use R to quickly count how many cards are equal to <code>ace</code>.</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-11" class="solution"><em>Solution</em>. </span>You can extract the <code>face</code> column with R’s <code>$</code> notation:</p>
@@ -635,7 +635,7 @@ Be careful not to confuse <code>=</code> with <code>==</code>. <code>=</code> do
 <span id="cb177-18"><a href="modify.html#cb177-18" aria-hidden="true" tabindex="-1"></a><span class="do">##    ace spades     0</span></span></code></pre></div>
 <p>except cards in the suit of hearts and the queen of spades. Each card in the suit of hearts has a value of 1. Can you find these cards and replace their values? Give it a try.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-31" class="exercise"><strong>Exercise 7.2  (Score the Deck for Hearts) </strong></span>Assign a value of <code>1</code> to every card in <code>deck4</code> that has a suit of hearts.</p>
+<p><span id="exr:unnamed-chunk-30" class="exercise"><strong>Exercise 7.2  (Score the Deck for Hearts) </strong></span>Assign a value of <code>1</code> to every card in <code>deck4</code> that has a suit of hearts.</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-12" class="solution"><em>Solution</em>. </span>To do this, first write a test that identifies cards in the <code>hearts</code> suit:</p>
@@ -784,7 +784,7 @@ Figure 7.1: R will evaluate the expressions on each side of a Boolean operator s
 <span id="cb188-5"><a href="modify.html#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="do">## queen spades     13</span></span></code></pre></div>
 <p>Your deck is now ready to play hearts.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-34" class="exercise"><strong>Exercise 7.3  (Practice with Tests) </strong></span>If you think you have the hang of logical tests, try converting these sentences into tests written with R code. To help you out, I’ve defined some R objects after the sentences that you can use to test your answers:</p>
+<p><span id="exr:unnamed-chunk-33" class="exercise"><strong>Exercise 7.3  (Practice with Tests) </strong></span>If you think you have the hang of logical tests, try converting these sentences into tests written with R code. To help you out, I’ve defined some R objects after the sentences that you can use to test your answers:</p>
 <ul>
 <li>Is w positive?</li>
 <li>Is x greater than 10 and less than 20?</li>

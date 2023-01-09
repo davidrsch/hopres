@@ -192,12 +192,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#attributes"><i class="fa fa-check"></i><b>5.2</b> Atributos</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#names"><i class="fa fa-check"></i><b>5.2.1</b> Names</a></li>
-<li class="chapter" data-level="5.2.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dim"><i class="fa fa-check"></i><b>5.2.2</b> Dim</a></li>
+<li class="chapter" data-level="5.2.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#names"><i class="fa fa-check"></i><b>5.2.1</b> Nombres</a></li>
+<li class="chapter" data-level="5.2.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dimensiones"><i class="fa fa-check"></i><b>5.2.2</b> Dimensiones</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="objectos-de-r.html"><a href="objectos-de-r.html#matrices"><i class="fa fa-check"></i><b>5.3</b> Matrices</a></li>
-<li class="chapter" data-level="5.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#arrays"><i class="fa fa-check"></i><b>5.4</b> Arrays</a></li>
-<li class="chapter" data-level="5.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#class"><i class="fa fa-check"></i><b>5.5</b> Class</a>
+<li class="chapter" data-level="5.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#arreglos"><i class="fa fa-check"></i><b>5.4</b> Arreglos</a></li>
+<li class="chapter" data-level="5.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#clases"><i class="fa fa-check"></i><b>5.5</b> Clases</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dates-and-times"><i class="fa fa-check"></i><b>5.5.1</b> Dates and Times</a></li>
 <li class="chapter" data-level="5.5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#factors"><i class="fa fa-check"></i><b>5.5.2</b> Factors</a></li>
@@ -627,7 +627,7 @@ Figure 8.4: R creates a new environment to run show_env in. The environment is a
 <span id="cb222-3"><a href="environments.html#cb222-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Notice that <code>deal</code> no longer takes an argument, and it calls the <code>deck</code> object, which lives in the global environment.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-38" class="exercise"><strong>Exercise 8.1  (Will deal work?) </strong></span>Will R be able to find <code>deck</code> and return an answer when I call the new version of <code>deal</code>, such as <code>deal()</code>?</p>
+<p><span id="exr:unnamed-chunk-37" class="exercise"><strong>Exercise 8.1  (Will deal work?) </strong></span>Will R be able to find <code>deck</code> and return an answer when I call the new version of <code>deal</code>, such as <code>deal()</code>?</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-14" class="solution"><em>Solution</em>. </span>Yes. <code>deal</code> will still work the same as before. R will run <code>deal</code> in a runtime environment that is a child of the global environment. Why will it be a child of the global environment? Because the global environment is the origin environment of <code>deal</code> (we defined <code>deal</code> in the global environment):</p>
@@ -676,7 +676,7 @@ Figure 8.6: The deal function looks up deck in the global environment but saves 
 </p>
 </div>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-40" class="exercise"><strong>Exercise 8.2  (Overwrite deck) </strong></span>Rewrite the <code>deck &lt;- deck[-1, ]</code> line of <code>deal</code> to <em>assign</em> <code>deck[-1, ]</code> to an object named <code>deck</code> in the global environment. Hint: consider the <code>assign</code> function.</p>
+<p><span id="exr:unnamed-chunk-39" class="exercise"><strong>Exercise 8.2  (Overwrite deck) </strong></span>Rewrite the <code>deck &lt;- deck[-1, ]</code> line of <code>deal</code> to <em>assign</em> <code>deck[-1, ]</code> to an object named <code>deck</code> in the global environment. Hint: consider the <code>assign</code> function.</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-15" class="solution"><em>Solution</em>. </span>You can assign an object to a specific environment with the <code>assign</code> function:</p>
@@ -725,7 +725,7 @@ Figure 8.6: The deal function looks up deck in the global environment but saves 
 <span id="cb231-19"><a href="environments.html#cb231-19" aria-hidden="true" tabindex="-1"></a><span class="do">##   two    clubs     2</span></span></code></pre></div>
 <p>This behavior is now undesirable in two ways. First, <code>shuffle</code> fails to shuffle <code>deck</code>. Second, <code>shuffle</code> returns a copy of <code>deck</code>, which may be missing the cards that have been dealt away. It would be better if <code>shuffle</code> returned the dealt cards to the deck and then shuffled. This is what happens when you shuffle a deck of cards in real life.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-42" class="exercise"><strong>Exercise 8.3  (Rewrite shuffle) </strong></span>Rewrite <code>shuffle</code> so that it replaces the copy of <code>deck</code> that lives in the global environment with a shuffled version of <code>DECK</code>, the intact copy of <code>deck</code> that also lives in the global environment. The new version of <code>shuffle</code> should have no arguments and return no output.</p>
+<p><span id="exr:unnamed-chunk-41" class="exercise"><strong>Exercise 8.3  (Rewrite shuffle) </strong></span>Rewrite <code>shuffle</code> so that it replaces the copy of <code>deck</code> that lives in the global environment with a shuffled version of <code>DECK</code>, the intact copy of <code>deck</code> that also lives in the global environment. The new version of <code>shuffle</code> should have no arguments and return no output.</p>
 </div>
 <div class="solution">
 <p><span id="unlabeled-div-16" class="solution"><em>Solution</em>. </span>You can update <code>shuffle</code> in the same way that you updated <code>deck</code>. The following version will do the job:</p>
