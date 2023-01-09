@@ -22,7 +22,9 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Prefacio
 -   Parte 1
 -   Parte 2
-    - 4 Proyecto 2: Baraja de Cartas
+    -   4 Proyecto 2: Baraja de Cartas
+    -   5 Objetos de R
+        -   5.1 Vectores Atómicos
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -51,7 +53,9 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Preface
 -   Part 1
 -   Part 2
-    - 4 Project 2: Playing Cards
+    -   4 Project 2: Playing Cards
+    -   5 R Objets
+        -   5.1 Atomic Vectors
 -   Appendix
     -   Installing R and RStudio
     -   R Packages

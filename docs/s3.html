@@ -182,15 +182,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="proyecto-2-baraja-de-cartas.html"><a href="proyecto-2-baraja-de-cartas.html"><i class="fa fa-check"></i><b>4</b> Proyecto 2: Baraja de Cartas</a></li>
 <li class="chapter" data-level="5" data-path="objectos-de-r.html"><a href="objectos-de-r.html"><i class="fa fa-check"></i><b>5</b> Objectos de R</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#atomic-vectors"><i class="fa fa-check"></i><b>5.1</b> Atomic Vectors</a>
+<li class="chapter" data-level="5.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#vectores-atómicos"><i class="fa fa-check"></i><b>5.1</b> Vectores Atómicos</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#doubles"><i class="fa fa-check"></i><b>5.1.1</b> Doubles</a></li>
-<li class="chapter" data-level="5.1.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#integers"><i class="fa fa-check"></i><b>5.1.2</b> Integers</a></li>
-<li class="chapter" data-level="5.1.3" data-path="objectos-de-r.html"><a href="objectos-de-r.html#characters"><i class="fa fa-check"></i><b>5.1.3</b> Characters</a></li>
-<li class="chapter" data-level="5.1.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#logicals"><i class="fa fa-check"></i><b>5.1.4</b> Logicals</a></li>
-<li class="chapter" data-level="5.1.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#complex-and-raw"><i class="fa fa-check"></i><b>5.1.5</b> Complex and Raw</a></li>
+<li class="chapter" data-level="5.1.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dobles"><i class="fa fa-check"></i><b>5.1.1</b> Dobles</a></li>
+<li class="chapter" data-level="5.1.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#enteros"><i class="fa fa-check"></i><b>5.1.2</b> Enteros</a></li>
+<li class="chapter" data-level="5.1.3" data-path="objectos-de-r.html"><a href="objectos-de-r.html#caracteres"><i class="fa fa-check"></i><b>5.1.3</b> Caracteres</a></li>
+<li class="chapter" data-level="5.1.4" data-path="objectos-de-r.html"><a href="objectos-de-r.html#lógicos"><i class="fa fa-check"></i><b>5.1.4</b> Lógicos</a></li>
+<li class="chapter" data-level="5.1.5" data-path="objectos-de-r.html"><a href="objectos-de-r.html#complejo-y-sin-procesar"><i class="fa fa-check"></i><b>5.1.5</b> Complejo y Sin Procesar</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#attributes"><i class="fa fa-check"></i><b>5.2</b> Attributes</a>
+<li class="chapter" data-level="5.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#attributes"><i class="fa fa-check"></i><b>5.2</b> Atributos</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="objectos-de-r.html"><a href="objectos-de-r.html#names"><i class="fa fa-check"></i><b>5.2.1</b> Names</a></li>
 <li class="chapter" data-level="5.2.2" data-path="objectos-de-r.html"><a href="objectos-de-r.html#dim"><i class="fa fa-check"></i><b>5.2.2</b> Dim</a></li>
@@ -474,7 +474,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb313-3"><a href="s3.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;symbols&quot;)</span></span>
 <span id="cb313-4"><a href="s3.html#cb313-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  &quot;B&quot; &quot;0&quot; &quot;B&quot;</span></span></code></pre></div>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-66" class="exercise"><strong>Exercise 11.1  (Add an Attribute) </strong></span>Modify <code>play</code> to return a prize that contains the symbols associated with it as an attribute named <code>symbols</code>. Remove the redundant call to <code>print(symbols)</code>:</p>
+<p><span id="exr:unnamed-chunk-64" class="exercise"><strong>Exercise 11.1  (Add an Attribute) </strong></span>Modify <code>play</code> to return a prize that contains the symbols associated with it as an attribute named <code>symbols</code>. Remove the redundant call to <code>print(symbols)</code>:</p>
 </div>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="s3.html#cb314-1" aria-hidden="true" tabindex="-1"></a>play <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb314-2"><a href="s3.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  symbols <span class="ot">&lt;-</span> <span class="fu">get_symbols</span>()</span>
@@ -702,7 +702,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you give <code>print</code> an object whose class or classes do not have a print method, <code>UseMethod</code> will call <code>print.default</code>, a special method written to handle general cases.</p>
 <p>Let’s use this system to write a better print method for the slot machine output.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-68" class="exercise"><strong>Exercise 11.2  (Make a Print Method) </strong></span>Write a new print method for the slots class. The method should call <code>slot_display</code> to return well-formatted slot-machine output.</p>
+<p><span id="exr:unnamed-chunk-66" class="exercise"><strong>Exercise 11.2  (Make a Print Method) </strong></span>Write a new print method for the slots class. The method should call <code>slot_display</code> to return well-formatted slot-machine output.</p>
 <p>What name must you use for this method?</p>
 </div>
 <div class="solution">
@@ -717,7 +717,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb336-3"><a href="s3.html#cb336-3" aria-hidden="true" tabindex="-1"></a><span class="do">## $0</span></span></code></pre></div>
 <p>Let’s ensure that every piece of slot machine output has the <code>slots</code> class.</p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-70" class="exercise"><strong>Exercise 11.3  (Add a Class) </strong></span>Modify the <code>play</code> function so it assigns <code>slots</code> to the <code>class</code> attribute of its output:</p>
+<p><span id="exr:unnamed-chunk-68" class="exercise"><strong>Exercise 11.3  (Add a Class) </strong></span>Modify the <code>play</code> function so it assigns <code>slots</code> to the <code>class</code> attribute of its output:</p>
 </div>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="s3.html#cb337-1" aria-hidden="true" tabindex="-1"></a>play <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb337-2"><a href="s3.html#cb337-2" aria-hidden="true" tabindex="-1"></a>  symbols <span class="ot">&lt;-</span> <span class="fu">get_symbols</span>()</span>

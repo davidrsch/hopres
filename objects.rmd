@@ -1,205 +1,202 @@
 # Objectos de R
 
-In this chapter, you'll use R to assemble a deck of 52 playing cards. 
+En este capítulo, usará R para armar una baraja de 52 cartas.
 
-You'll start by building simple R objects that represent playing cards and then work your way up to a full-blown table of data. In short, you'll build the equivalent of an Excel spreadsheet from scratch. When you are finished, your deck of cards will look something like this:
+Comenzará construyendo objetos R simples que representan naipes y luego avanzará hasta una tabla de datos completa. En resumen, creará el equivalente a una hoja de cálculo de Excel desde cero. Cuando hayas terminado, tu mazo de cartas se verá así:
 
 ```r
- face   suit value
- king spades    13
-queen spades    12
- jack spades    11
-  ten spades    10
- nine spades     9
-eight spades     8
+ cara símbolo valor
+  rey   picas    13
+reina   picas    12
+ jota   picas    11
+ diez   picas    10
+nueve   picas     9
+ ocho   picas     8
 ...
 ```
 
-Do you need to build a data set from scratch to use it in R? Not at all. You can load most data sets into R with one simple step, see [Loading Data]. But this exercise will teach you how R stores data, and how you can assemble—or disassemble—your own data sets. You will also learn about the various types of objects available for you to use in R (not all R objects are the same!). Consider this exercise a rite of passage; by doing it, you will become an expert on storing data in R.
+¿Necesita crear un conjunto de datos desde cero para usarlo en R? Para nada. Puede cargar la mayoría de los conjuntos de datos en R con un simple paso, consulte [Cargar datos]. Pero este ejercicio le enseñará cómo R almacena datos y cómo puede ensamblar, o desensamblar, sus propios conjuntos de datos. También aprenderá sobre los diversos tipos de objetos disponibles para usar en R (¡no todos los objetos de R son iguales!). Considere este ejercicio como un rito de iniciación; al hacerlo, se convertirá en un experto en el almacenamiento de datos en R.
 
-We'll start with the very basics. The most simple type of object in R is an _atomic vector_. Atomic vectors are not nuclear powered, but they are very simple and they do show up everywhere. If you look closely enough, you'll see that most structures in R are built from atomic vectors. 
+Comenzaremos con lo más básico. El tipo de objeto más simple en R es un _vector atómico_. Los vectores atómicos no tienen energía nuclear, pero son muy simples y aparecen en todas partes. Si observa lo suficientemente de cerca, verá que la mayoría de las estructuras en R se construyen a partir de vectores atómicos. 
 
-## Atomic Vectors
+## Vectores Atómicos
 
-An atomic vector is just a simple vector of data. In fact, you've already made an atomic vector, your `die` object from [Project 1: Weighted Dice]. You can make an atomic vector by grouping some values of data together with `c`:
+Un vector atómico es solo un simple vector de datos. De hecho, ya ha creado un vector atómico, su objeto `dado` del [Proyecto 1: Dados ponderados]. Puede hacer un vector atómico agrupando algunos valores de datos con `c`:
 
 ```r
-die <- c(1, 2, 3, 4, 5, 6)
-die
+dado <- c(1, 2, 3, 4, 5, 6)
+dado
 ## 1 2 3 4 5 6
 
-is.vector(die)
+is.vector(dado)
 ##  TRUE
 ```
 
 ```{block2, type = "rmdnote"}
 **is.vector**
   
-`is.vector` tests whether an object is an atomic vector. It returns `TRUE` if the object is an atomic vector and `FALSE` otherwise.
+`is.vector` comprueba si un objeto es un vector atómico. Devuelve `TRUE` si el objeto es un vector atómico y `FALSE` en caso contrario.
 ```
 
-You can also make an atomic vector with just one value. R saves single values as an atomic vector of length 1:
+También puedes hacer un vector atómico con un solo valor. R guarda valores individuales como un vector atómico de longitud 1:
 
 ```r
-five <- 5
-five
+cinco <- 5
+cinco
 ## 5
 
-is.vector(five)
+is.vector(cinco)
 ##  TRUE
 
-length(five)
+length(cinco)
 ## 1
-length(die)
+length(dado)
 ## 6
 ```
 
 ```{block2, type = "rmdnote"}
 **length**
   
-`length` returns the length of an atomic vector.
+`length` devuelve la longitud de un vector atómico.
 ```
 
-Each atomic vector stores its values as a one-dimensional vector, and each atomic vector can only store one type of data. You can save different types of data in R by using different types of atomic vectors. Altogether, R recognizes six basic types of atomic vectors: _doubles_, _integers_, _characters_, _logicals_, _complex_, and _raw_.
+Cada vector atómico almacena sus valores como un vector unidimensional y cada vector atómico solo puede almacenar un tipo de datos. Puede guardar diferentes tipos de datos en R utilizando diferentes tipos de vectores atómicos. En total, R reconoce seis tipos básicos de vectores atómicos: _dobles_, _enteros_, _caracteres_, _lógicos_, _complejos_ y _sin procesar_.
 
-To create your card deck, you will need to use different types of atomic vectors to save different types of information (text and numbers). You can do this by using some simple conventions when you enter your data. For example, you can create an integer vector by including a capital `L` with your input. You can create a character vector by surrounding your input in quotation marks:
+Para crear su mazo de cartas, necesitará usar diferentes tipos de vectores atómicos para guardar diferentes tipos de información (texto y números). Puede hacer esto usando algunas convenciones simples cuando ingresa sus datos. Por ejemplo, puede crear un vector de números enteros al incluir una `L` mayúscula con su entrada. Puede crear un vector de caracteres encerrando su entrada entre comillas:
 
 ```r
-int <- 1L
-text <- "ace"
+ent <- 1L
+text <- "as"
 ```
 
-Each type of atomic vector has its own convention (described below). R will recognize the convention and use it to create an atomic vector of the appropriate type. If you'd like to make atomic vectors that have more than one element in them, you can combine an element with the `c` function from [Packages and Help Pages]. Use the same convention with each element:
+Cada tipo de vector atómico tiene su propia convención (descrita a continuación). R reconocerá la convención y la usará para crear un vector atómico del tipo apropiado. Si desea crear vectores atómicos que tengan más de un elemento, puede combinar un elemento con la función `c` de [Paquetes y páginas de ayuda]. Use la misma convención con cada elemento:
 
 ```r
-int <- c(1L, 5L)
-text <- c("ace", "hearts")
+ent <- c(1L, 5L)
+text <- c("as", "corazon")
 ```
 
-You may wonder why R uses multiple types of vectors. Vector types help R behave as you would expect. For example, R will do math with atomic vectors that contain numbers, but not with atomic vectors that contain character strings:
+Quizás se pregunte por qué R usa múltiples tipos de vectores. Los tipos de vectores ayudan a que R se comporte como cabría esperar. Por ejemplo, R hará operaciones matemáticas con vectores atómicos que contienen números, pero no con vectores atómicos que contienen cadenas de caracteres:
 
 ```r
-sum(int)
+sum(ent)
 ## 6
 
 sum(text)
 ## Error in sum(text) : invalid 'type' (character) of argument
 ```
 
-But we're getting ahead of ourselves! Get ready to say hello to the six types of atomic vectors in R.
+¡Pero nos estamos adelantando! Prepárese para saludar a los seis tipos de vectores atómicos en R.
 
-### Doubles
+### Dobles
 
-A double vector stores regular numbers. The numbers can be positive or negative, large or small, and have digits to the right of the decimal place or not. In general, R will save any number that you type in R as a double. So, for example, the die you made in [Project 1: Weighted Dice] was a double object:
+Un vector doble almacena números regulares. Los números pueden ser positivos o negativos, grandes o pequeños, y tener dígitos a la derecha del lugar decimal o no. En general, R guardará cualquier número que escriba en R como un doble. Entonces, por ejemplo, el dado que hiciste en [Proyecto 1: Dados ponderados] era un objeto doble:
 
 ```r
-die <- c(1, 2, 3, 4, 5, 6)
-die
+dado <- c(1, 2, 3, 4, 5, 6)
+dado
 ## 1 2 3 4 5 6
 ```
 
-You'll usually know what type of object you are working with in R (it will be obvious), but you can also ask R what type of object an object is with `typeof`. For example:
+Por lo general, sabrá con qué tipo de objeto está trabajando en R (será obvio), pero también puede preguntarle a R qué tipo de objeto es un objeto con `typeof`. Por ejemplo:
 
 ```r
-typeof(die)
+typeof(dado)
 ##  "double"
 ```
 
-Some R functions refer to doubles as "numerics," and I will often do the same. Double is a computer science term. It refers to the specific number of bytes your computer uses to store a number, but I find "numeric" to be much more intuitive when doing data science.
+Algunas funciones de R se refieren a los dobles como "numéricos", y yo haré lo mismo con frecuencia. Doble es un término informático. Se refiere a la cantidad específica de bytes que usa su computadora para almacenar un número, pero encuentro que "numérico" es mucho más intuitivo cuando se hace ciencia de datos.
 
-### Integers
+### Enteros
 
-Integer vectors store integers, numbers that can be written without a decimal component. As a data scientist, you won't use the integer type very often because you can save integers as a double object.
+Los vectores enteros almacenan números enteros, números que se pueden escribir sin un componente decimal. Como científico de datos, no usará el tipo de número entero con mucha frecuencia porque puede guardar los números enteros como un objeto doble.
 
-You can specifically create an integer in R by typing a number followed by an uppercase  `L`. For example:
+Puede crear específicamente un número entero en R escribiendo un número seguido de una `L` mayúscula. Por ejemplo:
 
 ```r
-int <- c(-1L, 2L, 4L)
-int
+ent <- c(-1L, 2L, 4L)
+ent
 ## -1  2  4
 
-typeof(int)
+typeof(ent)
 ## "integer"
 ```
 
-Note that R won't save a number as an integer unless you include the `L`. Integer numbers without the `L` will be saved as doubles. The only difference between `4` and `4L` is how R saves the number in your computer's memory. Integers are defined more precisely in your computer's memory than doubles (unless the integer is _very_ large or small). 
+Tenga en cuenta que R no guardará un número como un entero a menos que incluya `L`. Los números enteros sin la `L` se guardarán como dobles. La única diferencia entre `4` y `4L` es cómo R guarda el número en la memoria de tu computadora. Los números enteros se definen con mayor precisión en la memoria de su computadora que los dobles (a menos que el número entero sea _muy_ grande o pequeño). 
 
-Why would you save your data as an integer instead of a double? Sometimes a difference in precision can have surprising effects. Your computer allocates 64 bits of memory to store each double in an R program. This allows a lot of precision, but some numbers cannot be expressed exactly in 64 bits, the equivalent of a sequence of 64 ones and zeroes. For example, the number $\pi$ contains an endless sequences of digits to the right of the decimal place. Your computer must round $\pi$ to something close to, but not exactly equal to $\pi$ to store $\pi$ in its memory. Many decimal numbers share a similar fate. 
+¿Por qué guardaría sus datos como un número entero en lugar de un doble? A veces, una diferencia en la precisión puede tener efectos sorprendentes. Su computadora asigna 64 bits de memoria para almacenar cada doble en un programa de R. Esto permite mucha precisión, pero algunos números no se pueden expresar exactamente en 64 bits, el equivalente a una secuencia de 64 unos y ceros. Por ejemplo, el número $\pi$ contiene una secuencia interminable de dígitos a la derecha del lugar decimal. Su computadora debe redondear $\pi$ a algo cercano, pero no exactamente igual a $\pi$ para almacenar $\pi$ en su memoria. Muchos números decimales comparten esta característica. 
 
-As a result, each double is accurate to about 16 significant digits. This introduces a little bit of error. In most cases, this rounding error will go unnoticed. However, in some situations, the rounding error can cause surprising results. For example, you may expect the result of the expression below to be zero, but it is not:
+Como resultado, cada doble tiene una precisión de unos 16 dígitos significativos. Esto introduce un pequeño error. En la mayoría de los casos, este error de redondeo pasará desapercibido. Sin embargo, en algunas situaciones, el error de redondeo puede causar resultados sorprendentes. Por ejemplo, puede esperar que el resultado de la siguiente expresión sea cero, pero no lo es:
 
 ```r
 sqrt(2)^2 - 2
 ## 4.440892e-16
 ```
 
-The square root of two cannot be expressed exactly in 16 significant digits. As a result, R has to round the quantity, and the expression resolves to something very close to—but not quite—zero.
+La raíz cuadrada de dos no se puede expresar exactamente en 16 dígitos significativos. Como resultado, R tiene que redondear la cantidad y la expresión se resuelve en algo muy cercano a cero, pero no del todo.
 
-These errors are known as _floating-point_ errors, and doing arithmetic in these conditions is known as _floating-point arithmetic_. Floating-point arithmetic is not a feature of R; it is a feature of computer programming. Usually floating-point errors won't be enough to ruin your day. Just keep in mind that they may be the cause of surprising results. 
+Estos errores se conocen como errores de _punto flotante_, y hacer aritmética en estas condiciones se conoce como _aritmética de punto flotante_. La aritmética de punto flotante no es una característica de R; es una característica de la programación de computadoras. Por lo general, los errores de punto flotante no serán suficientes para arruinar su día. Solo tenga en cuenta que pueden ser la causa de resultados sorprendentes. 
 
-You can avoid floating-point errors by avoiding decimals and only using integers. However, this is not an option in most data-science situations. You cannot do much math with integers before you need a noninteger to express the result. Luckily, the errors caused by floating-point arithmetic are usually insignificant (and when they are not, they are easy to spot). As a result, you'll generally use doubles instead of integers as a data scientist.
+Puede evitar errores de punto flotante si evita los decimales y solo usa números enteros. Sin embargo, esta no es una opción en la mayoría de las situaciones de ciencia de datos. No puedes hacer muchas matemáticas con números enteros antes de que necesites un número no entero para expresar el resultado. Afortunadamente, los errores causados por la aritmética de punto flotante suelen ser insignificantes (y cuando no lo son, son fáciles de detectar). Como resultado, generalmente usará dobles en lugar de números enteros como científico de datos.
 
-### Characters
+### Caracteres
 
-A character vector stores small pieces of text. You can create a character vector in R by typing a character or string of characters surrounded by quotes: 
+Un vector de caracteres almacena pequeños fragmentos de texto. Puede crear un vector de caracteres en R escribiendo un carácter o una cadena de caracteres entre comillas: 
 
 ```r
-text <- c("Hello",  "World")
+text <- c("Hola",  "Mundo")
 text
-##  "Hello"  "World"
+##  "Hola"  "Mundo"
 
 typeof(text)
 ## "character"
 
-typeof("Hello")
+typeof("Hola")
 ## "character"
 ```
 
-The individual elements of a character vector are known as _strings_. Note that a string can contain more than just letters. You can assemble a character string from numbers or symbols as well.
+Los elementos individuales de un vector de caracteres se conocen como _cadenas_. Tenga en cuenta que una cadena puede contener más que solo letras. También puede ensamblar una cadena de caracteres a partir de números o símbolos.
 
-```{exercise, name = "Character or Number?"}
-Can you spot the difference between a character string and a number? Here's a test: Which of these are character strings and which are numbers? `1`, `"1"`, `"one"`.
-```
-  
+**Ejercicio 5.1 (Carácter or Número)** ¿Puedes encontrar la diferencia entre una cadena de caracteres y un número? Aquí hay una prueba: ¿Cuáles de estos son cadenas de caracteres y cuáles son números? `1`, `"1"`, `"uno"`.
 
 ```{solution}
-`"1"` and `"one"` are both character strings. 
+`"1"` y `"uno"` son ambos cadenas de caracteres. 
 ```
 
-Character strings can contain number characters, but that doesn't make them numeric. They're just strings that happen to have numbers in them. You can tell strings from real numbers because strings come surrounded by quotes. In fact, anything surrounded by quotes in R will be treated as a character string—no matter what appears between the quotes.
+Las cadenas de caracteres pueden contener caracteres numéricos, pero eso no los convierte en numéricos. Son solo cadenas que tienen números en ellas. Puede distinguir cadenas de números reales porque las cadenas vienen entre comillas. De hecho, todo lo que esté entre comillas en R se tratará como una cadena de caracteres, independientemente de lo que aparezca entre las comillas.
 
-It is easy to confuse R objects with character strings. Why? Because both appear as pieces of text in R code. For example, `x` is the name of an R object named "x," `"x"` is a character string that contains the character "x." One is an object that contains raw data, the other is a piece of raw data itself. 
+Es fácil confundir objetos de R con cadenas de caracteres. ¿Por qué? Porque ambos aparecen como fragmentos de texto en código de R. Por ejemplo, `x` es el nombre de un objeto R llamado "x", `"x"` es una cadena de caracteres que contiene el carácter "x". Uno es un objeto que contiene datos sin procesar, el otro es un fragmento de datos sin procesar en sí mismo. 
 
-Expect an error whenever you forget your quotation marks; R will start looking for an object that probably does not exist. 
+Espere un error cada vez que olvide sus comillas; R comenzará a buscar un objeto que probablemente no exista. 
 
-### Logicals
+### Lógicos
 
-Logical vectors store `TRUE`s and `FALSE`s, R's form of Boolean data. Logicals are very helpful for doing things like comparisons:
+Los vectores lógicos almacenan `TRUE` y `FALSE`, la forma de R de datos booleanos. Los lógicos son muy útiles para hacer cosas como comparaciones:
 
 ```r
 3 > 4
 ## FALSE
 ```
 
-Any time you type `TRUE` or `FALSE` in capital letters (without quotation marks), R will treat your input as logical data. R also assumes that `T` and `F` are shorthand for `TRUE` and `FALSE`, unless they are defined elsewhere (e.g. `T <- 500`). Since the meaning of `T` and `F` can change, its best to stick with `TRUE` and `FALSE`:
+Cada vez que escriba `TRUE` o `FALSE` en letras mayúsculas (sin comillas), R tratará su entrada como datos lógicos. R también asume que `T` y `F` son abreviaturas de `TRUE` y `FALSE`, a menos que se definan en otra parte (por ejemplo, 'T <- 500'). Dado que el significado de `T` y `F` puede cambiar, es mejor quedarse con `TRUE` y `FALSE`:
 
 ```r
-logic <- c(TRUE, FALSE, TRUE)
-logic
+logico <- c(TRUE, FALSE, TRUE)
+logico
 ##   TRUE FALSE  TRUE
 
-typeof(logic)
+typeof(logico)
 ## "logical"
 
 typeof(F)
 ## "logical"
 ```
 
-### Complex and Raw
+### Complejo y Sin Procesar
 
-Doubles, integers, characters, and logicals are the most common types of atomic vectors in R, but R also recognizes two more types: complex and raw. It is doubtful that you will ever use these to analyze data, but here they are for the sake of thoroughness.
+Dobles, enteros, caracteres y lógicos son los tipos más comunes de vectores atómicos en R, pero R también reconoce dos tipos más: complejos y sin procesar. Es dudoso que alguna vez los use para analizar datos, pero aquí están por el bien de la minuciosidad.
 
-Complex vectors store complex numbers. To create a complex vector, add an imaginary term to a number with `i`:
+Los vectores complejos almacenan números complejos. Para crear un vector complejo, agregue un término imaginario a un número con `i`:
 
 ```r
 comp <- c(1 + 1i, 1 + 2i, 1 + 3i)
@@ -210,7 +207,7 @@ typeof(comp)
 ## "complex"
 ```
 
-Raw vectors store raw bytes of data. Making raw vectors gets complicated, but you can make an empty raw vector of length _n_ with `raw(n)`. See the help page of `raw` for more options when working with this type of data:
+Los vectores sin procesar almacenan bytes de datos sin procesar. Hacer vectores sin procesar se vuelve complicado, pero puedes hacer un vector sin procesar vacío de longitud _n_ con `raw(n)`. Consulte la página de ayuda de `raw` para obtener más opciones al trabajar con este tipo de datos:
 
 ```r
 raw(3)
@@ -220,28 +217,26 @@ typeof(raw(3))
 ## "raw"
 ```
 
-```{exercise, name = "Vector of Cards"}
-Create an atomic vector that stores just the face names of the cards in a royal flush, for example, the ace of spades, king of spades, queen of spades, jack of spades, and ten of spades. The face name of the ace of spades would be "ace," and "spades" is the suit.
+**Ejercicio 5.2 (Vector de Cartas)** Cree un vector atómico que almacene solo los nombres de las caras de las cartas en una escalera real, por ejemplo, el as de picas, el rey de picas, la reina de picas, la jota de picas y el diez de picas. El nombre de la cara del as de picas sería "as" y "picas" es el palo.
 
-Which type of vector will you use to save the names? 
-```
+¿Qué tipo de vector usarás para guardar los nombres? 
 
 ```{solution}
-A character vector is the most appropriate type of atomic vector in which to save card names. You can create one with the `c` function if you surround each name with quotation marks:
+Un vector de caracteres es el tipo de vector atómico más apropiado para guardar los nombres de las cartas. Puedes crear uno con la función `c` si pones cada nombre entre comillas:
 ```
 
 ```r
-hand <- c("ace", "king", "queen", "jack", "ten")
-hand
-## "ace"   "king"  "queen" "jack"  "ten"  
+mano <- c("as", "rey", "reina", "jota", "diez")
+mano
+## "as"   "rey"  "reina" "jota"  "diez"  
 
-typeof(hand)
+typeof(mano)
 ## "character"
 ```
 
-This creates a one-dimensional group of card names—great job! Now let's make a more sophisticated data structure, a two-dimensional table of card names and suits. You can build a more sophisticated object from an atomic vector by giving it some attributes and assigning it a class. 
+Esto crea un grupo unidimensional de nombres de cartas. ¡Excelente trabajo! Ahora hagamos una estructura de datos más sofisticada, una tabla bidimensional de nombres de cartas y palos. Puede construir un objeto más sofisticado a partir de un vector atómico dándole algunos atributos y asignándole una clase. 
 
-## Attributes {#attributes}
+## Atributos {#attributes}
 
 An attribute is a piece of information that you can attach to an atomic vector (or any R object). The attribute won't affect any of the values in the object, and it will not appear when you display your object. You can think of an attribute as "metadata"; it is just a convenient place to put information associated with an object. R will normally ignore this metadata, but some R functions will check for specific attributes. These functions may use the attributes to do special things with the data.
 
