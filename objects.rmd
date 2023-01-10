@@ -5,7 +5,7 @@ En este capítulo, usará R para armar una baraja de 52 cartas.
 Comenzará construyendo objetos R simples que representan naipes y luego avanzará hasta una tabla de datos completa. En resumen, creará el equivalente a una hoja de cálculo de Excel desde cero. Cuando hayas terminado, tu mazo de cartas se verá así:
 
 ```r
- cara símbolo valor
+ cara    palo valor
   rey   picas    13
 reina   picas    12
  jota   picas    11
@@ -446,190 +446,189 @@ matrix(mano2, ncol = 2, byrow = TRUE)
 
 ## Clases
 
-Notice that changing the dimensions of your object will not change the type of the object, but it _will_ change the object's `class` attribute:
+Tenga en cuenta que cambiar las dimensiones de su objeto no cambiará el tipo del objeto, pero _cambiará_ el atributo `clase` del objeto:
 
 ```r
-dim(die) <- c(2, 3)
-typeof(die)
+dim(dado) <- c(2, 3)
+typeof(dado)
 ##  "double"
  
-class(die)
+class(dado)
 ##  "matrix"
 ```
 
-A matrix is a special case of an atomic vector. For example, the `die` matrix is a special case of a double vector. Every element in the matrix is still a double, but the elements have been arranged into a new structure. R added a `class` attribute to `die` when you changed its dimensions. This class describes `die`'s new format. Many R functions will specifically look for an object's `class` attribute, and then handle the object in a predetermined way based on the attribute.
+Una matriz es un caso especial de un vector atómico. Por ejemplo, la matriz `dado` es un caso especial de vector doble. Cada elemento de la matriz sigue siendo un doble, pero los elementos se han organizado en una nueva estructura. R agregó un atributo de `clase` a `dado` cuando cambiaste sus dimensiones. Esta clase describe el nuevo formato de `dado`. Muchas funciones de R buscarán específicamente el atributo `clase` de un objeto y luego manejarán el objeto de una manera predeterminada en función del atributo.
 
-Note that an object's `class` attribute will not always appear when you run `attributes`; you may need to specifically search for it with `class`:
+Tenga en cuenta que el atributo `clase` de un objeto no siempre aparecerá cuando ejecute `attributes`; es posible que deba buscarlo específicamente con `class`:
 
 ```r
-attributes(die)
+attributes(dado)
 ## $dim
 ## [1] 2 3
 ```
 
-You can apply `class` to objects that do not have a `class` attribute. `class` will return a value based on the object's atomic type. Notice that the "class" of a double is "numeric," an odd deviation, but one I am thankful for. I think that the most important property of a double vector is that it contains numbers, a property that "numeric" makes obvious:
+Puede aplicar `class` a objetos que no tienen un atributo de `clase`. `class` devolverá un valor basado en el tipo atómico del objeto. Tenga en cuenta que la "clase" de un doble es "numérica", una desviación extraña, pero por la que estoy agradecido. Creo que la propiedad más importante de un vector doble es que contiene números, una propiedad que "numeric" hace evidente:
 
 ```r
-class("Hello")
+class("Hola")
 ##  "character"
 
 class(5)
 ##  "numeric"
 ```
 
-You can also use `class` to set an object's `class` attribute, but this is usually a bad idea. R will expect objects of a class to share certain traits, such as attributes, that your object may not possess. You'll learn how to make and use your own classes in [Project 3: Slot Machine].
+También puede usar `class` para establecer el atributo `clase` de un objeto, pero esto suele ser una mala idea. R esperará que los objetos de una clase compartan ciertas características, como atributos, que su objeto puede no poseer. Aprenderá a crear y utilizar sus propias clases en [Proyecto 3: Máquina Tragamonedas].
 
-### Dates and Times
+### Fechas y Horarios
 
-The attribute system lets R represent more types of data than just doubles, integers, characters, logicals, complexes, and raws. The time looks like a character string when you display it, but its data type is actually `"double"`, and its class is `"POSIXct"` `"POSIXt"` (it has two classes):
+El sistema de atributos permite que R represente más tipos de datos que solo dobles, enteros, caracteres, lógicos, complejos y sin procesar. La hora parece una cadena de caracteres cuando la visualizas, pero su tipo de datos es en realidad `"doble"`, y su clase es `"POSIXct"` `"POSIXt"` (tiene dos clases):
 
 ```r
-now <- Sys.time()
-now
+ahora <- Sys.time()
+ahora
 ## "2014-03-17 12:00:00 UTC"
 
-typeof(now)
+typeof(ahora)
 ##  "double"
 
-class(now)
+class(ahora)
 ## "POSIXct" "POSIXt" 
 ```
 
-POSIXct is a widely used framework for representing dates and times. In the POSIXct framework, each time is represented by the number of seconds that have passed between the time and 12:00 AM January 1st 1970 (in the Universal Time Coordinated (UTC) zone). For example, the time above occurs 1,395,057,600 seconds after then. So in the POSIXct system, the time would be saved as 1395057600.
+POSIXct es un marco ampliamente utilizado para representar fechas y horas. En el marco de POSIXct, cada hora se representa por la cantidad de segundos que han pasado entre la hora y las 12:00 a. m. del 1 de enero de 1970 (en la zona Universal Time Coordinated (UTC)). Por ejemplo, el tiempo anterior ocurre 1 395 057 600 segundos después. Entonces, en el sistema POSIXct, el tiempo se guardaría como 1395057600.
 
-R creates the time object by building a double vector with one element, `1395057600`. You can see this vector by removing the `class` attribute of `now`, or by using the `unclass` function, which does the same thing:
+R crea el objeto de tiempo construyendo un vector doble con un elemento, `1395057600`. Puede ver este vector eliminando el atributo `clase` de `ahora`, o usando la función `unclass`, que hace lo mismo:
 
 ```r
-unclass(now)
+unclass(ahora)
 ## 1395057600
 ```
 
-R then gives the double vector a `class` attribute that contains two classes, `"POSIXct"` and `"POSIXt"`. This attribute alerts R functions that they are dealing with a POSIXct time, so they can treat it in a special way. For example, R functions will use the POSIXct standard to convert the time into a user-friendly character string before displaying it. 
+R luego le da al vector doble un atributo `clase` que contiene dos clases, `"POSIXct"` y `"POSIXt"`. Este atributo alerta a las funciones de R de que están tratando con un tiempo POSIXct, para que puedan tratarlo de una manera especial. Por ejemplo, las funciones R usarán el estándar POSIXct para convertir la hora en una cadena de caracteres fácil de usar antes de mostrarla. 
 
-You can take advantage of this system by giving the `POSIXct` class to random R objects. For example, have you ever wondered what day it was a million seconds after 12:00 a.m. Jan. 1, 1970?
+Puede aprovechar este sistema dando la clase `POSIXct` a objetos R aleatorios. Por ejemplo, ¿alguna vez se ha preguntado qué día era un millón de segundos después de las 12:00 a. m. del 1 de enero de 1970?
 
 ```r
-mil <- 1000000
-mil
+millon <- 1000000
+millon
 ## 1e+06
  
-class(mil) <- c("POSIXct", "POSIXt")
-mil
+class(millon) <- c("POSIXct", "POSIXt")
+millon
 ## "1970-01-12 13:46:40 UTC"
 ```
 
-Jan. 12, 1970. Yikes. A million seconds goes by faster than you would think. This conversion worked well because the `POSIXct` class does not rely on any additional attributes, but in general, forcing the class of an object is a bad idea.
+12 de enero de 1970. Vaya. Un millón de segundos pasan más rápido de lo que piensas. Esta conversión funcionó bien porque la clase `POSIXct` no depende de ningún atributo adicional, pero en general, forzar la clase de un objeto es una mala idea.
 
-There are many different classes of data in R and its packages, and new classes are invented every day. It would be difficult to learn about every class, but you do not have to. Most classes are only useful in specific situations. Since each class comes with its own help page, you can wait to learn about a class until you encounter it. However, there is one class of data that is so ubiquitous in R that you should learn about it alongside the atomic data types. That class is `factors`.
+Hay muchas clases diferentes de datos en R y sus paquetes, y cada día se inventan nuevas clases. Sería difícil aprender sobre cada clase, pero no es necesario. La mayoría de las clases solo son útiles en situaciones específicas. Dado que cada clase viene con su propia página de ayuda, puede esperar para aprender sobre una clase hasta que la encuentre. Sin embargo, hay una clase de datos que es tan omnipresente en R que debería conocerla junto con los tipos de datos atómicos. Esa clase es `factores`.
 
-### Factors
+### Factores
 
-Factors are R's way of storing categorical information, like ethnicity or eye color. Think of a factor as something like a gender; it can only have certain values (male or female), and these values may have their own idiosyncratic order (ladies first). This arrangement makes factors very useful for recording the treatment levels of a study and other categorical variables. 
+Los factores son la forma en que R almacena información categórica, como el origen étnico o el color de ojos. Piense en un factor como algo así como un género; solo puede tener ciertos valores (masculino o femenino), y estos valores pueden tener su propio orden idiosincrático (damas primero). Este arreglo hace que los factores sean muy útiles para registrar los niveles de tratamiento de un estudio y otras variables categóricas. 
 
-To make a factor, pass an atomic vector into the `factor` function. R will recode the data in the vector as integers and store the results in an integer vector. R will also add a `levels` attribute to the integer, which contains a set of labels for displaying the factor values, and a `class` attribute, which contains the class `factor`:
+Para hacer un factor, pase un vector atómico a la función `factor`. R recodificará los datos en el vector como enteros y almacenará los resultados en un vector entero. R también agregará un atributo `niveles` (`levels` en inglés) al entero, que contiene un conjunto de etiquetas para mostrar los valores de los factores, y un atributo `class`, que contiene la clase `factor`:
 
 ```r
-gender <- factor(c("male", "female", "female", "male"))
+genero <- factor(c("masculino", "femenino", "femenino", "masculino"))
 
-typeof(gender)
+typeof(genero)
 ## "integer"
 
-attributes(gender)
+attributes(genero)
 ## $levels
-## [1] "female" "male"  
+## [1] "femenino" "masculino"  
 ## 
 ## $class
 ## [1] "factor"
 ```
 
-You can see exactly how R is storing your factor with `unclass`:
+Puedes ver exactamente cómo R almacena tu factor con `unclass`:
 
 ```r
-unclass(gender)
+unclass(genero)
 ## [1] 2 1 1 2
 ## attr(,"levels")
-## [1] "female" "male"  
+## [1] "femenino" "masculino"  
 ```
 
-R uses the levels attribute when it displays the factor, as you will see. R will display each `1` as `female`, the first label in the levels vector, and each `2` as `male`, the second label. If the factor included `3`s, they would be displayed as the third label, and so on:
+R usa el atributo de niveles cuando muestra el factor, como verá. R mostrará cada `1` como `femenino`, la primera etiqueta en el vector de niveles, y cada `2` como `masculino`, la segunda etiqueta. Si el factor incluyera `3`, se mostrarían como la tercera etiqueta, y así sucesivamente:
 
 ```r
-gender
-## male   female female male  
-## Levels: female male
+genero
+## masculino   femenino femenino masculino  
+## Levels: femenino masculino
 ```
 
-Factors make it easy to put categorical variables into a statistical model because the variables are already coded as numbers. However, factors can be confusing since they look like character strings but behave like integers. 
+Los factores facilitan la colocación de variables categóricas en un modelo estadístico porque las variables ya están codificadas como números. Sin embargo, los factores pueden resultar confusos, ya que parecen cadenas de caracteres pero se comportan como números enteros. 
 
-R will often try to convert character strings to factors when you load and create data. In general, you will have a smoother experience if you do not let R make factors until you ask for them. I'll show you how to do this when we start reading in data.
+R a menudo intentará convertir cadenas de caracteres en factores cuando cargue y cree datos. En general, tendrá una experiencia más fluida si no permite que R haga factores hasta que los solicite. Te mostraré cómo hacer esto cuando comencemos a leer datos.
 
-You can convert a factor to a character string with the `as.character` function. R will retain the display version of the factor, not the integers stored in memory:
+Puede convertir un factor en una cadena de caracteres con la función `as.character`. R conservará la versión de visualización del factor, no los números enteros almacenados en la memoria:
 
 ```r
-as.character(gender)
-## "male"   "female" "female" "male"
+as.character(genero)
+## "masculino"   "femenino" "femenino" "masculino" 
 ```
 
-Now that you understand the possibilities provided by R's atomic vectors, let's make a more complicated type of playing card.
+Ahora que comprende las posibilidades que brindan los vectores atómicos de R, hagamos un tipo de naipe más complicado.
 
-```{exercise, name = "Write a Card"}
-Many card games assign a numerical value to each card. For example, in blackjack, each face card is worth 10 points, each number card is worth between 2 and 10 points, and each ace is worth 1 or 11 points, depending on the final score.
+**Ejercicio 5.4 (Escriba una Carta)** Muchos juegos de cartas asignan un valor numérico a cada carta. Por ejemplo, en el blackjack, cada carta con figuras vale 10 puntos, cada carta con números vale entre 2 y 10 puntos, y cada as vale 1 u 11 puntos, dependiendo de la puntuación final.
 
-Make a virtual playing card by combining "ace," "heart," and 1 into a vector. What type of atomic vector will result? Check if you are right.
-```
+Haz un naipe virtual combinando "as", "corazón" y 1 en un vector. ¿Qué tipo de vector atómico resultará? Comprueba si tienes razón.
+
 
 ```{solution}
-You may have guessed that this exercise would not go well. Each atomic vector can only store one type of data. As a result, R coerces all of your values to character strings:
+Es posible que hayas adivinado que este ejercicio no saldría bien. Cada vector atómico solo puede almacenar un tipo de datos. Como resultado, R convierte todos sus valores en cadenas de caracteres:
 ```
 
 ```r
-card <- c("ace", "hearts", 1)
-card
-## "ace"    "hearts" "1" 
+carta <- c("as", "corazones", 1)
+carta
+## "as"    "corazones" "1" 
 ```
 
-This will cause trouble if you want to do math with that point value, for example, to see who won your game of blackjack. 
+Esto causará problemas si desea hacer operaciones matemáticas con ese valor en puntos, por ejemplo, para ver quién ganó su juego de blackjack. 
 
 ```{block2, type = "rmdwarning"}
-**Data types in vectors**
+**Tipos de datos en vectores**
 
-If you try to put multiple types of data into a vector, R will convert the elements to a single type of data. 
+Si intenta poner varios tipos de datos en un vector, R convertirá los elementos en un solo tipo de datos. 
 ```
 
-Since matrices and arrays are special cases of atomic vectors, they suffer from the same behavior. Each can only store one type of data. 
+Dado que las matrices y los arreglos son casos especiales de vectores atómicos, sufren el mismo comportamiento. Cada uno solo puede almacenar un tipo de datos. 
 
-This creates a couple of problems. First, many data sets contain multiple types of data. Simple programs like Excel and Numbers can save multiple types of data in the same data set, and you should hope that R can too. Don't worry, it can. 
+Esto crea un par de problemas. Primero, muchos conjuntos de datos contienen múltiples tipos de datos. Los programas simples como Excel y Numbers pueden guardar múltiples tipos de datos en el mismo conjunto de datos, y debería esperar que R también pueda hacerlo. No te preocupes, puede. 
 
-Second, coercion is a common behavior in R, so you'll want to know how it works.
+En segundo lugar, la coerción es un comportamiento común en R, por lo que querrá saber cómo funciona.
 
-## Coercion
+## Coerción
 
-R's coercion behavior may seem inconvenient, but it is not arbitrary. R always follows the same rules when it coerces data types. Once you are familiar with these rules, you can use R's coercion behavior to do surprisingly useful things.
+El comportamiento de coerción de R puede parecer inconveniente, pero no es arbitrario. R siempre sigue las mismas reglas cuando obliga a los tipos de datos. Una vez que esté familiarizado con estas reglas, puede usar el comportamiento de coerción de R para hacer cosas sorprendentemente útiles.
 
-So how does R coerce data types? If a character string is present in an atomic vector, R will convert everything else in the vector to character strings. If a vector only contains logicals and numbers, R will convert the logicals to numbers; every `TRUE` becomes a 1, and every `FALSE` becomes a 0, as shown in Figure \@ref(fig:coercion). 
+Entonces, ¿cómo coacciona R los tipos de datos? Si una cadena de caracteres está presente en un vector atómico, R convertirá todo lo demás en el vector en cadenas de caracteres. Si un vector solo contiene lógicos y números, R convertirá los lógicos en números; cada `TRUE` se convierte en 1, y cada `FALSE` se convierte en 0, como se muestra en la Figura \@ref(fig:coercion). 
 
-```{r coercion, echo = FALSE, fig.cap = "R always uses the same rules to coerce data to a single type. If character strings are present, everything will be coerced to a character string. Otherwise, logicals are coerced to numerics."}
+```{r coercion, echo = FALSE, fig.cap = "R siempre usa las mismas reglas para obligar a los datos a un solo tipo. Si hay cadenas de caracteres presentes, todo se convertirá en una cadena de caracteres. De lo contrario, los lógicos se convierten en numéricos."}
 knitr::include_graphics("images/hopr_0301.png")
 ```
 
-This arrangement preserves information. It is easy to look at a character string and tell what information it used to contain. For example, you can easily spot the origins of `"TRUE"` and `"5"`. You can also easily back-transform a vector of 1s and 0s to `TRUE`s and `FALSE`s. 
+Este arreglo preserva la información. Es fácil mirar una cadena de caracteres y decir qué información solía contener. Por ejemplo, puede detectar fácilmente los orígenes de `"TRUE"` y `"5"`. También puede volver a transformar fácilmente un vector de 1 y 0 en `TRUE` y `FALSE`. 
 
-R uses the same coercion rules when you try to do math with logical values. So the following code:
+R usa las mismas reglas de coerción cuando intenta hacer operaciones matemáticas con valores lógicos. Entonces el siguiente código:
 
 ```r
 sum(c(TRUE, TRUE, FALSE, FALSE))
 ```
 
-will become:
+se convertirá:
 
 ```r
 sum(c(1, 1, 0, 0))
 ## 2
 ```
 
-This means that `sum` will count the number of `TRUE`s in a logical vector (and `mean` will calculate the proportion of `TRUE`s). Neat, huh? 
+Esto significa que `sum` contará el número de `TRUE` en un vector lógico (y `mean` calculará la proporción de `TRUE`). Listo, ¿eh?
 
-You can explicitly ask R to convert data from one type to another with the `as` functions. R will convert the data whenever there is a sensible way to do so:
+Puede pedirle explícitamente a R que convierta datos de un tipo a otro con las funciones `as`. R convertirá los datos siempre que haya una forma sensata de hacerlo:
 
 ```r
 as.character(1)
@@ -642,25 +641,25 @@ as.numeric(FALSE)
 ## 0
 ```
 
-You now know how R coerces data types, but this won't help you save a playing card. To do that, you will need to avoid coercion altogether. You can do this by using a new type of object, a _list_.
+Ahora sabe cómo R coacciona los tipos de datos, pero esto no lo ayudará a salvar una carta. Para hacer eso, deberá evitar la coerción por completo. Puedes hacer esto usando un nuevo tipo de objeto, una _lista_.
 
-Before we look at lists, let's address a question that might be on your mind.
+Antes de ver las listas, abordemos una pregunta que podría tener en mente.
 
-Many data sets contain multiple types of information. The inability of vectors, matrices, and arrays to store multiple data types seems like a major limitation. So why bother with them? 
+Muchos conjuntos de datos contienen múltiples tipos de información. La incapacidad de vectores, matrices y arreglos para almacenar múltiples tipos de datos parece ser una limitación importante. Entonces, ¿por qué molestarse con ellos? 
 
-In some cases, using only a single type of data is a huge advantage. Vectors, matrices, and arrays make it very easy to do math on large sets of numbers because R knows that it can manipulate each value the same way. Operations with vectors, matrices, and arrays also tend to be fast because the objects are so simple to store in memory.
+En algunos casos, usar un solo tipo de datos es una gran ventaja. Los vectores, las matrices y los arreglos hacen que sea muy fácil hacer operaciones matemáticas con grandes conjuntos de números porque R sabe que puede manipular cada valor de la misma manera. Las operaciones con vectores, matrices y arreglos también tienden a ser rápidas porque los objetos son muy fáciles de almacenar en la memoria.
 
-In other cases, allowing only a single type of data is not a disadvantage. Vectors are the most common data structure in R because they store variables very well. Each value in a variable measures the same property, so there's no need to use different types of data.
+En otros casos, permitir un solo tipo de datos no es una desventaja. Los vectores son la estructura de datos más común en R porque almacenan muy bien las variables. Cada valor de una variable mide la misma propiedad, por lo que no es necesario utilizar diferentes tipos de datos.
 
-## Lists
+## Listas
 
-Lists are like atomic vectors because they group data into a one-dimensional set. However, lists do not group together individual values; lists group together R objects, such as atomic vectors and other lists. For example, you can make a list that contains a numeric vector of length 31 in its first element, a character vector of length 1 in its second element, and a new list of length 2 in its third element. To do this, use the `list` function. 
+Las listas son como vectores atómicos porque agrupan datos en un conjunto unidimensional. Sin embargo, las listas no agrupan valores individuales; las listas agrupan objetos de R, como vectores atómicos y otras listas. Por ejemplo, puede crear una lista que contenga un vector numérico de longitud 31 en su primer elemento, un vector de caracteres de longitud 1 en su segundo elemento y una nueva lista de longitud 2 en su tercer elemento. Para hacer esto, use la función `list`. 
 
-`list` creates a list the same way `c` creates a vector. Separate each element in the list with a comma:
+`list` crea una lista de la misma manera que `c` crea un vector. Separe cada elemento de la lista con una coma:
 
 ```r
-list1 <- list(100:130, "R", list(TRUE, FALSE))
-list1
+lista1 <- list(100:130, "R", list(TRUE, FALSE))
+lista1
 ## [[1]]
 ## [1] 100 101 102 103 104 105 106 107 108 109 110 111 112
 ## [14] 113 114 115 116 117 118 119 120 121 122 123 124 125
@@ -677,75 +676,73 @@ list1
 ## [1] FALSE
 ```
 
-I left the `[1]` notation in the output so you can see how it changes for lists. The double-bracketed indexes tell you which element of the list is being displayed. The single-bracket indexes tell you which subelement of an element is being displayed. For example, `100` is the first subelement of the first element in the list. `"R"` is the first sub-element of the second element. This two-system notation arises because each element of a list can be _any_ R object, including a new vector (or list) with its own indexes.
+Dejé la notación `[1]` en la salida para que puedas ver cómo cambia para las listas. Los índices entre corchetes le indican qué elemento de la lista se está mostrando. Los índices de un solo paréntesis le indican qué subelemento de un elemento se muestra. Por ejemplo, `100` es el primer subelemento del primer elemento de la lista. `"R"` es el primer subelemento del segundo elemento. Esta notación de dos sistemas surge porque cada elemento de una lista puede ser _cualquier_ objeto R, incluido un nuevo vector (o lista) con sus propios índices.
 
-Lists are a basic type of object in R, on par with atomic vectors. Like atomic vectors, they are used as building blocks to create many more spohisticated types of R objects.
+Las listas son un tipo básico de objeto en R, a la par de los vectores atómicos. Al igual que los vectores atómicos, se utilizan como bloques de construcción para crear muchos tipos más sofisticados de objetos de R.
 
-As you can imagine, the structure of lists can become quite complicated, but this flexibility makes lists a useful all-purpose storage tool in R: you can group together anything with a list. 
+Como puede imaginar, la estructura de las listas puede volverse bastante complicada, pero esta flexibilidad hace que las listas sean una herramienta de almacenamiento útil para todo uso en R: puede agrupar cualquier cosa con una lista. 
 
-However, not every list needs to be complicated. You can store a playing card in a very simple list. 
+Sin embargo, no todas las listas tienen que ser complicadas. Puede almacenar una carta de juego en una lista muy simple. 
 
-```{exercise, name = "Use a List to Make a Card"}
-Use a list to store a single playing card, like the ace of hearts, which has a point value of one. The list should save the face of the card, the suit, and the point value in separate elements.
-```
+**Ejercicio 5.5 (Usar una Lista para Crear una Carta)** Use una lista para almacenar una sola carta, como el as de corazones, que tiene un valor de punto de uno. La lista debe guardar la cara de la carta, el palo y el valor del punto en elementos separados.
 
 ```{solution}
-You can create your card like this. In the following example, the first element of the list is a character vector (of length 1). The second element is also a character vector, and the third element is a numeric vector:
+Puedes crear tu carta así. En el siguiente ejemplo, el primer elemento de la lista es un vector de caracteres (de longitud 1). El segundo elemento también es un vector de caracteres y el tercer elemento es un vector numérico:
 ```
 
 ```r
-card <- list("ace", "hearts", 1)
-card
+carta <- list("as", "corazones", 1)
+carta
 ## [[1]]
-## [1] "ace"
+## [1] "as"
 ##
 ## [[2]]
-## [1] "hearts"
+## [1] "corazones"
 ##
 ## [[3]]
 ## [1] 1
 ```
 
-You can also use a list to store a whole deck of playing cards. Since you can save a single playing card as a list, you can save a deck of playing cards as a list of 52 sublists (one for each card). But let's not bother—there's a much cleaner way to do the same thing. You can use a special class of list, known as a _data frame_.
+También puede usar una lista para almacenar una baraja completa de cartas. Dado que puede guardar una sola carta de juego como una lista, puede guardar una baraja de cartas de juego como una lista de 52 sublistas (una para cada carta). Pero no nos molestemos, hay una forma mucho más limpia de hacer lo mismo. Puede usar una clase especial de lista, conocida como _data frames_.
 
 ## Data Frames
 
-Data frames are the two-dimensional version of a list. They are far and away the most useful storage structure for data analysis, and they provide an ideal way to store an entire deck of cards. You can think of a data frame as R's equivalent to the Excel spreadsheet because it stores data in a similar format. 
+Data frames son la versión bidimensional de una lista. Son, por mucho, la estructura de almacenamiento más útil para el análisis de datos y proporcionan una forma ideal de almacenar una baraja completa de cartas. Puede pensar en un data frame como el equivalente de R a la hoja de cálculo de Excel porque almacena datos en un formato similar. 
 
-Data frames group vectors together into a two-dimensional table. Each vector becomes a column in the table. As a result, each column of a data frame can contain a different type of data; but within a column, every cell must be the same type of data, as in Figure \@ref(fig:data-frame).
+Data frames agrupan vectores en una tabla bidimensional. Cada vector se convierte en una columna en la tabla. Como resultado, cada columna de un data frame puede contener un tipo diferente de datos; pero dentro de una columna, cada celda debe tener el mismo tipo de datos, como en la Figura \@ref(fig:data-frame).
 
-```{r data-frame, echo = FALSE, fig.cap = "Data frames store data as a sequence of columns. Each column can be a different data type. Every column in a data frame must be the same length."}
+```{r data-frame, echo = FALSE, fig.cap = "Data frames almacenan datos como una secuencia de columnas. Cada columna puede ser un tipo de datos diferente. Cada columna en un data frame debe tener la misma longitud."}
 knitr::include_graphics("images/hopr_0302.png")
 ```
 
-Creating a data frame by hand takes a lot of typing, but you can do it (if you like) with the `data.frame` function. Give `data.frame` any number of vectors, each separated with a comma. Each vector should be set equal to a name that describes the vector. `data.frame` will turn each vector into a column of the new data frame: 
+Crear un data frame a mano requiere escribir mucho, pero puede hacerlo (si lo desea) con la función `data.frame`. Proporcione a `data.frame` cualquier número de vectores, cada uno separado por una coma. Cada vector debe establecerse igual a un nombre que describa el vector. `data.frame` convertirá cada vector en una columna del nuevo data frame: 
 
 ```r
-df <- data.frame(face = c("ace", "two", "six"),  
-  suit = c("clubs", "clubs", "clubs"), value = c(1, 2, 3))
+df <- data.frame(cara = c("as", "dos", "seis"),  
+  palo = c("treboles", "treboles", "treboles"), valor = c(1, 2, 3))
 df
-## face  suit value
-##  ace clubs     1
-##  two clubs     2
-##  six clubs     3
+## cara      palo valor
+##  as   treboles     1
+##  dos  treboles     2
+##  seis treboles     3
 ```
 
-You'll need to make sure that each vector is the same length (or can be made so with R's recycling rules; see Figure \@ref(fig:recycle), as data frames cannot combine columns of different lengths.
+Deberá asegurarse de que cada vector tenga la misma longitud (o se puede hacer así con las reglas de reciclaje de R; consulte la figura \@ref(fig:recycle), ya que los data frames no pueden combinar columnas de diferentes longitudes.
 
-In the previous code, I named the arguments in `data.frame` `face`, `suit`, and `value`, but you can name the arguments whatever you like. `data.frame` will use your argument names to label the columns of the data frame.
+En el código anterior, nombré los argumentos en `data.frame` `cara`, `palo` y `valor`, pero puedes nombrar los argumentos como quieras. `data.frame` utilizará los nombres de sus argumentos para etiquetar las columnas del data frame.
 
 ```{block2, type = "rmdtip"}
-**Names**
+**Nombres**
   
-You can also give names to a list or vector when you create one of these objects. Use the same syntax as with `data.frame`:
+También puede dar nombres a una lista o vector cuando crea uno de estos objetos. Use la misma sintaxis que con `data.frame`:
   
-`list(face = "ace", suit = "hearts", value = 1)`  
-`c(face = "ace", suit = "hearts", value = "one")`
+`list(cara = "as", palo = "corazones", value = 1)`  
+`c(cara = "as", palo = "corazones", value = "one")`
 
-The names will be stored in the object's `names` attribute.
+Los nombres se almacenarán en el atributo `names` del objeto.
 ```
 
-If you look at the type of a data frame, you will see that it is a list. In fact, each data frame is a list with class `data.frame`. You can see what types of objects are grouped together by a list (or data frame) with the `str` function:
+Si observa el tipo de data frame, verá que es una lista. De hecho, cada data frame es una lista con la clase `data.frame`. Puede ver qué tipos de objetos se agrupan en una lista (o data frame) con la función `str`:
 
 ```r
 typeof(df)
@@ -756,164 +753,164 @@ class(df)
 
 str(df)
 ## 'data.frame':	3 obs. of  3 variables:
-##  $ face : Factor w/ 3 levels "ace","six","two": 1 3 2
-##  $ suit : Factor w/ 1 level "clubs": 1 1 1
-##  $ value: num  1 2 3
+##  $ cara : Factor w/ 3 levels "as","seis","dos": 1 3 2
+##  $ palo : Factor w/ 1 level "treboles": 1 1 1
+##  $ valor: num  1 2 3
 ```
 
-Notice that R saved your character strings as factors. I told you that R likes factors! It is not a very big deal here, but you can prevent this behavior by adding the argument `stringsAsFactors = FALSE` to `data.frame`:
+Observe que R guardó sus cadenas de caracteres como factores. ¡Te dije que a R le gustan los factores! No es un gran problema aquí, pero puede evitar este comportamiento agregando el argumento `stringsAsFactors = FALSE` a `data.frame`:
 
 ```r
-df <- data.frame(face = c("ace", "two", "six"),  
-  suit = c("clubs", "clubs", "clubs"), value = c(1, 2, 3),
+df <- data.frame(cara = c("as", "dos", "seis"),  
+  palo = c("treboles", "treboles", "treboles"), value = c(1, 2, 3),
   stringsAsFactors = FALSE)
 ```
 
-A data frame is a great way to build an entire deck of cards. You can make each row in the data frame a playing card, and each column a type of value—each with its own appropriate data type. The data frame would look something like this:
+Un data frame es una excelente manera de construir una baraja completa de cartas. Puede convertir cada fila del data frame en una carta de juego y cada columna en un tipo de valor, cada uno con su propio tipo de datos apropiado. El data frame se vería así:
 
 ```r
-##   face     suit value
-##   king   spades    13
-##  queen   spades    12
-##   jack   spades    11
-##    ten   spades    10
-##   nine   spades     9
-##  eight   spades     8
-##  seven   spades     7
-##    six   spades     6
-##   five   spades     5
-##   four   spades     4
-##  three   spades     3
-##    two   spades     2
-##    ace   spades     1
-##   king    clubs    13
-##  queen    clubs    12
-##   jack    clubs    11
-##    ten    clubs    10
-##   ... and so on.
+##   cara      palo valor
+##    rey     picas    13
+##  reina     picas    12
+##   jota     picas    11
+##   diez     picas    10
+##  nueve     picas     9
+##   ocho     picas     8
+##  siete     picas     7
+##   seis     picas     6
+##  cinco     picas     5
+## cuatro     picas     4
+##   tres     picas     3
+##    dos     picas     2
+##     as     picas     1
+##    rey  treboles    13
+##  reina  treboles    12
+##   jota  treboles    11
+##   diez  treboles    10
+##   ... y así sucesivamente.
 ```
 
-You could create this data frame with `data.frame`, but look at the typing involved! You need to write three vectors, each with 52 elements:
+Podría crear este data frame con `data.frame`, ¡pero mire la escritura involucrada! Necesitas escribir tres vectores, cada uno con 52 elementos:
 
 ```r
-deck <- data.frame(
-  face = c("king", "queen", "jack", "ten", "nine", "eight", "seven", "six",
-    "five", "four", "three", "two", "ace", "king", "queen", "jack", "ten", 
-    "nine", "eight", "seven", "six", "five", "four", "three", "two", "ace", 
-    "king", "queen", "jack", "ten", "nine", "eight", "seven", "six", "five", 
-    "four", "three", "two", "ace", "king", "queen", "jack", "ten", "nine", 
-    "eight", "seven", "six", "five", "four", "three", "two", "ace"),  
-  suit = c("spades", "spades", "spades", "spades", "spades", "spades", 
-    "spades", "spades", "spades", "spades", "spades", "spades", "spades", 
-    "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", 
-    "clubs", "clubs", "clubs", "clubs", "clubs", "diamonds", "diamonds", 
-    "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", 
-    "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", "hearts", 
-    "hearts", "hearts", "hearts", "hearts", "hearts", "hearts", "hearts", 
-    "hearts", "hearts", "hearts", "hearts", "hearts"), 
-  value = c(13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8, 
+baraja <- data.frame(
+  cara = c("rey", "reina", "jota", "diez", "nueve", "ocho", "siete", "seis",
+    "cinco", "cuatro", "tres", "dos", "as", "rey", "reina", "jota", "diez", 
+    "nueve", "ocho", "siete", "seis", "cinco", "cuatro", "tres", "dos", "as", 
+    "rey", "reina", "jota", "diez", "nueve", "ocho", "siete", "seis", "cinco", 
+    "cuatro", "tres", "dos", "as", "rey", "reina", "jota", "diez", "nueve", 
+    "ocho", "siete", "seis", "cinco", "cuatro", "tres", "dos", "as"),  
+  palo = c("picas", "picas", "picas", "picas", "picas", "picas", 
+    "picas", "picas", "picas", "picas", "picas", "picas", "picas", 
+    "treboles", "treboles", "treboles", "treboles", "treboles", "treboles", "treboles", "treboles", 
+    "treboles", "treboles", "treboles", "treboles", "treboles", "diamantes", "diamantes", 
+    "diamantes", "diamantes", "diamantes", "diamantes", "diamantes", "diamantes", 
+    "diamantes", "diamantes", "diamantes", "diamantes", "diamantes", "corazones", 
+    "corazones", "corazones", "corazones", "corazones", "corazones", "corazones", "corazones", 
+    "corazones", "corazones", "corazones", "corazones", "corazones"), 
+  valor = c(13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8, 
     7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 
     10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
 )
 ```
 
-You should avoid typing large data sets in by hand whenever possible. Typing invites typos and errors, not to mention RSI. It is always better to acquire large data sets as a computer file. You can then ask R to read the file and store the contents as an object. 
+Debe evitar escribir grandes conjuntos de datos a mano siempre que sea posible. Escribir invita a errores tipográficos y errores. Siempre es mejor adquirir grandes conjuntos de datos como un archivo de computadora. Luego puede pedirle a R que lea el archivo y almacene el contenido como un objeto. 
 
-I've created a file for you to load that contains a data frame of playing-card information, so don't worry about typing in the code. Instead, turn your attention toward loading data into R.
+Creé un archivo para que lo cargues que contiene un marco de datos de información de naipes, así que no te preocupes por escribir el código. En su lugar, dirija su atención hacia la carga de datos en R.
 
-## Loading Data {#loading}
+## Cargando Datos {#loading}
 
-You can load the `deck` data frame from the file [_deck.csv_](http://bit.ly/deck_CSV). Please take a moment to download the file before reading on. Visit the website, click "Download Zip," and then unzip and open the folder that your web browser downloads. _deck.csv_ will be inside.
+Puede cargar el data frame `Mazo` desde el archivo [_mazo.csv_](https://bit.ly/mazocsv). Tómese un momento para descargar el archivo antes de seguir leyendo. Visite el sitio web, haga clic en "Descargar Zip" y luego descomprima y abra la carpeta que descarga su navegador web. _mazo.csv_ estará dentro.
 
-_deck.csv_ is a comma-separated values file, or CSV for short. CSVs are plain-text files, which means you can open them in a text editor (as well as many other programs). If you open _desk.csv_, you'll notice that it contains a table of data that looks like the following table. Each row of the table is saved on its own line, and a comma is used to separate the cells within each row.  Every CSV file shares this basic format:
+_mazo.csv_ es un archivo de valores separados por comas, o CSV para abreviar. Los CSV son archivos de texto sin formato, lo que significa que puede abrirlos en un editor de texto (así como en muchos otros programas). Si abre _mazo.csv_, notará que contiene una tabla de datos similar a la siguiente tabla. Cada fila de la tabla se guarda en su propia línea y se usa una coma para separar las celdas dentro de cada fila. Cada archivo CSV comparte este formato básico:
 
 ```
-"face","suit,"value"
-"king","spades",13
-"queen","spades,12
-"jack","spades,11
-"ten","spades,10
-"nine","spades,9
-... and so on.
+"cara","palo","valor"
+"rey","picas",13
+"reina","picas",12
+"jota","picas",11
+"diez","picas",10
+"nueve","picas",9
+... y así sucesivamente.
 ```
 
-Most data-science applications can open plain-text files and export data as plain-text files. This makes plain-text files a sort of lingua franca for data science. 
+La mayoría de las aplicaciones de ciencia de datos pueden abrir archivos de texto sin formato y exportar datos como archivos de texto sin formato. Esto hace que los archivos de texto sin formato sean una especie de lingua franca para la ciencia de datos. 
 
-To load a plain-text file into R, click the Import Dataset icon in RStudio, shown in Figure \@ref(fig:import). Then select "From text file."
+Para cargar un archivo de texto sin formato en R, haga clic en el icono Import Dataset en RStudio, que se muestra en la Figura \@ref(fig:import). Luego seleccione "From text file (base)".
 
-```{r import, echo = FALSE, fig.cap = "You can import data from plain-text files with RStudio's Import Dataset."}
+```{r import, echo = FALSE, fig.cap = "Puede importar datos desde archivos de texto sin formato con Import Dataset de RStudio."}
 knitr::include_graphics("images/hopr_0303.png")
 ```
 
-RStudio will ask you to select the file you want to import, then it will open a wizard to help you import the data, as in Figure \@ref(fig:wizard). Use the wizard to tell RStudio what name to give the data set.  You can also use the wizard to tell RStudio which character the data set uses as a separator, which character it uses to represent decimals (usually a period in the United States and a comma in Europe), and whether or not the data set comes with a row of column names (known as a _header_). To help you out, the wizard shows you what the raw file looks like, as well as what your loaded data will look like based on the input settings.
+RStudio le pedirá que seleccione el archivo que desea importar, luego abrirá un asistente para ayudarlo a importar los datos, como en la Figura \@ref(fig:wizard). Utilice el asistente para decirle a RStudio qué nombre dar al conjunto de datos. También puede usar el asistente para decirle a RStudio qué carácter usa el conjunto de datos como separador, qué carácter usa para representar decimales (generalmente un punto en los Estados Unidos y una coma en Europa) y si el conjunto de datos viene o no con una fila de nombres de columna (conocido como _header_). Para ayudarlo, el asistente le muestra cómo se ve el archivo sin procesar, así como también cómo se verán los datos cargados según la configuración de entrada.
 
-You can also unclick the box "Strings as factors" in the wizard. I recommend doing this. If you do, R will load all of your character strings as character strings. If you do not, R will convert them to factors.
+También puede desmarcar la casilla "Strings as factors" en el asistente. Recomiendo hacer esto. Si lo hace, R cargará todas sus cadenas de caracteres como cadenas de caracteres. Si no lo hace, R los convertirá en factores.
 
-```{r wizard, echo = FALSE, fig.cap = "RStudio's import wizard."}
+```{r wizard, echo = FALSE, fig.cap = "Asistente de importación de RStudio."}
 knitr::include_graphics("images/hopr_0304.png")
 ```
 
-Once everything looks right, click Import. RStudio will read in the data and save it to a data frame. RStudio will also open a data viewer, so you can see your new data in a spreadsheet format. This is a good way to check that everything came through as expected. If all worked well, your file should appear in a View tab of RStudio, like in Figure \@ref(fig:view). You can examine the data frame in the console with *`head(deck)`*.
+Una vez que todo se vea bien, haga clic en Import. RStudio leerá los datos y los guardará en un data frame. RStudio también abrirá un visor de datos, para que pueda ver sus nuevos datos en un formato de hoja de cálculo. Esta es una buena manera de verificar que todo salió como se esperaba. Si todo funcionó bien, su archivo debería aparecer en una pestaña View de RStudio, como se ve en la Figura \@ref(fig:view). Puede examinar el data frame en la consola con *`head(mazo)`*
 
 ```{block2, type = "rmdtip"}
-**Online data**
+**Datos en Línea**
   
-You can load a plain-text file straight from the Internet by clicking the "From Web URL..." option under Import Dataset. The file will need to have its own URL, and you will need to be connected.
+Puede cargar un archivo de texto sin formato directamente desde Internet haciendo click en Import Dataset > From Text (readr) y copiando la url del archivo en la casilla "File/URL" del asistente de importación de RStudio. Para poder utlizar esta opción debera instalar el paquete readr.
 ```
 
-```{r view, echo = FALSE, fig.cap = "When you import a data set, RStudio will save the data to a data frame and then display the data frame in a View tab. You can open any data frame in a View tab at any time with the View function."}
+```{r view, echo = FALSE, fig.cap = "Cuando importa un conjunto de datos, RStudio guardará los datos en un data frame y luego mostrará el data frame en una pestaña View. Puede abrir cualquier data frame en una pestaña View en cualquier momento con la función View."}
 knitr::include_graphics("images/hopr_0305.png")
 ```
 
-Now it is your turn. Download _deck.csv_ and import it into RStudio. Be sure to save the output to an R object called `deck`: you'll use it in the next few chapters. If everything goes correctly, the first few lines of your data frame should look like this:
+Ahora es tu turno. Descargue _mazo.csv_ e impórtelo a RStudio. Asegúrese de guardar la salida en un objeto de R llamado `mazo`: lo usará en los próximos capítulos. Si todo va correctamente, las primeras líneas de su data frame deberían verse así:
 
 ```r
-head(deck)
-##  face   suit value
-##  king spades    13
-## queen spades    12
-##  jack spades    11
-##   ten spades    10
-##  nine spades     9
-## eight spades     8
+head(mazo)
+##  cara   palo valor
+##   rey  picas    13
+## reina  picas    12
+##  jota  picas    11
+##  diez  picas    10
+## nueve  picas     9
+##  ocho  picas     8
 ```
 
 ```{block2, type = "rmdnote"}
-`head` and `tail` are two functions that provide an easy way to peek at large data sets. `head` will return just the first six rows of the data set, and `tail` will return just the last six rows. To see a different number of rows, give `head` or `tails` a second argument, the number of rows you would like to view, for example, `head(deck, 10)`.
+`head` y `tail` son dos funciones que proporcionan una manera fácil de echar un vistazo a grandes conjuntos de datos. `head` devolverá solo las primeras seis filas del conjunto de datos, y `tail` devolverá solo las últimas seis filas. Para ver un número diferente de filas, dé a `head` o `tail` un segundo argumento, el número de filas que le gustaría ver, por ejemplo, `head (mazo, 10)`.
 ```
 
-R can open many types of files—not just CSVs. Visit [Loading and Saving Data in R] to learn how to open other common types of files in R.
+R puede abrir muchos tipos de archivos, no solo CSV. Visite [Cargar y Guardar Datos en R] para obtener información sobre cómo abrir otros tipos comunes de archivos en R.
 
-## Saving Data
+## Guardando Datos
 
-Before we go any further, let's save a copy of `deck` as a new _.csv_ file. That way you can email it to a colleague, store it on a thumb drive, or open it in a different program. You can save any data frame in R to a _.csv_ file with the command `write.csv`. To save `deck`, run:
+Antes de continuar, guardemos una copia de `mazo` como un nuevo archivo _.csv_. De esa manera, puede enviarlo por correo electrónico a un colega, almacenarlo en una memoria USB o abrirlo en un programa diferente. Puede guardar cualquier data frame en R en un archivo _.csv_ con el comando `write.csv`. Para guardar `mazo`, ejecute:
 
 ```r
-write.csv(deck, file = "cards.csv", row.names = FALSE)
+write.csv(mazo, file = "cartas.csv", row.names = FALSE)
 ```
 
-R will turn your data frame into a plain-text file with the comma-separated values format and save the file to your working directory. To see where your working directory is, run *`getwd()`*. To change the location of your working directory, visit Session > Set Working Directory > Choose Directory in the RStudio menu bar. 
+R convertirá su data frame en un archivo de texto sin formato con el formato de valores separados por comas y guardará el archivo en su directorio de trabajo. Para ver dónde está su directorio de trabajo, ejecute *`getwd()`*. Para cambiar la ubicación de su directorio de trabajo, visite Session > Set Working Directory > Choose Directory en la barra de menú de RStudio. 
 
-You can customize the save process with `write.csv`'s large set of optional arguments (see `?write.csv` for details). However, there are three arguments that you should use _every_ time you run `write.csv`. 
+Puede personalizar el proceso de guardado con el amplio conjunto de argumentos opcionales de `write.csv` (consulte `?write.csv` para obtener más detalles). Sin embargo, hay tres argumentos que debería usar _cada_ vez que ejecute `write.csv`. 
 
-First, you should give `write.csv` the name of the data frame that you wish to save. Next, you should provide a file name to give your file. R will take this name quite literally, so be sure to provide an extension. 
+Primero, debe darle a `write.csv` el nombre del data frame que desea guardar. A continuación, debe proporcionar un nombre de archivo para darle a su archivo. R tomará este nombre literalmente, así que asegúrese de proporcionar una extensión. 
 
-Finally, you should add the argument `row.names = FALSE`. This will prevent R from adding a column of numbers at the start of your data frame. These numbers will identify your rows from 1 to 52, but it is unlikely that whatever program you open _cards.csv_ in will understand the row name system. More than likely, the program will assume that the row names are the first column of data in your data frame. In fact, this is exactly what R will assume if you reopen _cards.csv_. If you save and open _cards.csv_ several times in R, you'll notice duplicate columns of row numbers forming at the start of your data frame. I can't explain why R does this, but I can explain how to avoid it: use `row.names = FALSE` whenever you save data with `write.csv`.
+Finalmente, debe agregar el argumento `row.names = FALSE`. Esto evitará que R agregue una columna de números al comienzo de su marco de datos. Estos números identificarán sus filas del 1 al 52, pero es poco probable que cualquier programa en el que abra _cartas.csv_ comprenda el sistema de nombres de fila. Lo más probable es que el programa asuma que los nombres de las filas son la primera columna de datos en su marco de datos. De hecho, esto es exactamente lo que asumirá R si vuelve a abrir _cartas.csv_. Si guarda y abre _cartas.csv_ varias veces en R, notará que se forman columnas duplicadas de números de fila al comienzo de su marco de datos. No puedo explicar por qué R hace esto, pero puedo explicar cómo evitarlo: use `row.names = FALSE` siempre que guarde datos con `write.csv`.
 
-For more details about saving files, including how to compress saved files and how to save files in other formats, see [Loading and Saving Data in R].
+Para obtener más detalles sobre cómo guardar archivos, incluido cómo comprimir archivos guardados y cómo guardar archivos en otros formatos, consulte [Cargar y Guardar Datos en R].
 
-Good work. You now have a virtual deck of cards to work with. Take a breather, and when you come back, we'll start writing some functions to use on your deck.
+Buen trabajo. Ahora tiene una baraja de cartas virtual con la que trabajar. Tómese un respiro y, cuando regrese, comenzaremos a escribir algunas funciones para usar en su mazo.
 
-## Summary
+## Resumen
 
-You can save data in R with five different objects, which let you store different types of values in different types of relationships, as in Figure \@ref(fig:structures). Of these objects, data frames are by far the most useful for data science. Data frames store one of the most common forms of data used in data science, tabular data. 
+Puede guardar datos en R con cinco objetos diferentes, que le permiten almacenar diferentes tipos de valores en diferentes tipos de relaciones, como en la Figura \@ref(fig:estructuras). De estos objetos, los data frame son, por mucho, los más útiles para la ciencia de datos. Los data frame almacenan una de las formas de datos más comunes utilizadas en la ciencia de datos, los datos tabulares. 
 
-```{r structures, echo = FALSE, fig.cap = "R's most common data structures are vectors, matrices, arrays, lists, and data frames."}
+```{r structures, echo = FALSE, fig.cap = "Las estructuras de datos más comunes de R son vectores, matrices, arreglos, listas y marcos de datos."}
 knitr::include_graphics("images/hopr_0306.png")
 ```
 
-You can load tabular data into a data frame with RStudio's Import Dataset button—so long as the data is saved as a plain-text file. This requirement is not as limiting as it sounds. Most software programs can export data as a plain-text file. So if you have an Excel file (for example) you can open the file in Excel and export the data as a CSV to use with R. In fact, opening a file in its original program is good practice. Excel files use metadata, like sheets and formulas, that help Excel work with the file. R can try to extract raw data from the file, but it won't be as good at doing this as Microsoft Excel is. No program is better at converting Excel files than Excel. Similarly, no program is better at converting SAS Xport files than SAS, and so on.
+Puede cargar datos tabulares en un data frame con el botón Import Dataset de RStudio, siempre que los datos se guarden como un archivo de texto sin formato. Este requisito no es tan limitante como parece. La mayoría de los programas de software pueden exportar datos como un archivo de texto sin formato. Entonces, si tiene un archivo de Excel (por ejemplo), puede abrir el archivo en Excel y exportar los datos como CSV para usar con R. De hecho, abrir un archivo en su programa original es una buena práctica. Los archivos de Excel usan metadatos, como hojas y fórmulas, que ayudan a Excel a trabajar con el archivo. R puede intentar extraer datos sin procesar del archivo, pero no será tan bueno para hacerlo como lo es Microsoft Excel. Ningún programa es mejor para convertir archivos de Excel que Excel. Del mismo modo, ningún programa es mejor para convertir archivos SAS Xport que SAS, y así sucesivamente.
 
-However, you may find yourself with a program-specific file, but not the program that created it. You wouldn't want to buy a multi-thousand-dollar SAS license just to open a SAS file. Thankfully R _can_ open many types of files, including files from other programs and databases. R even has its own program-specific formats that can help you save memory and time if you know that you will be working entirely in R. If you'd like to know more about all of your options for loading and saving data in R, see [Loading and Saving Data in R].
+Sin embargo, es posible que se encuentre con un archivo específico del programa, pero no con el programa que lo creó. No querría comprar una licencia SAS de varios miles de dólares solo para abrir un archivo SAS. Afortunadamente, R _puede_ abrir muchos tipos de archivos, incluidos archivos de otros programas y bases de datos. R incluso tiene sus propios formatos específicos del programa que pueden ayudarlo a ahorrar memoria y tiempo si sabe que trabajará completamente en R. Si desea obtener más información sobre todas sus opciones para cargar y guardar datos en R, consulte [Cargar y Guardar Datos en R].
 
-[R Notation] will build upon the skills you learned in this chapter. Here, you learned how to store data in R. In [R Notation], you will learn how to access values once they've been stored. You'll also write two functions that will let you start using your deck, a shuffle function and a deal function.
+[Notación de R] se basará en las habilidades que aprendió en este capítulo. Aquí, aprendió cómo almacenar datos en R. En [Notación de R], aprenderá cómo acceder a los valores una vez que se han almacenado. También escribirá dos funciones que le permitirán comenzar a usar su mazo, una función para barajar y una función para repartir.

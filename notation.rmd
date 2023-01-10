@@ -1,4 +1,4 @@
-# R Notation
+# Notación de R
 
 Now that you have a deck of cards, you need a way to do card-like things with it. First, you'll want to reshuffle the deck from time to time. And next, you'll want to deal cards from the deck (one card at a time, whatever card is on top—we're not cheaters).
 
