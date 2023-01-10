@@ -879,7 +879,7 @@ head(mazo)
 `head` y `tail` son dos funciones que proporcionan una manera fácil de echar un vistazo a grandes conjuntos de datos. `head` devolverá solo las primeras seis filas del conjunto de datos, y `tail` devolverá solo las últimas seis filas. Para ver un número diferente de filas, dé a `head` o `tail` un segundo argumento, el número de filas que le gustaría ver, por ejemplo, `head (mazo, 10)`.
 ```
 
-R puede abrir muchos tipos de archivos, no solo CSV. Visite [Cargar y Guardar Datos en R] para obtener información sobre cómo abrir otros tipos comunes de archivos en R.
+R puede abrir muchos tipos de archivos, no solo CSV. Visite [Cargar y Guardar Datos en R](#dataio) para obtener información sobre cómo abrir otros tipos comunes de archivos en R.
 
 ## Guardando Datos
 
@@ -897,7 +897,7 @@ Primero, debe darle a `write.csv` el nombre del data frame que desea guardar. A 
 
 Finalmente, debe agregar el argumento `row.names = FALSE`. Esto evitará que R agregue una columna de números al comienzo de su marco de datos. Estos números identificarán sus filas del 1 al 52, pero es poco probable que cualquier programa en el que abra _cartas.csv_ comprenda el sistema de nombres de fila. Lo más probable es que el programa asuma que los nombres de las filas son la primera columna de datos en su marco de datos. De hecho, esto es exactamente lo que asumirá R si vuelve a abrir _cartas.csv_. Si guarda y abre _cartas.csv_ varias veces en R, notará que se forman columnas duplicadas de números de fila al comienzo de su marco de datos. No puedo explicar por qué R hace esto, pero puedo explicar cómo evitarlo: use `row.names = FALSE` siempre que guarde datos con `write.csv`.
 
-Para obtener más detalles sobre cómo guardar archivos, incluido cómo comprimir archivos guardados y cómo guardar archivos en otros formatos, consulte [Cargar y Guardar Datos en R].
+Para obtener más detalles sobre cómo guardar archivos, incluido cómo comprimir archivos guardados y cómo guardar archivos en otros formatos, consulte [Cargar y Guardar Datos en R](#dataio).
 
 Buen trabajo. Ahora tiene una baraja de cartas virtual con la que trabajar. Tómese un respiro y, cuando regrese, comenzaremos a escribir algunas funciones para usar en su mazo.
 
@@ -911,6 +911,6 @@ knitr::include_graphics("images/hopr_0306.png")
 
 Puede cargar datos tabulares en un data frame con el botón Import Dataset de RStudio, siempre que los datos se guarden como un archivo de texto sin formato. Este requisito no es tan limitante como parece. La mayoría de los programas de software pueden exportar datos como un archivo de texto sin formato. Entonces, si tiene un archivo de Excel (por ejemplo), puede abrir el archivo en Excel y exportar los datos como CSV para usar con R. De hecho, abrir un archivo en su programa original es una buena práctica. Los archivos de Excel usan metadatos, como hojas y fórmulas, que ayudan a Excel a trabajar con el archivo. R puede intentar extraer datos sin procesar del archivo, pero no será tan bueno para hacerlo como lo es Microsoft Excel. Ningún programa es mejor para convertir archivos de Excel que Excel. Del mismo modo, ningún programa es mejor para convertir archivos SAS Xport que SAS, y así sucesivamente.
 
-Sin embargo, es posible que se encuentre con un archivo específico del programa, pero no con el programa que lo creó. No querría comprar una licencia SAS de varios miles de dólares solo para abrir un archivo SAS. Afortunadamente, R _puede_ abrir muchos tipos de archivos, incluidos archivos de otros programas y bases de datos. R incluso tiene sus propios formatos específicos del programa que pueden ayudarlo a ahorrar memoria y tiempo si sabe que trabajará completamente en R. Si desea obtener más información sobre todas sus opciones para cargar y guardar datos en R, consulte [Cargar y Guardar Datos en R].
+Sin embargo, es posible que se encuentre con un archivo específico del programa, pero no con el programa que lo creó. No querría comprar una licencia SAS de varios miles de dólares solo para abrir un archivo SAS. Afortunadamente, R _puede_ abrir muchos tipos de archivos, incluidos archivos de otros programas y bases de datos. R incluso tiene sus propios formatos específicos del programa que pueden ayudarlo a ahorrar memoria y tiempo si sabe que trabajará completamente en R. Si desea obtener más información sobre todas sus opciones para cargar y guardar datos en R, consulte [Cargar y Guardar Datos en R](#dataio).
 
 [Notación de R] se basará en las habilidades que aprendió en este capítulo. Aquí, aprendió cómo almacenar datos en R. En [Notación de R], aprenderá cómo acceder a los valores una vez que se han almacenado. También escribirá dos funciones que le permitirán comenzar a usar su mazo, una función para barajar y una función para repartir.

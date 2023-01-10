@@ -27,6 +27,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
+    -   Cargar y Guardar Datos en R
 
 # English
 
@@ -57,3 +58,4 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Appendix
     -   Installing R and RStudio
     -   R Packages
+    -   Loading and Saving Data in R
