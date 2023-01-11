@@ -24,6 +24,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Parte 2
     -   4 Proyecto 2: Baraja de Cartas
     -   5 Objetos de R
+    -   6 Notación de R
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -55,6 +56,7 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Part 2
     -   4 Project 2: Playing Cards
     -   5 R Objets
+    -   6 R Notation
 -   Appendix
     -   Installing R and RStudio
     -   R Packages

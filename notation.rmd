@@ -1,90 +1,90 @@
 # Notación de R
 
-Now that you have a deck of cards, you need a way to do card-like things with it. First, you'll want to reshuffle the deck from time to time. And next, you'll want to deal cards from the deck (one card at a time, whatever card is on top—we're not cheaters).
+Ahora que tiene una baraja de cartas, necesita una forma de hacer: Primero, querrás una forma de barajar el mazo de vez en cuando. Y luego, querrás repartir cartas del mazo (una carta a la vez, cualquiera que sea la carta que esté arriba, no somos tramposos).
 
-To do these things, you'll need to work with the individual values inside your data frame, a task essential to data science. For example, to deal a card from the top of your deck, you'll need to write a function that selects the first row of values in your data frame, like this
+Para hacer estas cosas, deberá trabajar con los valores individuales dentro de su data frame, una tarea esencial para la ciencia de datos. Por ejemplo, para repartir una carta de la parte superior de su mazo, deberá escribir una función que seleccione la primera fila de valores en su data frame, como esta
 
 ```r
-deal(deck)
-##  face   suit value
-##  king spades    13
+repartir(mazo)
+##  cara   palo valor
+##  rey   picas    13
 ```
 
-You can select values within an R object with R's notation system.
+Puede seleccionar valores dentro de un objeto de R con el sistema de notación de R.
 
-## Selecting Values
+## Selección de Valores
 
-R has a notation system that lets you extract values from R objects. To extract a value or set of values from a data frame, write the data frame's name followed by a pair of hard brackets:
+R tiene un sistema de notación que le permite extraer valores de objetos de R. Para extraer un valor o un conjunto de valores de un data frame, escriba el nombre del data frame seguido de un par de corchetes:
 
 ```r
-deck[ , ]
+mazo[ , ]
 ```
 
-Between the brackets will go two indexes separated by a comma. The indexes tell R which values to return. R will use the first index to subset the rows of the data frame and the second index to subset the columns. 
+Entre paréntesis irán dos índices separados por una coma. Los índices le dicen a R qué valores devolver. R usará el primer índice para crear un subconjunto de las filas del data frame y el segundo índice para crear un subconjunto de las columnas. 
 
-You have a choice when it comes to writing indexes. There are six different ways to write an index for R, and each does something slightly different. They are all very simple and quite handy, so let's take a look at each of them. You can create indexes with:
+Tiene una opción cuando se trata de escribir índices. Hay seis formas diferentes de escribir un índice para R, y cada una hace algo ligeramente diferente. Todas son muy simples y bastante prácticas, así que echemos un vistazo a cada una de ellas. Puede crear índices con:
 
-* Positive integers
-* Negative integers
-* Zero
-* Blank spaces
-* Logical values
-* Names
+* Enteros positivos
+* Enteros negativos
+* Cero
+* Espacios en blanco
+* Valores lógicos
+* Nombres
 
-The simplest of these to use is positive integers.
+La forma más simple de escribir índices es la de los números enteros positivos.
 
-### Positive Integers
+### Números Enteros Positivos
 
-R treats positive integers just like _ij_ notation in linear algebra: `deck[i,j]` will return the value of `deck` that is in the _ith_ row and the _jth_ column, Figure \@ref(fig:positive). Notice that _i_ and _j_ only need to be integers in the mathematical sense. They can be saved as numerics in R
+R trata los enteros positivos como la notación _ij_ en álgebra lineal: `mazo[i,j]` devolverá el valor de `mazo` que está en la _iésima_ fila y la _jésima_ columna, Figura \@ref(fig:positiva). Tenga en cuenta que _i_ y _j_ solo necesitan ser números enteros en el sentido matemático. Se pueden guardar como números en R
 
 ```r
-head(deck)
-##  face   suit value
-##  king spades    13
-## queen spades    12
-##  jack spades    11
-##   ten spades    10
-##  nine spades     9
-## eight spades     8
+head(mazo)
+##  cara  palo valor
+##   rey picas    13
+## reina picas    12
+##  jota picas    11
+##  diez picas    10
+## nueve picas     9
+##  ocho picas     8
 
-deck[1, 1]
-## "king"
+mazo[1, 1]
+## "rey"
 ```
 
-To extract more than one value, use a vector of positive integers. For example, you can return the first row of `deck` with `deck[1, c(1, 2, 3)]` or `deck[1, 1:3]`:
+Para extraer más de un valor, utilice un vector de enteros positivos. Por ejemplo, puedes devolver la primera fila de `mazo` con `mazo[1, c(1, 2, 3)]` o `mazo[1, 1:3]`:
 
 ```r
-deck[1, c(1, 2, 3)]
-## face   suit value
-## king spades    13
+mazo[1, c(1, 2, 3)]
+## cara  palo valor
+##  rey picas    13
 ```
 
-R will return the values of `deck` that are in both the first row and the first, second, and third columns. Note that R won't actually remove these values from `deck`. R will give you a new set of values which are copies of the original values. You can then save this new set to an R object with R's assignment operator:
+R devolverá los valores de `mazo` que están tanto en la primera fila como en la primera, segunda y tercera columna. Tenga en cuenta que R en realidad no eliminará estos valores de `mazo`. R le dará un nuevo conjunto de valores que son copias de los valores originales. Luego puede guardar este nuevo conjunto en un objeto de R con el operador de asignación de R:
 
 ```r
-new <- deck[1, c(1, 2, 3)]
-new
-## face   suit value
-## king spades    13
+nuevo <- mazo[1, c(1, 2, 3)]
+nuevo
+## cara  palo valor
+##  rey picas    13
 ```
 
 ```{block2, type = "rmdtip"}
-**Repetition**
+**Repetición**
   
-If you repeat a number in your index, R will return the corresponding value(s) more than once in your "subset." This code will return the first row of `deck` twice:
+Si repite un número en su índice, R devolverá los valores correspondientes más de una vez en su "subconjunto". Este código devolverá la primera fila de `mazo` dos veces:
   
-    deck[c(1, 1), c(1, 2, 3)]
-    ## face   suit value
-    ## king spades    13
-    ## king spades    13
+    mazo[c(1, 1), c(1, 2, 3)]
+    ## cara  palo valor
+    ##  rey picas    13
+    ##  rey picas    13
 
 ```
 
-```{r positive, echo = FALSE, fig.cap = "R uses the _ij_ notation system of linear algebra. The commands in this figure will return the shaded values."}
+```{r positive, echo = FALSE, fig.cap = "R usa el sistema de notación _ij_ del álgebra lineal. Los comandos de esta figura devolverán los valores sombreados."}
 knitr::include_graphics("images/hopr_0401.png")
 ```
 
-R's notation system is not limited to data frames. You can use the same syntax to select values in any R object, as long as you supply one index for each dimension of the object. So, for example, you can subset a vector (which has one dimension) with a single index:
+El sistema de notación de R no se limita a tramas de datos. Puede usar la misma sintaxis para seleccionar valores en cualquier objeto de R, siempre que proporcione un índice para cada dimensión del objeto. Entonces, por ejemplo, puede crear un subconjunto de un vector (que tiene una dimensión) con un solo índice:
 
 ```r
 vec <- c(6, 1, 3, 6, 10, 5)
@@ -93,365 +93,358 @@ vec[1:3]
 ```
 
 ```{block2, type = "rmdtip"}
-**Indexing begins at 1**
+**La indexación comienza en 1**
   
-In some programming languages, indexing begins with 0. This means that 0 returns the first element of a vector, 1 returns the second element, and so on. 
+En algunos lenguajes de programación, la indexación comienza con 0. Esto significa que 0 devuelve el primer elemento de un vector, 1 devuelve el segundo elemento y así sucesivamente. 
 
-This isn't the case with R. Indexing in R behaves just like indexing in linear algebra. The first element is always indexed by 1. Why is R different? Maybe because it was written for mathematicians. Those of us who learned indexing from a linear algebra course wonder why computers programmers start with 0. 
+Este no es el caso con R. La indexación en R se comporta como la indexación en álgebra lineal. El primer elemento siempre está indexado por 1. ¿Por qué R es diferente? Tal vez porque fue escrito para matemáticos. Aquellos de nosotros que aprendimos a indexar en un curso de álgebra lineal nos preguntamos por qué los programadores de computadoras comienzan con 0. 
 ```
 
 ```{block2, type = "rmdtip"}
 **drop = FALSE**
   
-If you select two or more columns from a data frame, R will return a new data frame:
+Si selecciona dos o más columnas de un data frame, R devolverá un nuevo data frame:
 
-    deck[1:2, 1:2]
-    ##  face   suit
-    ##  king spades
-    ## queen spades
+    mazo[1:2, 1:2]
+    ##  cara  palo
+    ##   rey picas
+    ## reina picas
 
-However, if you select a single column, R will return a vector:
+Sin embargo, si selecciona una sola columna, R devolverá un vector:
 
-    deck[1:2, 1]
-    ##  "king"  "queen"
+    mazo[1:2, 1]
+    ##  "rey"  "reina"
 
-If you would prefer a data frame instead, you can add the optional argument `drop = FALSE` between the brackets: 
+Si prefiere un data frame, puede agregar el argumento opcional `drop = FALSE` entre corchetes: 
 
-    deck[1:2, 1, drop = FALSE]
-    ##  face
-    ##  king
-    ## queen
+    mazo[1:2, 1, drop = FALSE]
+    ##  cara
+    ##   rey
+    ## reina
 
-This method also works for selecting a single column from a matrix or an array.
+Este método también funciona para seleccionar una sola columna de una matriz o arreglo.
 ```
 
-### Negative Integers
+### Números Enteros Negativos
 
-Negative integers do the exact opposite of positive integers when indexing. R will return every element _except_ the elements in a negative index. For example, `deck[-1, 1:3]` will return everything _but_ the first row of `deck`. `deck[-(2:52), 1:3]` will return the first row (and exclude everything else):
+Los enteros negativos hacen exactamente lo contrario de los enteros positivos al indexar. R devolverá todos los elementos _excepto_ los elementos en un índice negativo. Por ejemplo, `mazo[-1, 1:3]` devolverá todo _menos_ la primera fila de `mazo`. `mazo[-(2:52), 1:3]` devolverá la primera fila (y excluirá todo lo demás):
 
 ```r
-deck[-(2:52), 1:3]
-## face   suit value
-## king spades    13
+mazo[-(2:52), 1:3]
+## cara  palo valor
+##  rey picas    13
 ```
 
-Negative integers are a more efficient way to subset than positive integers if you want to include the majority of a data frame's rows or columns.
+Los enteros negativos son una forma más eficaz de crear subconjuntos que los enteros positivos si desea incluir la mayoría de las filas o columnas de un data frame.
 
-R will return an error if you try to pair a negative integer with a positive integer in the _same_ index: 
+R devolverá un error si intenta emparejar un entero negativo con un entero positivo en el _mismo_ índice:
 
 ```r
-deck[c(-1, 1), 1]
+mazo[c(-1, 1), 1]
 ## Error in xj[i] : only 0's may be mixed with negative subscripts
 ```
 
-However, you can use both negative and positive integers to subset an object if you use them in _different_ indexes (e.g., if you use one in the rows index and one in the columns index, like `deck[-1, 1]`).
+Sin embargo, puede usar enteros negativos y positivos para crear subconjuntos de un objeto si los usa en índices _diferentes_ (por ejemplo, si usa uno en el índice de filas y otro en el índice de columnas, como `mazo[-1, 1]`) .
 
-### Zero
+### Cero
 
-What would happen if you used zero as an index? Zero is neither a positive integer nor a negative integer, but R will still use it to do a type of subsetting. R will return nothing from a dimension when you use zero as an index. This creates an empty object:
+¿Qué pasaría si usaras el cero como índice? El cero no es ni un entero positivo ni un entero negativo, pero R aún lo usará para hacer un tipo de subconjunto. R no devolverá nada de una dimensión cuando use cero como índice. Esto crea un objeto vacío:
 
 ```r
-deck[0, 0]
+mazo[0, 0]
 ## data frame with 0 columns and 0 rows
 ```
 
-To be honest, indexing with zero is not very helpful.
+Para ser honesto, la indexación con cero no es muy útil.
 
-### Blank Spaces
+### Espacios en Blanco
 
-You can use a blank space to tell R to extract _every_ value in a dimension. This lets you subset an object on one dimension but not the others, which is useful for extracting entire rows or columns from a data frame:
+Puede usar un espacio en blanco para decirle a R que extraiga _todos_ los valores en una dimensión. Esto le permite crear subconjuntos de un objeto en una dimensión pero no en las otras, lo cual es útil para extraer filas o columnas enteras de un data frame:
 
 ```r
-deck[1, ]
-## face   suit value
-## king spades    13
+mazo[1, ]
+## cara  palo valor
+##  rey picas    13
 ```
 
-### Logical Values {#logic}
+### Valores Lógicos {#logic}
 
-If you supply a vector of `TRUE`s and `FALSE`s as your index, R will match each `TRUE` and `FALSE` to a row in your data frame (or a column depending on where you place the index). R will then return each row that corresponds to a `TRUE`, Figure \@ref(fig:logicals). 
+Si proporciona un vector de `TRUE` y `FALSE` como su índice, R hará coincidir cada `TRUE` y `FALSE` con una fila en su data frame (o una columna dependiendo de dónde coloque el índice). R luego devolverá cada fila que corresponda a un `TRUE`, Figura \@ref(fig:logicals). 
 
-It may help to imagine R reading through the data frame and asking, "Should I return the _i_th row of the data structure?" and then consulting the _i_th value of the index for its answer. For this system to work, your vector must be as long as the dimension you are trying to subset: 
+Puede ser útil imaginar a R leyendo el data frame y preguntando: "¿Debería devolver la _i_ésima fila de la estructura de datos?" y luego consultando el valor _i_ésimo del índice para su respuesta. Para que este sistema funcione, su vector debe ser tan largo como la dimensión que está tratando de dividir en subconjuntos: 
 
 ```r
-deck[1, c(TRUE, TRUE, FALSE)]
-## face   suit 
-## king spades
+mazo[1, c(TRUE, TRUE, FALSE)]
+## cara  palo 
+##  rey picas
 
-rows <- c(TRUE, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, 
+filas <- c(TRUE, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, 
   F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, 
   F, F, F, F, F, F, F, F, F, F, F, F, F, F)
-deck[rows, ]
-## face   suit value
-## king spades    13
+mazo[filas, ]
+## cara  palo valor
+##  rey picas    13
 ```
 
-```{r logicals, echo = FALSE, fig.cap = "You can use vectors of TRUEs and FALSEs to tell R exactly which values you want to extract and which you do not. The command would return just the numbers 1, 6, and 5."}
+```{r logicals, echo = FALSE, fig.cap = "Puede usar vectores de TRUE y FALSE para decirle a R exactamente qué valores desea extraer y cuáles no. El comando devolvería solo los números 1, 6 y 5."}
 knitr::include_graphics("images/hopr_0402.png")
 ``` 
 
-This system may seem odd—who wants to type so many `TRUE`s and `FALSE`s?—but it will become very powerful in [Modifying Values].
+Este sistema puede parecer extraño, ¿quién quiere escribir tantos `TRUE` y `FALSE`?, pero se volverá muy poderoso en [Modificación de Valores](#modify).
 
-### Names
+### Nombres
 
-Finally, you can ask for the elements you want by name—if your object has names (see [Names](#names)). This is a common way to extract the columns of a data frame, since columns almost always have names:
+Finalmente, puede solicitar los elementos que desee por nombre, si su objeto tiene nombres (consulte [Nombres](#names)). Esta es una forma común de extraer las columnas de un data frame, ya que las columnas casi siempre tienen nombres:
 
 ```r
-deck[1, c("face", "suit", "value")]
-## face   suit value
-## king spades    13
+mazo[1, c("cara", "palo", "valor")]
+## cara  palo valor
+##  rey picas    13
 
-# the entire value column
-deck[ , "value"]
+# toda la columna de valor
+mazo[ , "valor"]
 ##  13 12 11 10  9  8  7  6  5  4  3  2  1 13 12 11 10  9  8
 ##  7  6  5  4  3  2  1 13 12 11 10  9  8  7  6  5  4  3  2
 ##  1 13 12 11 10  9  8  7  6  5  4  3  2  1
 ```
 
-## Deal a Card
+## Repartir una Carta
 
-Now that you know the basics of R's notation system, let's put it to use. 
+Ahora que conoce los conceptos básicos del sistema de notación de R, pongámoslo en práctica. 
 
-```{exercise, name = "Deal a Card"}
-Complete the following code to make a function that returns the first row of a data frame:
-```
+**Ejercicio 6.1 (Repartir una Carta)** Complete el siguiente código para crear una función que devuelva la primera fila de un data frame:
 
 ```r
-deal <- function(cards) {
+repartir <- function(cartas) {
    # ?
 }
 ```
 
 ```{solution}
-You can use any of the systems that return the first row of your data frame to write a `deal` function. I'll use positive integers and blanks because I think they are easy to understand:
+Puede usar cualquiera de los sistemas que devuelven la primera fila de su data frame para escribir una función de `repartir`. Usaré enteros positivos y espacios en blanco porque creo que son fáciles de entender:
 ```
 
 ```r
-deal <- function(cards) {
-  cards[1, ]
+repartir <- function(cartas) {
+  cartas[1, ]
 }
 ```
 
-The function does exactly what you want: it deals the top card from your data set. However, the function becomes less impressive if you run `deal` over and over again:
+La función hace exactamente lo que quieres: reparte la carta superior de tu conjunto de datos. Sin embargo, la función se vuelve menos impresionante si ejecuta `repartir`` una y otra vez:
 
 ```r
-deal(deck)
-## face   suit value
-## king spades    13
+repartir(mazo)
+## cara  palo valor
+##  rey picas    13
 
-deal(deck)
-## face   suit value
-## king spades    13
+repartir(mazo)
+## cara  palo valor
+##  rey picas    13
 
-deal(deck)
-## face   suit value
-## king spades    13
+repartir(mazo)
+## cara  palo valor
+##  rey picas    13
 ```
 
-`deal` always returns the king of spades because `deck` doesn't know that we've dealt the card away. Hence, the king of spades stays where it is, at the top of the deck ready to be dealt again. This is a difficult problem to solve, and we will _deal_ with it in [Environments]. In the meantime, you can fix the problem by shuffling your deck after every deal. Then a new card will always be at the top. 
+`repartir` siempre devuelve el rey de picas porque `mazo` no sabe que hemos repartido la carta. Por lo tanto, el rey de picas se queda donde está, en la parte superior de la baraja, listo para ser repartido nuevamente. Este es un problema difícil de resolver, y lo trataremos en [Entornos]. Mientras tanto, puedes solucionar el problema barajando tu mazo después de cada vez que repartes. Entonces una nueva tarjeta siempre estará en la parte superior. 
 
-Shuffling is a temporary compromise: the probabilities at play in your deck will not match the probabilities that occur when you play a game with a single deck of cards. For example, there will still be a probability that the king of spades appears twice in a row. However, things are not as bad as they may seem. Most casinos use five or six decks at a time in card games to prevent card counting. The probabilities that you would encounter in those situations are very close to the ones we will create here.
+Barajar es un compromiso temporal: las probabilidades en juego en su mazo no coincidirán con las probabilidades que ocurren cuando juega un juego con un solo mazo de cartas. Por ejemplo, seguirá existiendo la probabilidad de que el rey de picas aparezca dos veces seguidas. Sin embargo, las cosas no son tan malas como pueden parecer. La mayoría de los casinos usan cinco o seis mazos a la vez en los juegos de cartas para evitar el conteo de cartas. Las probabilidades que encontraría en esas situaciones son muy parecidas a las que crearemos aquí.
 
-## Shuffle the Deck
+## Barajar el Mazo
 
-When you shuffle a real deck of cards, you randomly rearrange the order of the cards. In your virtual deck, each card is a row in a data frame. To shuffle the deck, you need to randomly reorder the rows in the data frame. Can this be done? You bet! And you already know everything you need to do it. 
+Cuando barajas una baraja de cartas real, reorganizas aleatoriamente el orden de las cartas. En su mazo virtual, cada carta es una fila en un data frame. Para barajar el mazo, debe reordenar aleatoriamente las filas en el data frame. Se puede hacer esto? ¡Apuesta! Y ya sabes todo lo que necesitas para hacerlo. 
 
-This may sound silly, but start by extracting every row in your data frame:
+Esto puede sonar tonto, pero comience extrayendo cada fila en su data frame:
 
 ```r
-deck2 <- deck[1:52, ]
+mazo2 <- mazo[1:52, ]
 
-head(deck2)
-##   face   suit value
-##   king spades    13
-##  queen spades    12
-##   jack spades    11
-##    ten spades    10
-##   nine spades     9
-##  eight spades     8
+head(mazo2)
+##   cara  palo valor
+##    rey picas    13
+##  reina picas    12
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
 ```
 
-What do you get? A new data frame whose order hasn't changed at all. What if you asked R to extract the rows in a different order? For example, you could ask for row 2, _then_ row 1, and then the rest of the cards:
+¿Qué obtienes? Un nuevo data frame cuyo orden no ha cambiado en absoluto. ¿Qué pasa si le pides a R que extraiga las filas en un orden diferente? Por ejemplo, podría pedir la fila 2, _luego_ la fila 1 y luego el resto de las tarjetas:
 
 ```r
-deck3 <- deck[c(2, 1, 3:52), ]
+mazo3 <- mazo[c(2, 1, 3:52), ]
 
-head(deck3)
-##   face   suit value
-##  queen spades    12
-##   king spades    13
-##   jack spades    11
-##    ten spades    10
-##   nine spades     9
-##  eight spades     8
+head(mazo3)
+##   cara  palo valor
+##  reina picas    12
+##    rey picas    13
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
 ```
 
-R complies. You'll get all the rows back, and they'll come in the order you ask for them. If you want the rows to come in a random order, then you need to sort the integers from 1 to 52 into a random order and use the results as a row index. How could you generate such a random collection of integers? With our friendly neighborhood `sample` function:
+R cumple. Obtendrá todas las filas de vuelta, y vendrán en el orden que las pida. Si desea que las filas aparezcan en un orden aleatorio, debe ordenar los números enteros del 1 al 52 en un orden aleatorio y usar los resultados como un índice de fila. ¿Cómo podrías generar una colección tan aleatoria de enteros? Con nuestra amigable función vecinal `sample`:
 
 ```r
-random <- sample(1:52, size = 52)
-random
+aleatorio <- sample(1:52, size = 52)
+aleatorio
 ##  35 28 39  9 18 29 26 45 47 48 23 22 21 16 32 38  1 15 20
 ##  11  2  4 14 49 34 25  8  6 10 41 46 17 33  5  7 44  3 27
 ##  50 12 51 40 52 24 19 13 42 37 43 36 31 30
 
-deck4 <- deck[random, ]
-head(deck4)
-##   face     suit value
-##   five diamonds     5
-##  queen diamonds    12
-##    ace diamonds     1
-##   five   spades     5
-##   nine    clubs     9
-##   jack diamonds    11
+mazo4 <- mazo[aleatorio, ]
+head(mazo4)
+##   cara      palo valor
+##  cinco diamantes     5
+##  reina diamantes    12
+##     as diamantes     1
+##  cinco     picas     5
+##  nueve  trevoles     9
+##   jota diamantes    11
 ```
 
-Now the new set is truly shuffled. You'll be finished once you wrap these steps into a function. 
+Ahora el nuevo conjunto está verdaderamente barajado. Terminará una vez que ajuste estos pasos en una función. 
 
-```{exercise, name = "Shuffle a Deck"}
-Use the preceding ideas to write a `shuffle` function. `shuffle` should take a data frame and return a shuffled copy of the data frame.
-```
+Ejercicio 6.2 (Barajar el Mazo) Usa las ideas anteriores para escribir una función `barajar`. `barajar` debe tomar un data frame y devolver una copia aleatoria del data frame.
 
 
 ```{solution}
-Your `shuffle` function will look like the one that follows:
+Su función `barajar` se verá como la siguiente:
 ```
 
 ```r
-shuffle <- function(cards) { 
-  random <- sample(1:52, size = 52)
-  cards[random, ]
+barajar <- function(cartas) { 
+  aleatorio <- sample(1:52, size = 52)
+  cartas[aleatorio, ]
 }
 ```
 
-Nice work! Now you can shuffle your cards between each deal:
+¡Buen trabajo! Ahora puedes barajar tus cartas entre cada vez que reparte:
 
 ```r
-deal(deck)
-## face   suit value
-## king spades    13
+repartir(mazo)
+## cara  palo valor
+##  rey picas    13
 
-deck2 <- shuffle(deck) 
+mazo2 <- barajar(mazo) 
 
-deal(deck2)
-## face  suit value
-## jack clubs    11
+repartir(mazo2)
+## cara     palo valor
+## jota treboles    11
 ```
 
+## Signos de Dólar y Corchetes Dobles
 
-## Dollar Signs and Double Brackets
+Dos tipos de objetos en R obedecen a un segundo sistema opcional de notación. Puede extraer valores de data frame y listas con la sintaxis `$`. Encontrará la sintaxis `$` una y otra vez como programador de R, así que examinemos cómo funciona.
 
-Two types of object in R obey an optional second system of notation. You can extract values from data frames and lists with the `$` syntax. You will encounter the `$` syntax again and again as an R programmer, so let's examine how it works.
-
-To select a column from a data frame, write the data frame's name and the column name separated by a `$`. Notice that no quotes should go around the column name:
+Para seleccionar una columna de un data frame, escriba el nombre del data frame y el nombre de la columna separados por un `$`. Tenga en cuenta que no se deben colocar comillas alrededor del nombre de la columna:
 
 ```r
-deck$value
+mazo$valor
 ## 13 12 11 10  9  8  7  6  5  4  3  2  1 13 12 11 10  9  8  7
 ##  6  5  4  3  2  1 13 12 11 10  9  8  7  6  5  4  3  2  1 13
 ## 12 11 10  9  8  7  6  5  4  3  2  1
 ```
 
-R will return all of the values in the column as a vector. This `$` notation is incredibly useful because you will often store the variables of your data sets as columns in a data frame. From time to time, you'll want to run a function like `mean` or `median` on the values in a variable. In R, these functions expect a vector of values as input, and `deck$value` delivers your data in just the right format:
+R devolverá todos los valores de la columna como un vector. Esta notación `$` es increíblemente útil porque a menudo almacenará las variables de sus conjuntos de datos como columnas en un data frame.De vez en cuando, querrá ejecutar una función como `mean` o `median` en los valores de una variable. En R, estas funciones esperan un vector de valores como entrada, y `mazo$valor` entrega tus datos en el formato correcto:
 
 ```r
-mean(deck$value)
+mean(mazo$valor)
 ## 7
 
-median(deck$value)
+median(mazo$valor)
 ## 7
 ```
 
-You can use the same `$` notation with the elements of a list, if they have names. This notation has an advantage with lists, too. If you subset a list in the usual way, R will return a _new_ list that has the elements you requested. This is true even if you only request a single element. 
+Puede usar la misma notación `$` con los elementos de una lista, si tienen nombres. Esta notación también tiene una ventaja con las listas. Si crea subconjuntos de una lista de la manera habitual, R devolverá una lista _nueva_ que tiene los elementos que solicitó. Esto es cierto incluso si solo solicita un solo elemento. 
 
-To see this, make a list:
+Para ver esto, haz una lista:
 
 ```r
-lst <- list(numbers = c(1, 2), logical = TRUE, strings = c("a", "b", "c"))
+lst <- list(numeros = c(1, 2), logicos = TRUE, caracteres = c("a", "b", "c"))
 lst
-## $numbers
+## $numeros
 ## [1] 1 2
 
-## $logical
+## $logicos
 ## [1] TRUE
 
-## $strings
+## $caracteres
 ## [1] "a" "b" "c"
 ```
 
-And then subset it:
+Y luego obten el subconjunto:
 
 ```r
 lst[1]
-## $numbers
+## $numeros
 ## [1] 1 2
 ```
 
-The result is a smaller _list_ with one element. That element is the vector `c(1, 2)`. This can be annoying because many R functions do not work with lists. For example, `sum(lst[1])` will return an error. It would be horrible if once you stored a vector in a list, you could only ever get it back as a list:   
+El resultado es una _lista_ más pequeña con un elemento. Ese elemento es el vector `c(1, 2)`. Esto puede resultar molesto porque muchas funciones de R no funcionan con listas. Por ejemplo, `sum(lst[1])` devolverá un error. Sería horrible si una vez que almacena un vector en una lista, solo pudiera recuperarlo como una lista:   
 
 ```r
 sum(lst[1])
 ## Error in sum(lst[1]) : invalid 'type' (list) of argument
 ```
 
-
-When you use the `$` notation, R will return the selected values as they are, with no list structure around them:
+Cuando usa la notación `$`, R devolverá los valores seleccionados tal como son, sin una estructura de lista a su alrededor:
 
 ```r
-lst$numbers
+lst$numeros
 ## 1 2
 ```
 
-You can then immediately feed the results to a function:
+Luego puede enviar inmediatamente los resultados a una función:
 
 ```r
-sum(lst$numbers)
+sum(lst$numeros)
 ## 3
 ```
 
-If the elements in your list do not have names (or you do not wish to use the names), you can use two brackets, instead of one, to subset the list. This notation will do the same thing as the `$` notation:
+Si los elementos de su lista no tienen nombres (o no desea usar los nombres), puede usar dos corchetes, en lugar de uno, para crear un subconjunto de la lista. Esta notación hará lo mismo que la notación `$`:
 
 ```r
 lst[[1]]
 ## 1 2
 ```
 
-In other words, if you subset a list with single-bracket notation, R will return a smaller list. If you subset a list with double-bracket notation, R will return just the values that were inside an element of the list. You can combine this feature with any of R's indexing methods:
+En otras palabras, si crea un subconjunto de una lista con notación de corchete único, R devolverá una lista más pequeña. Si crea un subconjunto de una lista con notación de corchetes dobles, R devolverá solo los valores que estaban dentro de un elemento de la lista. Puede combinar esta función con cualquiera de los métodos de indexación de R:
 
 ```r
-lst["numbers"]
-## $numbers
+lst["numeros"]
+## $numeros
 ## [1] 1 2
 
-lst[["numbers"]]
+lst[["numeros"]]
 ## 1 2
 ```
 
-This difference is subtle but important. In the R community, there is a popular, and helpful, way to think about it, Figure \@ref(fig:trains). Imagine that each list is a train and each element is a train car. When you use single brackets, R selects individual train cars and returns them as a new train. Each car keeps its contents, but those contents are still inside a train car (i.e., a list). When you use double brackets, R actually unloads the car and gives you back the contents.
+Esta diferencia es sutil pero importante. En la comunidad de R, hay una forma popular y útil de pensar en ello, Figure \@ref(fig:trains). Imagina que cada lista es un tren y cada elemento es un vagón de tren. Cuando usa corchetes individuales, R selecciona vagones de tren individuales y los devuelve como un tren nuevo. Cada vagón mantiene su contenido, pero ese contenido todavía está dentro de un vagón de tren (es decir, una lista). Cuando usa corchetes dobles, R en realidad descarga el automóvil y le devuelve el contenido.
 
-```{r trains, echo = FALSE, fig.cap = "It can be helpful to think of your list as a train. Use single brackets to select train cars, double brackets to select the contents inside of a car."}
+```{r trains, echo = FALSE, fig.cap = "Puede ser útil pensar en su lista como un tren. Use corchetes simples para seleccionar vagones de tren, corchetes dobles para seleccionar el contenido dentro de un vagón."}
 knitr::include_graphics("images/hopr_0403.png")
 ```
 
 ```{block2, type = "rmdimportant"}
-**Never attach**
+**Nunca use attach**
 
-In R's early days, it became popular to use `attach()` on a data set once you had it loaded. Don't do this! `attach` recreates a computing environment similar to those used in other statistics applications like Stata and SPSS, which crossover users liked. However, R is not Stata or SPSS. R is optimized to use the R computing environment, and running `attach()` can cause confusion with some R functions. 
+En los primeros días de R, se hizo popular usar `attach()` en un conjunto de datos una vez que lo tenía cargado. ¡No hagas esto! `attach` recrea un entorno informático similar a los utilizados en otras aplicaciones estadísticas como Stata y SPSS, que gustaron a los usuarios cruzados. Sin embargo, R no es Stata o SPSS. R está optimizado para usar el entorno informático de R, y ejecutar `attach()` puede causar confusión con algunas funciones de R. 
 
-What does `attach()` do? On the surface, `attach` saves you typing. If you attach the `deck` data set, you can refer to each of its variables by name; instead of typing `deck$face`, you can just type `face`.  But typing isn't bad. It gives you a chance to be explicit, and in computer programming, explicit is good. Attaching a data set creates the possibility that R will confuse two variable names. If this occurs within a function, you're likely to get unusable results and an unhelpful error message to explain what happened.
+¿Qué hace `attach()`? En la superficie, `attach` te ahorra escribir. Si adjunta el conjunto de datos `mazo`, puede hacer referencia a cada una de sus variables por nombre; en lugar de escribir `mazo$cara`, puedes simplemente escribir `cara`. Pero escribir no está mal. Te da la oportunidad de ser explícito, y en la programación de computadoras, explícito es bueno. Adjuntar un conjunto de datos crea la posibilidad de que R confunda dos nombres de variables. Si esto ocurre dentro de una función, es probable que obtenga resultados inutilizables y un mensaje de error inútil para explicar lo que sucedió.
 ```
 
-Now that you are an expert at retrieving values stored in R, let's summarize what you've accomplished.
+Ahora que es un experto en recuperar valores almacenados en R, resumamos lo que ha logrado.
 
+## Resumen
 
-## Summary
+Ha aprendido a acceder a los valores que se han almacenado en R. Puede recuperar una copia de los valores que viven dentro de un data frame y usar las copias para nuevos cálculos. 
 
-You have learned how to access values that have been stored in R. You can retrieve a copy of values that live inside a data frame and use the copies for new computations. 
+De hecho, puede usar el sistema de notación de R para acceder a valores en cualquier objeto R. Para usarlo, escriba el nombre de un objeto seguido de corchetes e índices. Si su objeto es unidimensional, como un vector, solo necesita proporcionar un índice. Si es bidimensional, como un data frame, debe proporcionar dos índices separados por una coma. Y, si es _n_-dimensional, debe proporcionar _n_ índices, cada uno separado por una coma. 
 
-In fact, you can use R's notation system to access values in any R object. To use it, write the name of an object followed by brackets and indexes. If your object is one-dimensional, like a vector, you only need to supply one index. If it is two-dimensional, like a data frame, you need to supply two indexes separated by a comma. And, if it is _n_-dimensional, you need to supply _n_ indexes, each separated by a comma. 
+En [Modificación de Valores](#modify), llevará este sistema un paso más allá y aprenderá a cambiar los valores reales que se almacenan dentro de su data frame. Todo esto se suma a algo especial: control completo de sus datos. Ahora puede almacenar sus datos en su computadora, recuperar valores individuales a voluntad y usar su computadora para realizar cálculos correctos con esos valores.
 
-In [Modifying Values], you'll take this system a step further and learn how to change the actual values that are stored inside your data frame. This is all adding up to something special: complete control of your data. You can now store your data in your computer, retrieve individual values at will, and use your computer to perform correct calculations with those values. 
-
-Does this sound basic? It may be, but it is also powerful and essential for efficient data science. You no longer need to memorize everything in your head, nor worry about doing mental arithmetic wrong. This low-level control over your data is also a prerequisite for more efficient R programs, the subject of [Project 3: Slot Machine].
+¿Suena esto básico? Puede serlo, pero también es poderoso y esencial para una ciencia de datos eficiente. Ya no necesitas memorizar todo en tu cabeza, ni preocuparte por hacer mal el cálculo mental. Este control de bajo nivel sobre sus datos también es un requisito previo para programas de R más eficientes, el tema del [Proyecto 3: Máquina Tragamonedas].
 
 

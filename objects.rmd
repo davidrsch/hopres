@@ -816,7 +816,7 @@ baraja <- data.frame(
 
 Debe evitar escribir grandes conjuntos de datos a mano siempre que sea posible. Escribir invita a errores tipográficos y errores. Siempre es mejor adquirir grandes conjuntos de datos como un archivo de computadora. Luego puede pedirle a R que lea el archivo y almacene el contenido como un objeto. 
 
-Creé un archivo para que lo cargues que contiene un marco de datos de información de naipes, así que no te preocupes por escribir el código. En su lugar, dirija su atención hacia la carga de datos en R.
+Creé un archivo para que lo cargues que contiene un data frame de información de naipes, así que no te preocupes por escribir el código. En su lugar, dirija su atención hacia la carga de datos en R.
 
 ## Cargando Datos {#loading}
 
@@ -895,7 +895,7 @@ Puede personalizar el proceso de guardado con el amplio conjunto de argumentos o
 
 Primero, debe darle a `write.csv` el nombre del data frame que desea guardar. A continuación, debe proporcionar un nombre de archivo para darle a su archivo. R tomará este nombre literalmente, así que asegúrese de proporcionar una extensión. 
 
-Finalmente, debe agregar el argumento `row.names = FALSE`. Esto evitará que R agregue una columna de números al comienzo de su marco de datos. Estos números identificarán sus filas del 1 al 52, pero es poco probable que cualquier programa en el que abra _cartas.csv_ comprenda el sistema de nombres de fila. Lo más probable es que el programa asuma que los nombres de las filas son la primera columna de datos en su marco de datos. De hecho, esto es exactamente lo que asumirá R si vuelve a abrir _cartas.csv_. Si guarda y abre _cartas.csv_ varias veces en R, notará que se forman columnas duplicadas de números de fila al comienzo de su marco de datos. No puedo explicar por qué R hace esto, pero puedo explicar cómo evitarlo: use `row.names = FALSE` siempre que guarde datos con `write.csv`.
+Finalmente, debe agregar el argumento `row.names = FALSE`. Esto evitará que R agregue una columna de números al comienzo de su data frame. Estos números identificarán sus filas del 1 al 52, pero es poco probable que cualquier programa en el que abra _cartas.csv_ comprenda el sistema de nombres de fila. Lo más probable es que el programa asuma que los nombres de las filas son la primera columna de datos en su data frame. De hecho, esto es exactamente lo que asumirá R si vuelve a abrir _cartas.csv_. Si guarda y abre _cartas.csv_ varias veces en R, notará que se forman columnas duplicadas de números de fila al comienzo de su data frame. No puedo explicar por qué R hace esto, pero puedo explicar cómo evitarlo: use `row.names = FALSE` siempre que guarde datos con `write.csv`.
 
 Para obtener más detalles sobre cómo guardar archivos, incluido cómo comprimir archivos guardados y cómo guardar archivos en otros formatos, consulte [Cargar y Guardar Datos en R](#dataio).
 
