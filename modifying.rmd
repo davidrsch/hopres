@@ -1,15 +1,15 @@
 # Modificación de Valores {#modify}
 
-Are you ready to play some games with your virtual deck? Not so fast! The point system in your deck of cards doesn't align well with many card games. For example, in war and poker, aces are usually scored higher than kings. They'd have a point value of 14, not 1. 
+¿Estás listo para jugar algunos juegos con tu mazo virtual? ¡No tan rápido! El sistema de puntos en su mazo de cartas no se alinea bien con muchos juegos de cartas. Por ejemplo, en la guerra y el póquer, los ases suelen tener una puntuación más alta que los reyes. Tendrían un valor en puntos de 14, no de 1.
 
-In this task, you will change the point system of your deck three times to match three different games: war, hearts, and blackjack. Each of these games will teach you something different about modifying the values inside of a data set. Start by making a copy of `deck` that you can manipulate. This will ensure that you always have a pristine copy of `deck` to fall back on (should things go awry):
+En esta tarea, cambiará el sistema de puntos de su mazo tres veces para que coincida con tres juegos diferentes: guerra, corazones y blackjack. Cada uno de estos juegos te enseñará algo diferente sobre cómo modificar los valores dentro de un conjunto de datos. Comience por hacer una copia de `mazo` que pueda manipular. Esto asegurará que siempre tenga una copia impecable de `mazo` a la que recurrir (en caso de que las cosas salgan mal):
 
 ```r
-deck2 <- deck
+mazo2 <- mazo
 ```
-### Changing Values in Place
+### Cambio de Valores en el Lugar
 
-You can use R's notation system to modify values within an R object. First, describe the value (or values) you wish to modify. Then use the assignment operator `<-` to overwrite those values. R will update the selected values _in the original object_. Let's put this into action with a real example:
+Puede usar el sistema de notación de R para modificar valores dentro de un objeto de R. Primero, describa el valor (o valores) que desea modificar. Luego use el operador de asignación `<-` para sobrescribir esos valores. R actualizará los valores seleccionados _en el objeto original_. Pongamos esto en práctica con un ejemplo real:
 
 ```r
 vec <- c(0, 0, 0, 0, 0, 0)
@@ -17,14 +17,14 @@ vec
 ##  0 0 0 0 0 0
 ```
 
-Here's how you can select the first value of `vec`:
+Así es como puede seleccionar el primer valor de `vec`:
 
 ```r
 vec[1]
 ##  0
 ```
 
-And here is how you can modify it:
+Y así es como puedes modificarlo:
 
 ```r
 vec[1] <- 1000
@@ -32,7 +32,7 @@ vec
 ## 1000    0    0    0    0    0
 ```
 
-You can replace multiple values at once as long as the number of new values equals the number of selected values:
+Puede reemplazar varios valores a la vez siempre que la cantidad de valores nuevos sea igual a la cantidad de valores seleccionados:
 
 ```r
 vec[c(1, 3, 5)] <- c(1, 1, 1)
@@ -44,7 +44,7 @@ vec
 ## 1 0 1 1 2 1
 ```
 
-You can also create values that do not yet exist in your object. R will expand the object to accommodate the new values: 
+También puede crear valores que aún no existen en su objeto. R expandirá el objeto para acomodar los nuevos valores: 
 
 ```r
 vec[7] <- 0
@@ -52,117 +52,117 @@ vec
 ## 1 0 1 1 2 1 0
 ```
 
-This provides a great way to add new variables to your data set:
+Esto proporciona una excelente manera de agregar nuevas variables a su conjunto de datos:
 
 ```r
-deck2$new <- 1:52
+mazo2$nuevo <- 1:52
 
-head(deck2)
-##   face   suit value new
-##   king spades    13   1
-##  queen spades    12   2
-##   jack spades    11   3
-##    ten spades    10   4
-##   nine spades     9   5
-##  eight spades     8   6
+head(mazo2)
+##   cara  palo valor nuevo
+##    rey picas    13   1
+##  reina picas    12   2
+##   jota picas    11   3
+##   diez picas    10   4
+##  nueve picas     9   5
+##   ocho picas     8   6
 ```
 
-You can also remove columns from a data frame (and elements from a list) by assigning them the symbol `NULL`:
+También puede eliminar columnas de un data frame (y elementos de una lista) asignándoles el símbolo `NULL`:
 
 ```r
-deck2$new <- NULL
+mazo2$nuevo <- NULL
 
-head(deck2)
-##   face   suit value
-##   king spades    13
-##  queen spades    12
-##   jack spades    11
-##    ten spades    10
-##   nine spades     9
-##  eight spades     8
+head(mazo2)
+##   cara  palo valor 
+##    rey picas    13
+##  reina picas    12
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
 ```
 
-In the game of war, aces are king (figuratively speaking). They receive the highest value of all the cards, which would be something like 14. Every other card gets the value that it already has in `deck`. To play war, you just need to change the values of your aces from 1 to 14.
+En el juego de la guerra, los ases son el rey (en sentido figurado). Reciben el valor más alto de todas las cartas, que sería algo así como 14. Todas las demás cartas obtienen el valor que ya tienen en el `mazo`. Para jugar a la guerra, solo necesitas cambiar los valores de tus ases del 1 al 14.
 
-As long as you haven't shuffled your deck, you know just where the aces are. They appear every 13 cards. Hence, you can describe them with R's notation system:
+Siempre que no hayas barajado tu mazo, sabes dónde están los ases. Aparecen cada 13 cartas. Por lo tanto, puede describirlos con el sistema de notación de R:
 
 ```r
-deck2[c(13, 26, 39, 52), ]
-##  face     suit value
-##   ace   spades     1
-##   ace    clubs     1
-##   ace diamonds     1
-##   ace   hearts     1
+mazo2[c(13, 26, 39, 52), ]
+##  cara      palo valor
+##    as     picas     1
+##    as  treboles     1
+##    as diamantes     1
+##    as corazones     1
 ```
 
-You can single out just the _values_ of the aces by subsetting the columns dimension of `deck2`. Or, even better, you can subset the column vector `deck2$value`:
+Puede seleccionar solo los _valores_ de los ases subdividiendo la dimensión de las columnas de `mazo2`. O, mejor aún, puede crear un subconjunto del vector de columna `mazo2$valor`:
 
 ```r
-deck2[c(13, 26, 39, 52), 3]
+mazo2[c(13, 26, 39, 52), 3]
 ## 1 1 1 1
 
-deck2$value[c(13, 26, 39, 52)]
+mazo2$valor[c(13, 26, 39, 52)]
 ## 1 1 1 1
 ```
 
-Now all you have to do is assign a new set of values to these old values. The set of new values will have to be the same size as the set of values that you are replacing. So you could save `c(14, 14, 14, 14)` into the ace values, or you could just save *`14`* and rely on R's recycling rules to expand `14` to `c(14, 14, 14, 14)`:
+Ahora todo lo que tiene que hacer es asignar un nuevo conjunto de valores a estos valores antiguos. El conjunto de valores nuevos deberá tener el mismo tamaño que el conjunto de valores que está reemplazando. Por lo tanto, podría guardar `c(14, 14, 14, 14)` en los valores as, o simplemente podría guardar *`14`* y confiar en las reglas de reciclaje de R para expandir `14` a `c(14, 14, 14, 14)`:
 
 ```r
-deck2$value[c(13, 26, 39, 52)] <- c(14, 14, 14, 14)
+mazo2$valor[c(13, 26, 39, 52)] <- c(14, 14, 14, 14)
 
 # or
 
-deck2$value[c(13, 26, 39, 52)] <- 14
+mazo2$valor[c(13, 26, 39, 52)] <- 14
 ```
 
-Notice that the values change _in place_. You don't end up with a modified _copy_ of `deck2`; the new values will appear inside `deck2`: 
+Observe que los valores cambian _en su lugar_. No terminas con una _copia_ modificada de `mazo2`; los nuevos valores aparecerán dentro de `mazo2`: 
 
 ```r
-head(deck2, 13)
-##   face   suit value
-##   king spades    13
-##  queen spades    12
-##   jack spades    11
-##    ten spades    10
-##   nine spades     9
-##  eight spades     8
-##  seven spades     7
-##    six spades     6
-##   five spades     5
-##   four spades     4
-##  three spades     3
-##    two spades     2
-##    ace spades    14
+head(mazo2, 13)
+##   cara  palo valor
+##    rey picas    13
+##  reina picas    12
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas    14
 ```
 
-The same technique will work whether you store your data in a vector, matrix, array, list, or data frame. Just describe the values that you want to change with R's notation system, then assign over those values with R's assignment operator.
+La misma técnica funcionará ya sea que almacene sus datos en un vector, matriz, arreglo, lista o data frame. Simplemente describa los valores que desea cambiar con el sistema de notación de R, luego asigne sobre esos valores con el operador de asignación de R.
 
-Things worked very easily in this example because you knew exactly where each ace was. The cards were sorted in an orderly manner and an ace appeared every 13 rows. 
+Las cosas funcionaron muy fácilmente en este ejemplo porque sabías exactamente dónde estaba cada as. Las cartas se ordenaron de manera ordenada y apareció un as cada 13 filas. 
 
-But what if the deck had been shuffled? You could look through all the cards and note the locations of the aces, but that would be tedious. If your data frame were larger, it might be impossible: 
+Pero, ¿y si se hubiera barajado la baraja? Podrías mirar todas las cartas y anotar las ubicaciones de los ases, pero eso sería tedioso. Si su data frame fuera más grande, podría ser imposible:
 
 ```r
-deck3 <- shuffle(deck)
+mazo3 <- barajar(mazo)
 ```
 
-Where are the aces now?
+¿Dónde están los ases ahora?
 
 ```r
-head(deck3)
-##  face     suit value
-## queen    clubs    12
-##  king    clubs    13
-##   ace   spades     1   # an ace
-##  nine    clubs     9
-## seven   spades     7
-## queen diamonds    12
+head(mazo3)
+##  cara      palo valor
+## reina  treboles    12
+##   rey  treboles    13
+##    as     picas     1   # un as
+## nueve  treboles     9
+## siete     picas     7
+## reina diamantes    12
 ```
 
-Why not ask R to find the aces for you? You can do this with logical subsetting. Logical subsetting provides a way to do targeted extraction and modification with R objects, a sort of search-and-destroy mission inside your own data sets. 
+¿Por qué no pedirle a R que encuentre los ases por ti? Puede hacer esto con subconjuntos lógicos. La creación de subconjuntos lógicos proporciona una forma de realizar una extracción y modificación específicas con objetos R, una especie de misión de búsqueda y destrucción dentro de sus propios conjuntos de datos. 
 
-### Logical Subsetting
+### Subconjunto Lógico
 
-Do you remember R's logical index system, [logicals](#logicals)? To recap, you can select values with a vector of `TRUE`s and `FALSE`s. The vector must be the same length as the dimension that you wish to subset. R will return every element that matches a TRUE:
+¿Recuerdas el sistema de índice lógico de R, [lógicos](#logicals)? Para recapitular, puede seleccionar valores con un vector de `TRUE` y `FALSE`. El vector debe tener la misma longitud que la dimensión que desea dividir en subconjuntos. R devolverá todos los elementos que coincidan con un VERDADERO:
 
 ```r
 vec
@@ -172,25 +172,25 @@ vec[c(FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE)]
 ## 2
 ```
 
-At first glance, this system might seem impractical. Who wants to type out long vectors of TRUEs and FALSEs? No one. But you don't have to. You can let a logical test create a vector of TRUEs and FALSEs for you.
+A primera vista, este sistema puede parecer poco práctico. ¿Quién quiere escribir largos vectores de TRUE y FALSE? Nadie. Pero no tienes que hacerlo. Puede dejar que una prueba lógica cree un vector de VERDADEROS y FALSOS para usted.
 
-#### Logical Tests
+#### Pruebas Lógicas
 
-A logical test is a comparison like "is one less than two?", `1 < 2`, or "is three greater than four?", `3 > 4`. R provides seven logical operators that you can use to make comparisons, shown in Table \@ref(tab:logop). 
+Una prueba lógica es una comparación como "¿es uno menos que dos?", `1 < 2` o "¿tres son mayores que cuatro?", `3 > 4`. R proporciona siete operadores lógicos que puede usar para hacer comparaciones, que se muestran en la tabla \@ref(tab:logop). 
 
-Table: (\#tab:logop) R's Logical Operators
+Table: (\#tab:logop) Operadores Lógicos de R
 
-|Operator|Syntax|Tests
+|Operador|Sintaxis|Pruebas
 |--------|------|-----
-|`>`|`a > b`|Is a greater than b?
-|`>=`|`a >= b`|Is a greater than or equal to b?
-|`<`|`a < b`|Is a less than b?
-|`<=`|`a <= b`|Is a less than or equal to b?
-|`==`|`a == b`|Is a equal to b?
-|`!=`|`a != b`|Is a not equal to b?
-|`%in%`|`a %in% c(a, b, c)`|Is a in the group c(a, b, c)? 
+|`>`|`a > b`|¿Es a mayor que b?
+|`>=`|`a >= b`|¿Es a mayor que o igual que b?
+|`<`|`a < b`|¿Es a menor que b?
+|`<=`|`a <= b`|¿Es a menor que o igual que b?
+|`==`|`a == b`|¿Es a igual que b?
+|`!=`|`a != b`|¿Es a distinto que b?
+|`%in%`|`a %in% c(a, b, c)`|¿Es a en el grupo c(a, b, c)? 
 
-Each operator returns a `TRUE` or a `FALSE`. If you use an operator to compare vectors, R will do element-wise comparisons—just like it does with the arithmetic operators:
+Cada operador devuelve un `TRUE` o un `FALSE`. Si usa un operador para comparar vectores, R hará comparaciones por elementos, tal como lo hace con los operadores aritméticos:
 
 ```r
 1 > 2
@@ -203,7 +203,7 @@ c(1, 2, 3) == c(3, 2, 1)
 ## FALSE  TRUE FALSE
 ```
 
-`%in%` is the only operator that does not do normal element-wise execution. `%in%` tests whether the value(s) on the left side are in the vector on the right side. If you provide a vector on the left side, `%in%` will _not_ pair up the values on the left with the values on the right and then do element-wise tests. Instead, `%in%` will independently test whether each value on the left is _somewhere_ in the vector on the right: 
+`%in%` es el único operador que no realiza una ejecución normal de elementos. `%in%` comprueba si los valores del lado izquierdo están en el vector del lado derecho. Si proporciona un vector en el lado izquierdo, `%in%` _no_ emparejará los valores de la izquierda con los valores de la derecha y luego realizará pruebas por elementos. En su lugar, `%in%` probará de forma independiente si cada valor de la izquierda está _en algún lugar_ en el vector de la derecha:
 
 ```r
 1 %in% c(3, 4, 5)
@@ -219,43 +219,41 @@ c(1, 2, 3, 4) %in% c(3, 4, 5)
 ## FALSE FALSE  TRUE  TRUE
 ```
 
-Notice that you test for equality with a double equals sign, `==`, and not a single equals sign, `=`, which is another way to write `<-`. It is easy to forget and use `a = b` to test if `a` equals `b`. Unfortunately, you'll be in for a nasty surprise. R won't return a `TRUE` or `FALSE`, because it won't have to: `a` _will_ equal `b`, because you just ran the equivalent of `a <- b`.
+Tenga en cuenta que comprueba la igualdad con un signo igual doble, `==`, y no con un solo signo igual, `=`, que es otra forma de escribir `<-`. Es fácil olvidar y usar `a = b` para probar si `a` es igual a `b`. Desafortunadamente, te llevarás una desagradable sorpresa. R no devolverá un `TRUE` o `FALSE`, porque no tendrá que hacerlo: `a` _será_ igual a `b`, porque acabas de ejecutar el equivalente de `a <- b`.
 
 ```{block2, type = "rmdwarning"}
-**`=` is an assignment operator**
+**`=` es un operador de asignación**
 
-Be careful not to confuse `=` with `==`. `=` does the same thing as `<-`: it assigns a value to an object. 
+Tenga cuidado de no confundir `=` con `==`. `=` hace lo mismo que `<-`: asigna un valor a un objeto. 
 ```
 
-You can compare any two R objects with a logical operator; however, logical operators make the most sense if you compare two objects of the same data type. If you compare objects of different data types, R will use its coercion rules to coerce the objects to the same type before it makes the comparison.
+Puede comparar dos objetos R cualquiera con un operador lógico; sin embargo, los operadores lógicos tienen más sentido si compara dos objetos del mismo tipo de datos. Si compara objetos de diferentes tipos de datos, R usará sus reglas de coerción para forzar los objetos al mismo tipo antes de realizar la comparación.
 
-```{exercise, name = "How many Aces?"}
-Extract the `face` column of `deck2` and test whether each value is equal to `ace`. As a challenge, use R to quickly count how many cards are equal to `ace`.
-```
+Ejercicio 7.1 ¿Cuántas ases? Extraiga la columna `cara` de `mazo2` y pruebe si cada valor es igual a `as`. Como desafío, use R para contar rápidamente cuántas cartas son iguales a `as`.
   
 ```{solution}
-You can extract the `face` column with R's `$` notation:
+Puede extraer la columna `cara` con la notación `$` de R:
 ```
 
 ```r
-deck2$face
-##  "king"  "queen" "jack"  "ten"   "nine" 
-##  "eight" "seven" "six"   "five"  "four" 
-##  "three" "two"   "ace"   "king"  "queen"
-##  "jack"  "ten"   "nine"  "eight" "seven"
-##  "six"   "five"  "four"  "three" "two"  
-##  "ace"   "king"  "queen" "jack"  "ten"  
-##  "nine"  "eight" "seven" "six"   "five" 
-##  "four"  "three" "two"   "ace"   "king" 
-##  "queen" "jack"  "ten"   "nine"  "eight"
-##  "seven" "six"   "five"  "four"  "three"
-##  "two"   "ace"
+mazo2$cara
+##  "rey"  "reina" "jota"  "diez"   "nueve" 
+##  "ocho" "siete" "seis"   "cinco"  "cuatro" 
+##  "tres" "dos"   "as" "rey"  "reina"
+##  "jota"  "diez"   "nueve"  "ocho" "siete"
+##  "seis"   "cinco"  "cuatro"  "tres" "dos"  
+##  "as"   "rey"  "reina" "jota"  "diez"  
+##  "nueve"  "ocho" "siete" "seis"   "cinco" 
+##  "cuatro"  "tres" "dos"   "as"   "rey" 
+##  "reina" "jota"  "diez"   "nueve"  "ocho"
+##  "siete" "seis"   "cinco"  "cuatro"  "tres"
+##  "dos"   "as"
 ```
 
-Next, you can use the `==` operator to test whether each value is equal to `ace`. In the following code, R will use its recycling rules to indivuidually compare every value of `deck2$face` to `"ace"`. Notice that the quotation marks are important. If you leave them out, R will try to find an object named `ace` to compare against `deck2$face`:
+A continuación, puede utilizar el operador `==` para probar si cada valor es igual a `as`. En el siguiente código, R usará sus reglas de reciclaje para comparar individualmente cada valor de `mazo2$cara` con `"as"`. Tenga en cuenta que las comillas son importantes. Si los omite, R intentará encontrar un objeto llamado `as` para compararlo con `mazo2$cara`:
 
 ```r
-deck2$face == "ace"
+mazo2$cara == "as"
 ##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
 ##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -266,82 +264,80 @@ deck2$face == "ace"
 ##  FALSE FALSE  TRUE
 ```
 
-You can use `sum` to quickly count the number of `TRUE`s in the previous vector. Remember that R will coerce logicals to numerics when you do math with them. R will turn `TRUE`s into ones and `FALSE`s into zeroes. As a result, sum will count the number of `TRUE`s:
+Puede usar `sum` para contar rápidamente el número de `TRUE` en el vector anterior. Recuerde que R convertirá los lógicos en numéricos cuando haga operaciones matemáticas con ellos. R convertirá `TRUE` en unos y `FALSE` en ceros. Como resultado, sum contará el número de `TRUE`:
 
 ```r
-sum(deck2$face == "ace")
+sum(mazo2$cara == "as")
 ## 4
 ```
 
-You can use this method to spot and then change the aces in your deck—even if you've shuffled your cards. First, build a logical test that identifies the aces in your shuffled deck:
+Puede usar este método para detectar y luego cambiar los ases en su mazo, incluso si ha barajado sus cartas. Primero, crea una prueba lógica que identifique los ases en tu baraja barajada:
 
 ```r
-deck3$face == "ace"
+mazo3$cara == "as"
 ```
 
-Then use the test to single out the ace point values. Since the test returns a logical vector, you can use it as an index:
+Luego use la prueba para seleccionar los valores de puntos as. Dado que la prueba devuelve un vector lógico, puede usarlo como índice:
 
 ```r
-deck3$value[deck3$face == "ace"]
+mazo3$valor[mazo3$cara == "as"]
 ##  1 1 1 1
 ```
 
-Finally, use assignment to change the ace values in `deck3`:
+Finalmente, usa la asignación para cambiar los valores de as en `mazo3`:
 
 ```r
-deck3$value[deck3$face == "ace"] <- 14
+mazo3$valor[mazo3$cara == "as"] <- 14
 
-head(deck3)
-##  face     suit value
-## queen    clubs    12
-##  king    clubs    13
-##   ace   spades    14  # an ace
-##  nine    clubs     9
-## seven   spades     7
-## queen diamonds    12
+head(mazo3)
+##  cara      palo valor
+## queen  treboles    12
+##   rey  treboles    13
+##    as     picas    14  # un as
+## nueve  treboles     9
+## siete     picas     7
+## reina diamantes    12
 ```
 
-To summarize, you can use a logical test to select values within an object.
+Para resumir, puede usar una prueba lógica para seleccionar valores dentro de un objeto.
 
-Logical subsetting is a powerful technique because it lets you quickly identify, extract, and modify individual values in your data set. When you work with logical subsetting, you do not need to know _where_ in your data set a value exists. You only need to know how to describe the value with a logical test. 
+La creación de subconjuntos lógicos es una técnica poderosa porque le permite identificar, extraer y modificar rápidamente valores individuales en su conjunto de datos. Cuando trabaja con subconjuntos lógicos, no necesita saber _dónde_ en su conjunto de datos existe un valor. Solo necesita saber cómo describir el valor con una prueba lógica.
 
-Logical subsetting is one of the things R does best. In fact, logical subsetting is a key component of vectorized programming, a coding style that lets you write fast and efficient R code, which we will study in [Speed].
+El subconjunto lógico es una de las cosas que R hace mejor. De hecho, el subconjunto lógico es un componente clave de la programación vectorizada, un estilo de codificación que le permite escribir código R rápido y eficiente, que estudiaremos en [Velocidad].
 
-Let's put logical subsetting to use with a new game: hearts. In hearts, every card has a value of zero:
+Usemos subconjuntos lógicos con un nuevo juego: corazones. En corazones, cada carta tiene un valor de cero:
 
 ```r
-deck4 <- deck
-deck4$value <- 0
+mazo4 <- mazo
+mazo4$valor <- 0
 
-head(deck4, 13)
-##   face   suit value
-##   king spades     0
-##  queen spades     0
-##   jack spades     0
-##    ten spades     0
-##   nine spades     0
-##  eight spades     0
-##  seven spades     0
-##    six spades     0
-##   five spades     0
-##   four spades     0
-##  three spades     0
-##    two spades     0
-##    ace spades     0
+head(mazo4, 13)
+##   cara  palo valor
+##    rey picas     0
+##  reina picas     0
+##   jota picas     0
+##   diez picas     0
+##  nueve picas     0
+##   ocho picas     0
+##  siete picas     0
+##   seis picas     0
+##  cinco picas     0
+## cuatro picas     0
+##   tres picas     0
+##    dos picas     0
+##     as picas     0
 ```
 
-except cards in the suit of hearts and the queen of spades. Each card in the suit of hearts has a value of 1. Can you find these cards and replace their values? Give it a try.
+excepto las cartas del palo de corazones y la reina de picas. Cada carta del palo de corazones tiene un valor de 1. ¿Puedes encontrar estas cartas y reemplazar sus valores? Intentalo.
 
-```{exercise, name = "Score the Deck for Hearts"}
-Assign a value of `1` to every card in `deck4` that has a suit of hearts.
-```
+**Ejercicio 7.2 (Dar Valor al Mazo para el Juego Corazones)** Asigne un valor de `1` a cada carta en `mazo4` que tenga un palo de corazones.
 
 ```{solution}
-To do this, first write a test that identifies cards in the `hearts` suit:
+Para hacer esto, primero escribe una prueba que identifique las cartas en el palo `corazones`:
 ```
 
 ```r
-deck4$suit == "hearts"
+mazo4$palo == "corazones"
 ##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -352,87 +348,87 @@ deck4$suit == "hearts"
 ##   TRUE  TRUE  TRUE
 ```
 
-Then use your test to select the values of these cards:
+Luego usa tu prueba para seleccionar los valores de estas cartas:
 
 ```r
-deck4$value[deck4$suit == "hearts"]
+mazo4$valor[mazo4$palo == "corazones"]
 ## 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```
 
-Finally, assign a new number to these values:
+Finalmente, asigne un nuevo número a estos valores:
 
 ```r
-deck4$value[deck4$suit == "hearts"] <- 1
+mazo4$valor[mazo4$palo == "corazones"] <- 1
 ```
 
-Now all of your `hearts` cards have been updated:
+Ahora todas sus cartas de `corazones` han sido actualizadas:
 
 ```r
-deck4$value[deck4$suit == "hearts"]
+mazo4$valor[mazo4$palo == "corazones"]
 ## 1 1 1 1 1 1 1 1 1 1 1 1 1
 ```
 
-In hearts, the queen of spades has the most unusual value of all: she's worth 13 points. It should be simple to change her value, but she's surprisingly hard to find. You could find all of the _queens_:
+En corazones, la reina de picas tiene el valor más inusual de todos: vale 13 puntos. Debería ser sencillo cambiar su valor, pero es sorprendentemente difícil de encontrar. Podrías encontrar todas las _reinas_:
 
 ```r
-deck4[deck4$face == "queen", ]
-##   face     suit value
-##  queen   spades     0
-##  queen    clubs     0
-##  queen diamonds     0
-##  queen   hearts     1
+mazo4[mazo4$cara == "reina", ]
+##   cara      palo valor
+##  reina     picas     0
+##  reina  treboles     0
+##  reina diamantes     0
+##  reina corazones     1
 ```
 
-But that's three cards too many. On the other hand, you could find all of the cards in _spades_: 
+Pero son tres cartas de más. Por otro lado, podrías encontrar todas las cartas en _picas_: 
 
 ```r
-deck4[deck4$suit == "spades", ]
-##   face   suit value
-##   king spades     0
-##  queen spades     0
-##   jack spades     0
-##    ten spades     0
-##   nine spades     0
-##  eight spades     0
-##  seven spades     0
-##    six spades     0
-##   five spades     0
-##   four spades     0
-##  three spades     0
-##    two spades     0
-##    ace spades     0
+mazo4[mazo4$palo == "picas", ]
+##   cara  palo valor
+##    rey picas     0
+##  reina picas     0
+##   jota picas     0
+##   diez picas     0
+##  nueve picas     0
+##   ocho picas     0
+##  siete picas     0
+##   seis picas     0
+##  cinco picas     0
+## cuatro picas     0
+##   tres picas     0
+##    dos picas     0
+##     as picas     0
 ```
 
-But that's 12 cards too many. What you really want to find is all of the cards that have both a face value equal to queen and a suit value equal to spades. You can do that with a _Boolean operator_. Boolean operators combine multiple logical tests together into a single test.
+Pero son 12 cartas de más. Lo que realmente quiere encontrar es todas las cartas que tienen un valor de cara igual a la reina y un valor del palo igual a las picas. Puede hacerlo con un _operador booleano_. Los operadores booleanos combinan varias pruebas lógicas en una sola prueba.
 
-#### Boolean Operators
+#### Operadores Booleanos
 
-Boolean operators are things like _and_ (`&`) and _or_ (`|`). They collapse the results of multiple logical tests into a single `TRUE` or `FALSE`. R has six boolean operators, shown in Table \@ref(tab:boole).
+Los operadores booleanos son cosas como _y_ (`&`) y _o_ (`|`). Colapsan los resultados de múltiples pruebas lógicas en un solo `TRUE` o `FALSE`. R tiene seis operadores booleanos, que se muestran en la tabla \@ref(tab:boole).
 
-Table: (\#tab:boole) Boolean operators
+Table: (\#tab:boole) Operadores Booleanos
 
-|Operator|Syntax|Tests
+|Operador|Sintaxis|Pruebas
 |--------|------|-----
-|`&`|`cond1 & cond2`|Are both `cond1` and `cond2` true?
-|`|`|`cond1 | cond2`|Is one or more of `cond1` and `cond2` true?
-|`xor`|`xor(cond1, cond2)`|Is exactly one of `cond1` and `cond2` true?
-|`!`|`!cond1`|Is `cond1` false? (e.g., `!` flips the results of a logical test)
-|`any`|`any(cond1, cond2, cond3, ...)`|Are any of the conditions true?
-|`all`|`all(cond1, cond2, cond3, ...)`|Are all of the conditions true?
+|`&`|`cond1 & cond2`|¿Son verdaderas `cond1` y `cond2`?
+|`|`|`cond1 | cond2`|¿Es verdadera una o más de `cond1` y` cond2`?
+|`xor`|`xor(cond1, cond2)`|¿Es exactamente una de `cond1` y `cond2` verdadera?
+|`!`|`!cond1`|¿Es `cond1` falsa? (por ejemplo, `!` invierte los resultados de una prueba lógica)
+|`any`|`any(cond1, cond2, cond3, ...)`|¿Alguna de las condiciones es verdadera?
+|`all`|`all(cond1, cond2, cond3, ...)`|¿Son verdaderas todas las condiciones?
 
-To use a Boolean operator, place it between two _complete_ logical tests. R will execute each logical test and then use the Boolean operator to combine the results into a single `TRUE` or `FALSE`, Figure \@ref(fig:boolean). 
+Para usar un operador booleano, colóquelo entre dos pruebas lógicas _completas_. R ejecutará cada prueba lógica y luego usará el operador booleano para combinar los resultados en un solo `TRUE` o `FALSE`, figura \@ref(fig:boolean). 
 
 ```{block2, type = "rmdwarning"}
-**The most common mistake with Boolean operators**
+**El error más común con los operadores Booleanos**
   
-It is easy to forget to put a complete test on either side of a Boolean operator. In English, it is efficient to say "Is _x_ greater than two and less than nine?" But in R, you need to write the equivalent of "Is _x_ greater than two and _is x_ less than nine?" This is shown in Figure \@ref(fig:boolean).
+Es fácil olvidar poner una prueba completa a cada lado de un operador booleano. En español, es eficiente decir "¿Es _x_ mayor que dos y menor que nueve?" Pero en R, necesitas escribir el equivalente de "¿Es _x_ mayor que dos y _es x_ menor que nueve?" Esto se muestra en la Figura \@ref(fig:boolean).
 ```
 
-```{r boolean, echo = FALSE, fig.cap = "R will evaluate the expressions on each side of a Boolean operator separately, and then combine the results into a single TRUE or FALSE. If you do not supply a complete test to each side of the operator, R will return an error."}
+```{r boolean, echo = FALSE, fig.cap = "R evaluará las expresiones en cada lado de un operador booleano por separado y luego combinará los resultados en un solo TRUE o FALSE. Si no proporciona una prueba completa a cada lado del operador, R devolverá un error."}
 knitr::include_graphics("images/hopr_0501.png")
 ```
 
-When used with vectors, Boolean operators will follow the same element-wise execution as arithmetic and logical operators:
+Cuando se usan con vectores, los operadores booleanos seguirán la misma ejecución de elementos que los operadores aritméticos y lógicos:
 
 ```r
 a <- c(1, 2, 3)
@@ -449,10 +445,10 @@ a == b & b == c
 ##  TRUE  TRUE FALSE
 ```
 
-Could you use a Boolean operator to locate the queen of spades in your deck? Of course you can. You want to test each card to see if it is both a queen _and_ a spade. You can write this test in R with:
+¿Podría usar un operador booleano para ubicar la reina de picas en su mazo? Por supuesto que puede. Desea probar cada carta para ver si es tanto una reina como una pica. Puedes escribir esta prueba en R con:
 
 ```r
-deck4$face == "queen" & deck4$suit == "spades"
+mazo4$cara == "reina" & mazo4$palo == "picas"
 ##  FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
 ##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -463,152 +459,150 @@ deck4$face == "queen" & deck4$suit == "spades"
 ##  FALSE FALSE FALSE
 ```
 
-I'll save the results of this test to its own object. That will make the results easier to work with:
+Guardaré los resultados de esta prueba en su propio objeto. Eso hará que sea más fácil trabajar con los resultados:
 
 ```r
-queenOfSpades <- deck4$face == "queen" & deck4$suit == "spades"
+reinaDePicas <- mazo4$cara == "reina" & mazo4$palo == "picas"
 ```
 
-Next, you can use the test as an index to select the value of the queen of spades. Make sure the test actually selects the correct value: 
+A continuación, puede utilizar la prueba como índice para seleccionar el valor de la reina de picas. Asegúrese de que la prueba realmente seleccione el valor correcto: 
 
 ```r
-deck4[queenOfSpades, ]
-##  face   suit value
-## queen spades     0
+mazo4[reinaDePicas, ]
+##  cara  palo valor
+## reina picas     0
 
-deck4$value[queenOfSpades]
+mazo4$valor[reinaDePicas]
 ## 0
 ```
 
-Now that you've found the queen of spades, you can update her value:
+Ahora que encontraste la reina de picas, puedes actualizar su valor:
 
 ```r
-deck4$value[queenOfSpades] <- 13
+mazo4$valor[reinaDePicas] <- 13
 
-deck4[queenOfSpades, ]
-##  face   suit value
-## queen spades     13
+mazo4[reinaDePicas, ]
+##  cara  palo valor
+## reina picas    13
 ```
 
-Your deck is now ready to play hearts.
+Tu mazo está listo para jugar corazones.
 
-```{exercise, name = "Practice with Tests"}
-If you think you have the hang of logical tests, try converting these sentences into tests written with R code. To help you out, I've defined some R objects after the sentences that you can use to test your answers: 
+Ejercicio 7.3 (Practica con Pruebas) Si cree que domina las pruebas lógicas, intente convertir estas oraciones en pruebas escritas con código R. Para ayudarte, he definido algunos objetos de R después de las oraciones que puedes usar para probar tus respuestas: 
 
-* Is w positive?
-* Is x greater than 10 and less than 20?
-* Is object y the word February?
-* Is _every_ value in z a day of the week?
-```
+* ¿Es `w` positivo?
+* ¿Es `x` mayor que 10 y menor que 20?
+* ¿Es objeto `y` la palabra Febrero?
+* ¿Son _todos_ los valores de `z` un día de la semana?
 
 ```r
 w <- c(-1, 0, 1)
 x <- c(5, 15)
-y <- "February"
-z <- c("Monday", "Tuesday", "Friday")
+y <- "Febrero"
+z <- c("Lunes", "Martes", "Viernes")
 ```
 
 ```{solution}
-Here are some model answers. If you got stuck, be sure to re-read how R evaluates logical tests that use Boolean values:
+Aquí hay algunas respuestas de ejemplo. Si se quedó atascado, asegúrese de volver a leer cómo R evalúa las pruebas lógicas que usan valores booleanos:
 ```
 
 ```r
 w > 0
 10 < x & x < 20
-y == "February"
-all(z %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
-  "Saturday", "Sunday"))
+y == "Febrero"
+all(z %in% c("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", 
+  "Sabado", "Domingo"))
 ```
 
-Let's consider one last game, blackjack. In blackjack, each number card has a value equal to its face value. Each face card (king, queen, or jack) has a value of 10. Finally, each ace has a value of 11 or 1, depending on the final results of the game. 
+Consideremos un último juego, el blackjack. En el blackjack, cada carta numérica tiene un valor igual a su valor nominal. Cada figura (rey, reina o jota) tiene un valor de 10. Finalmente, cada as tiene un valor de 11 o 1, dependiendo de los resultados finales del juego. 
 
-Let's begin with a fresh copy of `deck`—that way the number cards (`two` through `ten`) will start off with the correct value:
+Comencemos con una copia nueva de `mazo`; de esa manera, las cartas numéricas (`dos` a `diez`) comenzarán con el valor correcto:
 
 ```r
-deck5 <- deck
+mako5 <- mazo
 
-head(deck5, 13)
-##   king spades    13
-##  queen spades    12
-##   jack spades    11
-##    ten spades    10
-##   nine spades     9
-##  eight spades     8
-##  seven spades     7
-##    six spades     6
-##   five spades     5
-##   four spades     4
-##  three spades     3
-##    two spades     2
-##    ace spades     1
+head(mazo5, 13)
+##    rey picas    13
+##  reina picas    12
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas     1
 ```
 
-You can change the value of the face cards in one fell swoop with `%in%`:
+Puedes cambiar el valor de las figuras de una sola vez con `%in%`:
 
 ```r
-facecard <- deck5$face %in% c("king", "queen", "jack")
+caracartas <- mazo5$cara %in% c("rey", "reina", "jota")
 
-deck5[facecard, ]
-##   face     suit value
-##   king   spades    13
-##  queen   spades    12
-##   jack   spades    11
-##   king    clubs    13
-##  queen    clubs    12
-##   jack    clubs    11
-##   king diamonds    13
-##  queen diamonds    12
-##   jack diamonds    11
-##   king   hearts    13
-##  queen   hearts    12
-##   jack   hearts    11
+mazo5[caracartas, ]
+##   cara      palo valor
+##    rey     picas    13
+##  reina     picas    12
+##   jota     picas    11
+##    rey  treboles    13
+##  reina  treboles    12
+##   jota  treboles    11
+##    rey diamantes    13
+##  reina diamantes    12
+##   jota diamantes    11
+##    rey corazones    13
+##  reina corazones    12
+##   jota corazones    11
 
-deck5$value[facecard] <- 10
+mazo5$valor[caracartas] <- 10
 
-head(deck5, 13)
-##   face   suit value
-##   king spades    10
-##  queen spades    10
-##   jack spades    10
-##    ten spades    10
-##   nine spades     9
-##  eight spades     8
-##  seven spades     7
-##    six spades     6
-##   five spades     5
-##   four spades     4
-##  three spades     3
-##    two spades     2
-##    ace spades     1
+head(mazo5, 13)
+##   cara   palo valor
+##    rey picas    10
+##  reina picas    10
+##   jota picas    10
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas     1
 ```
 
-Now you just need to fix the ace values—or do you? It is hard to decide what value to give the aces because their exact value will change from hand to hand. At the end of each hand, an ace will equal 11 if the sum of the player's cards does not exceed 21. Otherwise, the ace will equal 1. The actual value of the ace will depend on the other cards in the player's hand. This is a case of missing information. At the moment, you do not have enough information to assign a correct point value to the ace cards.
+Ahora solo necesita corregir los valores de as, ¿o no? Es difícil decidir qué valor dar a los ases porque su valor exacto cambiará de una mano a otra. Al final de cada mano, un as será igual a 11 si la suma de las cartas del jugador no supera los 21. De lo contrario, el as será igual a 1. El valor real del as dependerá de las otras cartas en la mano del jugador. Este es un caso de falta de información. Por el momento, no tiene suficiente información para asignar un valor de puntos correcto a las cartas de as.
 
-### Missing Information {#missing}
+### Información Faltante {#missing}
 
-Missing information problems happen frequently in data science. Usually, they are more straightforward: you don't know a value because the measurement was lost, corrupted, or never taken to begin with. R has a way to help you manage these missing values.
+Los problemas de falta de información ocurren con frecuencia en la ciencia de datos. Por lo general, son más sencillos: no conoce un valor porque la medida se perdió, se corrompió o nunca se tomó para empezar. R tiene una manera de ayudarlo a administrar estos valores faltantes.
 
-The `NA` character is a special symbol in R. It stands for "not available" and can be used as a placeholder for missing information. R will treat NA exactly as you should want missing information treated. For example, what result would you expect if you add 1 to a piece of missing information?
+El carácter `NA` es un símbolo especial en R. Significa "no disponible" y se puede utilizar como marcador de posición para la información que falta. R tratará a NA exactamente como usted debería querer que se trate la información faltante. Por ejemplo, ¿qué resultado esperaría si suma 1 a la información que falta?
 
 ```r
 1 + NA
 ## NA
 ```
 
-R will return a second piece of missing information. It would not be correct to say that `1 + NA = 1` because there is a good chance that the missing quantity is not zero. You do not have enough information to determine the result.
+R devolverá una segunda pieza de información faltante. No sería correcto decir que `1 + NA = 1` porque existe una buena posibilidad de que la cantidad que falta no sea cero. No tienes suficiente información para determinar el resultado.
 
-What if you tested whether a piece of missing information is equal to 1?
+¿Qué pasa si prueba si una parte de la información que falta es igual a 1?
 
 ```r
 NA == 1
 ## NA
 ```
 
-Again, your answer would be something like "I do not know if this is equal to one," that is, `NA`. Generally, `NA`s will propagate whenever you use them in an R operation or function. This can save you from making errors based on missing data. 
+Nuevamente, su respuesta sería algo como "No sé si esto es igual a uno", es decir, `NA`. Generalmente, los `NA` se propagarán cada vez que los use en una operación o función de R. Esto puede evitar que cometa errores basados en datos faltantes. 
 
 #### na.rm
 
-Missing values can help you work around holes in your data sets, but they can also create some frustrating problems. Suppose, for example, that you've collected 1,000 pass:[<phrase role="keep-together">observations</phrase>] and wish to take their average with R's `mean` function. If even one of the values is `NA`, your result will be `NA`:
+Los valores faltantes pueden ayudarlo a solucionar los agujeros en sus conjuntos de datos, pero también pueden crear algunos problemas frustrantes. Suponga, por ejemplo, que ha recopilado 1.000 pases:[<phrase role="keep-together">observaciones</phrase>] y desea tomar su promedio con la función `mean` de R. Si incluso uno de los valores es `NA`, su resultado será `NA`:
 
 ```r
 c(NA, 1:50)
@@ -620,7 +614,7 @@ mean(c(NA, 1:50))
 ## NA
 ```
 
-Understandably, you may prefer a different behavior. Most R functions come with the optional argument, `na.rm`, which stands for `NA` remove. R will ignore `NA`s when it evaluates a function if you add the argument `na.rm = TRUE`:
+Es comprensible que prefieras un comportamiento diferente. La mayoría de las funciones de R vienen con el argumento opcional, `na.rm`, que significa remove los `NA`. R ignorará `NA`s cuando evalúa una función si agrega el argumento `na.rm = TRUE`:
 
 ```r
 mean(c(NA, 1:50), na.rm = TRUE)
@@ -629,21 +623,21 @@ mean(c(NA, 1:50), na.rm = TRUE)
 
 #### is.na
 
-On occasion, you may want to identify the `NA`s in your data set with a logical test, but that too creates a problem. How would you go about it? If something is a missing value, any logical test that uses it will return a missing value, even this test:
+En ocasiones, es posible que desee identificar las `NA` en su conjunto de datos con una prueba lógica, pero eso también crea un problema. ¿Cómo lo harías? Si algo es un valor faltante, cualquier prueba lógica que lo use devolverá un valor faltante, incluso esta prueba:
 
 ```r
 NA == NA
 ## NA
 ```
 
-Which means that tests like this won't help you find missing values:
+Lo que significa que pruebas como esta no te ayudarán a encontrar valores faltantes:
 
 ```r
 c(1, 2, 3, NA) == NA
 ## NA NA NA NA
 ```
 
-But don't worry too hard; R supplies a special function that can test whether a value is an `NA`. The function is sensibly named `is.na`:
+Pero no te preocupes demasiado; R proporciona una función especial que puede probar si un valor es un `NA`. La función se llama sensatamente `is.na`:
 
 ```r
 is.na(NA)
@@ -654,37 +648,36 @@ is.na(vec)
 ## FALSE FALSE FALSE  TRUE
 ```
 
+Establezcamos todos sus valores de as en `NA`. Esto logrará dos cosas. Primero, te recordará que no sabes el valor final de cada as. En segundo lugar, evitará que anotes accidentalmente una mano que tenga un as antes de determinar el valor final del as.
 
-Let's set all of your ace values to `NA`. This will accomplish two things. First, it will remind you that you do not know the final value of each ace. Second, it will prevent you from accidentally scoring a hand that has an ace before you determine the ace's final value.
-
-You can set your ace values to `NA` in the same way that you would set them to a number:
+Puede establecer sus valores de as en `NA` de la misma manera que los establecería en un número:
 
 ```r
-deck5$value[deck5$face == "ace"] <- NA
+mazo5$valor[mazo5$cara == "as"] <- NA
 
-head(deck5, 13)
-##   face   suit value
-##   king spades    10
-##  queen spades    10
-##   jack spades    10
-##    ten spades    10
-##   nine spades     9
-##  eight spades     8
-##  seven spades     7
-##    six spades     6
-##   five spades     5
-##   four spades     4
-##  three spades     3
-##    two spades     2
-##    ace spades    NA
+head(mazo5, 13)
+##   cara   palo valor
+##    rey picas    10
+##  reina picas    10
+##   jota picas    10
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas    NA
 ```
 
-Congratulations. Your deck is now ready for a game of blackjack.
+Felicidades. Su mazo ahora está listo para un juego de blackjack.
 
-### Summary
+### Resumen
 
-You can modify values in place inside an R object when you combine R's notation syntax with the assignment operator, `<-`. This lets you update your data and clean your data sets
+Puede modificar valores en su lugar dentro de un objeto de R cuando combina la sintaxis de notación de R con el operador de asignación, `<-`. Esto le permite actualizar sus datos y limpiar sus conjuntos de datos.
 
-When you work with large data sets, modifying and retrieving values creates a logistical problem of its own. How can you search through the data to find the values that you want to modify or retrieve? As an R user, you can do this with logical subsetting. Create a logical test with logical and Boolean operators and then use the test as an index in R's bracket notation. R will return the values that you are looking for, even if you do not know where they are.
+Cuando trabaja con grandes conjuntos de datos, modificar y recuperar valores crea un problema logístico propio. ¿Cómo puede buscar en los datos para encontrar los valores que desea modificar o recuperar? Como usuario de R, puede hacer esto con subconjuntos lógicos. Cree una prueba lógica con operadores lógicos y booleanos y luego use la prueba como un índice en la notación de paréntesis de R. R devolverá los valores que está buscando, incluso si no sabe dónde están.
 
-Retrieving individual values will not be your only concern as an R programmer. You'll also need to retrieve entire data sets themselves; for example, you may call one in a function. [Environments] will teach you how R looks up and saves data sets and other R objects in its environment system. You'll then use this knowledge to fix the `deal` and `shuffle` functions.
+Recuperar valores individuales no será su única preocupación como programador de R. También deberá recuperar conjuntos de datos completos; por ejemplo, puede llamar a uno en una función. [Entornos] le enseñará cómo R busca y guarda conjuntos de datos y otros objetos R en su sistema de entorno. Luego usará este conocimiento para corregir las funciones `repartir` y `barajar`.
