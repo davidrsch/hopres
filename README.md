@@ -26,6 +26,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
     -   5 Objetos de R
     -   6 Notación de R
     -   7 Modificación de Valores
+    -   8 Entornos (Imagenes no)
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -59,6 +60,7 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
     -   5 R Objets
     -   6 R Notation
     -   7 Modifying Values
+    -   8 Environments (Images no)
 -   Appendix
     -   Installing R and RStudio
     -   R Packages
