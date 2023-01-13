@@ -577,8 +577,8 @@ knitr::include_graphics("images/hopr_0607.png")
 Luego puede guardar cada uno de los elementos de la lista en un objeto dedicado en el entorno global:
 
 ```r
-repartir <- cards$repartir
-barajar <- cards$barajar
+repartir <- cartas$repartir
+barajar <- cartas$barajar
 ```
 
 Ahora puedes ejecutar `repartir` y `barajar` como antes. Cada objeto contiene el mismo código que el `repartir` y `barajar` originales:
