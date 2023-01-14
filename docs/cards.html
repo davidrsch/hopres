@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 Proyecto 3: Máquina Tragamonedas | Programación práctica con R</title>
+  <title>4 Proyecto 2: Baraja de Cartas | Programación práctica con R</title>
   <meta name="description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 Proyecto 3: Máquina Tragamonedas | Programación práctica con R" />
+  <meta property="og:title" content="4 Proyecto 2: Baraja de Cartas | Programación práctica con R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/davidrsch/hopres/cover.png" />
   <meta property="og:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="github-repo" content="davidrsch/hopres" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 Proyecto 3: Máquina Tragamonedas | Programación práctica con R" />
+  <meta name="twitter:title" content="4 Proyecto 2: Baraja de Cartas | Programación práctica con R" />
   
   <meta name="twitter:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="twitter:image" content="https://github.com/davidrsch/hopres/cover.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="environment.html"/>
-<link rel="next" href="programs.html"/>
+<link rel="prev" href="packages.html"/>
+<link rel="next" href="objects.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -375,21 +375,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slots" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">9</span> Proyecto 3: Máquina Tragamonedas<a href="slots.html#slots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Las máquinas tragamonedas son el juego más popular en los casinos modernos. Si nunca has visto una, una máquina tragamonedas se parece a un juego de arcade que tiene una palanca en un costado. Por una pequeña tarifa, puede tirar de la palanca y la máquina generará una combinación aleatoria de tres símbolos. Si aparece la combinación correcta, puede ganar un premio, tal vez incluso el mejor premio.</p>
-<p>Las máquinas tragamonedas generan ganancias fantásticas para los casinos porque ofrecen una tasa de pago muy baja. En muchos juegos, como el Blackjack y la Ruleta, las probabilidades están ligeramente a favor del casino. A la larga, el casino paga de 97 a 98 centavos en premios por cada dólar que gasta un jugador en estos juegos. Con las máquinas tragamonedas, es típico que un casino solo pague de 90 a 95 centavos, y el casino se queda con el resto. Si esto parece turbio, tenga en cuenta que las máquinas tragamonedas son uno de los juegos más populares en un casino; a pocas personas parece importarles. Y si considera que las loterías estatales tienen tasas de pago mucho más cercanas a los 50 centavos por dólar, las máquinas tragamonedas no se ven tan mal.</p>
-<p>En este proyecto, construirá una máquina tragamonedas real que funcione, modelada a partir de algunas Terminales de Lotería de Video de la vida real de Manitoba, Canadá. Los terminales fueron motivo de escándalo en la década de los 90. Llegarás al fondo de este escándalo escribiendo un programa que recree las máquinas tragamonedas. Luego hará algunos cálculos y ejecutará algunas simulaciones que revelarán la verdadera tasa de pago de las máquinas.</p>
-<p>Este proyecto le enseñará a escribir programas y ejecutar simulaciones en R. También aprenderá a:</p>
+<div id="cards" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Proyecto 2: Baraja de Cartas<a href="cards.html#cards" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Este proyecto, que abarca los siguientes cuatro capítulos, le enseñará cómo almacenar, recuperar y cambiar valores de datos en la memoria de su computadora. Estas habilidades lo ayudarán a guardar y administrar datos sin acumular errores. En el proyecto, diseñará una baraja de cartas que pueda barajar y repartir. Lo mejor de todo es que la baraja recordará qué cartas se han repartido, como una baraja real. Puede usar el mazo para jugar juegos de cartas, adivinar fortunas y probar estrategias de conteo de cartas.</p>
+<p>En el camino, aprenderá cómo:</p>
 <ul>
-<li>Usar una estrategia práctica para diseñar programas</li>
-<li>Usar declaraciones <code>if</code> y <code>else</code> para decirle a R qué hacer y cuando</li>
-<li>Crear tablas de búsqueda para encontrar valores</li>
-<li>Usar bucles <code>for</code>, <code>while</code> y <code>repeat</code> para automatizar operaciones repetitivas</li>
-<li>Usar métodos S3, la versión de R de Programación Orientada a Objetos</li>
-<li>Medir la velocidad del código R</li>
-<li>Escribir código R rápido y vectorizado</li>
+<li>Guardar nuevos tipos de datos, como cadenas de caracteres y valores lógicos</li>
+<li>Guardar un conjunto de datos como vector, matriz, arreglo, lista o data frame</li>
+<li>Cargar y guardar sus propios conjuntos de datos con R</li>
+<li>Extraer valores individuales de un conjunto de datos</li>
+<li>Cambiar valores individuales dentro de un conjunto de datos</li>
+<li>Escribir pruebas lógicas</li>
+<li>Usar el símbolo de valor faltante de R, NA</li>
 </ul>
+<p>Para simplificar el proyecto, lo he dividido en cuatro tareas. Cada tarea le enseñará una nueva habilidad para administrar datos con R:</p>
+<p><strong>Task 1: Construir la baraja</strong><br />
+En <a href="objects.html#objects">Objetos de R</a>, diseñarás y construirás una baraja virtual de naipes. Este será un conjunto de datos completo, como los que usará como científico de datos. Necesitará saber cómo usar los tipos de datos y las estructuras de datos de R para que esto funcione.</p>
+<p><strong>Task 2: Construir funciones para repartir y barajar</strong>
+A continuación, en <a href="notation.html#notation">Notación de R</a>, escribirá dos funciones para usar con la baraja. Una función repartirá cartas de la baraja y la otra volverá a barajar la baraja. Para escribir estas funciones, necesitará saber cómo extraer valores de un conjunto de datos con R.</p>
+<p><strong>Tarea 3: Cambiar el sistema de puntos para adaptarlo a tu juego</strong><br />
+En <a href="modify.html#modify">Modificación de valores</a>, utilizará el sistema de notación de R para cambiar los valores de puntos de sus cartas para que coincidan con los juegos de cartas que desee jugar, como guerra, corazones o blackjack. Esto le ayudará a cambiar los valores existentes en los conjuntos de datos existentes.</p>
+<p><strong>Tarea 4: Gestionar el estado de la baraja</strong>
+Finalmente, en <a href="environment.html#environment">Entornos</a>, te asegurarás de que tu mazo recuerde qué cartas ha repartido. Esta es una tarea avanzada y presentará el sistema de entorno de R y las reglas de alcance. Para hacerlo con éxito, deberá aprender los detalles minuciosos de cómo R busca y usa los datos que ha almacenado en su computadora.</p>
 
 </div>
             </section>
@@ -397,8 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="environment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="programs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="objects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -419,7 +426,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/davidrsch/hopres/edit/main/slots.rmd",
+"link": "https://github.com/davidrsch/hopres/edit/main/cards.rmd",
 "text": "Editar"
 },
 "history": {

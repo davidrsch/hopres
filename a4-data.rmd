@@ -51,7 +51,7 @@ Puede ver qué archivos hay en su directorio de trabajo con `list.files()`. Si v
 
 Los archivos de texto sin formato son una de las formas más comunes de guardar datos. Son muy simples y pueden ser leídos por muchos programas de computadora diferentes, incluso los editores de texto más básicos. Por esta razón, los datos públicos suelen presentarse como archivos de texto sin formato. Por ejemplo, la Oficina del Censo, la Administración del Seguro Social y la Oficina de Estadísticas Laborales ponen a disposición sus datos como archivos de texto sin formato.
 
-Así es como el conjunto de datos de la escalera real de [Objetos de R] aparecería como un archivo de texto sin formato (he agregado una columna de valor):
+Así es como el conjunto de datos de la escalera real de [Objetos de R](#objects) aparecería como un archivo de texto sin formato (he agregado una columna de valor):
 
 ```
 "carta", "palo", "valor"

@@ -1,6 +1,6 @@
 # (PART) Parte 1 {-}
 
-# Proyecto 1: Dados Ponderados
+# Proyecto 1: Dados Ponderados {#dice}
 
 Las computadoras le permiten ensamblar, manipular y visualizar conjuntos de datos, todo a velocidades que habrían asombrado a los científicos de ayer. En resumen, ¡las computadoras te dan superpoderes científicos! Pero si desea usarlos, deberá adquirir algunas habilidades de programación.
 

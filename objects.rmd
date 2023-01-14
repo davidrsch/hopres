@@ -1,4 +1,4 @@
-# Objectos de R
+# Objectos de R {#objects}
 
 En este capítulo, usará R para armar una baraja de 52 cartas.
 
@@ -15,13 +15,13 @@ nueve   picas     9
 ...
 ```
 
-¿Necesita crear un conjunto de datos desde cero para usarlo en R? Para nada. Puede cargar la mayoría de los conjuntos de datos en R con un simple paso, consulte [Cargar datos]. Pero este ejercicio le enseñará cómo R almacena datos y cómo puede ensamblar, o desensamblar, sus propios conjuntos de datos. También aprenderá sobre los diversos tipos de objetos disponibles para usar en R (¡no todos los objetos de R son iguales!). Considere este ejercicio como un rito de iniciación; al hacerlo, se convertirá en un experto en el almacenamiento de datos en R.
+¿Necesita crear un conjunto de datos desde cero para usarlo en R? Para nada. Puede cargar la mayoría de los conjuntos de datos en R con un simple paso, consulte [Cargar datos](#loading). Pero este ejercicio le enseñará cómo R almacena datos y cómo puede ensamblar, o desensamblar, sus propios conjuntos de datos. También aprenderá sobre los diversos tipos de objetos disponibles para usar en R (¡no todos los objetos de R son iguales!). Considere este ejercicio como un rito de iniciación; al hacerlo, se convertirá en un experto en el almacenamiento de datos en R.
 
 Comenzaremos con lo más básico. El tipo de objeto más simple en R es un _vector atómico_. Los vectores atómicos no tienen energía nuclear, pero son muy simples y aparecen en todas partes. Si observa lo suficientemente de cerca, verá que la mayoría de las estructuras en R se construyen a partir de vectores atómicos. 
 
 ## Vectores Atómicos
 
-Un vector atómico es solo un simple vector de datos. De hecho, ya ha creado un vector atómico, su objeto `dado` del [Proyecto 1: Dados ponderados]. Puede hacer un vector atómico agrupando algunos valores de datos con `c`:
+Un vector atómico es solo un simple vector de datos. De hecho, ya ha creado un vector atómico, su objeto `dado` del [Proyecto 1: Dados Ponderados](#dice). Puede hacer un vector atómico agrupando algunos valores de datos con `c`:
 
 ```r
 dado <- c(1, 2, 3, 4, 5, 6)
@@ -69,7 +69,7 @@ ent <- 1L
 text <- "as"
 ```
 
-Cada tipo de vector atómico tiene su propia convención (descrita a continuación). R reconocerá la convención y la usará para crear un vector atómico del tipo apropiado. Si desea crear vectores atómicos que tengan más de un elemento, puede combinar un elemento con la función `c` de [Paquetes y páginas de ayuda]. Use la misma convención con cada elemento:
+Cada tipo de vector atómico tiene su propia convención (descrita a continuación). R reconocerá la convención y la usará para crear un vector atómico del tipo apropiado. Si desea crear vectores atómicos que tengan más de un elemento, puede combinar un elemento con la función `c` de [Paquetes y Páginas de ayuda](#packages). Use la misma convención con cada elemento:
 
 ```r
 ent <- c(1L, 5L)
@@ -90,7 +90,7 @@ sum(text)
 
 ### Dobles
 
-Un vector doble almacena números regulares. Los números pueden ser positivos o negativos, grandes o pequeños, y tener dígitos a la derecha del lugar decimal o no. En general, R guardará cualquier número que escriba en R como un doble. Entonces, por ejemplo, el dado que hiciste en [Proyecto 1: Dados ponderados] era un objeto doble:
+Un vector doble almacena números regulares. Los números pueden ser positivos o negativos, grandes o pequeños, y tener dígitos a la derecha del lugar decimal o no. En general, R guardará cualquier número que escriba en R como un doble. Entonces, por ejemplo, el dado que hiciste en [Proyecto 1: Dados Ponderados](#dice) era un objeto doble:
 
 ```r
 dado <- c(1, 2, 3, 4, 5, 6)
@@ -477,7 +477,7 @@ class(5)
 ##  "numeric"
 ```
 
-También puede usar `class` para establecer el atributo `clase` de un objeto, pero esto suele ser una mala idea. R esperará que los objetos de una clase compartan ciertas características, como atributos, que su objeto puede no poseer. Aprenderá a crear y utilizar sus propias clases en [Proyecto 3: Máquina Tragamonedas].
+También puede usar `class` para establecer el atributo `clase` de un objeto, pero esto suele ser una mala idea. R esperará que los objetos de una clase compartan ciertas características, como atributos, que su objeto puede no poseer. Aprenderá a crear y utilizar sus propias clases en [Proyecto 3: Máquina Tragamonedas](#slots).
 
 ### Fechas y Horarios
 
@@ -818,7 +818,7 @@ Debe evitar escribir grandes conjuntos de datos a mano siempre que sea posible. 
 
 Creé un archivo para que lo cargues que contiene un data frame de información de naipes, así que no te preocupes por escribir el código. En su lugar, dirija su atención hacia la carga de datos en R.
 
-## Cargando Datos {#loading}
+## Cargar Datos {#loading}
 
 Puede cargar el data frame `Mazo` desde el archivo [_mazo.csv_](https://bit.ly/mazocsv). Tómese un momento para descargar el archivo antes de seguir leyendo. Visite el sitio web, haga clic en "Descargar Zip" y luego descomprima y abra la carpeta que descarga su navegador web. _mazo.csv_ estará dentro.
 
@@ -881,7 +881,7 @@ head(mazo)
 
 R puede abrir muchos tipos de archivos, no solo CSV. Visite [Cargar y Guardar Datos en R](#dataio) para obtener información sobre cómo abrir otros tipos comunes de archivos en R.
 
-## Guardando Datos
+## Guardar Datos
 
 Antes de continuar, guardemos una copia de `mazo` como un nuevo archivo _.csv_. De esa manera, puede enviarlo por correo electrónico a un colega, almacenarlo en una memoria USB o abrirlo en un programa diferente. Puede guardar cualquier data frame en R en un archivo _.csv_ con el comando `write.csv`. Para guardar `mazo`, ejecute:
 
@@ -913,4 +913,4 @@ Puede cargar datos tabulares en un data frame con el botón Import Dataset de RS
 
 Sin embargo, es posible que se encuentre con un archivo específico del programa, pero no con el programa que lo creó. No querría comprar una licencia SAS de varios miles de dólares solo para abrir un archivo SAS. Afortunadamente, R _puede_ abrir muchos tipos de archivos, incluidos archivos de otros programas y bases de datos. R incluso tiene sus propios formatos específicos del programa que pueden ayudarlo a ahorrar memoria y tiempo si sabe que trabajará completamente en R. Si desea obtener más información sobre todas sus opciones para cargar y guardar datos en R, consulte [Cargar y Guardar Datos en R](#dataio).
 
-[Notación de R] se basará en las habilidades que aprendió en este capítulo. Aquí, aprendió cómo almacenar datos en R. En [Notación de R], aprenderá cómo acceder a los valores una vez que se han almacenado. También escribirá dos funciones que le permitirán comenzar a usar su mazo, una función para barajar y una función para repartir.
+[Notación de R](#notation) se basará en las habilidades que aprendió en este capítulo. Aquí, aprendió cómo almacenar datos en R. En [Notación de R](#notation), aprenderá cómo acceder a los valores una vez que se han almacenado. También escribirá dos funciones que le permitirán comenzar a usar su mazo, una función para barajar y una función para repartir.

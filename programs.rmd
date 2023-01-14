@@ -1,6 +1,6 @@
-# Programs {#programs}
+# Programas {#programs}
 
-In this chapter, you will build a real, working slot machine that you can play by running an R function. When you're finished, you'll be able to play it like this:
+En este capítulo, construirá una máquina tragamonedas real y funcional que puede jugar ejecutando una función R. Cuando termines, podrás jugarlo así:
 
 ```r
 play()
@@ -12,48 +12,48 @@ play()
 ## $80
 ```
 
-The `play` function will need to do two things. First, it will need to randomly generate three symbols; and, second, it will need to calculate a prize based on those symbols. 
+La función `play` necesitará hacer dos cosas. Primero, necesitará generar aleatoriamente tres símbolos; y, segundo, necesitará calcular un premio basado en esos símbolos. 
 
-The first step is easy to simulate. You can randomly generate three symbols with the `sample` function—just like you randomly "rolled" two dice in [Project 1: Weighted Dice]. The following function generates three symbols from a group of common slot machine symbols: diamonds (`DD`), sevens (`7`), triple bars (`BBB`), double bars (`BB`), single bars (`B`), cherries (`C`), and zeroes (`0`). The symbols are selected randomly, and each symbol appears with a different probability:
+El primer paso es fácil de simular. Puede generar aleatoriamente tres símbolos con la función `sample`, tal como "lanzó" aleatoriamente dos dados en [Proyecto 1: Dados Ponderados](#dice). La siguiente función genera tres símbolos de un grupo de símbolos comunes de máquinas tragamonedas: diamantes (`DD`), sietes (`7`), barras triples (`BBB`), barras dobles (`BB`), barras simples (`B `), cerezas (`C`) y ceros (`0`). Los símbolos se seleccionan al azar y cada símbolo aparece con una probabilidad diferente:
 
 ```r
-get_symbols <- function() {
-  wheel <- c("DD", "7", "BBB", "BB", "B", "C", "0")
-  sample(wheel, size = 3, replace = TRUE, 
+obt_simbolos() <- function() {
+  rueda <- c("DD", "7", "BBB", "BB", "B", "C", "0")
+  sample(rueda, size = 3, replace = TRUE, 
     prob = c(0.03, 0.03, 0.06, 0.1, 0.25, 0.01, 0.52))
 }
 ```
 
-You can use `get_symbols` to generate the symbols used in your slot machine: 
+Puedes usar `obt_simbolos()` para generar los símbolos usados en tu máquina tragamonedas: 
 
 ```r
-get_symbols()
+obt_simbolos()
 ## "BBB" "0"   "C"  
 
-get_symbols()
+obt_simbolos()
 ## "0" "0" "0"
 
-get_symbols()
+obt_simbolos()
 ## "7" "0" "B"
 ```
 
-`get_symbols` uses the probabilities observed in a group of video lottery terminals from Manitoba, Canada. These slot machines became briefly controversial in the 1990s, when a reporter decided to test their payout rate. The machines appeared to pay out only 40 cents on the dollar, even though the manufacturer claimed they would pay out 92 cents on the dollar. The original data collected on the machines and a description of the controversy is available online in [a journal article by W. John Braun](http://bit.ly/jse_Braun). The controversy died down when additional testing showed that the manufacturer was correct.
+`obt_simbolos` utiliza las probabilidades observadas en un grupo de Terminales de Video Lotería de Manitoba, Canadá. Estas máquinas tragamonedas se volvieron brevemente controvertidas en la década de 1990, cuando un reportero decidió probar su tasa de pago. Las máquinas parecían pagar solo 40 centavos por dólar, aunque el fabricante afirmó que pagarían 92 centavos por dólar. Los datos originales recopilados en las máquinas y una descripción de la controversia están disponibles en línea en [un artículo de revista de W. John Braun](http://bit.ly/jse_Braun). La controversia se calmó cuando las pruebas adicionales mostraron que el fabricante tenía razón.
 
-The Manitoba slot machines use the complicated payout scheme shown in Table \@ref(tab:prizes). A player will win a prize if he gets:
+Las máquinas tragamonedas de Manitoba utilizan el complicado esquema de pagos que se muestra en la Tabla \@ref(tab:prizes). Un jugador ganará un premio si obtiene:
 
-* Three of the same type of symbol (except for three zeroes)
-* Three bars (of mixed variety)
-* One or more cherries
+* Tres del mismo tipo de símbolo (excepto tres ceros)
+* Tres barras (de variedad mixta)
+* Una o más cerezas
 
-Otherwise, the player receives no prize. 
+De lo contrario, el jugador no recibe ningún premio. 
 
-The monetary value of the prize is determined by the exact combination of symbols and is further modified by the presence of diamonds. Diamonds are treated like "wild cards," which means they can be considered any other symbol if it would increase a player's prize. For example, a player who rolls `7` `7` `DD` would earn a prize for getting three sevens. There is one exception to this rule, however: a diamond cannot be considered a cherry unless the player also gets one real cherry. This prevents a dud roll like, `0` `DD` `0` from being scored as `0` `C` `0`. 
+El valor monetario del premio está determinado por la combinación exacta de símbolos y se modifica aún más por la presencia de diamantes. Los diamantes se tratan como "comodines", lo que significa que pueden considerarse cualquier otro símbolo si aumentara el premio de un jugador. Por ejemplo, un jugador que lanza `7` `7` `DD` ganaría un premio por obtener tres sietes. Sin embargo, hay una excepción a esta regla: un diamante no se puede considerar una cereza a menos que el jugador también obtenga una cereza real. Esto evita que una tirada sin fondos como `0` `DD` `0` se puntúe como `0` `C` `0`. 
 
-Diamonds are also special in another way. Every diamond that appears in a combination doubles the amount of the final prize. So `7` `7` `DD` would actually be scored _higher_ than `7` `7` `7`. Three sevens would earn you $80, but two sevens and a diamond would earn you $160. One seven and two diamonds would be even better, resulting in a prize that has been doubled twice, or $320. A jackpot occurs when a player rolls `DD` `DD` `DD`. Then a player earns $100 doubled three times, which is $800.
+Los diamantes también son especiales de otra manera. Cada diamante que aparece en una combinación duplica el importe del premio final. Así que `7` `7` `DD` en realidad tendría una puntuación _más alta_ que `7` `7` `7`. Tres sietes te darían $80, pero dos sietes y un diamante te darían $160. Un siete y dos diamantes sería aún mejor, lo que daría como resultado un premio que se ha duplicado dos veces, o $320. Un premio mayor ocurre cuando un jugador lanza `DD` `DD` `DD`. Luego, un jugador gana $100 duplicados tres veces, lo que equivale a $800.
 
-Table: (\#tab:prizes) Each play of the slot machine costs $1. A player's symbols determine how much they win. Diamonds (`DD`) are wild, and each diamond doubles the final prize. * = any symbol.
+Table: (\#tab:prizes) Cada juego de la máquina tragamonedas cuesta $1. Los símbolos de un jugador determinan cuánto gana. Los diamantes (`DD`) son comodines y cada diamante duplica el premio final. * = cualquier símbolo.
 
-|Combination|Prize($)
+|Combinación|Premios($)
 |-----------|--------
 |`DD  DD  DD`|100
 |`7  7  7`|80
@@ -61,7 +61,7 @@ Table: (\#tab:prizes) Each play of the slot machine costs $1. A player's symbols
 |`BB  BB  BB`|25
 |`B  B  B`|10
 |`C  C  C`|10
-|Any combination of bars|5
+|Cualquier combinación de barras|5
 |`C  C  *`|5
 |`C  *  C`|5
 |`*  C  C`|5
@@ -69,108 +69,108 @@ Table: (\#tab:prizes) Each play of the slot machine costs $1. A player's symbols
 |`*  C  *`|2
 |`*  *  C`|2
 
-To create your `play` function, you will need to write a program that can take the output of `get_symbols` and calculate the correct prize based on  Table \@ref(tab:prizes). 
+Para crear su función `play`, necesitará escribir un programa que pueda tomar la salida de `obt_simbolos` y calcular el premio correcto basado en Tabla \@ref(tab:prizes).
 
-In R, programs are saved either as R scripts or as functions. We'll save your program as a function named `score`. When you are finished, you will be able to use `score` to calculate a prize like this:
+En R, los programas se guardan como scripts de R o como funciones. Guardaremos su programa como una función llamada `puntuacion`. Cuando termines, podrás usar `puntuacion` para calcular un premio como este:
 
 ```r
-score(c("DD", "DD", "DD"))
+puntuacion(c("DD", "DD", "DD"))
 ## 800
 ```
 
-After that it will be easy to create the full slot machine, like this:
+Después de eso, será fácil crear la máquina tragamonedas completa, así:
 
 ```r
 play <- function() {
-  symbols <- get_symbols()
-  print(symbols)
-  score(symbols)
+  simbolos <- obt_simbolos()
+  print(simbolos)
+  puntuacion(simbolos)
 }
 ```
 
 ```{block2, type = "rmdnote"}
-The `print` command prints its output to the console window, which makes `print` a useful way to display messages from within the body of a function.
+El comando `print` imprime su salida en la ventana de la consola, lo que hace que `print` sea una forma útil de mostrar mensajes desde el cuerpo de una función.
 ```
 
-You may notice that `play` calls a new function, `print`. This will help `play` display the three slot machine symbols, since they do not get returned by the last line of the function. The `print` command prints its output to the console window -- even if R calls it from within a function.
+Puede notar que `play` llama a una nueva función, `print`. Esto ayudará a `play` a mostrar los tres símbolos de máquinas tragamonedas, ya que la última línea de la función no los devuelve. El comando `print` imprime su salida en la ventana de la consola, incluso si R lo llama desde dentro de una función.
 
-In [Project 1: Weighted Dice], I encouraged you to write all of your R code in an R script, a text file where you can compose and save code. That advice will become very important as you work through this chapter. Remember that you can open an R script in RStudio by going to the menu bar and clicking on File > New File > R Script.
+En [Proyecto 1: Dados Ponderados](#dice), lo animé a escribir todo su código R en un script R, un archivo de texto donde puede redactar y guardar el código. Ese consejo será muy importante a medida que avance en este capítulo. Recuerde que puede abrir un script R en RStudio yendo a la barra de menú y haciendo clic en  File > New File > R Script.
 
-## Strategy
+## Estrategia
 
-Scoring slot-machine results is a complex task that will require a complex algorithm. You can make this, and other coding tasks, easier by using a simple strategy:
+La puntuación de los resultados de las máquinas tragamonedas es una tarea compleja que requerirá un algoritmo complejo. Puede facilitar esta y otras tareas de codificación utilizando una estrategia simple:
 
-* Break complex tasks into simple subtasks.
-* Use concrete examples.
-* Describe your solutions in English, then convert them to R.
+* Dividir tareas complejas en subtareas simples.
+* Utilice ejemplos concretos.
+* Describa sus soluciones en español, luego conviértalas a R.
 
-Let's start by looking at how you can divide a program into subtasks that are simple to work with.
+Comencemos por ver cómo puede dividir un programa en subtareas con las que es fácil trabajar.
 
-A program is a set of step-by-step instructions for your computer to follow. Taken together, these instructions may accomplish something very sophisticated. Taken apart, each individual step will likely be simple and straightforward. 
+Un programa es un conjunto de instrucciones paso a paso que debe seguir su computadora. En conjunto, estas instrucciones pueden lograr algo muy sofisticado. Por separado, cada paso individual probablemente será simple y directo. 
 
-You can make coding easier by identifying the individual steps or subtasks within your program. You can then work on each subtask separately. If a subtask seems complicated, try to divide it again into even subtasks that are even more simple. You can often reduce an R program into substasks so simple that each can be performed with a preexisting function. 
+Puede facilitar la codificación identificando los pasos o subtareas individuales dentro de su programa. A continuación, puede trabajar en cada subtarea por separado. Si una subtarea parece complicada, intente dividirla nuevamente en subtareas pares que sean aún más simples. A menudo, puede reducir un programa de R en subtareas tan simples que cada una se puede realizar con una función preexistente. 
 
-R programs contain two types of subtasks: sequential steps and parallel cases.
+Los programas de R contienen dos tipos de subtareas: pasos secuenciales y casos paralelos.
 
-### Sequential Steps
+### Pasos Secuenciales
 
-One way to subdivide a program is into a series of sequential steps. The `play` function takes the approach, shown in Figure \@ref(fig:subdivide1). First, it generates three symbols (step 1), then it displays them in the console window (step 2), and then it scores them (step 3): 
+Una forma de subdividir un programa es en una serie de pasos secuenciales. La función `play` toma el enfoque que se muestra en la Figura \@ref(fig:subdivide1). Primero, genera tres símbolos (paso 1), luego los muestra en la ventana de la consola (paso 2) y luego los puntúa (paso 3): 
 
 ```r
 play <- function() {
 
-  # step 1: generate symbols
-  symbols <- get_symbols()
+  # step 1: genera simbolos
+  simbolos <- obt_simbolos()
 
-  # step 2: display the symbols
-  print(symbols)
+  # step 2: muestra los simbolos
+  print(simbolos)
 
-  # step 3: score the symbols
-  score(symbols)
+  # step 3: puntua los simbolos
+  puntuacion(simbolos)
 }
 ```
 
-To have R execute steps in sequence, place the steps one after another in an R script or function body. 
+Para que R ejecute los pasos en secuencia, coloque los pasos uno tras otro en un script de R o en el cuerpo de una función. 
 
-```{r subdivide1, echo = FALSE, fig.cap = "The play function uses a series of steps."}
+```{r subdivide1, echo = FALSE, fig.cap = "La función play utiliza una serie de pasos."}
 knitr::include_graphics("images/hopr_0701.png")
 ```
 
-### Parallel Cases
+### Casos Paralelos
 
-Another way to divide a task is to spot groups of similar cases within the task. Some tasks require different algorithms for different groups of input. If you can identify those groups, you can work out their algorithms one at a time. 
+Otra forma de dividir una tarea es detectar grupos de casos similares dentro de la tarea. Algunas tareas requieren diferentes algoritmos para diferentes grupos de entrada. Si puede identificar esos grupos, puede resolver sus algoritmos uno a la vez. 
 
-For example, `score` will need to calculate the prize one way if `symbols` contains three of a kind (In that case, `score` will need to match the common symbol to a prize). `score` will need to calculate the prize a second way if the symbols are all bars (In that case, `score` can just assign a prize of $5). And, finally, `score` will need to calculate the prize in a third way if the symbols do not contain three of a kind or all bars (In that case, `score` must count the number of cherries present). `score` will never use all three of these algorithms at once; it will always choose just one algorithm to run based on the combination of symbols. 
+Por ejemplo, `puntuacion` necesitará calcular el premio de una manera si `simbolos` contiene tres de una clase (en ese caso, `puntuacion` necesitará hacer coincidir el símbolo común con un premio). `puntuacion` necesitará calcular el premio de una segunda manera si los símbolos son todos barras (en ese caso, `puntuacion` puede asignar un premio de $5). Y, por último, `puntuacion` necesitará calcular el premio de una tercera forma si los símbolos no contienen tríos o todas las barras (en ese caso, `puntuacion` debe contar el número de cerezas presentes). `puntuacion` nunca usará estos tres algoritmos a la vez; siempre elegirá solo un algoritmo para ejecutar en función de la combinación de símbolos. 
 
-Diamonds complicate all of this because diamonds can be treated as wild cards. Let's ignore that for now and focus on the simpler case where diamonds double the prize but are not wilds. `score` can double the prize as necessary after it runs one of the following algorithms, as shown in Figure \@ref(fig:subdivide2).
+Los diamantes complican todo esto porque los diamantes pueden ser tratados como comodines. Ignoremos eso por ahora y concentrémonos en el caso más simple donde los diamantes duplican el premio pero no son comodines. `puntuacion` puede duplicar el premio según sea necesario después de ejecutar uno de los siguientes algoritmos, como se muestra en la Figura \@ref(fig:subdivide2).
 
-Adding the `score` cases to the `play` steps reveals a strategy for the complete slot machine program, as shown in Figure \@ref(fig:subdivide3).
+Agregar los casos de `puntuación` a los pasos de `play` revela una estrategia para el programa completo de máquinas tragamonedas, como se muestra en la Figura \@ref(fig:subdivide3).
 
-We've already solved the first few steps in this strategy. Our program can get three slot machine symbols with the `get_symbols` function. Then it can display the symbols with the `print` function. Now let's examine how the program can handle the parallel score cases.
+Ya hemos resuelto los primeros pasos de esta estrategia. Nuestro programa puede obtener tres símbolos de máquinas tragamonedas con la función `obt_simbolos`. Entonces puede mostrar los símbolos con la función `print`. Ahora examinemos cómo el programa puede manejar los casos de puntuación paralela.
 
-```{r subdivide2, echo = FALSE, fig.cap = "The score function must distinguish between parallel cases."}
+```{r subdivide2, echo = FALSE, fig.cap = "La función de puntuación debe distinguir entre casos paralelos."}
 knitr::include_graphics("images/hopr_0702.png")
 ```
 
-```{r subdivide3, echo = FALSE, fig.cap = "The complete slot machine simulation will involve subtasks that are arranged both in series and in parallel."}
+```{r subdivide3, echo = FALSE, fig.cap = "La simulación completa de la máquina tragamonedas implicará subtareas que se organizan tanto en serie como en paralelo."}
 knitr::include_graphics("images/hopr_0703.png")
 ```
 
-## if Statements
+## Declaraciones if
 
-Linking cases together in parallel requires a bit of structure; your program faces a fork in the road whenever it must choose between cases. You can help the program navigate this fork with an `if` statement.
+Vincular casos en paralelo requiere un poco de estructura; su programa se enfrenta a una bifurcación en el camino cada vez que debe elegir entre casos. Puedes ayudar al programa a navegar por esta bifurcación con una instrucción `if`.
 
-An `if` statement tells R to do a certain task for a certain case. In English you would say something like, "If this is true, do that." In R, you would say:
+Una declaración `if` le dice a R que haga una tarea determinada para un caso determinado. En español dirías algo como: "Si esto es cierto, haz aquello". En R, dirías:
 
 ```r
-if (this) {
-  that
+if (esto) {
+  aquello
 }
 ```
 
-The `this` object should be a logical test or an R expression that evaluates to a single `TRUE` or `FALSE`. If `this` evaluates to `TRUE`, R will run all of the code that appears between the braces that follow the `if` statement (i.e., between the `{` and `}` symbols). If `this` evaluates to `FALSE`, R will skip the code between the braces without running it.
+El objeto `esto` debe ser una prueba lógica o una expresión de R que se evalúe a un solo `TRUE` o `FALSE`. Si `esto` se evalúa como `TRUE`, R ejecutará todo el código que aparece entre las llaves que siguen a la instrucción `if` (es decir, entre los símbolos `{` y `}`). Si `esto` se evalúa como `FALSE`, R omitirá el código entre llaves sin ejecutarlo.
 
-For example, you could write an `if` statement that ensures some object, `num`, is positive:
+Por ejemplo, podría escribir una declaración `if` que asegure que algún objeto, `num`, sea positivo:
 
 ```r
 if (num < 0) {
@@ -178,7 +178,7 @@ if (num < 0) {
 }
 ```
 
-If `num < 0` is `TRUE`, R will multiply `num` by negative one, which will make `num` positive: 
+Si `num < 0` es `TRUE`, R multiplicará `num` por uno negativo, lo que hará que `num` sea positivo: 
 
 ```r
 num <- -2
@@ -191,7 +191,7 @@ num
 ## 2
 ```
 
-If `num < 0` is `FALSE`, R will do nothing and `num` will remain as it is—positive (or zero):
+Si `num < 0` es `FALSE`, R no hará nada y `num` permanecerá como está: positivo (o cero):
 
 ```r
 num <- 4
@@ -204,32 +204,30 @@ num
 ## 4
 ```
 
-The condition of an `if` statement must evaluate to a _single_ `TRUE` or `FALSE`. If the condition creates a vector of `TRUE`s and `FALSE`s (which is easier to make than you may think), your `if` statement will print a warning message and use only the first element of the vector. Remember that you can condense vectors of logical values to a single `TRUE` or `FALSE` with the functions `any` and `all`.
+La condición de una declaración `if` debe evaluarse como un _único_ `TRUE` o `FALSE`. Si la condición crea un vector de `TRUE` y `FALSE` (que es más fácil de hacer de lo que piensa), su declaración `if` imprimirá un mensaje de advertencia y usará solo el primer elemento del vector. Recuerda que puedes condensar vectores de valores lógicos en un solo `TRUE` o `FALSE` con las funciones `any` y `all`.
 
-You don't have to limit your `if` statements to a single line of code; you can include as many lines as you like between the braces. For example, the following code uses many lines to ensure that `num` is positive. The additional lines print some informative statements if `num` begins as a negative number. R will skip the entire code block—`print` statements and all—if `num` begins as a positive number:
+No tienes que limitar tus declaraciones `if` a una sola línea de código; puede incluir tantas líneas como desee entre las llaves. Por ejemplo, el siguiente código usa muchas líneas para asegurar que `num` sea positivo. Las líneas adicionales imprimen algunas declaraciones informativas si `num` comienza como un número negativo. R omitirá todo el bloque de código, declaraciones `print` y todo, si `num` comienza como un número positivo:
 
 ```r
 num <- -1
 
 if (num < 0) {
-  print("num is negative.")
-  print("Don't worry, I'll fix it.")
+  print("num es negativo.")
+  print("No te preocupes, lo arreglaré.")
   num <- num * -1
-  print("Now num is positive.")
+  print("Ahora num es positivo.")
 }
-## "num is negative."
-## "Don't worry, I'll fix it."
-## "Now num is positive."
+## "num es negativo."
+## "No te preocupes, lo arreglaré."
+## "Ahora num es positivo."
 
 num
 ## 1
 ```
 
-Try the following quizzes to develop your understanding of `if` statements.
+Pruebe las siguientes pruebas para desarrollar su comprensión de las declaraciones `if`.
 
-```{exercise, name = "Quiz A"}
-What will this return?
-```
+**Ejercicio 10.1 (Cuestionario A)** ¿Qué devolverá esto?
 
 ```r
 x <- 1
@@ -240,12 +238,10 @@ x
 ```
 
 ```{solution}
-The code will return the number 2. `x` begins as 1, and then R encounters the `if` statement. Since the condition evaluates to `TRUE`, R will run `x <- 2`, changing the value of `x`.
+El código devolverá el número 2. `x` comienza como 1, y luego R encuentra la declaración `if`. Dado que la condición se evalúa como `TRUE`, R ejecutará `x <- 2`, cambiando el valor de `x`.
 ```
 
-```{exercise, name = "Quiz B"}
-What will this return?
-```
+**Ejercicio 10.2 (Cuestionario B)** ¿Qué devolverá esto?
 
 ```r
 x <- 1
@@ -256,12 +252,10 @@ x
 ```
 
 ```{solution}
-This code will also return the number 2. It works the same as the code in Quiz A, except the condition in this statement is already `TRUE`. R doesn't even need to evaluate it. As a result, the code inside the `if` statement will be run, and `x` will be set to 2. 
+Este código también devolverá el número 2. Funciona igual que el código en la prueba A, excepto que la condición en esta declaración ya es `TRUE`. R ni siquiera necesita evaluarlo. Como resultado, se ejecutará el código dentro de la instrucción `if` y `x` se establecerá en 2. 
 ```
 
-```{exercise, name = "Quiz C"}
-What will this return?
-```
+**Ejercicio 10.3 (Cuestionario C)** ¿Qué devolverá esto?
 
 ```r
 x <- 1
@@ -275,31 +269,30 @@ x
 ```
 
 ```{solution}
-Once again, the code will return the number 2. `x` starts out as 1, and the condition of the first `if` statement will evaluate to `TRUE`, which causes R to run the code in the body of the `if` statement. First, R sets `x` equal to 2, then R evaluates the second `if` statement, which is in the body of the first. This time `x == 1` will evaluate to `FALSE` because `x` now equals 2. As a result, R ignores `x <- 3` and exits both `if` statements. 
+Una vez más, el código devolverá el número 2. `x` comienza como 1, y la condición de la primera declaración `if` se evaluará como `TRUE`, lo que hace que R ejecute el código en el cuerpo de la esa declaración `if`. Primero, R establece `x` igual a 2, luego R evalúa la segunda declaración `if`, que está en el cuerpo de la primera. Esta vez `x == 1` se evaluará como `FALSE` porque `x` ahora es igual a 2. Como resultado, R ignora `x <- 3` y sale de ambas declaraciones `if`. 
 ```
 
-## else Statements
+## Declaraciones else
 
-`if` statements tell R what to do when your condition is _true_, but you can also tell R what to do when the condition is _false_. `else` is a counterpart to `if` that extends an `if` statement to include a second case. In English, you would say, "If this is true, do plan A; else do plan B." In R, you would say:
+Las declaraciones `if` le dicen a R qué hacer cuando su condición es _verdadera_, pero también puede decirle a R qué hacer cuando la condición es _falsa_. `else` es una contraparte de `if` que extiende una declaración `if` para incluir un segundo caso. En español, dirías: "Si esto es cierto, haz el plan A; de lo contrario, haz el plan B". En R, dirías:
 
 ```r
-if (this) {
+if (esto) {
   Plan A
 } else {
   Plan B
 }
 ```
 
+Cuando `esto` se evalúa como `TRUE`, R ejecutará el código en el primer conjunto de llaves, pero no el código en el segundo. Cuando `esto` se evalúa como `FALSE`, R ejecutará el código en el segundo conjunto de llaves, pero no en el primero. Puede utilizar este arreglo para cubrir todos los casos posibles. Por ejemplo, podría escribir algún código que redondee un decimal al entero más cercano.
 
-When `this` evaluates to `TRUE`, R will run the code in the first set of braces, but not the code in the second. When `this` evaluates to `FALSE`, R will run the code in the second set of braces, but not the first. You can use this arrangement to cover all of the possible cases. For example, you could write some code that rounds a decimal to the nearest integer.
-
-Start with a decimal:
+Comience con un decimal:
 
 ```r
 a <- 3.14
 ```
 
-Then isolate the decimal component with `trunc`:
+Luego aísle el componente decimal con `trunc`:
 
 ```r
 dec <- a - trunc(a)
@@ -308,14 +301,14 @@ dec
 ```
 
 ```{block2, type = "rmdnote"}
-`trunc` takes a number and returns only the portion of the number that appears to the left of the decimal place (i.e., the integer part of the number). 
+`trunc` toma un número y devuelve solo la parte del número que aparece a la izquierda del lugar decimal (es decir, la parte entera del número). 
 ```
 
 ```{block2, type = "rmdnote"}
-`a - trunc(a)` is a convenient way to return the decimal part of `a`.
+`a - trunc(a)` es una forma conveniente de devolver la parte decimal de `a`.
 ```
 
-Then use an `if else` tree to round the number (either up or down):
+Luego use un árbol `if else` para redondear el número (hacia arriba o hacia abajo):
 
 ```r
 if (dec >= 0.5) {
@@ -328,605 +321,594 @@ a
 ## 3
 ```
 
-If your situation has more than two mutually exclusive cases, you can string multiple `if` and `else` statements together by adding a new `if` statement immediately after `else`. For example:
+Si su situación tiene más de dos casos que se excluyen mutuamente, puede unir varias declaraciones `if` y `else` agregando una nueva declaración `if` inmediatamente después de `else`. Por ejemplo:
 
 ```r
 a <- 1
 b <- 1
 
 if (a > b) {
-  print("A wins!")
+  print("¡A gana!")
 } else if (a < b) {
-  print("B wins!")
+  print("¡B gana!")
 } else {
-  print("Tie.")
+  print("Empate.")
 }
-## "Tie."
+## "Empate."
 ```
 
-R will work through the `if` conditions until one evaluates to `TRUE`, then R will ignore any remaining `if` and `else` clauses in the tree. If no conditions evaluate to `TRUE`, R will run the final `else` statement.
+R trabajará a través de las condiciones `if` hasta que una se evalúe como `TRUE`, entonces R ignorará cualquier cláusula `if` y `else` restante en el árbol. Si ninguna condición se evalúa como `TRUE`, R ejecutará la declaración `else` final.
 
-If two `if` statements describe mutually exclusive events, it is better to join the `if` statements with an `else if` than to list them separately. This lets R ignore the second `if` statement whenever the first returns a `TRUE`, which saves work.
+Si dos sentencias `if` describen eventos que se excluyen mutuamente, es mejor unir las sentencias `if` con `else if` que listarlas por separado. Esto le permite a R ignorar la segunda declaración `if` siempre que la primera devuelva un `TRUE`, lo que ahorra trabajo.
 
-You can use `if` and `else` to link the subtasks in your slot-machine function. Open a fresh R script, and copy this code into it. The code will be the skeleton of our final `score` function. Compare it to the flow chart for `score` in Figure \@ref(fig:subdivide2):
+Puede usar `if` y `else` para vincular las subtareas en su función de máquina tragamonedas. Abra un script R nuevo y copie este código en él. El código será el esqueleto de nuestra función `puntuación` final. Compáralo con el diagrama de flujo para `puntuación` en la Figura \@ref(fig:subdivide2):
 
 ```r
-if ( # Case 1: all the same <1>) {
-  prize <- # look up the prize <3>
-} else if ( # Case 2: all bars <2> ) {
-  prize <- # assign $5 <4>
+if ( # Caso 1: todos son iguales <1>) {
+  premio <- # Buscar el premio <3>
+} else if ( # Caso 2: todos barras <2> ) {
+  premio <- # asignar $5 <4>
 } else {
-  # count cherries <5>
-  prize <- # calculate a prize <7>
+  # contar cerezas <5>
+  premio <- # calcular el premio <7>
 }
 
-# count diamonds <6>
-# double the prize if necessary <8>
+# contar diamantes <6>
+# duplicar el premio si es necesario <8>
 ```
 
-Our skeleton is rather incomplete; there are many sections that are just code comments instead of real code. However, we've reduced the program to eight simple subtasks: 
+Nuestro esqueleto es bastante incompleto; hay muchas secciones que son solo comentarios de código en lugar de código real. Sin embargo, hemos reducido el programa a ocho subtareas simples: 
 
-**<1>** - Test whether the symbols are three of a kind.  
-**<2>** - Test whether the symbols are all bars.  
-**<3>** - Look up the prize for three of a kind based on the common symbol.  
-**<4>** - Assign a prize of $5.  
-**<5>** - Count the number of cherries.  
-**<6>** - Count the number of diamonds.  
-**<7>** - Calculate a prize based on the number of cherries.  
-**<8>** -  Adjust the prize for diamonds.  
+**<1>** - Prueba si los símbolos son tres de una clase.
+**<2>** - Prueba si los símbolos son solo barras.
+**<3>** - Busque el premio de tres iguales según el símbolo común.
+***<4>** - Asigne un premio de $5.
+**<5>** - Cuenta el número de cerezas.
+***<6>** - Cuenta el número de diamantes.
+***<7>** - Calcula un premio basado en el número de cerezas.
+***<8>** - Ajustar el premio por diamantes.  
 
-If you like, you can reorganize your flow chart around these tasks, as in Figure \@ref(fig:subdivide4). The chart will describe the same strategy, but in a more precise way. I'll use a diamond shape to symbolize an `if else` decision.
+Si lo desea, puede reorganizar su diagrama de flujo en torno a estas tareas, como en la Figura \@ref(fig:subdivide4). El gráfico describirá la misma estrategia, pero de una manera más precisa. Usaré una forma de diamante para simbolizar una decisión `if else`.
 
-```{r subdivide4, echo = FALSE, fig.cap = "score can navigate three cases with two if else decisions. We can also break some of our tasks into two steps."}
+```{r subdivide4, echo = FALSE, fig.cap = "puntuacion puede navegar tres casos con dos decisiones if else. También podemos dividir algunas de nuestras tareas en dos pasos."}
 knitr::include_graphics("images/hopr_0704.png")
 ```
 
-Now we can work through the subtasks one at a time, adding R code to the `if` tree as we go. Each subtask will be easy to solve if you set up a concrete example to work with and try to describe a solution in English before coding in R.
+Ahora podemos trabajar en las subtareas una a la vez, agregando código de R al árbol `if` a medida que avanzamos. Cada subtarea será fácil de resolver si configura un ejemplo concreto para trabajar e intenta describir una solución en español antes de codificar en R.
 
-The first subtask asks you to test whether the symbols are three of a kind. How should you begin writing the code for this subtask?
+La primera subtarea le pide que pruebe si los símbolos son tres de una clase. ¿Cómo debería comenzar a escribir el código para esta subtarea?
 
-You know that the final `score` function will look something like this:
+Sabes que la función `puntuacion` final se verá así:
 
 ```r
-score <- function(symbols) {
+puntuacion <- function(simbolos) {
 
-  # calculate a prize
+  # calcular el premio
 
-  prize
+  premio
 }
 ```
 
-Its argument, `symbols`, will be the output of `get_symbols`, a vector that contains three character strings. You could start writing `score` as I have written it, by defining an object named `score` and then slowly filling in the body of the function. However, this would be a bad idea. The eventual function will have eight separate parts, and it will not work correctly until _all_ of those parts are written (and themselves work correctly). This means you would have to write the entire `score` function before you could test any of the subtasks. If `score` doesn't work—which is very likely—you will not know which subtask needs fixed.
+Su argumento, `simbolos`, será la salida de `obt_simbolos`, un vector que contiene tres cadenas de caracteres. Podría comenzar a escribir `puntuacion` como lo he escrito, definiendo un objeto llamado `puntuacion` y luego completando lentamente el cuerpo de la función. Sin embargo, esto sería una mala idea. La función eventual tendrá ocho partes separadas, y no funcionará correctamente hasta que _todas_ esas partes estén escritas (y funcionen correctamente). Esto significa que tendría que escribir toda la función `puntuacion` antes de poder probar cualquiera de las subtareas. Si `puntuacion` no funciona, lo cual es muy probable, no sabrá qué subtarea debe corregirse.
 
-You can save yourself time and headaches if you focus on one subtask at a time. For each subtask, create a concrete example that you can test your code on. For example, you know that `score` will need to work on a vector named `symbols` that contains three character strings. If you make a real vector named `symbols`, you can run the code for many of your subtasks on the vector as you go:
-
-```r
-symbols <- c("7", "7", "7")
-```
-
-If a piece of code does not work on `symbols`, you will know that you need to fix it before you move on. You can change the value of `symbols` from subtask to subtask to ensure that your code works in every situation:
+Puede ahorrarse tiempo y dolores de cabeza si se enfoca en una subtarea a la vez. Para cada subtarea, cree un ejemplo concreto en el que pueda probar su código. Por ejemplo, sabe que `puntuacion` necesitará trabajar en un vector llamado `simbolos` que contiene tres cadenas de caracteres. Si crea un vector real llamado `simbolos`, puede ejecutar el código para muchas de sus subtareas en el vector a medida que avanza:
 
 ```r
-symbols <- c("B", "BB", "BBB")
-symbols <- c("C", "DD", "0")
+simbolos <- c("7", "7", "7")
 ```
 
-Only combine your subtasks into a `score` function once each subtask works on a concrete example. If you follow this plan, you will spend more time using your functions and less time trying to figure out why they do not work.
+Si una pieza de código no funciona en `simbolos`, sabrá que necesita arreglarlo antes de continuar. Puedes cambiar el valor de `simbolos` de subtarea a subtarea para asegurarte de que tu código funcione en todas las situaciones:
 
-After you set up a concrete example, try to describe how you will do the subtask in English. The more precisely you can describe your solution, the easier it will be to write your R code.
-
-Our first subtask asks us to "test whether the symbols are three of a kind." This phrase does not suggest any useful R code to me. However, I could describe a more precise test for three of a kind: three symbols will be the same if the first symbol is equal to the second and the second symbol is equal to the third. Or, even more precisely:
-
-_A vector named `symbols` will contain three of the same symbol if the first element of `symbols` is equal to the second element of `symbols` and the second element of `symbols` is equal to the third element of `symbols`_.
-
-```{exercise, name = "Write a Test"}
-Turn the preceding statement into a logical test written in R. Use your knowledge of logical tests, Boolean operators, and subsetting from [R Notation]. The test should work with the vector `symbols` and return a `TRUE` _if and only if_ each element in `symbols` is the same. Be sure to test your code on `symbols`.
+```r
+simbolos <- c("B", "BB", "BBB")
+simbolos <- c("C", "DD", "0")
 ```
 
+Solo combine sus subtareas en una función de `puntuacion` una vez que cada subtarea funcione en un ejemplo concreto. Si sigue este plan, pasará más tiempo usando sus funciones y menos tratando de averiguar por qué no funcionan.
+
+Después de establecer un ejemplo concreto, intente describir cómo realizará la subtarea en español. Cuanto más precisamente pueda describir su solución, más fácil será escribir su código de R.
+
+Nuestra primera subtarea nos pide que "probemos si los símbolos son tres iguales". Esta frase no me sugiere ningún código de R útil. Sin embargo, podría describir una prueba más precisa para el trío: tres símbolos serán iguales si el primer símbolo es igual al segundo y el segundo símbolo es igual al tercero. O, aún más precisamente:
+
+_Un vector llamado `simbolos` contendrá tres del mismo símbolo si el primer elemento de `simbolos` es igual al segundo elemento de `simbolos` y el segundo elemento de `simbolos` es igual al tercer elemento de `simbolos`_.
+
+**Ejercicio 10.4 (Escribe una Prueba)** Convierta la declaración anterior en una prueba lógica escrita en R. Use su conocimiento de pruebas lógicas, operadores booleanos y subconjuntos de [Notación de R](#notation). La prueba debería funcionar con el vector `simbolos` y devolver un `TRUE` _si y solo si_ cada elemento en `simbolos` es el mismo. Asegúrese de probar su código en `simbolos`.
 
 ```{solution}
-Here are a couple of ways to test that `symbols` contains three of the same symbol. The first method parallels the English suggestion above, but there are other ways to do the same test. There is no right or wrong answer, so long as your solution works, which is easy to check because you've created a vector named `symbols`:
+Aquí hay un par de formas de probar que `simbolos` contiene tres del mismo símbolo. El primer método es paralelo a la sugerencia en español anterior, pero hay otras formas de hacer la misma prueba. No hay una respuesta correcta o incorrecta, siempre y cuando su solución funcione, lo cual es fácil de comprobar porque ha creado un vector llamado `simbolos`:
 ```
 
 ```r
-symbols
+simbolos
 ##  "7" "7" "7"
 
-symbols[1] == symbols[2] & symbols[2] == symbols[3]
+simbolos[1] == simbolos[2] & simbolos[2] == simbolos[3]
 ## TRUE
 
-symbols[1] == symbols[2] & symbols[1] == symbols[3]
+simbolos[1] == simbolos[2] & simbolos[1] == simbolos[3]
 ## TRUE
 
-all(symbols == symbols[1])
+all(simbolos == simbolos[1])
 ## TRUE
 ```
-As your vocabulary of R functions broadens, you'll think of more ways to do basic tasks. One method that I like for checking three of a kind is:
+A medida que su vocabulario de funciones de R se amplíe, pensará en más formas de realizar tareas básicas. Un método que me gusta para verificar si tres son iguales es:
 
 ```r
-length(unique(symbols) == 1)
+length(unique(simbolos)) == 1
 ```
 
-The `unique` function returns every unique term that appears in a vector. If your `symbols` vector contains three of a kind (i.e., one unique term that appears three times), then `unique(symbols)` will return a vector of length `1`.
+La función `unique` devuelve cada término único que aparece en un vector. Si su vector `simbolos` contiene tres iguales (es decir, un término único que aparece tres veces), entonces `unique(simbolos)` devolverá un vector de longitud `1`.
 
-Now that you have a working test, you can add it to your slot-machine script:
+Ahora que tiene una prueba que funciona, puede agregarla a la secuencia de comandos de su máquina tragamonedas:
 
 ```r
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
 
-if (same) {
-  prize <- # look up the prize
-} else if ( # Case 2: all bars ) {
-  prize <- # assign $5
+if (iguales) {
+  premio <- # Buscar el premio
+} else if ( # Caso 2: todos barras) {
+  premio <- # asignar $5
 } else {
-  # count cherries
-  prize <- # calculate a prize
+  # contar cerezas
+  premio <- # calcular el premio
 }
 
-# count diamonds
-# double the prize if necessary
+# contar diamantes
+# duplicar el premio si es necesario
 ```
 
 ```{block2, type = "rmdnote"}
-`&&` and `||` behave like `&` and `|` but can sometimes be more efficient. The double operators will not evaluate the second test in a pair of tests if the first test makes the result clear. For example, if `symbols[1]` does not equal `symbols[2]` in the next expression, `&&` will not evaluate `symbols[2] == symbols[3]`; it can immediately return a `FALSE` for the whole expression (because `FALSE & TRUE` and `FALSE & FALSE` both evaluate to `FALSE`). This efficiency can speed up your programs; however, double operators are not appropriate everywhere. `&&` and `||` are not vectorized, which means they can only handle a single logical test on each side of the operator.
+`&&` y `||` se comportan como `&` y `|` pero a veces pueden ser más eficientes. Los operadores dobles no evaluarán la segunda prueba en un par de pruebas si la primera prueba aclara el resultado. Por ejemplo, si `simbolos[1]` no es igual a `simbolos[2]` en la siguiente expresión, `&&` no evaluará `simbolos[2] == simbolos[3]`; puede devolver inmediatamente un `FALSE` para toda la expresión (porque `FALSE & TRUE` y `FALSE & FALSE` ambos se evalúan como `FALSE`). Esta eficiencia puede acelerar sus programas; sin embargo, los operadores dobles no son apropiados en todas partes. `&&` y `||` no están vectorizados, lo que significa que solo pueden manejar una sola prueba lógica en cada lado del operador.
 ```
 
-The second prize case occurs when all the symbols are a type of bar, for example, `B`, `BB`, and `BBB`. Let's begin by creating a concrete example to work with:
+El segundo caso de premio ocurre cuando todos los símbolos son un tipo de barra, por ejemplo, `B`, `BB` y `BBB`. Empecemos por crear un ejemplo concreto con el que trabajar:
 
 ```r
-symbols <- c("B", "BBB", "BB")
+simbolos <- c("B", "BBB", "BB")
 ```
 
 
-```{exercise, name = "Test for All Bars"}
-Use R's logical and Boolean operators to write a test that will determine whether a vector named `symbols` contains only symbols that are a type of bar. Check whether your test works with our example `symbols` vector. Remember to describe how the test should work in English, and then convert the solution to R.
-```
-
+**Ejercicio 10.5 (Probar si todos son barras)** Use los operadores lógicos y booleanos de R para escribir una prueba que determinará si un vector llamado `simbolos` contiene solo símbolos que son un tipo de barra. Compruebe si su prueba funciona con nuestro vector de `simbolos` de ejemplo. Recuerde describir cómo debería funcionar la prueba en español y luego convertir la solución a R.
 
 
 ```{solution}
-As with many things in R, there are multiple ways to test whether `symbols` contains all bars. For example, you could write a very long test that uses multiple Boolean operators, like this:
+Al igual que con muchas cosas en R, hay varias formas de probar si los `simbolos` contienen todos barras. Por ejemplo, podría escribir una prueba muy larga que use múltiples operadores booleanos, como esta:
 ```
 
 ```r
-(symbols[1] == "B" | symbols[1] == "BB" | symbols[1] == "BBB") &
-  (symbols[2] == "B" | symbols[2] == "BB" | symbols[2] == "BBB") &
-  (symbols[3] == "B" | symbols[3] == "BB" | symbols[3] == "BBB")
+(simbolos[1] == "B" | simbolos[1] == "BB" | simbolos[1] == "BBB") &
+  (simbolos[2] == "B" | simbolos[2] == "BB" | simbolos[2] == "BBB") &
+  (simbolos[3] == "B" | simbolos[3] == "BB" | simbolos[3] == "BBB")
 ## TRUE
 ```
 
-However, this is not a very efficient solution, because R has to run nine logical tests (and you have to type them). You can often replace multiple `|` operators with a single `%in%`. Also, you can check that a test is true for each element in a vector with `all`. These two changes shorten the preceding code to:
+Sin embargo, esta no es una solución muy eficiente, porque R tiene que ejecutar nueve pruebas lógicas (y usted tiene que escribirlas). A menudo puede reemplazar múltiples operadores `|` con un único `%in%`. Además, puede verificar que una prueba sea verdadera para cada elemento en un vector con `all`. Estos dos cambios acortan el código anterior a:
 
 ```r
-all(symbols %in% c("B", "BB", "BBB"))
+all(simbolos %in% c("B", "BB", "BBB"))
 ## TRUE
 ```
 
-Let's add this code to our script:
+Agreguemos este código a nuestro script:
 
 ```r
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-bars <- symbols %in% c("B", "BB", "BBB")
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+barras <- simbolos %in% c("B", "BB", "BBB")
 
-if (same) {
-  prize <- # look up the prize
-} else if (all(bars)) {
-  prize <- # assign $5
+if (iguales) {
+  prize <- # Buscar el premio
+} else if (all(barras)) {
+  prize <- # asiganr $5
 } else {
-  # count cherries
-  prize <- # calculate a prize
+  # contar cerezas
+  premio <- # calcular el premio
 }
 
-# count diamonds
-# double the prize if necessary
+# contar diamantes
+# duplicar el premio si es necesario
 ```
 
-You may have noticed that I split this test up into two steps, `bars` and `all(bars)`. That's just a matter of personal preference. Wherever possible, I like to write my code so it can be read with function and object names conveying what they do.
+Es posible que haya notado que dividí esta prueba en dos pasos, `barras` y `all(barras)`. Eso es solo una cuestión de preferencia personal. Siempre que sea posible, me gusta escribir mi código para que pueda leerse con nombres de funciones y objetos que transmitan lo que hacen.
 
-You also may have noticed that our test for Case 2 will capture some symbols that should be in Case 1 because they contain three of a kind:
+También puede haber notado que nuestra prueba para el Caso 2 capturará algunos símbolos que deberían estar en el Caso 1 porque contienen tres de una clase:
 
 ```r
-symbols <- c("B", "B", "B")
-all(symbols %in% c("B", "BB", "BBB"))
+simbolos <- c("B", "B", "B")
+all(simbolos %in% c("B", "BB", "BBB"))
 ## TRUE
 ```
 
-That won't be a problem, however, because we've connected our cases with `else if` in the `if` tree. As soon as R comes to a case that evaluates to `TRUE`, it will skip over the rest of the tree. Think of it this way: each `else` tells R to only run the code that follows it _if none of the previous conditions have been met_. So when we have three of the same type of bar, R will evaluate the code for Case 1 and then skip the code for Case 2 (and Case 3).
+Eso no será un problema, sin embargo, porque hemos conectado nuestros casos con `else if` en el árbol `if`. Tan pronto como R llegue a un caso que se evalúe como `VERDADERO`, se saltará el resto del árbol. Piénselo de esta manera: cada `else` le dice a R que solo ejecute el código que le sigue _si no se ha cumplido ninguna de las condiciones anteriores_. Entonces, cuando tenemos tres del mismo tipo de barra, R evaluará el código para el Caso 1 y luego omitirá el código para el Caso 2 (y el Caso 3).
 
-Our next subtask is to assign a prize for `symbols`. When the `symbols` vector contains three of the same symbol, the prize will depend on which symbol there are three of. If there are three `DD`s, the prize will be $100; if there are three `7`s, the prize will be $80; and so on. 
+Nuestra próxima subtarea es asignar un premio a los `simbolos`. Cuando el vector de `simbolos` contiene tres del mismo símbolo, el premio dependerá de qué símbolo haya tres. Si hay tres `DD`s, el premio será de $100; si hay tres `7`s, el premio será de $80; y así.
 
-This suggests another `if` tree. You could assign a prize with some code like this:
+Esto sugiere otro árbol `if`. Podrías asignar un premio con algún código como este:
 
 ```r
-if (same) {
-  symbol <- symbols[1]
-  if (symbol == "DD") {
-    prize <- 800
-  } else if (symbol == "7") {
-    prize <- 80
-  } else if (symbol == "BBB") {
-    prize <- 40
-  } else if (symbol == "BB") {
-    prize <- 5
-  } else if (symbol == "B") {
-    prize <- 10
-  } else if (symbol == "C") {
-    prize <- 10
-  } else if (symbol == "0") {
-    prize <- 0
+if (iguales) {
+  simbolo <- simbolos[1]
+  if (simbolo == "DD") {
+    premmio <- 800
+  } else if (simbolo == "7") {
+    premio <- 80
+  } else if (simbolo == "BBB") {
+    premio <- 40
+  } else if (simbolo == "BB") {
+    premio <- 5
+  } else if (simbolo == "B") {
+    premio <- 10
+  } else if (simbolo == "C") {
+    premio <- 10
+  } else if (simbol == "0") {
+    premio <- 0
   }
 }
 ```
 
-While this code will work, it is a bit long to write and read, and it may require R to perform multiple logical tests before delivering the correct prize. We can do better with a different method.
+Si bien este código funcionará, es un poco largo de escribir y leer, y puede requerir que R realice varias pruebas lógicas antes de entregar el premio correcto. Podemos hacerlo mejor con un método diferente.
 
-## Lookup Tables
+## Tablas de Búsqueda
 
-Very often in R, the simplest way to do something will involve subsetting. How could you use subsetting here? Since you know the exact relationship between the symbols and their prizes, you can create a vector that captures this information. This vector can store symbols as names and prize values as elements:
+Muy a menudo en R, la forma más sencilla de hacer algo implicará la creación de subconjuntos. ¿Cómo podrías usar subconjuntos aquí? Como conoce la relación exacta entre los símbolos y sus premios, puede crear un vector que capture esta información. Este vector puede almacenar símbolos como nombres y valores de premios como elementos:
 
 ```r
-payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
   "B" = 10, "C" = 10, "0" = 0)
-payouts
+pagos
 ##  DD   7 BBB  BB   B   C   0 
 ## 100  80  40  25  10  10   0 
 ```
 
-Now you can extract the correct prize for any symbol by subsetting the vector with the symbol's name:
+Ahora puede extraer el premio correcto para cualquier símbolo subdividiendo el vector con el nombre del símbolo:
 
 ```r
-payouts["DD"]
+pagos["DD"]
 ##  DD 
 ## 100 
 
-payouts["B"]
+pagos["B"]
 ##  B
 ## 10
 ```
 
-If you want to leave behind the symbol's name when subsetting, you can run the `unname` function on the output:
+Si desea dejar atrás el nombre del símbolo al crear subconjuntos, puede ejecutar la función `unname` en la salida:
 
 ```r
-unname(payouts["DD"])
+unname(pagos["DD"])
 ## 100 
 ```
 
-`unname` returns a copy of an object with the names attribute removed.
+`unname` devuelve una copia de un objeto con el atributo de nombres eliminado.
 
-`payouts` is a type of _lookup table_, an R object that you can use to look up values. Subsetting `payouts` provides a simple way to find the prize for a symbol. It doesn't take many lines of code, and it does the same amount of work whether your symbol is `DD` or `0`. You can create lookup tables in R by creating named objects that can be subsetted in clever ways.
+`pagos` es un tipo de _tabla de búsqueda_, un objeto de R que puede usar para buscar valores. Subdividir `pagos` proporciona una forma sencilla de encontrar el premio de un símbolo. No requiere muchas líneas de código y hace la misma cantidad de trabajo ya sea que su símbolo sea `DD` o `0`. Puede crear tablas de búsqueda en R mediante la creación de objetos con nombre que se pueden dividir en subconjuntos de formas inteligentes.
 
-Sadly, our method is not quite automatic; we need to tell R which symbol to look up in `payouts`. Or do we? What would happen if you subsetted `payouts` by `symbols[1]`? Give it a try:
+Lamentablemente, nuestro método no es del todo automático; necesitamos decirle a R qué símbolo buscar en `pagos`. ¿Tenemos? ¿Qué pasaría si dividieras los `pagos` por `simbolos[1]`? Probemos:
 
 ```r
-symbols <- c("7", "7", "7")
-symbols[1]
+simbolos <- c("7", "7", "7")
+simbolos[1]
 ## "7"
 
-payouts[symbols[1]]
+pagos[simbolos[1]]
 ##  7 
 ## 80 
 
-symbols <- c("C", "C", "C")
-payouts[symbols[1]]
+simbolos <- c("C", "C", "C")
+pagos[simbolos[1]]
 ##  C 
 ## 10 
 ```
 
-You don't need to know the exact symbol to look up because you can tell R to look up whichever symbol happens to be in `symbols`. You can find this symbol with `symbols[1]`, `symbols[2]`, or `symbols[3]`, because each contains the same symbol in this case. You now have a simple automated way to calculate the prize when `symbols` contains three of a kind. Let's add it to our code and then look at Case 2:
+No necesita saber el símbolo exacto para buscar porque puede decirle a R que busque cualquier símbolo que esté en `simbolos`. Puede encontrar este símbolo con `simbolos[1]`, `simbolos[2]` o `simbolos[3]`, porque cada uno contiene el mismo símbolo en este caso. Ahora tiene una forma sencilla y automatizada de calcular el premio cuando los `simbolos` contienen tres iguales. Vamos a agregarlo a nuestro código y luego veamos el Caso 2:
 
 ```r
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-bars <- symbols %in% c("B", "BB", "BBB")
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+barras <- simbolos %in% c("B", "BB", "BBB")
 
-if (same) {
-  payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+if (iguales) {
+  pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
     "B" = 10, "C" = 10, "0" = 0)
-  prize <- unname(payouts[symbols[1]])
-} else if (all(bars)) {
-  prize <- # assign $5
+  premio <- unname(pagos[simbolos[1]])
+} else if (all(barras)) {
+  premio <- # asignar $5
 } else {
-  # count cherries
-  prize <- # calculate a prize
+  # contar cerezas
+  premio <- # calcular el premio
 }
 
-# count diamonds
-# double the prize if necessary
+# contar diamantes
+# duplicar el premio si es necesario
 ```
 
-Case 2 occurs whenever the symbols are all bars. In that case, the prize will be $5, which is easy to assign:
+El caso 2 ocurre cuando los símbolos son todos barras. En ese caso, el premio será de $5, que es fácil de asignar:
 
 
 ```r
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-bars <- symbols %in% c("B", "BB", "BBB")
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+barras <- simbolos %in% c("B", "BB", "BBB")
 
-if (same) {
-  payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+if (iguales) {
+  pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
     "B" = 10, "C" = 10, "0" = 0)
-  prize <- unname(payouts[symbols[1]])
-} else if (all(bars)) {
-  prize <- 5
+  premio <- unname(pagos[simbolos[1]])
+} else if (all(barras)) {
+  premio <- 5
 } else {
-  # count cherries
-  prize <- # calculate a prize
+  # contar cerezas
+  premio <- # calcular el premio
 }
 
-# count diamonds
-# double the prize if necessary
+# contar diamantes
+# duplicar el premio si es necesario
 ```
 
+Ahora podemos trabajar en el último caso. Aquí, necesitará saber cuántas cerezas hay en los `simbolos` antes de poder calcular un premio.
 
-Now we can work on the last case. Here, you'll need to know how many cherries are in `symbols` before you can calculate a prize.
-
-```{exercise, name = "Find C's"} 
-How can you tell which elements of a vector named `symbols` are a `C`? Devise a test and try it out.
-```
+**Ejercicio 10.6 (Encuentra las C)** ¿Cómo puedes saber qué elementos de un vector llamado `simbolos` son una `C`? Diseñe una prueba y pruébela.
 
 ```{block2, type = "rmdnote"}
-**Challenge**
+**Desafío**
 
-How might you count the number of `C`s in a vector named `symbols`? Remember R's coercion rules.
+¿Cómo podrías contar el número de 'C' en un vector llamado 'símbolos'? Recuerda las reglas de coerción de R.
 ```
 
 ```{solution}
-As always, let's work with a real example:
+Como siempre, trabajemos con un ejemplo real:
 ```
 
 ```r
-symbols <- c("C", "DD", "C")
+simbolos <- c("C", "DD", "C")
 ```
 
-One way to test for cherries would be to check which, if any, of the symbols are a `C`:
+Una forma de probar las cerezas sería verificar cuál de los símbolos, si alguno, es una `C`:
 
 ```r
-symbols == "C"
+simbolos == "C"
 ## TRUE FALSE  TRUE
 ```
 
-It'd be even more useful to count how many of the symbols are cherries. You can do this with `sum`, which expects numeric input, not logical. Knowing this, R will coerce the `TRUE`s and `FALSE`s to `1`s and `0`s before doing the summation. As a result, `sum` will return the number of `TRUE`s, which is also the number of cherries:
+Sería aún más útil contar cuántos de los símbolos son cerezas. Puede hacer esto con `sum`, que espera una entrada numérica, no lógica. Sabiendo esto, R forzará los `TRUE` y `FALSE` a `1` y `0` antes de hacer la suma. Como resultado, `sum` devolverá el número de `TRUE`, que también es el número de cerezas:
 
 ```r
-sum(symbols == "C")
+sum(simbolos == "C")
 ## 2
 ```
 
-You can use the same method to count the number of diamonds in `symbols`:
+Puede usar el mismo método para contar la cantidad de diamantes en `simbolos`:
 
 ```r
-sum(symbols == "DD")
+sum(simbolos == "DD")
 ## 1
 ```
 
-Let's add both of these subtasks to the program skeleton:
+Agreguemos estas dos subtareas al esqueleto del programa:
 
 ```r
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-bars <- symbols %in% c("B", "BB", "BBB")
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+barras <- simbolos %in% c("B", "BB", "BBB")
 
-if (same) {
-  payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+if (iguales) {
+  pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
     "B" = 10, "C" = 10, "0" = 0)
-  prize <- unname(payouts[symbols[1]])
-} else if (all(bars)) {
-  prize <- 5
+  premio <- unname(pagos[simbolos[1]])
+} else if (all(barras)) {
+  premio <- 5
 } else {
-  cherries <- sum(symbols == "C")
-  prize <- # calculate a prize
+  cerezas <- sum(simbolos == "C")
+  premio <- # calcular el premio
 }
 
-diamonds <- sum(symbols == "DD")
-# double the prize if necessary
+diamantes <- sum(simbolos == "DD")
+# duplicar el premio si es necesario
 ```
 
-Since Case 3 appears further down the `if` tree than Cases 1 and 2, the code in Case 3 will only be applied to players that do not have three of a kind or all bars. According to the slot machine's payout scheme, these players will win $5 if they have two cherries and $2 if they have one cherry. If the player has no cherries, she gets a prize of $0. We don't need to worry about three cherries because that outcome is already covered in Case 1. 
+Dado que el Caso 3 aparece más abajo en el árbol `if` que los Casos 1 y 2, el código del Caso 3 solo se aplicará a los jugadores que no tengan trío o todas las barras. De acuerdo con el esquema de pagos de la máquina tragamonedas, estos jugadores ganarán $5 si tienen dos cerezas y $2 si tienen una cereza. Si el jugador no tiene cerezas, obtiene un premio de $0. No necesitamos preocuparnos por tres cerezas porque ese resultado ya está cubierto en el Caso 1. 
 
-As in Case 1, you could write an `if` tree that handles each combination of cherries, but just like in Case 1, this would be an inefficient solution: 
+Como en el Caso 1, podría escribir un árbol `if` que maneje cada combinación de cerezas, pero al igual que en el Caso 1, esta sería una solución ineficiente: 
 
 ```r
-if (cherries == 2) {
-  prize <- 5
-} else if (cherries == 1) {
-  prize <- 2
+if (cerezas == 2) {
+  premio <- 5
+} else if (cerezas == 1) {
+  premio <- 2
 } else {}
-  prize <- 0
+  premio <- 0
 }
 ```
 
-Again, I think the best solution will involve subsetting. If you are feeling ambitious, you can try to work this solution out on your own, but you will learn just as quickly by mentally working through the following proposed solution. 
+Nuevamente, creo que la mejor solución implicará subconjuntos. Si se siente ambicioso, puede intentar resolver esta solución por su cuenta, pero aprenderá con la misma rapidez trabajando mentalmente en la siguiente solución propuesta. 
 
-We know that our prize should be $0 if we have no cherries, $2 if we have one cherry, and $5 if we have two cherries. You can create a vector that contains this information. This will be a very simple lookup table:
+Sabemos que nuestro premio debe ser $0 si no tenemos cerezas, $2 si tenemos una cereza y $5 si tenemos dos cerezas. Puede crear un vector que contenga esta información. Esta será una tabla de búsqueda muy simple:
 
 ```r
 c(0, 2, 5)
 ```
 
-Now, like in Case 1, you can subset the vector to retrieve the correct prize. In this case, the prize's aren't identified by a symbol name, but by the number of cherries present. Do we have that information? Yes, it is stored in `cherries`. We can use basic integer subsetting to get the correct prize from the prior lookup table, for example, `c(0, 2, 5)[1]`. 
+Ahora, como en el Caso 1, puede crear subconjuntos del vector para recuperar el premio correcto. En este caso, los premios no se identifican con el nombre de un símbolo, sino con el número de cerezas presentes. ¿Tenemos esa información? Sí, se almacena en `cerezas`. Podemos usar subconjuntos enteros básicos para obtener el premio correcto de la tabla de búsqueda anterior, por ejemplo, `c(0, 2, 5)[1]`. 
 
-`cherries` isn't exactly suited for integer subsetting because it could contain a zero, but that's easy to fix. We can subset with `cherries + 1`. Now when `cherries` equals zero, we have:
+`cerezas` no es exactamente adecuado para subconjuntos enteros porque podría contener un cero, pero eso es fácil de arreglar. Podemos crear un subconjunto con `cerezas + 1`. Ahora, cuando `cerezas` es igual a cero, tenemos:
 
 ```r
-cherries + 1
+cerezas + 1
 ## 1
 
-c(0, 2, 5)[cherries + 1]
+c(0, 2, 5)[cerezas + 1]
 ## 0
 ```
 
-When `cherries` equals one, we have:
+Cuando `cerezas` es igual a uno, tenemos:
 
 ```r
-cherries + 1
+cerezas + 1
 ## 2
 
-c(0, 2, 5)[cherries + 1]
+c(0, 2, 5)[cerezas + 1]
 ## 2
 ```
 
-And when `cherries` equals two, we have:
+Y cuando `cerezas` es igual a dos, tenemos:
 
 ```r
-cherries + 1
+cerezas + 1
 ## 3
 
-c(0, 2, 5)[cherries + 1]
+c(0, 2, 5)[cerezas + 1]
 ## 5
 ```
 
-Examine these solutions until you are satisfied that they return the correct prize for each number of cherries. Then add the code to your script, as follows:
+Examine estas soluciones hasta que esté seguro de que arrojan el premio correcto por cada número de cerezas. Luego agregue el código a su secuencia de comandos, de la siguiente manera:
 
 ```r
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-bars <- symbols %in% c("B", "BB", "BBB")
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+barras <- simbolos %in% c("B", "BB", "BBB")
 
-if (same) {
-  payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+if (iguales) {
+  pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
     "B" = 10, "C" = 10, "0" = 0)
-  prize <- unname(payouts[symbols[1]])
-} else if (all(bars)) {
-  prize <- 5
+  premio <- unname(pagos[simbolos[1]])
+} else if (all(barras)) {
+  premio <- 5
 } else {
-  cherries <- sum(symbols == "C")
-  prize <- c(0, 2, 5)[cherries + 1]
+  cerezas <- sum(simbolos == "C")
+  premio <- c(0, 2, 5)[cerezas + 1]
 }
 
-diamonds <- sum(symbols == "DD")
-# double the prize if necessary
+diamantes <- sum(simbolos == "DD")
+# duplicar el premio si es necesario
 ```
 
 ```{block2, type = "rmdimportant"}
-**Lookup Tables Versus if Trees**
+**Tablas de Búsqueda vs Árboles if**
 
-This is the second time we've created a lookup table to avoid writing an `if` tree. Why is this technique helpful and why does it keep appearing? Many `if` trees in R are essential. They provide a useful way to tell R to use different algorithms in different cases. However, `if` trees are not appropriate everywhere.
+Esta es la segunda vez que creamos una tabla de búsqueda para evitar escribir un árbol `if`. ¿Por qué es útil esta técnica y por qué sigue apareciendo? Muchos árboles `if` en R son esenciales. Proporcionan una forma útil de decirle a R que use diferentes algoritmos en diferentes casos. Sin embargo, los árboles `if` no son apropiados en todas partes.
 
-`if` trees have a couple of drawbacks. First, they require R to run multiple tests as it works its way down the `if` tree, which can create unnecessary work. Second, as you'll see in [Speed], it can be difficult to use `if` trees in vectorized code, a style of code that takes advantage of R's programming strengths to create fast programs. Lookup tables do not suffer from either of these drawbacks.
+Los `if` árboles tienen un par de inconvenientes. En primer lugar, requieren que R ejecute varias pruebas a medida que avanza por el árbol `if`, lo que puede generar trabajo innecesario. En segundo lugar, como verá en [Velocidad](#speed), puede ser difícil usar árboles `if` en código vectorizado, un estilo de código que aprovecha las fortalezas de programación de R para crear programas rápidos. Las tablas de búsqueda no sufren ninguno de estos inconvenientes.
 
-You won't be able to replace every `if` tree with a lookup table, nor should you. However, you can usually use lookup tables to avoid assigning variables with `if` trees. As a general rule, use an `if` tree if each branch of the tree runs different _code_. Use a lookup table if each branch of the tree only assigns a different _value_.
+No podrá reemplazar cada árbol `if` con una tabla de búsqueda, ni debería hacerlo. Sin embargo, generalmente puede usar tablas de búsqueda para evitar asignar variables con árboles `if`. Como regla general, use un árbol `if` si cada rama del árbol ejecuta un _código_ diferente. Use una tabla de búsqueda si cada rama del árbol solo asigna un _valor_ diferente.
 
-To convert an `if` tree to a lookup table, identify the values to be assigned and store them in a vector. Next, identify the selection criteria used in the conditions of the `if` tree. If the conditions use character strings, give your vector names and use name-based subsetting. If the conditions use integers, use integer-based subsetting.
+Para convertir un árbol `if` en una tabla de búsqueda, identifique los valores que se asignarán y guárdelos en un vector. A continuación, identifique los criterios de selección utilizados en las condiciones del árbol `if`. Si las condiciones usan cadenas de caracteres, proporcione los nombres de sus vectores y use subconjuntos basados en nombres. Si las condiciones usan números enteros, use subconjuntos basados en números enteros.
 ```
 
-The final subtask is to double the prize once for every diamond present. This means that the final prize will be some multiple of the current prize.  For example, if no diamonds are present, the prize will be:
+La subtarea final es duplicar el premio una vez por cada diamante presente. Esto significa que el premio final será un múltiplo del premio actual. Por ejemplo, si no hay diamantes presentes, el premio será:
 
 ```r
-prize * 1      # 1 = 2 ^ 0
+premio * 1      # 1 = 2 ^ 0
 ```
 
-If one diamond is present, it will be:
+Si un diamante está presente, será:
 
 ```r
-prize * 2      # 2 = 2 ^ 1
+premio * 2      # 2 = 2 ^ 1
 ```
 
-If two diamonds are present, it will be:
+Si hay dos diamantes presentes, será:
 
 ```r
-prize * 4      # 4 = 2 ^ 2
+premio * 4      # 4 = 2 ^ 2
 ```
 
-And if three diamonds are present, it will be:
+Y si hay tres diamantes presentes, será:
 
 ```r
-prize * 8      # 8 = 2 ^ 3
+premio * 8      # 8 = 2 ^ 3
 ```
 
-Can you think of an easy way to handle this? How about something similar to these examples? 
+¿Puedes pensar en una manera fácil de manejar esto? ¿Qué tal algo similar a estos ejemplos? 
 
-```{exercise, name = "Adjust for Diamonds"}
-Write a method for adjusting `prize` based on `diamonds`. Describe a solution in English first, and then write your code. 
-```
+**Ejercicio 10.7 (Adjuste para Diamantes)** Escribe un método para ajustar el `premio` basado en `diamantes`. Describa primero una solución en español y luego escriba su código. 
 
 ```{solution}
-Here is a concise solution inspired by the previous pattern. The adjusted prize will equal:
+Aquí hay una solución concisa inspirada en el patrón anterior. El premio ajustado será igual a:
 ```
 
 ```r
-prize * 2 ^ diamonds
+premio * 2 ^ diamantes
 ```
 
-which gives us our final `score` script:
+lo que nos da nuestro script final de `puntuacion`:
 
 ```r
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-bars <- symbols %in% c("B", "BB", "BBB")
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+barras <- simbolos %in% c("B", "BB", "BBB")
 
-if (same) {
-  payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
-    "B" = 10, "C" = 10, "0" = 0)
-  prize <- unname(payouts[symbols[1]])
-} else if (all(bars)) {
-  prize <- 5
+if (iguales) {
+  pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+             "B" = 10, "C" = 10, "0" = 0)
+  premio <- unname(pagos[simbolos[1]])
+} else if (all(barras)) {
+  premio <- 5
 } else {
-  cherries <- sum(symbols == "C")
-  prize <- c(0, 2, 5)[cherries + 1]
+  cerezas <- sum(simbolos == "C")
+  premio <- c(0, 2, 5)[cerezas + 1]
 }
 
-diamonds <- sum(symbols == "DD")
-prize * 2 ^ diamonds
+diamantes <- sum(simbolos == "DD")
+premio * 2 ^ diamantes
 ```
 
-## Code Comments
+## Comentarios de Código
 
-You now have a working score script that you can save to a function. Before you save your script, though, consider adding comments to your code with a `#`. Comments can make your code easier to understand by explaining _why_ the code does what it does. You can also use comments to break long programs into scannable chunks. For example, I would include three comments in the `score` code:
+Ahora tiene un script de puntuacion que puede guardar en una función. Sin embargo, antes de guardar su secuencia de comandos, considere agregar comentarios a su código con un `#`. Los comentarios pueden hacer que su código sea más fácil de entender al explicar _por qué_ el código hace lo que hace. También puede usar comentarios para dividir programas largos en fragmentos escaneables. Por ejemplo, incluiría tres comentarios en el código `puntuacion`:
 
 ```r
-# identify case
-same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-bars <- symbols %in% c("B", "BB", "BBB")
+# identificar caso
+iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+barras <- simbolos %in% c("B", "BB", "BBB")
 
-# get prize
-if (same) {
-  payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
-    "B" = 10, "C" = 10, "0" = 0)
-  prize <- unname(payouts[symbols[1]])
-} else if (all(bars)) {
-  prize <- 5
+# obtener premio
+if (iguales) {
+  pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+             "B" = 10, "C" = 10, "0" = 0)
+  premio <- unname(pagos[simbolos[1]])
+} else if (all(barras)) {
+  premio <- 5
 } else {
-  cherries <- sum(symbols == "C")
-  prize <- c(0, 2, 5)[cherries + 1]
+  cerezas <- sum(simbolos == "C")
+  premio <- c(0, 2, 5)[cerezas + 1]
 }
 
-# adjust for diamonds
-diamonds <- sum(symbols == "DD")
-prize * 2 ^ diamonds
+# ajustar para diamantes
+diamantes <- sum(simbolos == "DD")
+premio * 2 ^ diamantes
 ```
 
-Now that each part of your code works, you can wrap it into a function with the methods you learned in [Writing Your Own Functions](#write-functions). Either use RStudio's Extract Function option in the menu bar under Code, or use the `function` function. Ensure that the last line of the function returns a result (it does), and identify any arguments used by your function. Often the concrete examples that you used to test your code, like `symbols`, will become the arguments of your function. Run the following code to start using the `score` function:
+Ahora que cada parte de tu código funciona, puedes envolverlo en una función con los métodos que aprendiste en [Escribir tus propias funciones](#write-functions). Utilice la opción Extract Function de RStudio en la barra de menú en Code, o utilice la función `function`. Asegúrese de que la última línea de la función devuelva un resultado (lo hace) e identifique los argumentos utilizados por su función. A menudo, los ejemplos concretos que utilizó para probar su código, como `símbolos`, se convertirán en los argumentos de su función. Ejecute el siguiente código para comenzar a usar la función `puntuacion`:
 
 ```r
-score <- function (symbols) {
-  # identify case
-  same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-  bars <- symbols %in% c("B", "BB", "BBB")
-  
-  # get prize
-  if (same) {
-    payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
-      "B" = 10, "C" = 10, "0" = 0)
-    prize <- unname(payouts[symbols[1]])
-  } else if (all(bars)) {
-    prize <- 5
+puntuacion <- function (simbolos) {
+  # identificar caso
+  iguales <- simbolos[1] == simbolos[2] && simbolos[2] == simbolos[3]
+  barras <- simbolos %in% c("B", "BB", "BBB")
+
+  # obtener premio
+  if (iguales) {
+    pagos <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25, 
+             "B" = 10, "C" = 10, "0" = 0)
+    premio <- unname(pagos[simbolos[1]])
+  } else if (all(barras)) {
+    premio <- 5
   } else {
-    cherries <- sum(symbols == "C")
-    prize <- c(0, 2, 5)[cherries + 1]
+    cerezas <- sum(simbolos == "C")
+    premio <- c(0, 2, 5)[cerezas + 1]
   }
-  
-  # adjust for diamonds
-  diamonds <- sum(symbols == "DD")
-  prize * 2 ^ diamonds
+
+  # ajustar para diamantes
+  diamantes <- sum(simbolos == "DD")
+  premio * 2 ^ diamantes
 }
 ```
 
-Once you have defined the `score` function, the `play` function will work as well: 
+Una vez que haya definido la función `puntuacion`, la función `play` también funcionará: 
 
 ```r
 play <- function() {
-  symbols <- get_symbols()
-  print(symbols)
-  score(symbols)
+  simbolos <- obt_simbolos()
+  print(simbolos)
+  puntuacion(simbolos)
 }
 ```
 
-Now it is easy to play the slot machine:
+Ahora es fácil jugar en la máquina tragamonedas:
 
 ```r
 play()
@@ -942,14 +924,14 @@ play()
 ## 25
 ```
 
-## Summary
+## Resumen
 
-An R program is a set of instructions for your computer to follow that has been organized into a sequence of steps and cases. This may make programs seem simple, but don't be fooled: you can create complicated results with the right combination of simple steps (and cases).
+Un programa en R es un conjunto de instrucciones que su computadora debe seguir y que se ha organizado en una secuencia de pasos y casos. Esto puede hacer que los programas parezcan simples, pero no se deje engañar: puede crear resultados complicados con la combinación correcta de pasos simples (y casos).
 
-As a programmer, you are more likely to be fooled in the opposite way. A program may seem impossible to write when you know that it must do something impressive. Do not panic in these situations. Divide the job before you into simple tasks, and then divide the tasks again. You can visualize the relationship between tasks with a flow chart if it helps. Then work on the subtasks one at a time. Describe solutions in English, then convert them to R code. Test each solution against concrete examples as you go. Once each of your subtasks works, combine your code into a function that you can share and reuse.
+Como programador, es más probable que te engañen de la manera opuesta. Un programa puede parecer imposible de escribir cuando sabes que debe hacer algo impresionante. No se asuste en estas situaciones. Divida el trabajo que tiene delante en tareas simples y luego vuelva a dividir las tareas. Puede visualizar la relación entre las tareas con un diagrama de flujo si le ayuda. Luego trabaje en las subtareas una a la vez. Describa las soluciones en español y luego conviértalas a código de R. Pruebe cada solución con ejemplos concretos a medida que avanza. Una vez que cada una de sus subtareas funcione, combine su código en una función que pueda compartir y reutilizar.
 
-R provides tools that can help you do this. You can manage cases with `if` and `else` statements. You can create a lookup table with objects and subsetting. You can add code comments with `#`. And you can save your programs as a function with `function`.
+R proporciona herramientas que pueden ayudarlo a hacer esto. Puede administrar casos con declaraciones `if` y `else`. Puede crear una tabla de búsqueda con objetos y subconjuntos. Puede agregar comentarios de código con `#`. Y puede guardar sus programas como una función con `function`
 
-Things often go wrong when people write programs. It will be up to you to find the source of any errors that occur and to fix them. It should be easy to find the source of your errors if you use a stepwise approach to writing functions, writing—and then testing—one bit at a time. However, if the source of an error eludes you, or you find yourself working with large chunks of untested code, consider using R's built in debugging tools, described in [Debugging R Code].
+Las cosas suelen salir mal cuando la gente escribe programas. Dependerá de usted encontrar la fuente de cualquier error que ocurra y corregirlo. Debería ser fácil encontrar la fuente de sus errores si utiliza un enfoque paso a paso para escribir funciones, escribir y luego probar, un poco a la vez. Sin embargo, si la fuente de un error se le escapa, o se encuentra trabajando con grandes fragmentos de código no probado, considere usar las herramientas de depuración integradas de R, descritas en [Depuración de Código de R](#debug).
 
-The next two chapters will teach you more tools that you can use in your programs. As you master these tools, you will find it easier to write R programs that let you do whatever you wish to your data. In [S3], you will learn how to use R's S3 system, an invisible hand that shapes many parts of R. You will use the system to build a custom class for your slot machine output, and you will tell R how to display objects that have your class.
+Los siguientes dos capítulos le enseñarán más herramientas que puede usar en sus programas. A medida que domine estas herramientas, le resultará más fácil escribir programas en R que le permitan hacer lo que desee con sus datos. En [S3](#s3), aprenderá a usar el sistema S3 de R, una mano invisible que da forma a muchas partes de R. Usará el sistema para crear una clase personalizada para la salida de su máquina tragamonedas y le dirá a R cómo mostrar objetos que tienen tu clase.

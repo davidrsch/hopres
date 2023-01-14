@@ -303,7 +303,7 @@ Para resumir, puede usar una prueba lógica para seleccionar valores dentro de u
 
 La creación de subconjuntos lógicos es una técnica poderosa porque le permite identificar, extraer y modificar rápidamente valores individuales en su conjunto de datos. Cuando trabaja con subconjuntos lógicos, no necesita saber _dónde_ en su conjunto de datos existe un valor. Solo necesita saber cómo describir el valor con una prueba lógica.
 
-El subconjunto lógico es una de las cosas que R hace mejor. De hecho, el subconjunto lógico es un componente clave de la programación vectorizada, un estilo de codificación que le permite escribir código R rápido y eficiente, que estudiaremos en [Velocidad].
+El subconjunto lógico es una de las cosas que R hace mejor. De hecho, el subconjunto lógico es un componente clave de la programación vectorizada, un estilo de codificación que le permite escribir código R rápido y eficiente, que estudiaremos en [Velocidad](#speed).
 
 Usemos subconjuntos lógicos con un nuevo juego: corazones. En corazones, cada carta tiene un valor de cero:
 
@@ -680,4 +680,4 @@ Puede modificar valores en su lugar dentro de un objeto de R cuando combina la s
 
 Cuando trabaja con grandes conjuntos de datos, modificar y recuperar valores crea un problema logístico propio. ¿Cómo puede buscar en los datos para encontrar los valores que desea modificar o recuperar? Como usuario de R, puede hacer esto con subconjuntos lógicos. Cree una prueba lógica con operadores lógicos y booleanos y luego use la prueba como un índice en la notación de paréntesis de R. R devolverá los valores que está buscando, incluso si no sabe dónde están.
 
-Recuperar valores individuales no será su única preocupación como programador de R. También deberá recuperar conjuntos de datos completos; por ejemplo, puede llamar a uno en una función. [Entornos] le enseñará cómo R busca y guarda conjuntos de datos y otros objetos R en su sistema de entorno. Luego usará este conocimiento para corregir las funciones `repartir` y `barajar`.
+Recuperar valores individuales no será su única preocupación como programador de R. También deberá recuperar conjuntos de datos completos; por ejemplo, puede llamar a uno en una función. [Entornos](#environment) le enseñará cómo R busca y guarda conjuntos de datos y otros objetos R en su sistema de entorno. Luego usará este conocimiento para corregir las funciones `repartir` y `barajar`.

@@ -1,4 +1,4 @@
-# S3
+# S3 {#s3}
 
 You may have noticed that your slot machine results do not look the way I promised they would. I suggested that the slot machine would display its results like this:
 

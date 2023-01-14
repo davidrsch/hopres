@@ -1,19 +1,19 @@
-# (PART) Part 3 {-}
+# (PART) Parte 3 {-}
 
-# Project 3: Slot Machine {#slots}
+# Proyecto 3: Máquina Tragamonedas {#slots}
 
-Slot machines are the most popular game in modern casinos. If you've never seen one, a slot machine resembles an arcade game that has a lever on its side. For a small fee you can pull the lever, and the machine will generate a random combination of three symbols. If the correct combination appears, you can win a prize, maybe even the jackpot.
+Las máquinas tragamonedas son el juego más popular en los casinos modernos. Si nunca has visto una, una máquina tragamonedas se parece a un juego de arcade que tiene una palanca en un costado. Por una pequeña tarifa, puede tirar de la palanca y la máquina generará una combinación aleatoria de tres símbolos. Si aparece la combinación correcta, puede ganar un premio, tal vez incluso el mejor premio.
 
-Slot machines make fantastic profits for casinos because they offer a very low payout rate. In many games, such as Blackjack and Roulette, the odds are only slightly stacked in the casino's favor. In the long run, the casino pays back 97 to 98 cents in prizes of every dollar that a gambler spends on these games. With slot machines, it is typical for a casino to only pay back 90 to 95 cents—and the casino keeps the rest. If this seems underhanded, keep in mind that slot machines are one of the most popular games at a casino; few people seem to mind. And if you consider that state lotteries have payout rates that are much closer to 50 cents on the dollar, slot machines don't look that bad.
+Las máquinas tragamonedas generan ganancias fantásticas para los casinos porque ofrecen una tasa de pago muy baja. En muchos juegos, como el Blackjack y la Ruleta, las probabilidades están ligeramente a favor del casino. A la larga, el casino paga de 97 a 98 centavos en premios por cada dólar que gasta un jugador en estos juegos. Con las máquinas tragamonedas, es típico que un casino solo pague de 90 a 95 centavos, y el casino se queda con el resto. Si esto parece turbio, tenga en cuenta que las máquinas tragamonedas son uno de los juegos más populares en un casino; a pocas personas parece importarles. Y si considera que las loterías estatales tienen tasas de pago mucho más cercanas a los 50 centavos por dólar, las máquinas tragamonedas no se ven tan mal.
 
-In this project, you will build a real, working slot machine modeled after some real life Video Lottery Terminals from Manitoba, Canada. The terminals were a source of scandal in the 1990s. You'll get to the bottom of this scandal by writing a program that recreates the slot machines. You'll then do some calculations and run some simulations that reveal the true payout rate of the machines.
+En este proyecto, construirá una máquina tragamonedas real que funcione, modelada a partir de algunas Terminales de Lotería de Video de la vida real de Manitoba, Canadá. Los terminales fueron motivo de escándalo en la década de los 90. Llegarás al fondo de este escándalo escribiendo un programa que recree las máquinas tragamonedas. Luego hará algunos cálculos y ejecutará algunas simulaciones que revelarán la verdadera tasa de pago de las máquinas.
 
-This project will teach you how to write programs and run simulations in R. You will also learn how to: 
+Este proyecto le enseñará a escribir programas y ejecutar simulaciones en R. También aprenderá a: 
 
-* Use a practical strategy to design programs
-* Use `if` and `else` statements to tell R what to do when
-* Create lookup tables to find values
-* Use `for`, `while`, and `repeat` loops to automate repetitive operations 
-* Use S3 methods, R's version of Object-Oriented Programming
-* Measure the speed of R code
-* Write fast, vectorized R code
+* Usar una estrategia práctica para diseñar programas
+* Usar declaraciones `if` y `else` para decirle a R qué hacer y cuando
+* Crear tablas de búsqueda para encontrar valores
+* Usar bucles `for`, `while` y `repeat` para automatizar operaciones repetitivas
+* Usar métodos S3, la versión de R de Programación Orientada a Objetos
+* Medir la velocidad del código R
+* Escribir código R rápido y vectorizado

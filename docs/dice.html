@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 Proyecto 3: Máquina Tragamonedas | Programación práctica con R</title>
+  <title>1 Proyecto 1: Dados Ponderados | Programación práctica con R</title>
   <meta name="description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 Proyecto 3: Máquina Tragamonedas | Programación práctica con R" />
+  <meta property="og:title" content="1 Proyecto 1: Dados Ponderados | Programación práctica con R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/davidrsch/hopres/cover.png" />
   <meta property="og:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="github-repo" content="davidrsch/hopres" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 Proyecto 3: Máquina Tragamonedas | Programación práctica con R" />
+  <meta name="twitter:title" content="1 Proyecto 1: Dados Ponderados | Programación práctica con R" />
   
   <meta name="twitter:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="twitter:image" content="https://github.com/davidrsch/hopres/cover.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="environment.html"/>
-<link rel="next" href="programs.html"/>
+<link rel="prev" href="prefacio.html"/>
+<link rel="next" href="Básico.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -375,21 +375,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slots" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">9</span> Proyecto 3: Máquina Tragamonedas<a href="slots.html#slots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Las máquinas tragamonedas son el juego más popular en los casinos modernos. Si nunca has visto una, una máquina tragamonedas se parece a un juego de arcade que tiene una palanca en un costado. Por una pequeña tarifa, puede tirar de la palanca y la máquina generará una combinación aleatoria de tres símbolos. Si aparece la combinación correcta, puede ganar un premio, tal vez incluso el mejor premio.</p>
-<p>Las máquinas tragamonedas generan ganancias fantásticas para los casinos porque ofrecen una tasa de pago muy baja. En muchos juegos, como el Blackjack y la Ruleta, las probabilidades están ligeramente a favor del casino. A la larga, el casino paga de 97 a 98 centavos en premios por cada dólar que gasta un jugador en estos juegos. Con las máquinas tragamonedas, es típico que un casino solo pague de 90 a 95 centavos, y el casino se queda con el resto. Si esto parece turbio, tenga en cuenta que las máquinas tragamonedas son uno de los juegos más populares en un casino; a pocas personas parece importarles. Y si considera que las loterías estatales tienen tasas de pago mucho más cercanas a los 50 centavos por dólar, las máquinas tragamonedas no se ven tan mal.</p>
-<p>En este proyecto, construirá una máquina tragamonedas real que funcione, modelada a partir de algunas Terminales de Lotería de Video de la vida real de Manitoba, Canadá. Los terminales fueron motivo de escándalo en la década de los 90. Llegarás al fondo de este escándalo escribiendo un programa que recree las máquinas tragamonedas. Luego hará algunos cálculos y ejecutará algunas simulaciones que revelarán la verdadera tasa de pago de las máquinas.</p>
-<p>Este proyecto le enseñará a escribir programas y ejecutar simulaciones en R. También aprenderá a:</p>
+<div id="dice" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Proyecto 1: Dados Ponderados<a href="dice.html#dice" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Las computadoras le permiten ensamblar, manipular y visualizar conjuntos de datos, todo a velocidades que habrían asombrado a los científicos de ayer. En resumen, ¡las computadoras te dan superpoderes científicos! Pero si desea usarlos, deberá adquirir algunas habilidades de programación.</p>
+<p>Como científico de datos que sabe programar, mejorará su capacidad para:</p>
 <ul>
-<li>Usar una estrategia práctica para diseñar programas</li>
-<li>Usar declaraciones <code>if</code> y <code>else</code> para decirle a R qué hacer y cuando</li>
-<li>Crear tablas de búsqueda para encontrar valores</li>
-<li>Usar bucles <code>for</code>, <code>while</code> y <code>repeat</code> para automatizar operaciones repetitivas</li>
-<li>Usar métodos S3, la versión de R de Programación Orientada a Objetos</li>
-<li>Medir la velocidad del código R</li>
-<li>Escribir código R rápido y vectorizado</li>
+<li>Memorizar (almacenar) conjuntos de datos completos</li>
+<li>Recuperar valores de datos demandados</li>
+<li>Realizar cálculos complejos con grandes cantidades de datos</li>
+<li>Realizar tareas repetitivas sin descuidarse ni aburrirse</li>
 </ul>
+<p>Las computadoras pueden hacer todas estas cosas rápidamente y sin errores, lo que le permite a su mente hacer lo que <em>mejor</em> hace bien: tomar decisiones y asignar significado.</p>
+<p>¿Suena emocionante? ¡Estupendo! Vamos a empezar.</p>
+<p>Cuando era estudiante universitario, a veces soñaba despierto con ir a Las Vegas. Pensé que saber estadísticas podría ayudarme a ganar a lo grande. Si eso es lo que <em>te llevó</em> a la ciencia de datos, será mejor que te sientes; tengo algunas malas noticias. Incluso un estadístico perderá dinero en un casino a largo plazo. Esto se debe a que las probabilidades de cada juego siempre están a favor del casino, sin embargo, hay una laguna en esta regla. Puede ganar dinero–y también de manera confiable. Todo lo que tienes que hacer es <em>ser el casino</em>.</p>
+<p>Lo creas o no, R puede ayudarte a hacerlo. A lo largo del libro, usará R para construir tres objetos virtuales: un par de dados que puede lanzar para generar números aleatorios, una baraja de cartas que puede barajar y repartir, y una máquina tragamonedas inspirada en máquinas reales. Después de eso, solo necesitará agregar algunos gráficos de video y una cuenta bancaria (y tal vez obtener algunas licencias gubernamentales), y estará en el negocio. Te dejo esos detalles a ti.</p>
+<p>Estos proyectos son ligeros, pero también profundos. A medida que los complete, se convertirá en un experto en las habilidades que necesita para trabajar con datos como científico de datos. Aprenderá cómo almacenar datos en la memoria de su computadora, cómo acceder a los datos que ya están allí y cómo transformar los valores de los datos en la memoria cuando sea necesario. También aprenderá a escribir sus propios programas en R que puede usar para analizar datos y ejecutar simulaciones.</p>
+<p>Si simular una máquina tragamonedas (o dados o cartas) parece frívolo, piénselo de esta manera: jugar en una máquina tragamonedas es un proceso. Una vez que pueda simularlo, podrá simular otros procesos, como el muestreo de arranque, la cadena de Markov Monte Carlo y otros procedimientos de análisis de datos. Además, estos proyectos brindan ejemplos concretos para aprender todos los componentes de la programación R: objetos, tipos de datos, clases, notación, funciones, entornos, árboles <code>if</code>, bucles y vectorización. Este primer proyecto facilitará el estudio de estas cosas al enseñarle los conceptos básicos de R.</p>
+<p>Su primera misión es simple: ensamblar código R que simulará lanzar un par de dados, como en una mesa de dados. Una vez que haya hecho eso, ponderaremos un poco los dados a su favor, solo para mantener las cosas interesantes.</p>
+<p>En este proyecto, aprenderá cómo:</p>
+<ul>
+<li>Utilizar las interfaces R y RStudio</li>
+<li>Ejecutar comandos R</li>
+<li>Crear objetos R</li>
+<li>Escribir sus propias funciones y scripts de R</li>
+<li>Cargar y usar paquetes R</li>
+<li>Generar muestras aleatorias</li>
+<li>Crear gráficos de manera rápida</li>
+<li>Obtener ayuda cuando la necesite</li>
+</ul>
+<p>No se preocupe si parece que cubrimos mucho terreno de manera rápido. Este proyecto está diseñado para brindarle una descripción general concisa del lenguaje R. Regresará a muchos de los conceptos que aprederá en los proyectos 2 y 3, donde examinará los conceptos en profundidad.</p>
+<p>Deberá tener R y RStudio instalados en su computadora antes de poder usarlos. Ambos son gratuitos y fáciles de descargar. Consulte el <a href="starting.html#starting">Apéndice A</a> para obtener instrucciones completas. Si está listo para comenzar, abra RStudio en su computadora y siga leyendo.</p>
 
 </div>
             </section>
@@ -397,8 +412,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="environment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="programs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="prefacio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Básico.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -419,7 +434,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/davidrsch/hopres/edit/main/slots.rmd",
+"link": "https://github.com/davidrsch/hopres/edit/main/dice.rmd",
 "text": "Editar"
 },
 "history": {

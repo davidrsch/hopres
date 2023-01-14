@@ -1,6 +1,6 @@
 # (PART) Parte 2 {-}
 
-# Proyecto 2: Baraja de Cartas
+# Proyecto 2: Baraja de Cartas {#cards}
 
 Este proyecto, que abarca los siguientes cuatro capítulos, le enseñará cómo almacenar, recuperar y cambiar valores de datos en la memoria de su computadora. Estas habilidades lo ayudarán a guardar y administrar datos sin acumular errores. En el proyecto, diseñará una baraja de cartas que pueda barajar y repartir. Lo mejor de todo es que la baraja recordará qué cartas se han repartido, como una baraja real. Puede usar el mazo para jugar juegos de cartas, adivinar fortunas y probar estrategias de conteo de cartas.
 
@@ -17,13 +17,13 @@ En el camino, aprenderá cómo:
 Para simplificar el proyecto, lo he dividido en cuatro tareas. Cada tarea le enseñará una nueva habilidad para administrar datos con R:
 
 **Task 1: Construir la baraja**  
-  En [Objetos de R], diseñarás y construirás una baraja virtual de naipes. Este será un conjunto de datos completo, como los que usará como científico de datos. Necesitará saber cómo usar los tipos de datos y las estructuras de datos de R para que esto funcione.
+  En [Objetos de R](#objects), diseñarás y construirás una baraja virtual de naipes. Este será un conjunto de datos completo, como los que usará como científico de datos. Necesitará saber cómo usar los tipos de datos y las estructuras de datos de R para que esto funcione.
   
 **Task 2: Construir funciones para repartir y barajar**
-  A continuación, en [Notación de R], escribirá dos funciones para usar con la baraja. Una función repartirá cartas de la baraja y la otra volverá a barajar la baraja. Para escribir estas funciones, necesitará saber cómo extraer valores de un conjunto de datos con R.
+  A continuación, en [Notación de R](#notation), escribirá dos funciones para usar con la baraja. Una función repartirá cartas de la baraja y la otra volverá a barajar la baraja. Para escribir estas funciones, necesitará saber cómo extraer valores de un conjunto de datos con R.
   
 **Tarea 3: Cambiar el sistema de puntos para adaptarlo a tu juego**  
-  En [Modificación de valores], utilizará el sistema de notación de R para cambiar los valores de puntos de sus cartas para que coincidan con los juegos de cartas que desee jugar, como guerra, corazones o blackjack. Esto le ayudará a cambiar los valores existentes en los conjuntos de datos existentes.
+  En [Modificación de valores](#modify), utilizará el sistema de notación de R para cambiar los valores de puntos de sus cartas para que coincidan con los juegos de cartas que desee jugar, como guerra, corazones o blackjack. Esto le ayudará a cambiar los valores existentes en los conjuntos de datos existentes.
 
 **Tarea 4: Gestionar el estado de la baraja** 
-  Finalmente, en [Entornos], te asegurarás de que tu mazo recuerde qué cartas ha repartido. Esta es una tarea avanzada y presentará el sistema de entorno de R y las reglas de alcance. Para hacerlo con éxito, deberá aprender los detalles minuciosos de cómo R busca y usa los datos que ha almacenado en su computadora.
+  Finalmente, en [Entornos](#environment), te asegurarás de que tu mazo recuerde qué cartas ha repartido. Esta es una tarea avanzada y presentará el sistema de entorno de R y las reglas de alcance. Para hacerlo con éxito, deberá aprender los detalles minuciosos de cómo R busca y usa los datos que ha almacenado en su computadora.

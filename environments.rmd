@@ -1,4 +1,4 @@
-# Entornos
+# Entornos {#environment}
 
 Su mazo ahora está listo para un juego de blackjack (o de corazones o de guerra), pero ¿sus funciones de `barajar` y `repartir` están a la altura? Definitivamente no. Por ejemplo, `repartir` reparte la misma carta una y otra vez:
 
@@ -202,7 +202,7 @@ nuevo
 ## "Hola Activo"
 ```
 
-Este arreglo crea un dilema para R cada vez que R ejecuta una función. Muchas funciones guardan objetos temporales que les ayudan a hacer su trabajo. Por ejemplo, la función `tirar` del [Proyecto 1: Dados Ponderados] guardó un objeto llamado `dado` y un objeto llamado `dados`:
+Este arreglo crea un dilema para R cada vez que R ejecuta una función. Muchas funciones guardan objetos temporales que les ayudan a hacer su trabajo. Por ejemplo, la función `tirar` del [Proyecto 1: Dados Ponderados](#dice) guardó un objeto llamado `dado` y un objeto llamado `dados`:
 
 ```r
 tirar <- function() {
@@ -538,7 +538,7 @@ setup <- function(mazo) {
 
   BARAJAR <- function(){
     aleatorio <- sample(1:52, size = 52)
-    assign("mazo", MAZO[random, ], envir = globalenv())
+    assign("mazo", MAZO[aleatorio, ], envir = globalenv())
  }
 }
 ```
@@ -560,7 +560,7 @@ setup <- function(mazo) {
 
   BARAJAR <- function(){
     aleatorio <- sample(1:52, size = 52)
-    assign("mazo", MAZO[random, ], envir = globalenv())
+    assign("mazo", MAZO[aleatorio, ], envir = globalenv())
  }
 
  list(repartir = REPARTIR, barajar = BARAJAR)
@@ -632,7 +632,7 @@ setup <- function(mazo) {
 
   BARAJAR <- function(){
     aleatorio <- sample(1:52, size = 52)
-    assign("mazo", MAZO[random, ], envir = parent.env(environment()))
+    assign("mazo", MAZO[aleatorio, ], envir = parent.env(environment()))
  }
 
  list(repartir = REPARTIR, barajar = BARAJAR)
@@ -681,4 +681,4 @@ Ahora tiene control total sobre los conjuntos de datos y los valores que carga e
 
 Es posible que aún no se dé cuenta, pero su experiencia lo convierte en un poderoso usuario de datos aumentados por computadora. Puede usar R para guardar y trabajar con conjuntos de datos más grandes de los que podría manejar de otra manera. Hasta ahora solo hemos trabajado con `mazo`, un pequeño conjunto de datos; pero puede usar las mismas técnicas para trabajar con cualquier conjunto de datos que quepa en la memoria de su computadora.
 
-Sin embargo, el almacenamiento de datos no es la única tarea logística a la que se enfrentará como científico de datos. A menudo querrá realizar tareas con sus datos que son tan complejas o repetitivas que son difíciles de realizar sin una computadora. Algunas de las cosas se pueden hacer con funciones que ya existen en R y sus paquetes, pero otras no. Serás el más versátil como científico de datos si puedes escribir tus propios programas para que los sigan las computadoras. R puede ayudarte a hacer esto. Cuando esté listo, [Project 3: Máquina Tragamonedas] le enseñará las habilidades más útiles para escribir programas en R.
+Sin embargo, el almacenamiento de datos no es la única tarea logística a la que se enfrentará como científico de datos. A menudo querrá realizar tareas con sus datos que son tan complejas o repetitivas que son difíciles de realizar sin una computadora. Algunas de las cosas se pueden hacer con funciones que ya existen en R y sus paquetes, pero otras no. Serás el más versátil como científico de datos si puedes escribir tus propios programas para que los sigan las computadoras. R puede ayudarte a hacer esto. Cuando esté listo, [Project 3: Máquina Tragamonedas](#slots) le enseñará las habilidades más útiles para escribir programas en R.

@@ -1,4 +1,4 @@
-# Notación de R
+# Notación de R {#notation}
 
 Ahora que tiene una baraja de cartas, necesita una forma de hacer: Primero, querrás una forma de barajar el mazo de vez en cuando. Y luego, querrás repartir cartas del mazo (una carta a la vez, cualquiera que sea la carta que esté arriba, no somos tramposos).
 
@@ -246,7 +246,7 @@ repartir(mazo)
 ##  rey picas    13
 ```
 
-`repartir` siempre devuelve el rey de picas porque `mazo` no sabe que hemos repartido la carta. Por lo tanto, el rey de picas se queda donde está, en la parte superior de la baraja, listo para ser repartido nuevamente. Este es un problema difícil de resolver, y lo trataremos en [Entornos]. Mientras tanto, puedes solucionar el problema barajando tu mazo después de cada vez que repartes. Entonces una nueva tarjeta siempre estará en la parte superior. 
+`repartir` siempre devuelve el rey de picas porque `mazo` no sabe que hemos repartido la carta. Por lo tanto, el rey de picas se queda donde está, en la parte superior de la baraja, listo para ser repartido nuevamente. Este es un problema difícil de resolver, y lo trataremos en [Entornos](#environment). Mientras tanto, puedes solucionar el problema barajando tu mazo después de cada vez que repartes. Entonces una nueva tarjeta siempre estará en la parte superior. 
 
 Barajar es un compromiso temporal: las probabilidades en juego en su mazo no coincidirán con las probabilidades que ocurren cuando juega un juego con un solo mazo de cartas. Por ejemplo, seguirá existiendo la probabilidad de que el rey de picas aparezca dos veces seguidas. Sin embargo, las cosas no son tan malas como pueden parecer. La mayoría de los casinos usan cinco o seis mazos a la vez en los juegos de cartas para evitar el conteo de cartas. Las probabilidades que encontraría en esas situaciones son muy parecidas a las que crearemos aquí.
 
@@ -445,6 +445,6 @@ De hecho, puede usar el sistema de notación de R para acceder a valores en cual
 
 En [Modificación de Valores](#modify), llevará este sistema un paso más allá y aprenderá a cambiar los valores reales que se almacenan dentro de su data frame. Todo esto se suma a algo especial: control completo de sus datos. Ahora puede almacenar sus datos en su computadora, recuperar valores individuales a voluntad y usar su computadora para realizar cálculos correctos con esos valores.
 
-¿Suena esto básico? Puede serlo, pero también es poderoso y esencial para una ciencia de datos eficiente. Ya no necesitas memorizar todo en tu cabeza, ni preocuparte por hacer mal el cálculo mental. Este control de bajo nivel sobre sus datos también es un requisito previo para programas de R más eficientes, el tema del [Proyecto 3: Máquina Tragamonedas].
+¿Suena esto básico? Puede serlo, pero también es poderoso y esencial para una ciencia de datos eficiente. Ya no necesitas memorizar todo en tu cabeza, ni preocuparte por hacer mal el cálculo mental. Este control de bajo nivel sobre sus datos también es un requisito previo para programas de R más eficientes, el tema del [Proyecto 3: Máquina Tragamonedas](#slots).
 
 

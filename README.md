@@ -22,6 +22,9 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 -   Prefacio
 -   Parte 1
 -   Parte 2
+-   Parte 3
+    -   Proyecto 3: Máquina Tragamonedas
+    -   Programas
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -51,6 +54,9 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
 -   Preface
 -   Part 1
 -   Part 2
+-   Part 3
+    -   Project 3: Slots Machine
+    -   Programs
 -   Appendix
     -   Installing R and RStudio
     -   R Packages
