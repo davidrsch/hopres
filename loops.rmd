@@ -1,4 +1,4 @@
-# Loops
+# Bucles {#loops}
 
 Loops are R's method for repeating a task, which makes them a useful tool for programming simulations. This chapter will teach you how to use R's loop tools.
 
