@@ -420,7 +420,7 @@ methods(print)
 ## [177] print.xngettext*                             
 ## [178] print.xtabs*
 ##
-##  Las funciones no visibles están marcadas con asterisco
+##  Nonvisible functions are asterisked
 ```
 
 Este sistema de funciones genéricas, métodos y despacho basado en clases se conoce como S3 porque se originó en la tercera versión de S, el lenguaje de programación que se convertiría en S-PLUS y R. Muchas funciones comunes de R son genéricas de S3 que funcionan con un conjunto de métodos de clase. Por ejemplo, `summary` y `head` también llaman a `UseMethod`. Las funciones más básicas, como `c`, `+`, `-`, `<` y otras también se comportan como funciones genéricas, aunque llaman a `.primitive` en lugar de `UseMethod`.
@@ -572,7 +572,7 @@ methods(class = "factor")
 ## [25] summary.factor       Summary.factor      
 ## [27] xtfrm.factor        
 ## 
-##    Las funciones no visibles están marcadas con asterisco
+##    Nonvisible functions are asterisked
 ```
 
 Esta salida indica cuánto trabajo se requiere para crear una clase robusta y de buen comportamiento. Por lo general, necesitará escribir un método de `class` para cada operación básica de R. 

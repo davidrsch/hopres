@@ -213,7 +213,7 @@ actualización
 debug
 traceback
 browser
-break-points
+puntos-de-ruptura
 debug-1
 trace
 recover

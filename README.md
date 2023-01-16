@@ -30,6 +30,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
     -   Instalando R y RStudio
     -   Paquetes de R
     -   Cargar y Guardar Datos en R
+    -   Depuración de Código de R (no imagenes)
 
 # English
 
@@ -63,3 +64,4 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
     -   Installing R and RStudio
     -   R Packages
     -   Loading and Saving Data in R
+    -   Debugging R Code (no images)

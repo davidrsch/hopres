@@ -353,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="E.1" data-path="debug.html"><a href="debug.html#traceback"><i class="fa fa-check"></i><b>E.1</b> traceback</a></li>
 <li class="chapter" data-level="E.2" data-path="debug.html"><a href="debug.html#browser"><i class="fa fa-check"></i><b>E.2</b> browser</a></li>
-<li class="chapter" data-level="E.3" data-path="debug.html"><a href="debug.html#break-points"><i class="fa fa-check"></i><b>E.3</b> Break Points</a></li>
+<li class="chapter" data-level="E.3" data-path="debug.html"><a href="debug.html#puntos-de-ruptura"><i class="fa fa-check"></i><b>E.3</b> Puntos de Ruptura</a></li>
 <li class="chapter" data-level="E.4" data-path="debug.html"><a href="debug.html#debug-1"><i class="fa fa-check"></i><b>E.4</b> debug</a></li>
 <li class="chapter" data-level="E.5" data-path="debug.html"><a href="debug.html#trace"><i class="fa fa-check"></i><b>E.5</b> trace</a></li>
 <li class="chapter" data-level="E.6" data-path="debug.html"><a href="debug.html#recover"><i class="fa fa-check"></i><b>E.6</b> recover</a></li>
@@ -666,7 +666,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb330-7"><a href="s3.html#cb330-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [177] print.xngettext*                             </span></span>
 <span id="cb330-8"><a href="s3.html#cb330-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [178] print.xtabs*</span></span>
 <span id="cb330-9"><a href="s3.html#cb330-9" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb330-10"><a href="s3.html#cb330-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  Las funciones no visibles están marcadas con asterisco</span></span></code></pre></div>
+<span id="cb330-10"><a href="s3.html#cb330-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  Nonvisible functions are asterisked</span></span></code></pre></div>
 <p>Este sistema de funciones genéricas, métodos y despacho basado en clases se conoce como S3 porque se originó en la tercera versión de S, el lenguaje de programación que se convertiría en S-PLUS y R. Muchas funciones comunes de R son genéricas de S3 que funcionan con un conjunto de métodos de clase. Por ejemplo, <code>summary</code> y <code>head</code> también llaman a <code>UseMethod</code>. Las funciones más básicas, como <code>c</code>, <code>+</code>, <code>-</code>, <code>&lt;</code> y otras también se comportan como funciones genéricas, aunque llaman a <code>.primitive</code> en lugar de <code>UseMethod</code>.</p>
 <p>El sistema S3 permite que las funciones de R se comporten de diferentes maneras para diferentes clases. Puede usar S3 para formatear la salida de su tragamonedas. Primero, dé a su salida su propia clase. Luego escriba un método de impresión para esa clase. Para hacer esto de manera eficiente, necesitará saber un poco acerca de cómo <code>UseMethod</code> selecciona una función de método para usar.</p>
 <div id="selección-de-método" class="section level3 hasAnchor" number="11.4.1">
@@ -764,7 +764,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb341-14"><a href="s3.html#cb341-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] summary.factor       Summary.factor      </span></span>
 <span id="cb341-15"><a href="s3.html#cb341-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] xtfrm.factor        </span></span>
 <span id="cb341-16"><a href="s3.html#cb341-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb341-17"><a href="s3.html#cb341-17" aria-hidden="true" tabindex="-1"></a><span class="do">##    Las funciones no visibles están marcadas con asterisco</span></span></code></pre></div>
+<span id="cb341-17"><a href="s3.html#cb341-17" aria-hidden="true" tabindex="-1"></a><span class="do">##    Nonvisible functions are asterisked</span></span></code></pre></div>
 <p>Esta salida indica cuánto trabajo se requiere para crear una clase robusta y de buen comportamiento. Por lo general, necesitará escribir un método de <code>class</code> para cada operación básica de R.</p>
 <p>Considere dos desafíos que enfrentará de inmediato. Primero, R descarta atributos (como <code>class</code>) cuando combina objetos en un vector:</p>
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="s3.html#cb342-1" aria-hidden="true" tabindex="-1"></a>play1 <span class="ot">&lt;-</span> <span class="fu">play</span>()</span>
