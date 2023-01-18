@@ -26,6 +26,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
     -   Proyecto 3: Máquina Tragamonedas
     -   Programas
     -   S3
+    -   Bucles
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -60,6 +61,7 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
     -   Project 3: Slots Machine
     -   Programs
     -   S3
+    -   Loops
 -   Appendix
     -   Installing R and RStudio
     -   R Packages
