@@ -27,6 +27,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
     -   Programas
     -   S3
     -   Bucles
+    -   Velocidad (no imagenes)
 -   Apéndice
     -   Instalando R y RStudio
     -   Paquetes de R
@@ -62,6 +63,7 @@ Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Funct
     -   Programs
     -   S3
     -   Loops
+    -   Speed (no images)
 -   Appendix
     -   Installing R and RStudio
     -   R Packages
