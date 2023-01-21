@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>C Updating R and Its Packages | Programación práctica con R</title>
+  <title>C Actualizando R y sus Paquetes | Programación práctica con R</title>
   <meta name="description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="C Updating R and Its Packages | Programación práctica con R" />
+  <meta property="og:title" content="C Actualizando R y sus Paquetes | Programación práctica con R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/davidrsch/hopres/cover.png" />
   <meta property="og:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="github-repo" content="davidrsch/hopres" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="C Updating R and Its Packages | Programación práctica con R" />
+  <meta name="twitter:title" content="C Actualizando R y sus Paquetes | Programación práctica con R" />
   
   <meta name="twitter:description" content="Este libro le enseñará cómo programar en R, con ejemplos prácticos. Lo escribí para personas que no son programadores para proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos." />
   <meta name="twitter:image" content="https://github.com/davidrsch/hopres/cover.png" />
@@ -314,9 +314,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.1" data-path="packages2.html"><a href="packages2.html#instalando-paquetes"><i class="fa fa-check"></i><b>B.1</b> Instalando Paquetes</a></li>
 <li class="chapter" data-level="B.2" data-path="packages2.html"><a href="packages2.html#cargando-paquetes"><i class="fa fa-check"></i><b>B.2</b> Cargando Paquetes</a></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="updating.html"><a href="updating.html"><i class="fa fa-check"></i><b>C</b> Updating R and Its Packages</a>
+<li class="chapter" data-level="C" data-path="updating.html"><a href="updating.html"><i class="fa fa-check"></i><b>C</b> Actualizando R y sus Paquetes</a>
 <ul>
-<li class="chapter" data-level="C.1" data-path="updating.html"><a href="updating.html#r-packages"><i class="fa fa-check"></i><b>C.1</b> R Packages</a></li>
+<li class="chapter" data-level="C.1" data-path="updating.html"><a href="updating.html#paquetes-de-r"><i class="fa fa-check"></i><b>C.1</b> Paquetes de R</a></li>
 </ul></li>
 <li class="chapter" data-level="D" data-path="dataio.html"><a href="dataio.html"><i class="fa fa-check"></i><b>D</b> Cargar y Guardar Datos en R</a>
 <ul>
@@ -376,15 +376,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="updating" class="section level1 hasAnchor" number="16">
-<h1><span class="header-section-number">C</span> Updating R and Its Packages<a href="updating.html#updating" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The R Core Development Team continuously hones the R language by catching bugs, improving performance, and updating R to work with new technologies. As a result, new versions of R are released several times a year. The easiest way to stay current with R is to periodically check <a href="http://cran.r-project.org">the CRAN website</a>. The website is updated for each new release and makes the release available for download. You’ll have to install the new release. The process is the same as when you first installed R.</p>
-<p>Don’t worry if you’re not interested in staying up-to-date on R Core’s doings. R changes only slightly between releases, and you’re not likely to notice the differences. However, updating to the current version of R is a good place to start if you ever encounter a bug that you can’t explain.</p>
-<p>RStudio also constantly improves its product. You can acquire the newest updates just by downloading them from <a href="http://www.rstudio.com/ide">RStudio</a>.</p>
-<div id="r-packages" class="section level2 hasAnchor" number="16.1">
-<h2><span class="header-section-number">C.1</span> R Packages<a href="updating.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Package authors occasionally release new versions of their packages to add functions, fix bugs, or improve performance. The <code>update.packages</code> command checks whether you have the most current version of a package and installs the most current version if you do not. The syntax for <code>update.packages</code> follows that of <code>install.packages</code>. If you already have ggplot2, reshape2, and dplyr on your computer, it’d be a good idea to check for updates before you use them:</p>
+<h1><span class="header-section-number">C</span> Actualizando R y sus Paquetes<a href="updating.html#updating" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>El equipo de desarrollo de R Core perfecciona continuamente el lenguaje R detectando errores, mejorando el rendimiento y actualizando R para que funcione con nuevas tecnologías. Como resultado, se lanzan nuevas versiones de R varias veces al año. La forma más fácil de mantenerse actualizado con R es consultar periódicamente <a href="http://cran.r-project.org">el sitio web de CRAN</a>. El sitio web se actualiza para cada nueva versión y hace que la versión esté disponible para su descarga. Tendrás que instalar la nueva versión. El proceso es el mismo que cuando instaló R por primera vez.</p>
+<p>No se preocupe si no está interesado en mantenerse actualizado sobre las actividades de R Core. R cambia solo ligeramente entre versiones, y es probable que no note las diferencias. Sin embargo, actualizar a la versión actual de R es un buen lugar para comenzar si alguna vez encuentra un error que no puede explicar.</p>
+<p>Posit también mejora constantemente su producto, RStudio. Puede adquirir las actualizaciones más recientes simplemente descargándolas de <a href="https://posit.co/download/rstudio-desktop">Posit</a>.</p>
+<div id="paquetes-de-r" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">C.1</span> Paquetes de R<a href="updating.html#paquetes-de-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los autores de paquetes ocasionalmente lanzan nuevas versiones de sus paquetes para agregar funciones, corregir errores o mejorar el rendimiento. El comando <code>update.packages</code> verifica si tiene la versión más actual de un paquete e instala la versión más actual si no la tiene. La sintaxis de <code>update.packages</code> sigue la de <code>install.packages</code>. Si ya tiene ggplot2, reshape2 y dplyr en su computadora, sería una buena idea buscar actualizaciones antes de usarlas:</p>
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="updating.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;reshape2&quot;</span>, <span class="st">&quot;dplyr&quot;</span>))</span></code></pre></div>
-<p>You should start a new R session after updating packages. If you have a package loaded when you update it, you’ll have to close your R session and open a new one to begin using the updated version of the package.</p>
+<p>Debe iniciar una nueva sesión de R después de actualizar los paquetes. Si tiene un paquete cargado cuando lo actualiza, deberá cerrar su sesión de R y abrir una nueva para comenzar a usar la versión actualizada del paquete.</p>
 
 </div>
 </div>

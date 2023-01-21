@@ -16,19 +16,6 @@ Puede leer una copia online gratis [en](https://rstudio-education.github.io/hopr
 
 Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019).
 
-## Traducido
-
--   Bienvenida
--   Prefacio
--   Parte 1
--   Parte 2
--   Parte 3
--   Apéndice
-    -   Instalando R y RStudio
-    -   Paquetes de R
-    -   Cargar y Guardar Datos en R
-    -   Depuración de Código de R
-
 # English
 
 ## Hands-On Programming with R
@@ -46,16 +33,3 @@ Note that this is a textual translation of the book so when the author refers to
 Read the free online copy [here](https://rstudio-education.github.io/hopr).
 
 Purchase a hard copy [here](https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019).
-
-## Translated so far:
-
--   Wellcome
--   Preface
--   Part 1
--   Part 2
--   Part 3
--   Appendix
-    -   Installing R and RStudio
-    -   R Packages
-    -   Loading and Saving Data in R
-    -   Debugging R Code

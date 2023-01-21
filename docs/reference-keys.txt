@@ -172,7 +172,7 @@ packages2
 instalando-paquetes
 cargando-paquetes
 updating
-r-packages
+paquetes-de-r
 dataio
 conjuntos-de-datos-en-r-base
 directorio-de-trabajo
