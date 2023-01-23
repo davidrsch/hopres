@@ -50,7 +50,7 @@ En este libro se utilizan las siguientes convenciones tipográficas:
 
 `Ancho contante`:: se utiliza para listas de programas, así como dentro de párrafos para referirse a elementos de programas como nombres de variables o funciones, bases de datos, tipos de datos, variables de entorno, declaraciones y palabras clave.
 
-**\`Negrita de ancho constante**:: Smuestra comandos u otro texto que el usuario debe escribir literalmente.
+**`Negrita de ancho constante`**:: muestra comandos u otro texto que el usuario debe escribir literalmente.
 
 *`Cursiva de ancho constante`*:: muestra texto que debe reemplazarse con valores proporcionados por el usuario o por valores determinados por el contexto.
 
