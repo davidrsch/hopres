@@ -2,7 +2,7 @@
 
 ## Programación práctica con R
 
-<a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="projectlogo.png" alt="Cover image" width="285" height="285" align="right" style="margin: 0 1em 0 1em"/></a> Este es el sitio web para la versión en español de **"Programación práctica con R"** de Garrett Grolemund. Este libro le enseñará cómo programar en R, con ejemplos prácticos. Fue escrito para personas que no son programadores con el objetivo de proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos.
+<a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="projectlogo.png" alt="Cover image" width="285" height="285" align="right" style="margin: 0 1em 0 1em"/></a> Este repositorio contiene el código fuente de una versión en español de **"Programación práctica con R"** de Garrett Grolemund. El libro esta construido usando [R Markdown](https://rmarkdown.rstudio.com/). Este libro le enseñará cómo programar en R, con ejemplos prácticos. Fue escrito para personas que no son programadores con el objetivo de proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos.
 
 ## Sobre la traducción
 
@@ -20,7 +20,7 @@ Comprar una copia física [en](https://www.amazon.com/Hands-Programming-Write-Fu
 
 ## Hands-On Programming with R
 
-<a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="cover.png" alt="Cover image" width="285" height="375" align="right" style="margin: 0 1em 0 1em"/></a> This is the website for **"Hands-On Programming with R"** by Garrett Grolemund. This book will teach you how to program in R, with hands-on examples. The author wrote it for non-programmers to provide a friendly introduction to the R language. You'll learn how to load data, assemble and disassemble data objects, navigate R's environment system, write your own functions, and use all of R's programming tools. Throughout the book, you'll use your newfound skills to solve practical data science problems.
+<a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="cover.png" alt="Cover image" width="285" height="375" align="right" style="margin: 0 1em 0 1em"/></a> This is repository contains the source of a spanish verison of **"Hands-On Programming with R"** by Garrett Grolemund. The book is built using [R Markdown](https://rmarkdown.rstudio.com/). This book will teach you how to program in R, with hands-on examples. The author wrote it for non-programmers to provide a friendly introduction to the R language. You'll learn how to load data, assemble and disassemble data objects, navigate R's environment system, write your own functions, and use all of R's programming tools. Throughout the book, you'll use your newfound skills to solve practical data science problems.
 
 ## About the translation
 
