@@ -1,6 +1,6 @@
 # Español
 
-## Programación práctica con R
+## Programación Práctica con R
 
 <a href="https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019"><img src="projectlogo.png" alt="Cover image" width="285" height="285" align="right" style="margin: 0 1em 0 1em"/></a> Este repositorio contiene el código fuente de una versión en español de **"Programación práctica con R"** de Garrett Grolemund. El libro esta construido usando [R Markdown](https://rmarkdown.rstudio.com/). Este libro le enseñará cómo programar en R, con ejemplos prácticos. Fue escrito para personas que no son programadores con el objetivo de proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos.
 
