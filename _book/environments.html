@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Garrett Grolemund">
+<title>Programación práctica con R - 6&nbsp; Entornos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./slots.html" rel="next">
+<link href="./modifying.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programación práctica con R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rstudio-education/hopr" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenido</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dice.html" class="sidebar-item-text sidebar-link">Proyecto 1: Dados Ponderados</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cards.html" class="sidebar-item-text sidebar-link">Proyecto 2: Baraja de Cartas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modifying.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./slots.html" class="sidebar-item-text sidebar-link">Proyecto 3: Máquina Tragamonedas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./s3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Apéndices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-starting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a2-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a3-updating.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Actualizando R y sus Paquetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a4-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a5-debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Depuración de Código de R</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+<li><a href="#entornos" id="toc-entornos" class="nav-link active" data-scroll-target="#entornos"><span class="toc-section-number">6.1</span>  Entornos</a></li>
+  <li>
+<a href="#trabajar-con-entornos" id="toc-trabajar-con-entornos" class="nav-link" data-scroll-target="#trabajar-con-entornos"><span class="toc-section-number">6.2</span>  Trabajar con Entornos</a>
+  <ul class="collapse">
+<li><a href="#el-entorno-activo" id="toc-el-entorno-activo" class="nav-link" data-scroll-target="#el-entorno-activo"><span class="toc-section-number">6.2.1</span>  El Entorno Activo</a></li>
+  </ul>
+</li>
+  <li><a href="#reglas-de-alcance" id="toc-reglas-de-alcance" class="nav-link" data-scroll-target="#reglas-de-alcance"><span class="toc-section-number">6.3</span>  Reglas de Alcance</a></li>
+  <li><a href="#asignaci%C3%B3n" id="toc-asignación" class="nav-link" data-scroll-target="#asignaci%C3%B3n"><span class="toc-section-number">6.4</span>  Asignación</a></li>
+  <li><a href="#evaluaci%C3%B3n" id="toc-evaluación" class="nav-link" data-scroll-target="#evaluaci%C3%B3n"><span class="toc-section-number">6.5</span>  Evaluación</a></li>
+  <li><a href="#cierres" id="toc-cierres" class="nav-link" data-scroll-target="#cierres"><span class="toc-section-number">6.6</span>  Cierres</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="toc-section-number">6.7</span>  Resumen</a></li>
+  <li><a href="#resumen-del-proyecto-2" id="toc-resumen-del-proyecto-2" class="nav-link" data-scroll-target="#resumen-del-proyecto-2"><span class="toc-section-number">6.8</span>  Resumen del Proyecto 2</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rstudio-education/hopr/edit/main/environments.qmd" class="toc-action">Editar esta página</a></p><p><a href="https://github.com/rstudio-education/hopr/issues/new" class="toc-action">Informar de un problema</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="environment" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>Su mazo ahora está listo para un juego de blackjack (o de corazones o de guerra), pero ¿sus funciones de <code>barajar</code> y <code>repartir</code> están a la altura? Definitivamente no. Por ejemplo, <code>repartir</code> reparte la misma carta una y otra vez:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">repartir</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span>
+<span><span class="co">## cara  palo valor</span></span>
+<span><span class="co">##  rey picas    13</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span>
+<span><span class="co">## cara  palo valor</span></span>
+<span><span class="co">##  rey picas    13</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span>
+<span><span class="co">## cara  palo valor</span></span>
+<span><span class="co">##  rey picas    13</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y la función <code>barajar</code> en realidad no baraja el <code>mazo</code> (devuelve una copia del <code>mazo</code> que se ha barajado). En resumen, ambas funciones usan <code>mazo</code>, pero ninguna manipula <code>mazo</code>, y nos gustaría que lo hicieran.</p>
+<p>Para corregir estas funciones, deberá aprender cómo R almacena, busca y manipula objetos como <code>mazo</code>. R hace todas estas cosas con la ayuda de un sistema de entorno.</p>
+<section id="entornos" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="entornos">
+<span class="header-section-number">6.1</span> Entornos</h2>
+<p>Considere por un momento cómo su computadora almacena archivos. Cada archivo se guarda en una carpeta y cada carpeta se guarda en otra carpeta, lo que forma un sistema de archivos jerárquico. Si su computadora quiere abrir un archivo, primero debe buscar el archivo en este sistema de archivos.</p>
+<p>Puede ver su sistema de archivos abriendo una ventana del buscador. Por ejemplo, la figura <a href="#fig-folders">Figura&nbsp;<span>6.1</span></a> muestra parte del sistema de archivos de mi computadora. Tengo toneladas de carpetas. Dentro de uno de ellos hay una subcarpeta llamada <em>Documentos</em>, dentro de esa subcarpeta hay una subsubcarpeta llamada <em>ggsubplot</em>, dentro de esa carpeta hay una carpeta llamada <em>inst</em>, dentro de esa subcarpeta hay una carpeta llamada <em>doc</em>, y dentro de eso hay un archivo llamado <em>manual .pdf</em>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-folders" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0601.png" class="img-fluid figure-img" width="678"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.1: Su computadora organiza los archivos en una jerarquía de carpetas y subcarpetas. Para mirar un archivo, necesita encontrar dónde está guardado en el sistema de archivos.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>R usa un sistema similar para guardar objetos de R. Cada objeto se guarda dentro de un entorno, un objeto similar a una lista que se asemeja a una carpeta en su computadora. Cada entorno está conectado a un <em>entorno principal</em>, un entorno de nivel superior, que crea una jerarquía de entornos.</p>
+<p>Puede ver el sistema de entorno de R con la función <code>parenvs</code> en el paquete pryr (tenga en cuenta que <code>parenvs</code> venía en el paquete pryr cuando este libro se publicó por primera vez). <code>parenvs(all = TRUE)</code> devolverá una lista de los entornos que utiliza su sesión de R. El resultado real variará de una sesión a otra según los paquetes que haya cargado. Aquí está el resultado de mi sesión actual:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/pryr">pryr</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/pryr/man/parenvs.html">parenvs</a></span><span class="op">(</span>all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##    label                            name               </span></span>
+<span><span class="co">## 1  &lt;environment: R_GlobalEnv&gt;       ""                 </span></span>
+<span><span class="co">## 2  &lt;environment: package:pryr&gt;  "package:pryr" </span></span>
+<span><span class="co">## 3  &lt;environment: 0x7fff3321c388&gt;    "tools:rstudio"    </span></span>
+<span><span class="co">## 4  &lt;environment: package:stats&gt;     "package:stats"    </span></span>
+<span><span class="co">## 5  &lt;environment: package:graphics&gt;  "package:graphics" </span></span>
+<span><span class="co">## 6  &lt;environment: package:grDevices&gt; "package:grDevices"</span></span>
+<span><span class="co">## 7  &lt;environment: package:utils&gt;     "package:utils"    </span></span>
+<span><span class="co">## 8  &lt;environment: package:datasets&gt;  "package:datasets" </span></span>
+<span><span class="co">## 9  &lt;environment: package:methods&gt;   "package:methods"  </span></span>
+<span><span class="co">## 10 &lt;environment: 0x7fff3193dab0&gt;    "Autoloads"        </span></span>
+<span><span class="co">## 11 &lt;environment: base&gt;              ""                 </span></span>
+<span><span class="co">## 12 &lt;environment: R_EmptyEnv&gt;        ""                 </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Se necesita algo de imaginación para interpretar este resultado, así que visualicemos los entornos como un sistema de carpetas, Figura <a href="#fig-environments">Figura&nbsp;<span>6.2</span></a>. Puedes pensar en el árbol del entorno de esta manera. El entorno de nivel más bajo se llama <code>R_GlobalEnv</code> y se guarda dentro de un entorno llamado <code>package:pryr</code>, que se guarda dentro del entorno llamado <code>0x7fff3321c388</code>, y así sucesivamente, hasta llegar al entorno final de más alto nivel. <code>R_EmptyEnv</code>. <code>R_EmptyEnv</code> es el único entorno de R que no tiene un entorno principal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-environments" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0602.png" class="img-fluid figure-img" width="578"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.2: R almacena objetos de R en un árbol de entorno que se asemeja al sistema de carpetas de su computadora.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Recuerde que este ejemplo es solo una metáfora. Los entornos de R existen en su memoria RAM y no en su sistema de archivos. Además, los entornos de R técnicamente no se guardan uno dentro de otro. Cada entorno está conectado a un entorno principal, lo que facilita la búsqueda en el árbol de entornos de R. Pero esta conexión es unidireccional: no hay forma de mirar un entorno y decir cuáles son sus “hijos”. Por lo tanto, no puede buscar en el árbol de entorno de R. Sin embargo, en otras formas, el sistema de entorno de R funciona de manera similar a un sistema de archivos.</p>
+</section><section id="trabajar-con-entornos" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="trabajar-con-entornos">
+<span class="header-section-number">6.2</span> Trabajar con Entornos</h2>
+<p>R viene con algunas funciones de ayuda que puede usar para explorar su árbol de entorno. Primero, puede referirse a cualquiera de los entornos en su árbol con <code>as.environment</code>. <code>as.environment</code> toma un nombre de entorno (como una cadena de caracteres) y devuelve el entorno correspondiente:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/as.environment.html">as.environment</a></span><span class="op">(</span><span class="st">"package:stats"</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: package:stats&gt;</span></span>
+<span><span class="co">## attr(,"name")</span></span>
+<span><span class="co">## [1] "package:stats"</span></span>
+<span><span class="co">## attr(,"path")</span></span>
+<span><span class="co">## [1] "/Library/Frameworks/R.framework/Versions/3.0/Resources/library/stats"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tres entornos en su árbol también vienen con sus propias funciones de acceso. Estos son el entorno global (<code>R_GlobalEnv</code>), el entorno base (<code>base</code>) y el entorno vacío (<code>R_EmptyEnv</code>). Puedes referirte a ellos con:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: R_GlobalEnv&gt;</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">baseenv</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: base&gt;</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">emptyenv</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">##&lt;environment: R_EmptyEnv&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A continuación, puede buscar el padre de un entorno con <code>parent.env</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: package:pryr&gt;</span></span>
+<span><span class="co">## attr(,"name")</span></span>
+<span><span class="co">## [1] "package:pryr"</span></span>
+<span><span class="co">## attr(,"path")</span></span>
+<span><span class="co">## [1] "/Library/Frameworks/R.framework/Versions/3.0/Resources/library/pryr"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tenga en cuenta que el entorno vacío es el único entorno R sin padre:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">emptyenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## Error in parent.env(emptyenv()) : the empty environment has no parent</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede ver los objetos guardados en un entorno con <code>ls</code> o <code>ls.str</code>. <code>ls</code> devolverá solo los nombres de los objetos, pero <code>ls.str</code> mostrará un poco sobre la estructura de cada objeto:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">emptyenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## character(0)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##  "ahora"   "barajar"   "dado"    "genero"    "lst"   "mano"</span></span>
+<span><span class="co">##   "mazo"   "mazo2"   "mazo3"   "mazo4"   "mazo5"    "millon"        </span></span>
+<span><span class="co">##  "nuevo"   "repartir"    "vec"  </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El entorno vacío es, como es lógico, vacío; el entorno base tiene demasiados objetos para enumerarlos aquí; y el entorno global tiene algunas caras conocidas. Es donde R ha guardado todos los objetos que ha creado hasta ahora.</p>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>El panel de Global Environment de RStudio muestra todos los objetos en su entorno global.</p>
+</div>
+</div>
+</div>
+<p>Puede usar la sintaxis <code>$</code> de R para acceder a un objeto en un entorno específico. Por ejemplo, puedes acceder a <code>mazo</code> desde el entorno global:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">mazo</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">##   rey picas    13</span></span>
+<span><span class="co">## reina picas    12</span></span>
+<span><span class="co">##  jota picas    11</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y puede usar la función <code>assign</code> para guardar un objeto en un entorno particular. Primero dale a <code>assign</code> el nombre del nuevo objeto (como una cadena de caracteres). Luego dale a <code>assign</code> el valor del nuevo objeto, y finalmente el entorno para guardar el objeto:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"nuevo"</span>, <span class="st">"Hola Global"</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">nuevo</span></span>
+<span><span class="co">## "Hola Global"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tenga en cuenta que <code>assign</code> funciona de forma similar a <code>&lt;-</code>. Si un objeto ya existe con el nombre dado en el entorno dado, <code>assign</code> lo sobrescribirá sin pedir permiso. Esto hace que <code>assign</code> sea útil para actualizar objetos.</p>
+<p>Ahora que puede explorar el árbol de entorno de R, examinemos cómo lo usa R. R trabaja en estrecha colaboración con el árbol del entorno para buscar objetos, almacenar objetos y evaluar funciones. La forma en que R realice cada una de estas tareas dependerá del entorno activo actual.</p>
+<section id="el-entorno-activo" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="el-entorno-activo">
+<span class="header-section-number">6.2.1</span> El Entorno Activo</h3>
+<p>En cualquier momento, R está trabajando en estrecha colaboración con un solo entorno. R almacenará nuevos objetos en este entorno (si crea alguno), y R utilizará este entorno como punto de partida para buscar objetos existentes (si llama a alguno). Llamaré a este entorno especial el <em>entorno activo</em>. El entorno activo suele ser el entorno global, pero esto puede cambiar cuando ejecuta una función.</p>
+<p>Puede usar <code>environment</code> para ver el entorno activo actual:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">environment</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>environment<span class="sc">:</span> R_GlobalEnv<span class="sc">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El entorno global juega un papel especial en R. Es el entorno activo para cada comando que ejecuta en la línea de comandos. Como resultado, cualquier objeto que cree en la línea de comandos se guardará en el entorno global. Puede pensar en el entorno global como su espacio de trabajo de usuario.</p>
+<p>Cuando llama a un objeto en la línea de comando, R lo buscará primero en el entorno global. Pero, ¿y si el objeto no está allí? En ese caso, R seguirá una serie de reglas para buscar el objeto.</p>
+</section></section><section id="reglas-de-alcance" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="reglas-de-alcance">
+<span class="header-section-number">6.3</span> Reglas de Alcance</h2>
+<p>R sigue un conjunto especial de reglas para buscar objetos. Estas reglas se conocen como reglas de alcance de R y ya conoce un par de ellas:</p>
+<ol type="1">
+<li>R busca objetos en el entorno activo actual.</li>
+<li>Cuando trabaja en la línea de comandos, el entorno activo es el entorno global. Por lo tanto, R busca objetos a los que llama en la línea de comando en el entorno global.</li>
+</ol>
+<p>Aquí hay una tercera regla que explica cómo R encuentra objetos que no están en el entorno activo.</p>
+<ol start="3" type="1">
+<li>Cuando R no encuentra un objeto en un entorno, R busca en el entorno principal del entorno, luego en el principal del principal, y así sucesivamente, hasta que R encuentra el objeto o llega al entorno vacío.</li>
+</ol>
+<p>Entonces, si llama a un objeto en la línea de comando, R lo buscará en el entorno global. Si R no puede encontrarlo allí, R buscará en el padre del entorno global, y luego en el padre del padre, y así sucesivamente, ascendiendo por el árbol del entorno hasta que encuentre el objeto, como en la Figura <a href="#fig-path">Figura&nbsp;<span>6.3</span></a>. Si R no puede encontrar el objeto en ningún entorno, devolverá un error que dice que no se encuentra el objeto.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-path" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0603.png" class="img-fluid figure-img" width="713"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.3: R buscará un objeto por su nombre en el entorno activo, aquí el entorno global. Si R no encuentra el objeto allí, buscará en el padre del entorno activo y luego en el padre del padre, y así sucesivamente hasta que R encuentre el objeto o se quede sin entornos.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Recuerde que las funciones son un tipo de objeto en R. R almacenará y buscará funciones de la misma manera que almacena y busca otros objetos, buscándolos por nombre en el árbol del entorno.</p>
+</div>
+</div>
+</div>
+</section><section id="asignación" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="asignación">
+<span class="header-section-number">6.4</span> Asignación</h2>
+<p>Cuando asigna un valor a un objeto, R guarda el valor en el entorno activo bajo el nombre del objeto. Si ya existe un objeto con el mismo nombre en el entorno activo, R lo sobrescribirá.</p>
+<p>Por ejemplo, existe un objeto llamado <code>nuevo</code> en el entorno global:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nuevo</span></span>
+<span><span class="co">## "Hola Global"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede guardar un nuevo objeto llamado <code>nuevo</code> en el entorno global con este comando. R sobrescribirá el objeto anterior como resultado:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nuevo</span> <span class="op">&lt;-</span> <span class="st">"Hola Activo"</span></span>
+<span></span>
+<span><span class="va">nuevo</span></span>
+<span><span class="co">## "Hola Activo"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este arreglo crea un dilema para R cada vez que R ejecuta una función. Muchas funciones guardan objetos temporales que les ayudan a hacer su trabajo. Por ejemplo, la función <code>tirar</code> del <a href="dice.html">Proyecto 1: Dados Ponderados</a> guardó un objeto llamado <code>dado</code> y un objeto llamado <code>dados</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R debe guardar estos objetos temporales en el entorno activo; pero si R hace eso, puede sobrescribir los objetos existentes. Los autores de funciones no pueden adivinar de antemano qué nombres pueden existir ya en su entorno activo. ¿Cómo evita R este riesgo? Cada vez que R ejecuta una función, crea un nuevo entorno activo para evaluar la función.</p>
+</section><section id="evaluación" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="evaluación">
+<span class="header-section-number">6.5</span> Evaluación</h2>
+<p>R crea un nuevo entorno cada vez que evalúa una función. R usará el nuevo entorno como el entorno activo mientras ejecuta la función, y luego R volverá al entorno desde el que llamó a la función, trayendo consigo el resultado de la función. Llamemos a estos nuevos entornos <em>entornos de tiempo de ejecución</em> porque R los crea en tiempo de ejecución para evaluar funciones.</p>
+<p>Usaremos la siguiente función para explorar los entornos de tiempo de ejecución de R. Queremos saber cómo son los entornos: ¿cuáles son sus entornos principales y qué objetos contienen? <code>show_env</code> está diseñado para decirnos:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">show_env</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ran.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>    parent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>    objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/ls_str.html">ls.str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>show_env</code> es en sí mismo una función, por lo que cuando llamamos a <code>show_env()</code>, R creará un entorno de tiempo de ejecución para evaluar la función. Los resultados de <code>show_env</code> nos dirán el nombre del entorno de tiempo de ejecución, su padre y qué objetos entorno de tiempo de ejecución contiene:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_env</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## $ran.in</span></span>
+<span><span class="co">## &lt;environment: 0x7ff711d12e28&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $parent</span></span>
+<span><span class="co">## &lt;environment: R_GlobalEnv&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $objects</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los resultados revelan que R creó un nuevo entorno llamado <code>0x7ff711d12e28</code> para ejecutar <code>show_env()</code>. El entorno no tenía objetos y su padre era el <code>entorno global</code>. Entonces, para ejecutar <code>show_env</code>, el árbol de entorno de R se parecía a la figura <a href="#fig-tree">Figura&nbsp;<span>6.4</span></a>.</p>
+<p>Ejecutemos <code>show_env</code> de nuevo:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_env</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## $ran.in</span></span>
+<span><span class="co">## &lt;environment: 0x7ff715f49808&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $parent</span></span>
+<span><span class="co">## &lt;environment: R_GlobalEnv&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $objects</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esta vez <code>show_env</code> se ejecutó en un nuevo entorno, <code>0x7ff715f49808</code>. R crea un nuevo entorno <em>cada</em> vez que ejecuta una función. El entorno <code>0x7ff715f49808</code> se ve exactamente igual que <code>0x7ff711d12e28</code>. Está vacío y tiene el mismo entorno global que su padre.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-tree" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0604.png" class="img-fluid figure-img" width="700"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.4: R crea un nuevo entorno para ejecutar show_env. El entorno es un elemento secundario del entorno global.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora, consideremos qué entorno usará R como padre del entorno de tiempo de ejecución.</p>
+<p>R conectará el entorno de tiempo de ejecución de una función con el entorno en el que la función <em>fue creada por primera vez</em>. Este entorno juega un papel importante en la vida de la función, porque todos los entornos de tiempo de ejecución de la función lo utilizarán como padre. Llamemos a este entorno el <em>entorno de origen</em>. Puede buscar el entorno de origen de una función ejecutando <code>environment</code> en la función:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="va">show_env</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: R_GlobalEnv&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El entorno de origen de <code>show_env</code> es el entorno global porque creamos <code>show_env</code> en la línea de comando, pero no es necesario que el entorno de origen sea el entorno global. Por ejemplo, el entorno de <code>parenvs</code> es el paquete <code>pryr</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="va">parenvs</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: namespace:pryr&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En otras palabras, el padre de un entorno de tiempo de ejecución no siempre será el entorno global; será el entorno en el que se creó la función por primera vez.</p>
+<p>Finalmente, veamos los objetos contenidos en un entorno de tiempo de ejecución. Por el momento, los entornos de ejecución de <code>show_env</code> no contienen ningún objeto, pero eso es fácil de arreglar. Simplemente haga que <code>show_env</code> cree algunos objetos en el cuerpo de su código. R almacenará cualquier objeto creado por <code>show_env</code> en su entorno de ejecución. ¿Por qué? Debido a que el entorno de tiempo de ejecución será el entorno activo cuando se creen esos objetos:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">show_env</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>  <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span>  <span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ran.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>    parent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>    objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/ls_str.html">ls.str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esta vez, cuando ejecutamos <code>show_env</code>, R almacena <code>a</code>, <code>b</code> y <code>c</code> en el entorno de ejecución:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_env</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## $ran.in</span></span>
+<span><span class="co">## &lt;environment: 0x7ff712312cd0&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $parent</span></span>
+<span><span class="co">## &lt;environment: R_GlobalEnv&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $objects</span></span>
+<span><span class="co">## a :  num 1</span></span>
+<span><span class="co">## b :  num 2</span></span>
+<span><span class="co">## c :  num 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Así es como R se asegura de que una función no sobrescriba nada que no debería. Todos los objetos creados por la función se almacenan en un entorno de tiempo de ejecución seguro y apartado.</p>
+<p>R también pondrá un segundo tipo de objeto en un entorno de tiempo de ejecución. Si una función tiene argumentos, R copiará cada argumento en el entorno de tiempo de ejecución. El argumento aparecerá como un objeto que tiene el nombre del argumento pero el valor de cualquier entrada que el usuario proporcionó para el argumento. Esto asegura que una función podrá encontrar y usar cada uno de sus argumentos:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">foo</span> <span class="op">&lt;-</span> <span class="st">"llevame a tu tiempo de ejecucion"</span></span>
+<span></span>
+<span><span class="va">show_env</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span> <span class="op">=</span> <span class="va">foo</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ran.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>    parent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>    objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/ls_str.html">ls.str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">show_env</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## $ran.in</span></span>
+<span><span class="co">## &lt;environment: 0x7ff712398958&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $parent</span></span>
+<span><span class="co">## &lt;environment: R_GlobalEnv&gt;</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $objects</span></span>
+<span><span class="co">## x :  chr "llevame a tu tiempo de ejecucion"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pongamos todo esto junto para ver cómo R evalúa una función. Antes de llamar a una función, R está trabajando en un entorno activo; llamemos a esto el <em>entorno de llamadas</em>. Es el entorno desde el que R llama a la función.</p>
+<p>Luego llamas a la función. R responde configurando un nuevo entorno de tiempo de ejecución. Este entorno será un elemento secundario del entorno de origen de la función. R copiará cada uno de los argumentos de la función en el entorno de tiempo de ejecución y luego hará que el entorno de tiempo de ejecución sea el nuevo entorno activo.</p>
+<p>A continuación, R ejecuta el código en el cuerpo de la función. Si el código crea objetos, R los almacena en el entorno activo, es decir, en tiempo de ejecución. Si el código llama a algún objeto, R usa sus reglas de alcance para buscarlos. R buscará el entorno de tiempo de ejecución, luego el padre del entorno de tiempo de ejecución (que será el entorno de origen), luego el padre del entorno de origen, y así sucesivamente. Tenga en cuenta que es posible que el entorno de llamada no esté en la ruta de búsqueda. Por lo general, una función solo llamará a sus argumentos, que R puede encontrar en el entorno de tiempo de ejecución activo.</p>
+<p>Finalmente, R termina de ejecutar la función. Cambia el entorno activo de nuevo al entorno de llamada. Ahora R ejecuta cualquier otro comando en la línea de código que llamó a la función. Entonces, si guarda el resultado de la función en un objeto con <code>&lt;-</code>, el nuevo objeto se almacenará en el entorno de llamada.</p>
+<p>En resumen, R almacena sus objetos en un sistema de entorno. En cualquier momento, R está trabajando en estrecha colaboración con un único entorno activo. Almacena nuevos objetos en este entorno y utiliza el entorno como punto de partida cuando busca objetos existentes. El entorno activo de R suele ser el entorno global, pero R ajustará el entorno activo para hacer cosas como ejecutar funciones de forma segura.</p>
+<p>¿Cómo puedes usar este conocimiento para arreglar las funciones <code>repartir</code> y <code>barajar</code>?</p>
+<p>Primero, comencemos con una pregunta de calentamiento. Supongamos que redefino <code>repartir</code> en la línea de comando de esta manera:</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repartir</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">mazo</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tenga en cuenta que <code>repartir</code> ya no toma un argumento y llama al objeto <code>mazo</code>, que vive en el entorno global.</p>
+<p><strong>Ejercicio 8.1 (¿Funcionará repartir?)</strong> ¿Podrá R encontrar <code>mazo</code> y devolver una respuesta cuando llame a la nueva versión de <code>repartir</code>, como <code>repartir()</code>?</p>
+<p><em>Solución.</em> Sí. <code>repartir</code> seguirá funcionando igual que antes. R ejecutará <code>repartir</code> en un entorno de tiempo de ejecución que es un elemento secundario del entorno global. ¿Por qué será un hijo del entorno global? Debido a que el entorno global es el entorno de origen de <code>repartir</code> (definimos <code>repartir</code> en el entorno global):</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="va">repartir</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: R_GlobalEnv&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cuando <code>repartir</code> llama a <code>mazo</code>, R necesitará buscar el objeto <code>mazo</code>. Las reglas de alcance de R lo llevarán a la versión de <code>repartir</code> en el entorno global, como en la Figura <a href="#fig-deal">Figura&nbsp;<span>6.5</span></a>. <code>mazo</code> funciona como se esperaba como resultado:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">##   rey picas    13</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-deal" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0605.png" class="img-fluid figure-img" width="746"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.5: R encuentra el mazo mirando en el padre del entorno de tiempo de ejecución de repartir. El padre es el entorno global, el entorno de origen de repartir. Aquí, R encuentra la copia del mazo.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora arreglemos la función <code>repartir</code> para eliminar las cartas que ha repartido del <code>mazo</code>. Recuerde que <code>repartir</code> devuelve la carta superior de <code>mazo</code> pero no elimina la carta de la baraja. Como resultado, <code>repartir</code> siempre devuelve la misma carta:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">##   rey picas    13</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">##   rey picas    13</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Conoces suficiente sintaxis de R para eliminar la carta superior de <code>mazo</code>. El siguiente código guardará una copia prístina de <code>mazo</code> y luego eliminará la carta superior:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">MAZO</span> <span class="op">&lt;-</span> <span class="va">mazo</span></span>
+<span></span>
+<span><span class="va">mazo</span> <span class="op">&lt;-</span> <span class="va">mazo</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mazo</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">## reina picas    12</span></span>
+<span><span class="co">##  jota picas    11</span></span>
+<span><span class="co">##  diez picas    10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora agreguemos el código a <code>repartir</code>. Aquí <code>repartir</code> guarda (y luego devuelve) la carta superior de <code>mazo</code>. En el medio, quita la carta del <code>mazo</code>… ¿o no?</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repartir</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">carta</span> <span class="op">&lt;-</span> <span class="va">mazo</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span>  <span class="va">mazo</span> <span class="op">&lt;-</span> <span class="va">mazo</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span>  <span class="va">carta</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este código no funcionará porque R estará en un entorno de tiempo de ejecución cuando ejecute <code>mazo &lt;- mazo[-1, ]</code>. En lugar de sobrescribir la copia global de <code>mazo</code> con <code>mazo[-1, ]</code>, <code>repartir</code> simplemente creará una copia ligeramente alterada de <code>mazo</code> en su entorno de tiempo de ejecución, como en la Figura <a href="#fig-second-deck">Figura&nbsp;<span>6.6</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-second-deck" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0606.png" class="img-fluid figure-img" width="590"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.6: La función de repartir busca el mazo en el entorno global pero guarda el mazo[-1, ] en el entorno de tiempo de ejecución como un nuevo objeto llamado mazo.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ejercicio 8.2 (Sobreescribir el mazo) Vuelva a escribir la línea <code>mazo &lt;- mazo[-1, ]</code> de <code>repartir</code> para <em>asignar</em> <code>mazo[-1, ]</code> a un objeto llamado <code>mazo</code> en el entorno global. Sugerencia: considere la función <code>assign</code>.</p>
+<p><em>Solución.</em> Puede asignar un objeto a un entorno específico con la función <code>assign</code>:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repartir</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">carta</span> <span class="op">&lt;-</span> <span class="va">mazo</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">mazo</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">carta</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora <code>repartir</code> finalmente limpiará la copia global de <code>mazo</code>, y podemos <code>repartir</code> cartas tal como lo haríamos en la vida real:</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">## reina picas    12</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## cara  palo valor</span></span>
+<span><span class="co">## jota picas    11</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## cara  palo valor</span></span>
+<span><span class="co">## diez picas    10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Volvamos nuestra atención a la función <code>barajar</code>:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">barajar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">cartas</span><span class="op">)</span> <span class="op">{</span> </span>
+<span>  <span class="va">aleatorio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">52</span>, size <span class="op">=</span> <span class="fl">52</span><span class="op">)</span></span>
+<span>  <span class="va">cartas</span><span class="op">[</span><span class="va">aleatorio</span>, <span class="op">]</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>barajar(mazo)</code> no mezcla el objeto <code>mazo</code>; devuelve una copia barajada del objeto <code>mazo</code>:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mazo</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">## nueve picas     9</span></span>
+<span><span class="co">##  ocho picas     8</span></span>
+<span><span class="co">## siete picas     7</span></span>
+<span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">barajar</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mazo</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">##  cara  palo valor</span></span>
+<span><span class="co">## nueve picas     9</span></span>
+<span><span class="co">##  ocho picas     8</span></span>
+<span><span class="co">## siete picas     7</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">a</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">##  cara      palo valor</span></span>
+<span><span class="co">##    as diamantes     1</span></span>
+<span><span class="co">## siete  treboles     7</span></span>
+<span><span class="co">##   dos  treboles     2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comportamiento es ahora indeseable de dos maneras. Primero, <code>barajr</code> falla al barajar <code>mazo</code>. En segundo lugar, <code>barajar</code> devuelve una copia de <code>mazo</code>, a la que pueden faltarle las cartas que se han repartido. Sería mejor si <code>barajar</code> devolviera las cartas repartidas a la baraja y luego se barajaran. Esto es lo que sucede cuando barajas una baraja de cartas en la vida real.</p>
+<p>Ejercicio 8.3 (Rescribir barajr) Vuelva a escribir <code>barajar</code> para que reemplace la copia de <code>mazo</code> que vive en el entorno global con una versión barajada de <code>MAZO</code>, la copia intacta de <code>mazo</code> que también vive en el entorno global. La nueva versión de <code>barajar</code> no debería tener argumentos y no devolver ningún resultado.</p>
+<p><em>Solución.</em> Puede actualizar <code>barajar</code> de la misma manera que actualizó <code>repartir</code>. La siguiente versión hará el trabajo:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">barajar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">aleatorio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">52</span>, size <span class="op">=</span> <span class="fl">52</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">MAZO</span><span class="op">[</span><span class="va">aleatorio</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dado que <code>MAZO</code> vive en el entorno global, el entorno de origen de <code>barajar</code>, <code>barajar</code> podrá encontrar <code>MAZO</code> en tiempo de ejecución. R buscará <code>MAZO</code> primero en el entorno de tiempo de ejecución de <code>barajar</code> y luego en el entorno de origen de <code>barajar</code>, el entorno global, que es donde se almacena <code>MAZO</code>.</p>
+<p>La segunda línea de <code>barajar</code> creará una copia reordenada de <code>MAZO</code> y la guardará como <code>mazo</code> en el entorno global. Esto sobrescribirá la versión anterior, no barajada, de <code>mazo</code>.</p>
+</section><section id="cierres" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="cierres">
+<span class="header-section-number">6.6</span> Cierres</h2>
+<p>Nuestro sistema finalmente funciona. Por ejemplo, puede barajar las cartas y luego repartir una mano de blackjack:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">barajar</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">##  cara      palo valor</span></span>
+<span><span class="co">## reina corazones    12</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## cara      palo valor</span></span>
+<span><span class="co">## ocho corazones     8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pero el sistema requiere que <code>mazo</code> y <code>MAZO</code> existan en el entorno global. Muchas cosas suceden en este entorno, y es posible que el <code>mazo</code> se modifique o borre por accidente.</p>
+<p>Sería mejor si pudiéramos almacenar <code>mazo</code> en un lugar seguro y apartado, como uno de esos entornos seguros y apartados que R crea para ejecutar funciones. De hecho, almacenar <code>mazo</code> en un entorno de tiempo de ejecución no es tan mala idea.</p>
+<p>Podrías crear una función que tome <code>mazo</code> como argumento y guarde una copia de <code>mazo</code> como <code>MAZO</code>. La función también podría guardar sus propias copias de <code>repartir</code> y <code>barajar</code>:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">MAZO</span> <span class="op">&lt;-</span> <span class="va">mazo</span></span>
+<span></span>
+<span>  <span class="va">REPARTIR</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">carta</span> <span class="op">&lt;-</span> <span class="va">mazo</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">mazo</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">carta</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">BARAJAR</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">aleatorio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">52</span>, size <span class="op">=</span> <span class="fl">52</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">MAZO</span><span class="op">[</span><span class="va">aleatorio</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span> <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cuando ejecuta <code>setup</code>, R creará un entorno de tiempo de ejecución para almacenar estos objetos. El entorno se verá como la Figura <a href="#fig-closure1">Figura&nbsp;<span>6.7</span></a>.</p>
+<p>Ahora todas estas cosas están seguras fuera del camino en un hijo del entorno global. Eso los hace seguros pero difíciles de usar. Pidamos a <code>setup</code> que devuelva <code>REPARTIR</code> y <code>BARAJAR</code> para poder usarlos. La mejor manera de hacer esto es devolver las funciones como una lista:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">MAZO</span> <span class="op">&lt;-</span> <span class="va">mazo</span></span>
+<span></span>
+<span>  <span class="va">REPARTIR</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">carta</span> <span class="op">&lt;-</span> <span class="va">mazo</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">mazo</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">carta</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">BARAJAR</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">aleatorio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">52</span>, size <span class="op">=</span> <span class="fl">52</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">MAZO</span><span class="op">[</span><span class="va">aleatorio</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span> <span class="op">}</span></span>
+<span></span>
+<span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>repartir <span class="op">=</span> <span class="va">REPARTIR</span>, barajar <span class="op">=</span> <span class="va">BARAJAR</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">cartas</span> <span class="op">&lt;-</span> <span class="fu">setup</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-closure1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0607.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.7: Ejecutar setup almacenará mazo y MAZO en un lugar apartado y creará una función REPARTIR y BARAJAR. Cada uno de estos objetos se almacenará en un entorno cuyo padre es el entorno global.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Luego puede guardar cada uno de los elementos de la lista en un objeto dedicado en el entorno global:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repartir</span> <span class="op">&lt;-</span> <span class="va">cartas</span><span class="op">$</span><span class="va">repartir</span></span>
+<span><span class="va">barajar</span> <span class="op">&lt;-</span> <span class="va">cartas</span><span class="op">$</span><span class="va">barajar</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora puedes ejecutar <code>repartir</code> y <code>barajar</code> como antes. Cada objeto contiene el mismo código que el <code>repartir</code> y <code>barajar</code> originales:</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repartir</span></span>
+<span><span class="co">## function() {</span></span>
+<span><span class="co">##     carta &lt;- mazo[1, ]</span></span>
+<span><span class="co">##     assign("mazo", mazo[-1, ], envir = globalenv())</span></span>
+<span><span class="co">##     carta</span></span>
+<span><span class="co">##   }</span></span>
+<span><span class="co">## &lt;environment: 0x7ff7169c3390&gt;</span></span>
+<span></span>
+<span><span class="va">barajar</span></span>
+<span><span class="co">## function(){</span></span>
+<span><span class="co">##     aleatorio &lt;- sample(1:52, size = 52)</span></span>
+<span><span class="co">##     assign("mazo", MAZO[aleatorio, ], envir = globalenv())</span></span>
+<span><span class="co">##  }</span></span>
+<span><span class="co">## &lt;environment: 0x7ff7169c3390&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, las funciones ahora tienen una diferencia importante. Su entorno de origen ya no es el entorno global (aunque <code>repartir</code> y <code>barajar</code> <em>están</em> actualmente guardados allí). Su entorno de origen es el entorno de tiempo de ejecución que creó R cuando ejecutó <code>setup</code>. Ahí es donde R creó <code>REPARTIR</code> y <code>BARAJAR</code>, las funciones copiadas en el nuevo <code>repartir</code> y <code>barajar</code>, como se muestra en:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="va">repartir</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: 0x7ff7169c3390&gt;</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="va">barajar</span><span class="op">)</span></span>
+<span><span class="co">## &lt;environment: 0x7ff7169c3390&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Por qué importa esto? Porque ahora, cuando ejecuta <code>repartir</code> o <code>barajar</code>, R evaluará las funciones en un entorno de tiempo de ejecución que usa <code>0x7ff7169c3390</code> como padre. <code>MAZO</code> y <code>mazo</code> estarán en este entorno principal, lo que significa que <code>repartir</code> y <code>barajar</code> podrán encontrarlos en tiempo de ejecución. <code>MAZO</code> y <code>mazo</code> estarán en la ruta de búsqueda de funciones, pero seguirán fuera del camino en todos los demás aspectos, como se muestra en la Figura <a href="#fig-closure2">Figura&nbsp;<span>6.8</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-closure2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0608.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.8: Ahora, repartir y barajar se ejecutará en un entorno que tenga el mazo protegido y el MAZO en su ruta de búsqueda.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este arreglo se llama <em>cierre</em>. El entorno de tiempo de ejecución de <code>setup</code> “encierra” las funciones <code>repartir</code> y <code>barajar</code>. Tanto <code>repartir</code> como <code>barajar</code> pueden trabajar de cerca con los objetos contenidos en el entorno circundante, pero casi nada más puede hacerlo. El entorno envolvente no está en la ruta de búsqueda de ninguna otra función o entorno de R.</p>
+<p>Es posible que haya notado que <code>repartir</code> y <code>barajar</code> aún actualizan el objeto <code>mazo</code> en el entorno global. No te preocupes, estamos a punto de cambiar eso. Queremos que <code>repartir</code> y <code>barajar</code> funcionen exclusivamente con los objetos en el entorno principal (incluyente) de sus entornos de tiempo de ejecución. En lugar de hacer que cada función haga referencia al entorno global para actualizar <code>mazo</code>, puede hacer que hagan referencia a su entorno principal en tiempo de ejecución, como se muestra en la Figura <a href="#fig-closure3">Figura&nbsp;<span>6.9</span></a>:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">MAZO</span> <span class="op">&lt;-</span> <span class="va">mazo</span></span>
+<span></span>
+<span>  <span class="va">REPARTIR</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">carta</span> <span class="op">&lt;-</span> <span class="va">mazo</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">mazo</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">carta</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">BARAJAR</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">aleatorio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">52</span>, size <span class="op">=</span> <span class="fl">52</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"mazo"</span>, <span class="va">MAZO</span><span class="op">[</span><span class="va">aleatorio</span>, <span class="op">]</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span> <span class="op">}</span></span>
+<span></span>
+<span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>repartir <span class="op">=</span> <span class="va">REPARTIR</span>, barajar <span class="op">=</span> <span class="va">BARAJAR</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">cartas</span> <span class="op">&lt;-</span> <span class="fu">setup</span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span>
+<span><span class="va">repartir</span> <span class="op">&lt;-</span> <span class="va">cartas</span><span class="op">$</span><span class="va">repartir</span></span>
+<span><span class="va">barajar</span> <span class="op">&lt;-</span> <span class="va">cartas</span><span class="op">$</span><span class="va">barajar</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-closure3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0609.png" class="img-fluid figure-img" width="720"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6.9: Cuando cambie su código, repartir y barajar pasarán de actualizar el entorno global (izquierda) a actualizar su entorno principal (derecha).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finalmente tenemos un juego de cartas autónomo. Puedes borrar (o modificar) la copia global de <code>mazo</code> tanto como quieras y seguir jugando cartas. <code>repartir</code> y <code>barajar</code> utilizarán la copia protegida y prístina de <code>mazo</code>:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">barajar</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## cara      palo value</span></span>
+<span><span class="co">##   as corazones     1</span></span>
+<span></span>
+<span><span class="fu">repartir</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## cara     palo valor</span></span>
+<span><span class="co">## jota treboles    11</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Blackjack!</p>
+</section><section id="resumen" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="resumen">
+<span class="header-section-number">6.7</span> Resumen</h2>
+<p>R guarda sus objetos en un sistema de entorno que se asemeja al sistema de archivos de su computadora. Si comprende este sistema, puede predecir cómo R buscará objetos. Si llama a un objeto en la línea de comando, R buscará el objeto en el entorno global y luego los padres del entorno global, ascendiendo en el árbol de entornos, un entorno a la vez.</p>
+<p>R usará una ruta de búsqueda ligeramente diferente cuando llame a un objeto desde dentro de una función. Cuando ejecuta una función, R crea un nuevo entorno para ejecutar comandos. Este entorno será un elemento secundario del entorno donde se definió originalmente la función. Este puede ser el entorno global, pero también puede no serlo. Puede usar este comportamiento para crear cierres, que son funciones vinculadas a objetos en entornos protegidos.</p>
+<p>A medida que se familiarice con el sistema de entorno de R, puede usarlo para producir resultados elegantes, como lo hicimos aquí. Sin embargo, el valor real de comprender el sistema de entorno proviene de saber cómo las funciones de R hacen su trabajo. Puede usar este conocimiento para descubrir qué está fallando cuando una función no funciona como se esperaba.</p>
+</section><section id="resumen-del-proyecto-2" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="resumen-del-proyecto-2">
+<span class="header-section-number">6.8</span> Resumen del Proyecto 2</h2>
+<p>Ahora tiene control total sobre los conjuntos de datos y los valores que carga en R. Puede almacenar datos como objetos de R, puede recuperar y manipular valores de datos a voluntad e incluso puede predecir cómo R almacenará y buscará sus objetos en la memoria de tu computadora.</p>
+<p>Es posible que aún no se dé cuenta, pero su experiencia lo convierte en un poderoso usuario de datos aumentados por computadora. Puede usar R para guardar y trabajar con conjuntos de datos más grandes de los que podría manejar de otra manera. Hasta ahora solo hemos trabajado con <code>mazo</code>, un pequeño conjunto de datos; pero puede usar las mismas técnicas para trabajar con cualquier conjunto de datos que quepa en la memoria de su computadora.</p>
+<p>Sin embargo, el almacenamiento de datos no es la única tarea logística a la que se enfrentará como científico de datos. A menudo querrá realizar tareas con sus datos que son tan complejas o repetitivas que son difíciles de realizar sin una computadora. Algunas de las cosas se pueden hacer con funciones que ya existen en R y sus paquetes, pero otras no. Serás el más versátil como científico de datos si puedes escribir tus propios programas para que los sigan las computadoras. R puede ayudarte a hacer esto. Cuando esté listo, <a href="slots.html">Project 3: Máquina Tragamonedas</a> le enseñará las habilidades más útiles para escribir programas en R.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./modifying.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./slots.html" class="pagination-link">
+        <span class="nav-page-text">Proyecto 3: Máquina Tragamonedas</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Programación práctica con R fue escrito por Garrett Grolemund.</div>   
+    <div class="nav-footer-right">Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>

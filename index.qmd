@@ -1,0 +1,23 @@
+# Bienvenido {.unnumbered}
+
+Este es el sitio web para la versión en español de **"Hands-On Programming with R"** (en lo adelante **"Programación Práctica con R"**) de Garrett Grolemund. Este libro le enseñará cómo programar en R, con ejemplos prácticos. Fue escrito para personas que no son programadores con el objetivo de proporcionar una introducción amigable al lenguaje R. Aprenderá a cargar datos, ensamblar y desensamblar objetos de datos, navegar por el sistema de entorno de R, escribir sus propias funciones y utilizar todas las herramientas de programación de R. A lo largo del libro, utilizará sus nuevas habilidades para resolver problemas prácticos de ciencia de datos.
+
+Si ya se siente cómodo con R y le gustaría enfocarse en cómo analizar datos usando los paquetes Tidyverse de R, se recomienda [R para la Ciencia de Datos](https://es.r4ds.hadley.nz/), un libro de Garrett Grolemund y Hadley Wickham.
+
+## Sobre la traducción {.unnumbered}
+
+<a href="https://github.com/davidrsch/hopres"><img src="projectlogo.png" alt="Cover image" width="285" height="285" align="right" style="margin: 0 1em 0 1em"/></a> Esta traducción de "Programación práctica con R" es un proyecto personal de [David Díaz Rodríguez](https://github.com/davidrsch) con el objetivo de facilitar el estudio del lenguje de programación R, tanto al propio traductor como a todas aquellas personas de habla hispana que deseen aprender a programar con R.
+
+Señalar que esta es una traducción textual del libro por lo que en lo adelante cuando el autor se refiere así mismo en primera persona, será Garrett Grolemund y no el traductor, a excepción del prefacio que fue escrito por Hadley Wickham.
+
+La traducción fue realizada usando Google Translate y fueron corregidos algunos errores gramaticales y de coherencia. Si detecta algún error relacionado con contenido de la traducción, siéntase libre de abrir un issue o un pull request en este [repositorio](https://github.com/davidrsch/hopres).
+
+## Sobre la versión original en inglés {.unnumbered}
+
+Puede consultar la versión original del libro en [Hands-On Programming with R](https://rstudio-education.github.io/hopr/). Si desea una **copia física** del libro, puede solicitarla en [amazon](https://www.amazon.com/Hands-Programming-Write-Functions-Simulations/dp/1449359019); fue publicado por O'Reilly en julio de 2014.
+
+Si desea retribuir, considere informar un error tipográfico o realizar un pull request en [github.com/rstudio-education/hopr](https://github.com/rstudio-education/hopr) para la versión original y en [github.com/davidrsch/hopres](https://github.com/davidrsch/hopres) para esta traducción.
+
+Este sitio web es (y siempre será) de uso gratuito y está licenciado bajo la licencia [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+El libro original fue escrito en [RMarkdown](https://rmarkdown.rstudio.com) con [bookdown](https://bookdown.org). Esta traducción esta hecha con [Quarto](https://quarto.org/).

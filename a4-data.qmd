@@ -1,0 +1,509 @@
+# Cargar y Guardar Datos en R {#dataio}
+
+Este apéndice le mostrará cómo cargar y guardar datos en R desde archivos de texto sin formato, archivos de R y hojas de cálculo de Excel. También le mostrará los paquetes R que puede usar para cargar datos de bases de datos y otros programas comunes, como SAS y MATLAB.
+
+## Conjuntos de Datos en R Base
+
+R viene con muchos conjuntos de datos precargados en el paquete `datasets`, que viene con la base de R. Estos conjuntos de datos no son muy interesantes, pero le brindan la oportunidad de probar el código o hacer un punto sin tener que cargar un conjunto de datos desde el exterior de R. Puede ver una lista de los conjuntos de datos de R, así como una breve descripción de cada uno, ejecutando:
+
+``` r
+help(package = "datasets")
+```
+
+Para utilizar un conjunto de datos, simplemente escriba su nombre. Cada conjunto de datos ya está preguardado como un objeto R. Por ejemplo:
+
+``` r
+iris
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+```
+
+Sin embargo, los conjuntos de datos de R no reemplazan sus propios datos, que puede cargar en R desde una amplia variedad de formatos de archivo. Pero antes de cargar cualquier archivo de datos en R, deberá determinar dónde está su *directorio de trabajo*.
+
+## Directorio de Trabajo
+
+Cada vez que abre R, se vincula a sí mismo a un directorio en su computadora, que R llama el directorio de trabajo. Aquí es donde R buscará los archivos cuando intente cargarlos, y es donde R guardará los archivos cuando los guarde. La ubicación de su directorio de trabajo variará en diferentes computadoras. Para determinar qué directorio está usando R como su directorio de trabajo, ejecute:
+
+``` r
+getwd()
+## "/Users/garrettgrolemund"
+```
+
+Puede colocar archivos de datos directamente en la carpeta que es su directorio de trabajo, o puede mover su directorio de trabajo a donde están sus archivos de datos. Puede mover su directorio de trabajo a cualquier carpeta de su computadora con la función `setwd`. Simplemente proporcione a `setwd` la ruta del archivo a su nuevo directorio de trabajo. Prefiero configurar mi directorio de trabajo en una carpeta dedicada a cualquier proyecto en el que esté trabajando actualmente. De esa manera puedo mantener todos mis datos, secuencias de comandos, gráficos e informes en el mismo lugar. Por ejemplo:
+
+``` r
+setwd("~/Users/garrettgrolemund/Documents/Book_Project")
+```
+
+Si la ruta del archivo no comienza con su directorio raíz, R asumirá que comienza en su directorio de trabajo actual.
+
+También puede cambiar su directorio de trabajo haciendo clic en Session \> Set Working Directory \> Choose Directory en la barra de menu de RStudio. Las GUI de Windows y Mac tienen opciones similares. Si inicia R desde una línea de comandos de UNIX (como en las máquinas Linux), el directorio de trabajo será el directorio en el que se encontraba cuando llamó a R.
+
+Puede ver qué archivos hay en su directorio de trabajo con `list.files()`. Si ve el archivo que le gustaría abrir en su directorio de trabajo, entonces está listo para continuar. La forma en que abra los archivos en su directorio de trabajo dependerá del tipo de archivo que desee abrir.
+
+## Archivos de Texto Sin Formato
+
+Los archivos de texto sin formato son una de las formas más comunes de guardar datos. Son muy simples y pueden ser leídos por muchos programas de computadora diferentes, incluso los editores de texto más básicos. Por esta razón, los datos públicos suelen presentarse como archivos de texto sin formato. Por ejemplo, la Oficina del Censo, la Administración del Seguro Social y la Oficina de Estadísticas Laborales ponen a disposición sus datos como archivos de texto sin formato.
+
+Así es como el conjunto de datos de la escalera real de [Objetos de R](#objects) aparecería como un archivo de texto sin formato (he agregado una columna de valor):
+
+```         
+"carta", "palo", "valor"
+"as", "picas", 14
+"rey", "picas", 13
+"reina", "picas", 12
+"jota", "picas", 11
+"diez", "picas", 10
+```
+
+Un archivo de texto sin formato almacena una tabla de datos en un documento de texto. Cada fila de la tabla se guarda en su propia línea y se usa una convención simple para separar las celdas dentro de una fila. A menudo, las celdas están separadas por una coma, pero también pueden estar separadas por una tabulación, un delimitador de barra vertical (es decir, `|` ) o cualquier otro carácter. Cada archivo solo utiliza un método de separación de celdas, lo que minimiza la confusión. Dentro de cada celda, los datos aparecen como esperarías verlos, como palabras y números.
+
+Todos los archivos de texto sin formato se pueden guardar con la extensión *.txt* (para texto), pero a veces un archivo recibirá una extensión especial que anuncia cómo separa las entradas de las celdas de datos. Dado que las entradas en el conjunto de datos mencionado anteriormente están separadas por una coma, este archivo sería un archivo de *valores separados por comas* y normalmente se guardaría con la extensión *.csv*.
+
+### read.table
+
+Para cargar un archivo de texto sin formato, use `read.table`. El primer argumento de `read.table` debe ser el nombre de su archivo (si está en su directorio de trabajo), o la ruta del archivo a su archivo (si no está en su directorio de trabajo). Si la ruta del archivo no comienza con su directorio raíz, R lo agregará al final de la ruta del archivo que conduce a su directorio de trabajo. También puede darle a `read.table` otros argumentos. Los dos más importantes son `sep` y `header`.
+
+Si el conjunto de datos de la escalera real se guardó como un archivo llamado *poquer.csv* en su directorio de trabajo, podría cargarlo con:
+
+``` r
+poquer <- read.table("poquer.csv", sep = ",", header = TRUE)
+```
+
+#### sep
+
+Use `sep` para decirle a `read.table` qué carácter usa su archivo para separar las entradas de datos. Para averiguarlo, es posible que deba abrir su archivo en un editor de texto y mirarlo. Si no especifica un argumento `sep`, `read.table` intentará separar las celdas siempre que haya espacios en blanco, como una pestaña o un espacio. R no podrá decirle si `read.table` hace esto correctamente o no, así que confíe en él bajo su propio riesgo.
+
+#### header
+
+Use `header` para decirle a `read.table` si la primera línea del archivo contiene nombres de variables en lugar de valores. Si la primera línea del archivo es un conjunto de nombres de variables, debe establecer `header = TRUE`.
+
+#### na.strings
+
+A menudo, los conjuntos de datos utilizan símbolos especiales para representar la información que falta. Si sabe que sus datos utilizan un determinado símbolo para representar las entradas que faltan, puede decirle a `read.table` (y a las funciones anteriores) cuál es el símbolo con el argumento `na.strings`. `read.table` convertirá todas las instancias del símbolo de información faltante en `NA`, que es el símbolo de información faltante de R (consulte [Información faltante](#missing)).
+
+Por ejemplo, su conjunto de datos de póquer contenía valores faltantes almacenados como `.`, como este:
+
+``` r
+## "carta","palo","valor"
+## "as","picas"," 14"
+## "rey","picas"," 13"
+## "reina",".","."
+## "jota",".","."
+## "diez",".","."
+```
+
+Puede leer el conjunto de datos en R y convertir los valores faltantes en NA a medida que avanza con el comando:
+
+``` r
+poquer <- read.table("poquer.csv", sep = ",", header = TRUE, na.string = ".")
+```
+
+R guardaría una versión de `poquer` que se ve así:
+
+``` r
+##  carta     palo  valor
+##     as    picas     14
+##    rey    picas     13
+##  reina     <NA>     NA
+##   jota     <NA>     NA
+##   diez     <NA>     NA
+```
+
+#### skip and nrow
+
+A veces, un archivo de texto sin formato vendrá con un texto introductorio que no forma parte del conjunto de datos. O bien, puede decidir que solo desea leer una parte de un conjunto de datos. Puede hacer estas cosas con los argumentos `skip` y `nrow`. Use `skip` para decirle a R que salte un número específico de líneas antes de que comience a leer valores del archivo. Use `nrow` para decirle a R que deje de leer valores después de haber leído un cierto número de líneas.
+
+Por ejemplo, imagine que el archivo de escalera real completo se ve así:
+
+``` r
+Estos datos fueron recopilados por el Instituto Nacional de Póquer.
+Accidentalmente repetimos la última fila de datos.
+
+"cata", "palo", "valor"
+"as", "picas", 14
+"rey", "picas", 13
+"reina", "picas", 12
+"jota", "picas", 11
+"diez", "picas", 10
+"diez", "picas", 10
+```
+
+Puede leer solo las seis líneas que desee (cinco filas más un encabezado) con:
+
+``` r
+read.table("poquer.csv", sep = ",", header = TRUE, skip = 3, nrow = 5)
+##    carta    palo  valor
+## 1     as   picas     14
+## 2    rey   picas     13
+## 3  reina   picas     12
+## 4   jota   picas     11
+## 5   diez   picas     10
+```
+
+Tenga en cuenta que la fila del encabezado no cuenta para el total de filas permitidas por `nrow`.
+
+#### stringsAsFactors
+
+R lee números tal como cabría esperar, pero cuando R encuentra cadenas de caracteres (por ejemplo, letras y palabras), comienza a actuar de manera extraña. R quiere convertir cada cadena de caracteres en un factor. Este es el comportamiento predeterminado de R, pero creo que es un error. A veces los factores son útiles. En otras ocasiones, son claramente el tipo de datos incorrecto para el trabajo. Además, los factores provocan un comportamiento extraño, especialmente cuando desea mostrar datos. Este comportamiento puede ser sorprendente si no se dio cuenta de que R convirtió sus datos en factores. En general, tendrá una experiencia R más fluida si no permite que R genere factores hasta que los solicite. Afortunadamente, es fácil hacer esto.
+
+Establecer el argumento `stringsAsFactors` en `FALSE` asegurará que R guarde cualquier cadena de caracteres en su conjunto de datos como cadenas de caracteres, no como factores. Para usar `stringsAsFactors`, escribirías:
+
+``` r
+read.table("poquer.csv", sep = ",", header = TRUE, stringsAsFactors = FALSE)
+```
+
+Si va a cargar más de un archivo de datos, puede cambiar el comportamiento de factorización predeterminado a nivel global con:
+
+``` r
+options(stringsAsFactors = FALSE)
+```
+
+Esto garantizará que todas las cadenas se lean como cadenas, no como factores, hasta que finalice su sesión de R o vuelva a cambiar el valor predeterminado global ejecutando:
+
+``` r
+options(stringsAsFactors = TRUE)
+```
+
+### La Familia read
+
+R también viene con algunos atajos preempaquetados para `read.table`, que se muestran en la Tabla @tbl-shortcuts.
+
+| Función       | Por Defecto                         | Uso                                                              |
+|---------------------------|---------------------------|------------------|
+| `read.table`  | sep = " ", header = FALSE           | Función de lectura de uso general                                |
+| `read.csv`    | sep = ",", header = TRUE            | Archivos de variables separadas por comas (CSV)                  |
+| `read.delim`  | sep = "\t", header = TRUE           | Archivos delimitados por tabuladores                             |
+| `read.csv2`   | sep = ";", header = TRUE, dec = "," | Archivos CSV con formato decimal europeo                         |
+| `read.delim2` | sep = "\t", header = TRUE, dec ="," | Archivos delimitados por tabuladores con formato decimal europeo |
+
+: Funciones read de R. Puede sobrescribir cualquiera de los argumentos predeterminados según sea necesario. {#tbl-shortcuts}
+
+El primer atajo, `read.csv`, se comporta como `read.table` pero establece automáticamente `sep = ","` y `header = TRUE`, lo que puede ahorrarte algo de escritura:
+
+``` r
+poquer <- read.csv("poquer.csv")
+```
+
+`read.delim` establece automáticamente `sep` en el carácter de tabulación, lo cual es muy útil para leer archivos delimitados por tabulaciones. Estos son archivos donde cada celda está separada por una pestaña. `read.delim` también establece `header = TRUE` por defecto.
+
+`read.delim2` y `read.csv2` existen para los usuarios europeos de R. Estas funciones le dicen a R que los datos usan una coma en lugar de un punto para indicar lugares decimales. (Si se pregunta cómo funciona esto con los archivos CSV, los archivos CSV2 generalmente separan las celdas con un punto y coma, no con una coma).
+
+::: callout-tip
+**Import Dataset**
+
+También puede cargar archivos de texto sin formato con el botón Importar conjunto de datos de RStudio, como se describe en [Cargando Datos](#loading). Importar conjunto de datos proporciona una versión GUI de `read.table`.
+:::
+
+### read.fwf
+
+Un tipo de archivo de texto sin formato desafía el patrón al utilizar su diseño para separar las celdas de datos. Cada fila se coloca en su propia línea (al igual que con otros archivos de texto sin formato), y luego cada columna comienza en un número específico de caracteres desde el lado izquierdo del documento. Para lograr esto, se agrega un número arbitrario de espacios de caracteres al final de cada entrada para ubicar correctamente la siguiente entrada. Estos documentos se conocen como *archivos de ancho fijo* y normalmente terminan con la extensión *.fwf*.
+
+Esta es una forma en que el conjunto de datos de la escalera real podría verse como un archivo de ancho fijo. En cada fila, la entrada del palo comienza exactamente 10 caracteres desde el inicio de la línea. No importa cuántos caracteres aparecieron en la primera celda de cada fila:
+
+```         
+
+carta     palo       valor
+as        picas      14
+rey       picas      13  
+reina     picas      12  
+jota      picas      11  
+diez      picas      10
+```
+
+Los archivos de ancho fijo se ven bien a los ojos humanos (pero no mejor que un archivo delimitado por tabulaciones); sin embargo, puede ser difícil trabajar con ellos. Quizás debido a esto, R viene con una función para leer archivos de ancho fijo, pero no para guardarlos. Desafortunadamente, a las agencias del gobierno de EE. UU. parece gustarles los archivos de ancho fijo, y es probable que encuentre uno o más durante su carrera.
+
+Puede leer archivos de ancho fijo en R con la función `read.fwf`. La función toma los mismos argumentos que `read.table` pero requiere un argumento adicional, `widths`, que debería ser un vector de números. Cada entrada *i* del vector `widths` debe indicar el ancho (en caracteres) de la columna *i* del conjunto de datos.
+
+Si los datos de escalera real de ancho fijo antes mencionados se guardaron como *poquer.fwf* en su directorio de trabajo, podría leerlos con:
+
+``` r
+poquer <- read.fwf("poquer.fwf", widths = c(10, 7, 6), header = TRUE)
+```
+
+### Links HTML
+
+Muchos archivos de datos están disponibles en Internet en su propia dirección web. Si está conectado a Internet, puede abrir estos archivos directamente en R con `read.table`, `read.csv`, etc. Puede pasar una dirección web al argumento del nombre del archivo para cualquiera de las funciones de lectura de datos de R. . Como resultado, podría leer el conjunto de datos de póquer desde una dirección web como *http://.../poquer.csv* con:
+
+``` r
+poquer <- read.csv("http://.../poquer.csv")
+```
+
+Obviamente, esa no es una dirección real, pero aquí hay algo que funcionaría, ¡si puede escribirlo!
+
+``` r
+mazo <- read.csv("https://gist.github.com/davidrsch/e59a71c228f5632634ebba08c7c7beaa/raw/mazo.csv")
+```
+
+Solo asegúrese de que la dirección web se vincule directamente al archivo y no a una página web que se vincule al archivo. Por lo general, cuando visita la dirección web de un archivo de datos, el archivo comenzará a descargarse o los datos sin procesar aparecerán en la ventana de su navegador.
+
+Tenga en cuenta que los sitios web que comienzan con *https://* son sitios web seguros, lo que significa que es posible que R no pueda acceder a los datos proporcionados en estos enlaces.
+
+### Guardar Archivos de Texto Sin Formato
+
+Una vez que sus datos estén en R, puede guardarlos en cualquier formato de archivo compatible con R. Si desea guardarlo como un archivo de texto sin formato, puede utilizar la familia de funciones +write+. Las tres funciones básicas de write aparecen en Table @tbl-write. Use `write.csv` para guardar sus datos como un archivo *.csv* y `write.table` para guardar sus datos como un documento delimitado por tabulaciones o un documento con separadores más exóticos.
+
+| Formato de archivo                      | Función y sintaxis                                                    |
+|--------------------------|----------------------------------------------|
+| **.csv**                                | `write.csv(r_object, file = filepath, row.names = FALSE)`             |
+| **.csv** (con notación decimal europea) | `write.csv2(r_object, file = filepath, row.names = FALSE)`            |
+| Delimitado por tabulaciones             | `write.table(r_object, file = filepath, sep = "\t", row.names=FALSE)` |
+
+: R guarda conjuntos de datos en archivos de texto sin formato con la familia de funciones write. {#tbl-write}
+
+El primer argumento de cada función es el objeto de R que contiene su conjunto de datos. El argumento `file` es el nombre del archivo (incluida la extensión) que desea dar a los datos guardados. De forma predeterminada, cada función guardará sus datos en su directorio de trabajo. Sin embargo, puede proporcionar una ruta de archivo al argumento del archivo. R lo complacerá guardando el archivo al final de la ruta del archivo. Si la ruta del archivo no comienza con su directorio raíz, R lo agregará al final de la ruta del archivo que conduce a su directorio de trabajo.
+
+Por ejemplo, puede guardar el data frame (hipotético) póquer en un subdirectorio llamado *data* dentro de su directorio de trabajo con el comando:
+
+``` r
+write.csv(poquer, "data/poquer.csv", row.names = FALSE)
+```
+
+Tenga en cuenta que `write.csv` y `write.table` no pueden crear nuevos directorios en su computadora. Cada carpeta en la ruta del archivo debe existir antes de intentar guardar un archivo con ella.
+
+El argumento `row.names` evita que R guarde los nombres de las filas del data frame como una columna en el archivo de texto sin formato. Es posible que haya notado que R nombra automáticamente cada fila en un data frame con un número. Por ejemplo, cada fila en nuestro data frame de póquer aparece con un número al lado:
+
+``` r
+poquer
+##    carta  palo valor
+## 1     as picas    14
+## 2    rey picas    13
+## 3  reina picas    12
+## 4   jota picas    11
+## 5   diez picas    10
+```
+
+Estos números de fila son útiles, pero pueden acumularse rápidamente si comienza a guardarlos. R agregará un nuevo conjunto de números de forma predeterminada cada vez que vuelva a leer el archivo. Evite esto configurando siempre `row.names = FALSE` cuando use una función de la familia `write`.
+
+### Comprimiendo Archivos
+
+Para comprimir un archivo de texto sin formato, rodee el nombre del archivo o la ruta del archivo con la función `bzfile`, `gzfile` o `xzfile`. Por ejemplo:
+
+``` r
+write.csv(poquer, file = bzfile("data/poquer.csv.bz2"), row.names = FALSE)
+```
+
+Cada una de estas funciones comprimirá la salida con un tipo diferente de formato de compresión, que se muestra en la Tabla @tbl-compression.
+
+| Función  | Tipo de compresión |
+|----------|--------------------|
+| `bzfile` | bzip2              |
+| `gzfile` | gnu zip (gzip)     |
+| `xzfile` | compresión xz      |
+
+: R viene con tres funciones auxiliares para comprimir archivos {#tbl-compression}
+
+Es una buena idea ajustar la extensión de su archivo para reflejar la compresión. Las funciones \`read\`\` de R abrirán archivos de texto sin formato comprimidos en cualquiera de estos formatos. Por ejemplo, podría leer un archivo comprimido llamado *poquer.csv.bz2* con:
+
+``` r
+read.csv("poquer.csv.bz2")
+```
+
+o:
+
+``` r
+read.csv("data/poquer.csv.bz2")
+```
+
+dependiendo de dónde se encuentre el archivo.
+
+## Archivos de R
+
+R proporciona dos formatos de archivo propios para almacenar datos, *.RDS* y *.RData*. Los archivos RDS pueden almacenar un único objeto R y los archivos RData pueden almacenar varios objetos R.
+
+Puede abrir un archivo RDS con `readRDS`. Por ejemplo, si los datos de la escalera real se guardaron como *poquer.RDS*, podría abrirlos con:
+
+``` r
+poquer <- readRDS("poquer.RDS")
+```
+
+Abrir archivos RData es aún más fácil. Simplemente ejecute la función `load` con el archivo:
+
+``` r
+load("archivo.RData")
+```
+
+No hay necesidad de asignar la salida a un objeto. Los objetos de R en su archivo RData se cargarán en su sesión de R con sus nombres originales. Los archivos RData pueden contener varios objetos de R, por lo que cargar uno puede leer varios objetos. `load` no le dice cuántos objetos está leyendo, ni cuáles son sus nombres, por lo que vale la pena saber un poco sobre el archivo RData antes de cargarlo.
+
+En el peor de los casos, puede vigilar el panel de environment en RStudio mientras carga un archivo RData. Muestra todos los objetos que ha creado o cargado durante su sesión de R. Otro truco útil es poner paréntesis alrededor de tu comando de carga como `(load("poquer.RData"))`. Esto hará que R imprima los nombres de cada objeto que carga desde el archivo.
+
+Tanto `readRDS` como `load` toman una ruta de archivo como su primer argumento, al igual que las otras funciones de lectura y escritura de R. Si su archivo está en su directorio de trabajo, la ruta del archivo será el nombre del archivo.
+
+### Guardar archivos de R
+
+Puede guardar un objeto de R como un data frame como un archivo RData o un archivo RDS. Los archivos RData pueden almacenar varios objetos de R a la vez, pero los archivos RDS son la mejor opción porque fomentan el código reproducible.
+
+Para guardar datos como un objeto RData, utilice la función `save`. Para guardar datos como un objeto RDS, use la función `saveRDS`. En cada caso, el primer argumento debe ser el nombre del objeto de R que desea guardar. Luego debe incluir un argumento de archivo que tenga el nombre del archivo o la ruta del archivo en el que desea guardar el conjunto de datos.
+
+Por ejemplo, si tiene tres objetos R, `a`, `b` y `c`, puede guardarlos todos en el mismo archivo RData y luego volver a cargarlos en otra sesión de R:
+
+``` r
+a <- 1
+b <- 2
+c <- 3
+save(a, b, c, file = "objetos.RData")
+load("objetos.RData")
+```
+
+Sin embargo, si olvida los nombres de sus objetos o le da su archivo a otra persona para que lo use, será difícil determinar qué había en el archivo, incluso después de que usted (o ellos) lo carguen. La interfaz de usuario para archivos RDS es mucho más clara. Puede guardar solo un objeto por archivo, y quien lo cargue puede decidir cómo quiere llamar a sus nuevos datos. Como beneficio adicional, no tiene que preocuparse de que `load` sobrescriba cualquier objeto de R que tenga el mismo nombre que los objetos que está cargando:
+
+``` r
+saveRDS(a, file = "objeto.RDS") 
+a <- readRDS("objeto.RDS")
+```
+
+Guardar sus datos como un archivo R ofrece algunas ventajas sobre guardar sus datos como un archivo de texto sin formato. R comprime automáticamente el archivo y también guardará los metadatos relacionados con R asociados con su objeto. Esto puede ser útil si sus datos contienen factores, fechas y horas o atributos de clase. No tendrá que volver a analizar esta información en R como lo haría si convirtiera todo en un archivo de texto.
+
+Por otro lado, muchos otros programas no pueden leer los archivos de R, lo que los hace ineficientes para compartir. También pueden crear un problema para el almacenamiento a largo plazo si no cree que tendrá una copia de R cuando vuelva a abrir los archivos.
+
+## Hojas de Cálculo de Excel
+
+Microsoft Excel es un popular programa de hoja de cálculo que se ha convertido casi en el estándar de la industria en el mundo de los negocios. Es muy probable que necesite trabajar con una hoja de cálculo de Excel en R al menos una vez en su carrera. Puede leer hojas de cálculo en R y también guardar datos de R como una hoja de cálculo de varias maneras.
+
+### Exportar desde Excel
+
+El mejor método para mover datos de Excel a R es exportar la hoja de cálculo de Excel como un archivo *.csv* o *.txt*. R no solo podrá leer el archivo de texto, también lo hará cualquier otro software de análisis de datos. Los archivos de texto son la lengua franca del almacenamiento de datos.
+
+Exportar los datos también resuelve otra dificultad. Excel usa formatos y metadatos patentados que no se transferirán fácilmente a R. Por ejemplo, un solo archivo de Excel puede incluir varias hojas de cálculo, cada una con sus propias columnas y macros. Cuando Excel exporta el archivo como *.csv* o *.txt*, se asegura de que este formato se transfiera a un archivo de texto sin formato de la forma más adecuada. Es posible que R no pueda administrar la conversión de manera tan eficiente.
+
+Para exportar datos desde Excel, abra la hoja de cálculo de Excel y luego vaya a Guardar como. Luego elija CSV en el cuadro Guardar como tipo que aparece y guarde los archivos. Luego puede leer el archivo en R con la función `read.csv`.
+
+### Copiar y pegar
+
+También puede copiar partes de una hoja de cálculo de Excel y pegarlas en R. Para hacer esto, abra la hoja de cálculo y seleccione las celdas que desea leer en R. Luego seleccione Editar \> Copiar en la barra de menú, o use un atajo de teclado, para copia las celdas a tu portapapeles.
+
+En la mayoría de los sistemas operativos, puede leer los datos almacenados en su portapapeles en R con:
+
+``` r
+read.table("clipboard")
+```
+
+En Mac necesitarás usar:
+
+``` r
+read.table(pipe("pbpaste"))
+```
+
+Si las celdas contienen valores con espacios en ellos, esto interrumpirá `read.table`. Puede probar otra función \`read\`\` (o simplemente exportar formalmente los datos de Excel) antes de leerlos en R.
+
+### XLConnect
+
+Se han escrito muchos paquetes para ayudarlo a leer archivos de Excel directamente en R. Desafortunadamente, muchos de estos paquetes no funcionan en todos los sistemas operativos. Otros se han vuelto obsoletos debido al formato de archivo *.xlsx*. Un paquete que funciona en todos los sistemas de archivos (y recibe buenas críticas) es el paquete XLConnect. Para usarlo, deberá instalar y cargar el paquete:
+
+``` r
+install.packages("XLConnect")
+library(XLConnect)
+```
+
+XLConnect se basa en Java para ser independiente de la plataforma. Entonces, cuando abra XLConnect por primera vez, RStudio puede solicitarle que descargue un Java Runtime Environment si aún no tiene uno.
+
+### Lectura de Hojas de Cálculo
+
+Puede usar XLConnect para leer en una hoja de cálculo de Excel con un proceso de uno o dos pasos. Comenzaré con el proceso de dos pasos. Primero, cargue un libro de trabajo de Excel con `loadWorkbook`. `loadWorkbook` puede cargar archivos *.xls* y *.xlsx*. Toma un argumento: la ruta del archivo a su libro de Excel (este será el nombre del libro de trabajo si está guardado en su directorio de trabajo):
+
+``` r
+lt <- loadWorkbook("archivo.xlsx")
+```
+
+A continuación, lea una hoja de cálculo del libro de trabajo con `readWorksheet`, que toma varios argumentos. El primer argumento debe ser un objeto de libro de trabajo creado con `loadWorkbook`. El siguiente argumento, `sheet`, debe ser el nombre de la hoja de cálculo en el libro de trabajo que le gustaría leer en R. Este será el nombre que aparece en la pestaña inferior de la hoja de cálculo. También puede darle a `sheet` un número, que especifica la hoja en la que desea leer (uno para la primera hoja, dos para la segunda, y así sucesivamente).
+
+`readWorksheet` luego toma cuatro argumentos que especifican un cuadro delimitador de celdas para leer: `startRow`, `startCol`, `endRow` y `endCol`. Use `startRow` y `startCol` para describir la celda en la esquina superior izquierda del cuadro delimitador de celdas que desea leer. Use `endRow` y `endCol` para especificar la celda en la esquina inferior derecha de el cuadro delimitador. Cada uno de estos argumentos toma un número. Si no proporciona argumentos delimitadores, `readWorksheet` leerá en la región rectangular de celdas en la hoja de cálculo que parece contener datos. `readWorksheet` supondrá que esta región contiene una fila de encabezado, pero puede decir lo contrario con `header = FALSE`.
+
+Entonces, para leer en la primera hoja de trabajo de `lt`, podría usar:
+
+``` r
+hoja1 <- readWorksheet(lt, sheet = 1, startRow = 0, startCol = 0, 
+  endRow = 100, endCol = 3)
+```
+
+R guardará la salida como un data frame. Todos los argumentos en `readWorkbook` excepto el primero están vectorizados, por lo que puede usarlo para leer varias hojas del mismo libro de trabajo a la vez (o varias regiones de celdas de una sola hoja de trabajo). En este caso, `readWorksheet` devolverá una lista de data frames.
+
+Puede combinar estos dos pasos con `readWorksheetFromFile`. Toma el argumento del archivo de `loadWorkbook` y lo combina con los argumentos de `readWorksheet`. Puede usarlo para leer una o más hojas directamente desde un archivo de Excel:
+
+``` r
+hoja1 <- readWorksheetFromFile("archivo.xlsx", sheet = 1, startRow = 0, 
+  startCol = 0, endRow = 100, endCol = 3)
+```
+
+### Escribir Hojas de Cálculo
+
+Escribir en una hoja de cálculo de Excel es un proceso de cuatro pasos. Primero, debe configurar un objeto de libro de trabajo con `loadWorkbook`. Esto funciona igual que antes, excepto que si no está utilizando un archivo de Excel existente, debe agregar el argumento `create = TRUE`. XLConnect creará un libro de trabajo en blanco. Cuando lo guarde, XLConnect lo escribirá en la ubicación del archivo que especificó aquí con `loadWorkbook`:
+
+``` r
+lt <- loadWorkbook("archivo.xlsx", create = TRUE)
+```
+
+A continuación, debe crear una hoja de trabajo dentro de su objeto de libro de trabajo con `createSheet`. Dile a `createSheet` en qué libro colocar la hoja y cuál usar para la hoja.
+
+``` r
+createSheet(lt, "Hoja 1")
+```
+
+Luego puede guardar su data frame o matriz en la hoja con `writeWorksheet`. El primer argumento de `writeWorksheet`, `object`, es el libro de trabajo para escribir los datos. El segundo argumento, `data`, son los datos a escribir. El tercer argumento, `sheet`, es el nombre de la hoja en la que escribirlo. Los siguientes dos argumentos, `startRow` y `startCol`, le indican a R en qué parte de la hoja de cálculo colocar la celda superior izquierda de los nuevos datos. Cada uno de estos argumentos tiene un valor predeterminado de 1. Finalmente, puede usar `header` para decirle a R si los nombres de sus columnas deben escribirse con los datos:
+
+``` r
+writeWorksheet(lt, data = poquer, sheet = "Hoja 1")
+```
+
+Una vez que haya terminado de agregar hojas y datos a su libro de trabajo, puede guardarlo ejecutando `saveWorkbook` en el objeto del libro de trabajo. R guardará el libro de trabajo con el nombre de archivo o la ruta que proporcionó en `loadWorkbook`. Si esto conduce a un archivo de Excel existente, R lo sobrescribirá. Si conduce a un nuevo archivo, R lo creará.
+
+También puede colapsar estos pasos en una sola llamada con `writeWorksheetToFile`, así:
+
+``` r
+writeWorksheetToFile("archivo.xlsx", data = poquer, sheet = "Hoja 1", 
+  startRow = 1, startCol = 1)
+```
+
+El paquete XLConnect también le permite hacer cosas más avanzadas con las hojas de cálculo de Excel, como escribir en una región con nombre en una hoja de cálculo, trabajar con fórmulas y asignar estilos a las celdas. Puede leer acerca de estas funciones en la viñeta de XLConnect, a la que se puede acceder cargando XLConnect y luego ejecutando:
+
+``` r
+vignette("XLConnect")
+```
+
+## Cargar Archivos desde Otros Programas
+
+Debe seguir el mismo consejo que le di para los archivos de Excel siempre que desee trabajar con formatos de archivo nativos de otros programas: abra el archivo en el programa original y exporte los datos como un archivo de texto sin formato, generalmente un CSV. Esto garantizará la transcripción más fiel de los datos en el archivo y, por lo general, le brindará la mayor cantidad de opciones para personalizar la forma en que se transcriben los datos.
+
+A veces, sin embargo, puede adquirir un archivo pero no el programa del que procede. Como resultado, no podrá abrir el archivo en su programa nativo y exportarlo como un archivo de texto. En este caso, puede usar una de las funciones en Tabla @tbl-others para abrir el archivo. La mayoría de estas funciones vienen en el paquete `foreign` de R. Cada uno intenta leer en un formato de archivo diferente con la menor cantidad de contratiempos posible.
+
+| Formato de archivo                 | Función          | Paquete    |
+|------------------------------------|------------------|------------|
+| ERSI ArcGIS                        | `read.shapefile` | shapefiles |
+| Matlab                             | `readMat`        | R.matlab   |
+| minitab                            | `read.mtp`       | foreign    |
+| SAS (conjunto de datos permanente) | `read.ssd`       | foreign    |
+| SAS (formato XPORT)                | `read.xport`     | foreign    |
+| SPSS                               | `read.spss`      | foreign    |
+| Stata                              | `read.dta`       | foreign    |
+| Systat                             | `read.systat`    | foreign    |
+
+: Varias funciones intentarán leer los tipos de archivo de otros programas de análisis de datos {#tbl-others}
+
+### Conexión a bases de datos
+
+También puede usar R para conectarse a una base de datos y leer datos.
+
+Utilice el paquete RODBC para conectarse a bases de datos a través de una conexión ODBC.
+
+Utilice el paquete DBI para conectarse a bases de datos a través de controladores individuales. El paquete DBI proporciona una sintaxis común para trabajar con diferentes bases de datos. Tendrá que descargar un paquete específico de base de datos para usarlo junto con DBI. Estos paquetes proporcionan la API para los controladores nativos de diferentes programas de bases de datos. Para MySQL use RMySQL, para SQLite use RSQLite, para Oracle use ROracle, para PostgreSQL use RPostgreSQL y para las bases de datos que usan controladores basados en la API Java Database Connectivity (JDBC) use RJDBC. Una vez que haya cargado el paquete de controladores adecuado, puede utilizar los comandos proporcionados por DBI para acceder a su base de datos.
+
+## Actualización
+
+En versiones modernas de RStudio es simple cargar archivos de Excel, SPSS, SAS y Stata usando el asistente de importación de RStudio. Para poder accerder a estas opciones se debe instalar el paquete `readxl` para los archivos de Excel y el paquete `haven` para el resto. Para realizar la operación es tan simple como dar click en el botón Import Dataset \> "Opción desead"("From Excel", "From SPSS", "From SAS" o "From Stata"). Esto abrirá el asistente de importación de RStudio que permite visualizar el archivo a importar.
+
+Con el uso de los paquetes `xlsx` y `haven` se facilita también la forma de escribir y exportar archivos con dichas extenciones como se ve en la Tabla @tbl-actua.
+
+| Formato de archivo                 | Función     | Paquete    |
+|------------------------------------|-------------|------------|
+| Excel                              | `xlsx`      | shapefiles |
+| SPSS                               | `write_sav` | haven      |
+| SAS (conjunto de datos permanente) | `write_sas` | haven      |
+| SAS (formato XPORT)                | `write_xpt` | haven      |
+| Stata                              | `write_dta` | haven      |
+
+: Varias funciones para escribir y guardar archivos en distintos formatos {#tbl-actua}

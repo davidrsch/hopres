@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Garrett Grolemund">
+<title>Programación práctica con R - 1&nbsp; Lo Más Básico</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./packages.html" rel="next">
+<link href="./dice.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programación práctica con R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rstudio-education/hopr" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenido</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dice.html" class="sidebar-item-text sidebar-link">Proyecto 1: Dados Ponderados</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cards.html" class="sidebar-item-text sidebar-link">Proyecto 2: Baraja de Cartas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modifying.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./slots.html" class="sidebar-item-text sidebar-link">Proyecto 3: Máquina Tragamonedas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./s3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Apéndices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-starting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a2-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a3-updating.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Actualizando R y sus Paquetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a4-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a5-debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Depuración de Código de R</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+<li><a href="#la-interfaz-de-usuario-de-r" id="toc-la-interfaz-de-usuario-de-r" class="nav-link active" data-scroll-target="#la-interfaz-de-usuario-de-r"><span class="toc-section-number">1.1</span>  La Interfaz de Usuario de R</a></li>
+  <li><a href="#objetos" id="toc-objetos" class="nav-link" data-scroll-target="#objetos"><span class="toc-section-number">1.2</span>  Objetos</a></li>
+  <li>
+<a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones"><span class="toc-section-number">1.3</span>  Funciones</a>
+  <ul class="collapse">
+<li><a href="#muestra-con-reemplazo" id="toc-muestra-con-reemplazo" class="nav-link" data-scroll-target="#muestra-con-reemplazo"><span class="toc-section-number">1.3.1</span>  Muestra con reemplazo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#Escribir-funciones" id="toc-Escribir-funciones" class="nav-link" data-scroll-target="#Escribir-funciones"><span class="toc-section-number">1.4</span>  Escribiendo Sus Propias Funciones</a>
+  <ul class="collapse">
+<li><a href="#el-constructor-de-funciones" id="toc-el-constructor-de-funciones" class="nav-link" data-scroll-target="#el-constructor-de-funciones"><span class="toc-section-number">1.4.1</span>  El Constructor de Funciones</a></li>
+  </ul>
+</li>
+  <li><a href="#argumentos" id="toc-argumentos" class="nav-link" data-scroll-target="#argumentos"><span class="toc-section-number">1.5</span>  Argumentos</a></li>
+  <li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts"><span class="toc-section-number">1.6</span>  Scripts</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="toc-section-number">1.7</span>  Resumen</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rstudio-education/hopr/edit/main/basics.qmd" class="toc-action">Editar esta página</a></p><p><a href="https://github.com/rstudio-education/hopr/issues/new" class="toc-action">Informar de un problema</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="Básico" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>Este capítulo proporciona una descripción general amplia del lenguaje R que lo ayudará a programar de inmediato. En él, construirás un par de dados virtuales que puedes usar para generar números aleatorios. No se preocupe si nunca ha programado antes; el capítulo le enseñará todo lo que necesita saber.</p>
+<p>Para simular un par de dados, tendrás que destilar cada dado en sus características esenciales. No puede colocar un objeto físico, como un dado, en una computadora (bueno, no sin destornillar algunos tornillos), pero puede guardar <em>información</em> sobre el objeto en la memoria de su computadora.</p>
+<p>¿Qué información debe guardar? En general, un dado tiene seis piezas importantes de información: cuando tiras un dado, solo puede dar como resultado uno de los seis números: 1, 2, 3, 4, 5 y 6. Puedes capturar las características esenciales de un dado guardando los números 1, 2, 3, 4, 5 y 6 como un grupo de valores en la memoria de su computadora.</p>
+<p>Trabajemos primero en guardar estos números y luego consideremos un método para “lanzar” nuestro dado.</p>
+<section id="la-interfaz-de-usuario-de-r" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="la-interfaz-de-usuario-de-r">
+<span class="header-section-number">1.1</span> La Interfaz de Usuario de R</h2>
+<p>Antes de que pueda pedirle a su computadora que guarde algunos números, necesitará saber cómo hablarle. Ahí es donde entran R y RStudio. RStudio le brinda una manera de comunicarse con su computadora. R le brinda un idioma para hablar. Para comenzar, abra RStudio tal como abriría cualquier otra aplicación en su computadora. Cuando lo haga, debería aparecer una ventana en su pantalla como la que se muestra en la Figura <a href="#fig-console">Figura&nbsp;<span>1.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-console" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0101.png" class="img-fluid figure-img" width="463"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.1: Su computadora cumple con sus órdenes cuando escribe comandos R en el indicador en la línea inferior del panel de la consola. No olvides presionar la tecla Enter. Cuando abre RStudio por primera vez, la consola aparece en el panel de su izquierda, pero puede cambiar esto con File &gt; Preferences en la barra de menú.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-important callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Si aún no tiene R y RStudio instalados en su computadora–o no sabe de lo que estoy hablando– visite el <a href="a1-starting.html">Apéndice A</a>. El apéndice le dará una descripción general de las dos herramientas gratuitas y le indicará cómo descargarlas.</p>
+</div>
+</div>
+</div>
+<p>La interfaz de RStudio es simple. Escriba el código R en la línea inferior del panel de la consola de RStudio y luego haga clic en Entrar para ejecutarlo. El código que escribe se llama <em>comando</em>, porque ordenará a su computadora que haga algo por usted. La línea en la que lo escribe se llama <em>línea de comando</em>.</p>
+<p>Cuando escribe un comando en la consola y presiona Enter, su computadora ejecuta el comando y le muestra los resultados. Luego, RStudio muestra un mensaje nuevo para su próximo comando. Por ejemplo, si escribe <code>1 + 1</code> y pulsa Enter, RStudio mostrará:</p>
+<pre><code>&gt; 1 + 1
+[1] 2
+&gt;</code></pre>
+<p>Notarás que aparece un <code>[1]</code> al lado de tu resultado. R solo le informa que esta línea comienza con el primer valor en su resultado. Algunos comandos devuelven más de un valor y sus resultados pueden llenar varias líneas. Por ejemplo, el comando <code>100:130</code> devuelve 31 valores; crea una secuencia de números enteros del 100 al 130. Observe que aparecen nuevos números entre corchetes al comienzo de la segunda y tercera líneas de salida. Estos números solo significan que la segunda línea comienza con el valor 14 en el resultado y la tercera línea comienza con el valor 25. En su mayoría, puede ignorar los números que aparecen entre corchetes:</p>
+<pre><code>&gt; 100:130
+ [1] 100 101 102 103 104 105 106 107 108 109 110 111 112
+[14] 113 114 115 116 117 118 119 120 121 122 123 124 125
+[25] 126 127 128 129 130</code></pre>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>El operador de dos puntos (<code>:</code>) devuelve todos los números enteros entre los dos números enteros especificados antes y después de los dos puntos. Es una manera fácil de crear una secuencia de números.</p>
+</div>
+</div>
+</div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>¿R no es un idioma?</strong></p>
+<p>Es posible que me escuche hablar de R en tercera persona. Por ejemplo, podría decir: “Dígale a R que haga esto” o “Dígale a R que haga aquello”, pero, por supuesto, R no puede hacer nada; es solo un idioma. Esta forma de hablar es una forma abreviada de decir: “Dígale a su computadora que haga esto escribiendo un comando en el lenguaje R en su consola RStudio”. Su computadora, y no R, hace el trabajo real.</p>
+<p>¿Es esta abreviatura confusa y un poco perezosa de usar? Sí. ¿Lo usa mucha gente? Todos los que conozco, probablemente porque es muy conveniente.</p>
+</div>
+</div>
+</div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>¿Cuándo compilamos?</strong></p>
+<p>En algunos lenguajes, como C, Java y FORTRAN, debe compilar su código legible por humanos en un código legible por máquina (a menudo 1 y 0) antes de poder ejecutarlo. Si ha programado en un lenguaje de este tipo antes, puede preguntarse si tiene que compilar su código R antes de poder usarlo. La respuesta es no. R es un lenguaje de programación dinámico, lo que significa que R interpreta automáticamente su código a medida que lo ejecuta.</p>
+</div>
+</div>
+</div>
+<p>Si escribe un comando incompleto y presiona Enter, R mostrará un <code>+</code> en la consola, lo que significa que R está esperando que escriba el resto de su comando. Termina el comando o presiona Escape para comenzar de nuevo:</p>
+<pre><code>&gt; 5 -
++
++ 1
+[1] 4</code></pre>
+<p>Si escribe un comando que R no reconoce, R devolverá un mensaje de error. Si alguna vez ve un mensaje de error, no entre en pánico. R solo le está diciendo que su computadora no pudo entender o hacer lo que le pidió que hiciera. Luego puede probar un comando diferente en la siguiente línea:</p>
+<pre><code>&gt; 3 % 5
+Error: unexpected input in "3 % 5"
+&gt;</code></pre>
+<p>Una vez que domines la línea de comando, puedes hacer fácilmente cualquier cosa en R que harías con una calculadora. Por ejemplo, podrías hacer algo de aritmética básica:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">*</span> <span class="fl">3</span>   </span>
+<span><span class="co">## 6</span></span>
+<span></span>
+<span><span class="fl">4</span> <span class="op">-</span> <span class="fl">1</span>   </span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fl">6</span> <span class="op">/</span> <span class="op">(</span><span class="fl">4</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>   </span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Notaste algo diferente en este código? He dejado fuera los <code>&gt;</code> y <code>[1]</code>. Esto hará que el código sea más fácil de copiar y pegar si desea colocarlo en su propia consola.</p>
+<p>R trata el carácter del hashtag, <code>#</code>, de una manera especial; R no ejecutará nada que siga a un hashtag en una línea. Esto hace que los hashtags sean muy útiles para agregar comentarios y anotaciones a su código. Los humanos podrán leer los comentarios, pero su computadora los pasará por alto. El hashtag se conoce como <em>símbolo de comentario</em> en R.</p>
+<p>En el resto del libro, usaré hashtags para mostrar los resultados de las lineas de código R. Usaré un solo hashtag para agregar mis propios comentarios y un hashtag doble, <code>##</code>, para mostrar los resultados del código. Evitaré mostrar <code>&gt;</code> y <code>[1]</code> a menos que quiera que los mires.</p>
+<div class="callout-important callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Cancelar comandos</strong></p>
+<p>Algunos comandos de R pueden tardar mucho tiempo en ejecutarse. Puede cancelar un comando una vez que ha comenzado presionando ctrl + c.&nbsp;Tenga en cuenta que R también puede tardar mucho tiempo en cancelar el comando.</p>
+</div>
+</div>
+</div>
+<p><strong>Ejercicio 2.1 (Magia con Numeros)</strong> Esa es la interfaz básica para ejecutar código R en RStudio. ¿Crees que lo tienes? Si es así, intente realizar estas sencillas tareas. Si ejecuta todo correctamente, debería terminar con el mismo número con el que comenzó:</p>
+<ol type="1">
+<li>Elige cualquier número y súmale 2.</li>
+<li>Multiplica el resultado por 3.</li>
+<li>Resta 6 de la respuesta.</li>
+<li>Divide lo que obtienes por 3.</li>
+</ol>
+<p>A lo largo del libro, pondré ejercicios en partes, como el de arriba. Seguiré cada ejercicio con una respuesta modelo, como la siguiente.</p>
+<p><em>Solución.</em> Puede comenzar con el número 10 y luego seguir los siguientes pasos:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op">+</span> <span class="fl">2</span></span>
+<span><span class="co">## 12</span></span>
+<span></span>
+<span><span class="fl">12</span> <span class="op">*</span> <span class="fl">3</span></span>
+<span><span class="co">## 36</span></span>
+<span></span>
+<span><span class="fl">36</span> <span class="op">-</span> <span class="fl">6</span></span>
+<span><span class="co">## 30</span></span>
+<span></span>
+<span><span class="fl">30</span> <span class="op">/</span> <span class="fl">3</span></span>
+<span><span class="co">## 10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="objetos" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="objetos">
+<span class="header-section-number">1.2</span> Objetos</h2>
+<p>Ahora que sabes cómo usar R, usémoslo para hacer un dado virtual. El operador <code>:</code> de hace un par de páginas le brinda una buena manera de crear un grupo de números del uno al seis. El operador <code>:</code> devuelve sus resultados como un <strong>vector</strong>, un conjunto unidimensional de números:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span><span class="co">## 1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¡Eso es todo lo que hay sobre el aspecto de un dado virtual! Pero aún no has terminado. Ejecutar <code>1:6</code> generó un vector de números para que lo veas, pero no guardó ese vector en ninguna parte de la memoria de tu computadora. Lo que está viendo son básicamente las huellas de seis números que existieron brevemente y luego se fundieron de nuevo en la memoria RAM de tu computadora. Si desea volver a usar esos números, tendrá que pedirle a su computadora que los guarde en algún lugar. Puede hacerlo creando un <em>objeto</em> de R.</p>
+<p>R le permite guardar datos almacenándolos dentro de un objeto R. ¿Qué es un objeto? Solo un nombre que puede usar para recuperar datos almacenados. Por ejemplo, puede guardar datos en un objeto como <em><code>a</code></em> o <em><code>b</code></em>. Siempre que R encuentre el objeto, lo reemplazará con los datos guardados en su interior, así:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">a</span></span>
+<span><span class="co">## 1</span></span>
+<span></span>
+<span><span class="va">a</span> <span class="op">+</span> <span class="fl">2</span></span>
+<span><span class="co">## 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>¿Qué acaba de suceder?</strong></p>
+<ol type="1">
+<li>Para crear un objeto R, elija un nombre y luego use el símbolo menor que, <code>&lt;</code>, seguido de un signo menos, <code>-</code>, para guardar datos en él. Esta combinación parece una flecha, <code>&lt;-</code>. R creará un objeto, le dará su nombre y almacenará en él lo que siga a la flecha. Entonces <code>a &lt;- 1</code> almacena <code>1</code> en un objeto llamado <code>a</code>.</li>
+<li>Cuando le preguntas a R qué hay en <code>a</code>, R te dice en la siguiente línea.</li>
+<li>También puede usar su objeto en nuevos comandos R. Dado que <code>a</code> almacenó previamente el valor de <code>1</code>, ahora está agregando <code>1</code> a <code>2</code>.</li>
+</ol>
+</div>
+</div>
+</div>
+<p>Entonces, para otro ejemplo, el siguiente código crearía un objeto llamado <code>dado</code> que contiene los números del uno al seis. Para ver lo que está almacenado en un objeto, simplemente escriba el nombre del objeto por sí mismo:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">## 1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cuando crea un objeto, el objeto aparecerá en el panel de Environment de RStudio, como se muestra en la Figura <a href="#fig-environment">Figura&nbsp;<span>1.2</span></a>. Este panel le mostrará todos los objetos que ha creado desde que abrió RStudio.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-environment" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0102.png" class="img-fluid figure-img" width="499"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.2: El panel de Environment de RStudio realiza un seguimiento de los objetos R que crea.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Puedes nombrar un objeto en R casi como quieras, pero hay algunas reglas. Primero, un nombre no puede comenzar con un número. Segundo, un nombre no puede usar algunos símbolos especiales, como <code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, or <code>*</code>:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Buenos nombres</th>
+<th>Nombres que causan error</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>1trial</td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>$</td>
+</tr>
+<tr class="odd">
+<td>FOO</td>
+<td>^mean</td>
+</tr>
+<tr class="even">
+<td>my_var</td>
+<td>2nd</td>
+</tr>
+<tr class="odd">
+<td>.day</td>
+<td>!bad</td>
+</tr>
+</tbody>
+</table>
+<div class="callout-warning callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Mayúsculas</strong></p>
+<p>R distingue entre mayúsculas y minúsculas, por lo que <code>nombre</code> y <code>Nombre</code> se referirán a diferentes objetos:</p>
+<p><code>Nombre &lt;- 1</code><br><code>nombre &lt;- 0</code></p>
+<p><code>Nombre + 1</code><br><code>## 2</code></p>
+</div>
+</div>
+</div>
+<p>Finalmente, R sobrescribirá cualquier información anterior almacenada en un objeto sin pedirle permiso. Por lo tanto, es una buena idea <em>no</em> usar nombres que ya están en uso:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_number</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">my_number</span> </span>
+<span><span class="co">## 1</span></span>
+<span></span>
+<span><span class="va">my_number</span> <span class="op">&lt;-</span> <span class="fl">999</span></span>
+<span><span class="va">my_number</span></span>
+<span><span class="co">## 999</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puedes ver qué nombres de objetos ya has usado con la función <code>ls</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## "a"         "dado"       "my_number" "nombre"     "Nombre"     </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También puede ver qué nombres ha utilizado examinando el panel de environment de RStudio.</p>
+<p>Ahora tiene un dado virtual que está almacenado en la memoria de su computadora. Puedes acceder a él cuando quieras escribiendo la palabra <em><code>dado</code></em>. Entonces, ¿qué puedes hacer con este dado? Bastante. R reemplazará un objeto con su contenido siempre que el nombre del objeto aparezca en un comando. Entonces, por ejemplo, puedes hacer todo tipo de operaciones matemáticas con el dado. Las matemáticas no son tan útiles para lanzar dados, pero la manipulación de conjuntos de números será su día a día como científico de datos. Así que echemos un vistazo a cómo hacer eso:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="co">## 0 1 2 3 4 5</span></span>
+<span></span>
+<span><span class="va">dado</span> <span class="op">/</span> <span class="fl">2</span></span>
+<span><span class="co">## 0.5 1.0 1.5 2.0 2.5 3.0</span></span>
+<span></span>
+<span><span class="va">dado</span> <span class="op">*</span> <span class="va">dado</span></span>
+<span><span class="co">## 1  4  9 16 25 36</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si eres un gran fanático del álgebra lineal (¿y quién no lo es?), puedes notar que R no siempre sigue las reglas de la multiplicación de matrices. En su lugar, R utiliza <em>ejecución por elementos</em>. Cuando manipulas un conjunto de números, R aplicará la misma operación a cada elemento del conjunto. Entonces, por ejemplo, cuando ejecuta <em><code>dado - 1</code></em>, R resta uno de cada elemento de <code>dado</code>.</p>
+<p>Cuando usa dos o más vectores en una operación, R alineará los vectores y realizará una secuencia de operaciones individuales. Por ejemplo, cuando ejecuta <em><code>dado * dado</code></em>, R alinea los dos vectores <code>dado</code> y luego multiplica el primer elemento del vector 1 por el primer elemento del vector 2. R luego multiplica el segundo elemento del vector 1 por el segundo elemento del vector 2, y así sucesivamente, hasta que se hayan multiplicado todos los elementos. El resultado será un nuevo vector de la misma longitud que los dos primeros, como se muestra en la Figura <a href="#fig-elementwise">Figura&nbsp;<span>1.3</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-elementwise" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0103.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.3: Cuando R realiza una ejecución por elementos, hace coincidir los vectores y luego manipula cada par de elementos de forma independiente.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si le da a R dos vectores de longitudes desiguales, R repetirá el vector más corto hasta que sea tan largo como el vector más largo y luego hará los cálculos, como se muestra en la Figura <a href="#fig-recycle">Figura&nbsp;<span>1.4</span></a>. Este no es un cambio permanente: el vector más corto tendrá su tamaño original después de que R haga los cálculos. Si la longitud del vector largo no es divisible equitativamente por el vctor corto, R devolverá un mensaje de advertencia. Este comportamiento se conoce como <em>reciclado de vectores</em> y ayuda a R a realizar operaciones por elementos:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>dado</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4 5 6</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4 4 6 6 8</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4 6 8 6 8</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>Warning message<span class="sc">:</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>In dado <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">:</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  longer object length is not a multiple of shorter object length</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-recycle" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0104.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.4: R repetirá un vector corto para realizar operaciones por elementos con dos vectores de longitud desigual.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Las operaciones basadas en elementos son una característica muy útil en R porque manipulan grupos de valores de forma ordenada. Cuando comience a trabajar con conjuntos de datos, las operaciones por elementos garantizarán que los valores de una observación o caso solo se emparejen con valores de la misma observación o caso. Las operaciones basadas en elementos también facilitan la escritura de sus propios programas y funciones en R.</p>
+<p>Pero no creas que R ha renunciado a la multiplicación de matrices tradicional. Solo tienes que pedirlo cuando quieras. Puedes hacer multiplicaciones internas con el operador <code>%*%</code> y multiplicaciones externas con el operador <code>%o%</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">dado</span></span>
+<span><span class="co">## 91</span></span>
+<span></span>
+<span><span class="va">dado</span> <span class="op"><a href="https://rdrr.io/r/base/outer.html">%o%</a></span> <span class="va">dado</span></span>
+<span><span class="co">##      [,1] [,2] [,3] [,4] [,5] [,6]</span></span>
+<span><span class="co">## [1,]    1    2    3    4    5    6</span></span>
+<span><span class="co">## [2,]    2    4    6    8   10   12</span></span>
+<span><span class="co">## [3,]    3    6    9   12   15   18</span></span>
+<span><span class="co">## [4,]    4    8   12   16   20   24</span></span>
+<span><span class="co">## [5,]    5   10   15   20   25   30</span></span>
+<span><span class="co">## [6,]    6   12   18   24   30   36</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También puedes hacer cosas como transponer una matriz con <code>t</code> y tomar su determinante con <code>det</code>.</p>
+<p>No se preocupe si no está familiarizado con estas operaciones. Son fáciles de buscar y no los necesitará para este libro.</p>
+<p>Ahora que puede hacer operaciones matemáticas con su objeto <code>dado</code>, veamos cómo podría “tirarlo”. Lanzar el dado requerirá algo más sofisticado que la aritmética básica; deberá seleccionar aleatoriamente uno de los valores del dado. Y para eso, necesitarás una <em>función</em>.</p>
+</section><section id="funciones" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="funciones">
+<span class="header-section-number">1.3</span> Funciones</h2>
+<p>R viene con muchas funciones que puede usar para realizar tareas sofisticadas como el muestreo aleatorio. Por ejemplo, puede redondear un número con la función <code>round</code> o calcular su factorial con la función <code>factorial</code>. Usar una función es bastante simple. Simplemente escriba el nombre de la función y luego los datos sobre los que desea que opere la función entre paréntesis::</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los datos que pasa a la función se denominan <em>argumento</em> de la función. El argumento puede ser datos sin procesar, un objeto R o incluso los resultados de otra función R. En este último caso, R trabajará desde la función más interna hacia la más externa, como en la Figura <a href="#fig-pemdas">Figura&nbsp;<span>1.5</span></a>.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="co">## 3.5</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## 3.5</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pemdas" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0105.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.5: Cuando vincula funciones, R las resolverá desde la operación más interna hasta la más externa. Aquí R primero busca el dado, luego calcula la media de uno a seis y luego redondea la media.”}</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por suerte para nosotros, hay una función R que puede ayudar a “tirar” el dado. Puede simular una tirada del dado con la función <code>sample</code> de R. <code>sample</code> toma <em>dos</em> argumentos: un vector llamado <code>x</code> y un número llamado <code>size</code>. <code>sample</code> devolverá elementos de <code>size</code> del vector:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## 3 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para tirar el dado y obtener un número de vuelta, establezca <code>x</code> en <code>dado</code> y muestree un elemento de él. Obtendrá un número nuevo (quizás diferente) cada vez que lo haga rodar:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 1</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Muchas funciones de R toman múltiples argumentos que las ayudan a hacer su trabajo. Puede dar a una función tantos argumentos como desee siempre que separe cada argumento con una coma.</p>
+<p>Es posible que hayas notado que establecí <code>dado</code> y <code>1</code> iguales a los nombres de los argumentos en <code>sample</code>, <code>x</code> y <code>size</code>. Cada argumento en cada función de R tiene un nombre. Puede especificar qué datos deben asignarse a qué argumento estableciendo un nombre igual a data, como en el código anterior. Esto se vuelve importante a medida que comienza a pasar múltiples argumentos a la misma función; los nombres lo ayudan a evitar pasar los datos incorrectos al argumento incorrecto. Sin embargo, el uso de nombres es opcional. Notará que los usuarios de R no suelen usar el nombre del primer argumento en una función. Por lo tanto, es posible que vea el código anterior escrito como:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A menudo, el nombre del primer argumento no es muy descriptivo y, de todos modos, suele ser obvio a qué se refiere el primer dato.</p>
+<p>Pero, ¿cómo saber qué nombres de argumento usar? Si intenta usar un nombre que una función no espera, es probable que obtenga un error:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, corners <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## Error in round(3.1415, corners = 2) : unused argument(s) (corners = 2)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si no está seguro de qué nombres usar con una función, puede buscar los argumentos de la función con <code>args</code>. Para hacer esto, coloque el nombre de la función entre paréntesis detrás de <code>args</code>. Por ejemplo, puede ver que la función <code>round</code> toma dos argumentos, uno llamado <code>x</code> y otro llamado <code>digits</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">round</span><span class="op">)</span></span>
+<span><span class="co">## function (x, digits = 0) </span></span>
+<span><span class="co">## NULL</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Notaste que <code>args</code> muestra que el argumento <code>digits</code> de <code>round</code> ya está establecido en 0? Con frecuencia, una función R tomará argumentos opcionales como <code>digits</code>. Estos argumentos se consideran opcionales porque vienen con un valor predeterminado. Puede pasar un nuevo valor a un argumento opcional si así lo desea, y R utilizará el valor predeterminado si no proporciona uno nuevo. Por ejemplo, “round” redondeará su número a 0 dígitos más allá del punto decimal de forma predeterminada. Para anular el valor predeterminado, proporcione su propio valor para <code>digits</code>:</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## 3.14</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Debe escribir los nombres de cada argumento después del primero o dos cuando llame a una función con múltiples argumentos. ¿Por qué? Primero, esto lo ayudará a usted y a otros a comprender su código. Por lo general, es obvio a qué argumento se refiere su primera entrada (y, a veces, también la segunda entrada). Sin embargo, necesitaría una memoria grande para recordar los argumentos tercero y cuarto de cada función R. En segundo lugar, y más importante, escribir los nombres de los argumentos evita errores.</p>
+<p>Si no escribe los nombres de sus argumentos, R hará coincidir sus valores con los argumentos de su función por orden. Por ejemplo, en el siguiente código, el primer valor, <code>dado</code>, coincidirá con el primer argumento de <code>sample</code>, que se llama <code>x</code>. El siguiente valor, <code>1</code>, coincidirá con el siguiente argumento, <code>size</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A medida que proporciona más argumentos, es más probable que su orden y el orden de R no coincidan. Como resultado, los valores pueden pasarse al argumento incorrecto. Los nombres de los argumentos evitan esto. R siempre hará coincidir un valor con el nombre de su argumento, sin importar dónde aparezca en el orden de los argumentos:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, x <span class="op">=</span> <span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="muestra-con-reemplazo" class="level3" data-number="1.3.1"><h3 data-number="1.3.1" class="anchored" data-anchor-id="muestra-con-reemplazo">
+<span class="header-section-number">1.3.1</span> Muestra con reemplazo</h3>
+<p>Si configura <code>size = 2</code>, puede <em>casi</em> simular un par de dados. Antes de ejecutar ese código, piense por un minuto por qué ese podría ser el caso. <code>sample</code> devolverá dos números, uno para cada dado:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## 3 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dije que esto “casi” funciona porque este método hace algo divertido. Si lo usa muchas veces, notará que el segundo dado nunca tiene el mismo valor que el primero, lo que significa que nunca obtendrá algo como un par de tres o un par de unos. ¿Qué esta pasando?</p>
+<p>Por defecto, <code>sample</code> construye una muestra <em>sin reemplazo</em>. Para ver lo que esto significa, imagina que <code>sample</code> coloca todos los valores de <code>dado</code> en un frasco o urna. Luego imagine que <code>sample</code> alcanza el frasco y extrae valores uno por uno para construir su muestra. Una vez que se ha extraído un valor del frasco, <code>sample</code> lo deja a un lado. El valor no vuelve al frasco, por lo que no se puede volver a extraer. Entonces, si <code>sample</code> selecciona un seis en su primer sorteo, no podrá seleccionar un seis en el segundo sorteo; seis ya no está en el frasco para ser seleccionado. Aunque <code>sample</code> crea su muestra electrónicamente, sigue este comportamiento aparentemente físico.</p>
+<p>Un efecto secundario de este comportamiento es que cada sorteo depende de los sorteos anteriores. Sin embargo, en el mundo real, cuando lanzas un par de dados, cada dado es independiente del otro. Si el primer dado sale seis, no impide que el segundo dado salga seis. De hecho, no influye en el segundo dado de ninguna manera. Puede recrear este comportamiento en <code>sample</code> agregando el argumento <code>replace = TRUE</code>:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## 5 5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El argumento <code>replace = TRUE</code> hace que <code>sample</code> muestree <em>con reemplazo</em>. Nuestro ejemplo de frasco proporciona una buena manera de comprender la diferencia entre el muestreo con reemplazo y sin reemplazo. Cuando <code>sample</code> usa reemplazo, extrae un valor del frasco y registra el valor. Luego vuelve a poner el valor en el frasco. En otras palabras, <code>sample</code> <em>reemplaza</em> cada valor después de cada sorteo. Como resultado, <code>sample</code> puede seleccionar el mismo valor en el segundo sorteo. Cada valor tiene la posibilidad de ser seleccionado cada vez. Es como si cada sorteo fuera el primer sorteo.</p>
+<p>El muestreo con reemplazo es una manera fácil de crear <em>muestras aleatorias independientes</em>. Cada valor en su muestra será una muestra de tamaño uno que es independiente de los otros valores. Esta es la forma correcta de simular un par de dados.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## 2 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Felicítate a ti mismo; ¡Acabas de ejecutar tu primera simulación en R! Ahora tiene un método para simular el resultado de lanzar un par de dados. Si desea sumar los dados, puede ingresar su resultado directamente en la función <code>sum</code>:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Qué pasaría si llamas <code>dados</code> varias veces? ¿Generaría R un nuevo par de valores de dados cada vez? Probemos:</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span>
+<span></span>
+<span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span>
+<span></span>
+<span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>No.&nbsp;Cada vez que llame a <code>dados</code>, R le mostrará el resultado de esa vez que llamó a <code>sample</code> y guardó la salida en <code>dados</code>. R no volverá a ejecutar <code>sample(dado, 2, replace = TRUE)</code> para crear una nueva tirada de dados. Esto es un alivio en cierto modo. Una vez que guarda un conjunto de resultados en un objeto de R, esos resultados no cambian. La programación sería bastante difícil si los valores de sus objetos cambiaran cada vez que los llama.</p>
+<p>Sin embargo, <em>sería</em> conveniente tener un objeto que pueda volver a tirar los dados cada vez que lo llames. Puede hacer tal objeto escribiendo su propia función de R.</p>
+</section></section><section id="Escribir-funciones" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="Escribir-funciones">
+<span class="header-section-number">1.4</span> Escribiendo Sus Propias Funciones</h2>
+<p>Para recapitular, ya tiene un código de R en funcionamiento que simula lanzar un par de dados:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede volver a escribir este código en la consola en cualquier momento que desee volver a tirar los dados. Sin embargo, esta es una forma incómoda de trabajar con el código. Sería más fácil usar su código si lo envolviera en su propia función, que es exactamente lo que haremos ahora. Vamos a escribir una función llamada <code>tirar</code> que puedes usar para lanzar tus dados virtuales. Cuando hayas terminado, la función funcionará así: cada vez que llames a <code>tirar()</code>, R devolverá la suma de tirar dos dados:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 8 </span></span>
+<span></span>
+<span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 7</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Las funciones pueden parecer misteriosas o sofisticadas, pero son solo otro tipo de objeto de R. En lugar de contener datos, contienen código. Este código se almacena en un formato especial que facilita su reutilización en situaciones nuevas. Puede escribir sus propias funciones recreando este formato.</p>
+<section id="el-constructor-de-funciones" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="el-constructor-de-funciones">
+<span class="header-section-number">1.4.1</span> El Constructor de Funciones</h3>
+<p>Cada función en R tiene tres partes básicas: un nombre, un cuerpo de código y un conjunto de argumentos. Para crear su propia función, debe replicar estas partes y almacenarlas en un objeto de R, esto lo puede hacer con la función <code>function</code>. Para hacer esto, llama a <code>function()</code> y sigue con un par de llaves, <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mi_funcion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>function</code> construirá una función a partir de cualquier código R que coloque entre las llaves. Por ejemplo, puede convertir su código de dados en una función llamando:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Observe que he aplicado sangría a cada línea de código entre las llaves. Esto hace que el código sea más fácil de leer para usted y para mí, pero no tiene impacto en cómo se ejecuta el código. R ignora los espacios y los saltos de línea y ejecuta una expresión completa a la vez.</p>
+</div>
+</div>
+</div>
+<p>Simplemente presione la tecla Enter entre cada línea después de la primera llave, <code>{</code>. R esperará a que escribas la última llave, <code>}</code>, antes de responder.</p>
+<p>No olvide guardar la salida de <code>function</code> en un objeto de R. Este objeto se convertirá en su nueva función. Para usarlo, escriba el nombre del objeto seguido de un paréntesis de apertura y cierre:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede pensar en los paréntesis como el “disparador” que hace que R ejecute la función. Si escribe el nombre de una función <em>sin</em> los paréntesis, R le mostrará el código que está almacenado dentro de la función. Si escribe el nombre <em>con</em> los paréntesis, R ejecutará ese código:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar</span></span>
+<span><span class="co">## function() {</span></span>
+<span><span class="co">##   dado &lt;- 1:6</span></span>
+<span><span class="co">##   dados &lt;- sample(dado, size = 2, replace = TRUE)</span></span>
+<span><span class="co">##   sum(dados)</span></span>
+<span><span class="co">## }</span></span>
+<span></span>
+<span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código que coloca dentro de su función se conoce como el <em>cuerpo</em> de la función. Cuando ejecuta una función en R, R ejecutará todo el código en el cuerpo y luego devolverá el resultado de la última línea de código. Si la última línea de código no devuelve un valor, tampoco lo hará su función, por lo que debe asegurarse de que su última línea de código devuelva un valor. Una forma de verificar esto es pensar en lo que sucedería si ejecutara el cuerpo del código línea por línea en la consola. ¿Mostraría R un resultado después de la última línea, o no?</p>
+<p>Aquí hay un código que mostraría un resultado:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span></span>
+<span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y aquí hay un código que no:</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">dos</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Notas el patrón? Estas líneas de código no devuelven un valor a la línea de comando; guardan un valor a un objeto.</p>
+</section></section><section id="argumentos" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="argumentos">
+<span class="header-section-number">1.5</span> Argumentos</h2>
+<p>¿Qué pasa si eliminamos una línea de código de nuestra función y cambiamos el nombre <code>dado</code> a <code>bones</code>, así?</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">bones</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora obtendré un error cuando ejecute la función. La función necesita el objeto <code>bones</code> para hacer su trabajo, pero no se puede encontrar ningún objeto llamado <code>bones</code>:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## Error in sample(bones, size = 2, replace = TRUE) : </span></span>
+<span><span class="co">##   object 'bones' not found</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puedes proporcionar <code>bones</code> cuando llamas a <code>tirar2</code> si conviertes a <code>bones</code> en un argumento de la función. Para hacer esto, pon el nombre <code>bones</code> entre los paréntesis que siguen a <code>function</code> cuando definas <code>tirar2</code>:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">bones</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">bones</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora <code>tirar2</code> funcionará siempre y cuando proporciones <code>bones</code> cuando llames a la función. Puede aprovechar esto para lanzar diferentes tipos de dados cada vez que llamas <code>tirar2</code>. ¡Calabozos y Dragones, aquí vamos!</p>
+<p>Recuerda, estamos lanzando pares de dados:</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span>bones <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">##  3</span></span>
+<span></span>
+<span><span class="fu">tirar2</span><span class="op">(</span>bones <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="co">## 10</span></span>
+<span></span>
+<span><span class="fu">tirar2</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="co">## 31</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tenga en cuenta que <code>tirar2</code> seguirá dando un error si no proporciona un valor para el argumento <code>bones</code> cuando llame a <code>tirar2</code>:</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## Error in sample(bones, size = 2, replace = TRUE) : </span></span>
+<span><span class="co">##   argument "bones" is missing, with no default</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede evitar este error dando al argumento <code>bones</code> un valor predeterminado. Para hacer esto, establece <code>bones</code> igual a un valor cuando definas <code>tirar2</code>:</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">bones</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">bones</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora puede proporcionar un nuevo valor para <code>bones</code> si lo desea, y <code>tirar2</code> usará el valor predeterminado si no lo desea:</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede dar a sus funciones tantos argumentos como desee. Simplemente enumere sus nombres, separados por comas, entre los paréntesis que siguen a <code>function</code>.Cuando se ejecuta la función, R reemplazará cada nombre de argumento en el cuerpo de la función con el valor que el usuario proporciona para el argumento. Si el usuario no proporciona un valor, R reemplazará el nombre del argumento con el valor predeterminado del argumento (si definió uno).</p>
+<p>Para resumir, <code>function</code> te ayuda a construir tus propias funciones de R. Usted crea un cuerpo de código para que su función se ejecute escribiendo código entre las llaves que siguen a <code>function</code>. Usted crea argumentos para que su función los use proporcionando sus nombres entre los paréntesis que siguen a <code>function</code>. Finalmente, le da un nombre a su función guardando su salida en un objeto de R, como se muestra en la Figura <a href="#fig-functions">Figura&nbsp;<span>1.6</span></a>.</p>
+<p>Una vez que haya creado su función, R la tratará como cualquier otra función en R. Piense en lo útil que es. ¿Alguna vez ha intentado crear una nueva opción de Excel y agregarla a la barra de menú de Microsoft? ¿O una nueva animación de diapositivas y agregarla a las opciones de Powerpoint? Cuando trabajas con un lenguaje de programación, puedes hacer este tipo de cosas. A medida que aprenda a programar en R, podrá crear herramientas nuevas, personalizadas y reproducibles para usted cuando lo desee. <a href="slots.html">Proyecto 3: Máquina Tragamonedas</a> te enseñará mucho más sobre escribir funciones en R.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-functions" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0106.png" class="img-fluid figure-img" width="878"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.6: Cada función en R tiene las mismas partes y puede usar <code>function</code> para crear estas partes. Asigne el resultado a un nombre, para que pueda llamar a la función más tarde.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="scripts" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="scripts">
+<span class="header-section-number">1.6</span> Scripts</h2>
+<p>¿Qué pasa si quieres editar <code>tirar2</code> de nuevo? Podría regresar y volver a escribir cada línea de código en <code>tirar2</code>, pero sería mucho más fácil si tuviera un borrador del código para empezar. Puede crear un borrador de su código a medida que avanza utilizando un <em>script</em> de R. Un script de R es solo un archivo de texto sin formato en el que guarda el código R. Puede abrir un script de R en RStudio yendo a <code>File&gt; New File&gt; R script</code> en la barra de menú. RStudio luego abrirá un script nuevo sobre el panel de su consola, como se muestra en la Figura <a href="#fig-script">Figura&nbsp;<span>1.7</span></a>.</p>
+<p>Le recomiendo encarecidamente que escriba y edite todo su código de R en un script antes de ejecutarlo en la consola. ¿Por qué? Este hábito crea un registro reproducible de su trabajo. Cuando termine el día, puede guardar su secuencia de comandos y luego usarla para volver a ejecutar todo el análisis al día siguiente. Los scripts también son muy útiles para editar y corregir su código, y hacen una buena copia de su trabajo para compartir con otros. Para guardar un script, haga clic en el panel de scripts y luego vaya a <code>File &gt; Save as</code> en la barra de menú.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-script" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0107.png" class="img-fluid figure-img" width="454"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.7: Cuando abre un R Script (File &gt; New File &gt; R Script in the menu bar), RStudio crea un cuarto panel encima de la consola donde puede escribir y editar su código</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>RStudio viene con muchas funciones integradas que facilitan el trabajo con scripts. Primero, puede ejecutar automáticamente una línea de código en un script haciendo clic en el botón Run, como se muestra en la Figura <a href="#fig-run">Figura&nbsp;<span>1.8</span></a>.</p>
+<p>R ejecutará cualquier línea de código en la que esté el cursor. Si tiene una sección completa resaltada, R ejecutará el código resaltado. Como alternativa, puede ejecutar todo el script haciendo clic en el botón Source. ¿No te gusta hacer clic en los botones? Puede usar Control + Enter como acceso directo para el botón Ejecutar. En Mac, eso sería Comando + Enter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-run" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0108.png" class="img-fluid figure-img" width="510"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1.8: Puede ejecutar una parte resaltada del código en su secuencia de comandos si hace clic en el botón Run en la parte superior del panel de Scripts. Puede ejecutar todo el script haciendo clic en el botón Source.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si no está convencido acerca de los scripts, pronto lo estará. Se convierte en una molestia escribir código de varias líneas en la línea de comando de una sola línea de la consola. Evitemos ese dolor de cabeza y abramos su primer script ahora antes de pasar al siguiente capítulo.</p>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Extraer función</strong></p>
+<p>RStudio viene con una herramienta que puede ayudarlo a crear funciones. Para usarlo, resalte las líneas de código en su secuencia de comandos R que desea convertir en una función. Luego haga clic en <code>Code &gt; Extract Function</code> en la barra de menú. RStudio le pedirá un nombre de función para usar y luego envolverá su código en una llamada de <code>function</code>. Escaneará el código en busca de variables indefinidas y las usará como argumentos.</p>
+<p>Es posible que desee volver a comprobar el trabajo de RStudio. Asume que su código es correcto, por lo que si hace algo sorprendente, es posible que tenga un problema en su código.</p>
+</div>
+</div>
+</div>
+</section><section id="resumen" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="resumen">
+<span class="header-section-number">1.7</span> Resumen</h2>
+<p>Ya has cubierto mucho terreno. Ahora tiene un dado virtual almacenado en la memoria de su computadora, así como su propia función de R que lanza un par de dados. También ha comenzado a hablar el lenguaje R.</p>
+<p>Como has visto, R es un lenguaje que puedes usar para hablar con tu computadora. Escribes comandos en R y los ejecutas en la línea de comandos para que tu computadora los lea. Su computadora a veces responderá–por ejemplo, cuando cometa un error–pero generalmente solo hace lo que le pide y luego muestra el resultado.</p>
+<p>Los dos componentes más importantes del lenguaje R son los objetos, que almacenan datos, y las funciones, que manipulan datos. R también usa una gran cantidad de operadores como <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> y <code>&lt;-</code> para realizar tareas básicas. Como científico de datos, usará objetos de R para almacenar datos en la memoria de su computadora y usará funciones para automatizar tareas y realizar cálculos complicados. Examinaremos los objetos con más profundidad más adelante en <a href="cards.html">Proyecto 2: Baraja de Cartas</a> y profundizaremos en las funciones en <a href="slots.html">Proyecto 3: Máquina Tragamonedas</a>. El vocabulario que ha desarrollado aquí hará que cada uno de esos proyectos sea más fácil de entender. Sin embargo, aún no hemos terminado con tus dados.</p>
+<p>En <a href="packages.html">Paquetes y páginas de ayuda</a>, , ejecutará algunas simulaciones con sus dados y construirá sus primeros gráficos en R. También verá dos de los componentes más útiles del lenguaje R: <em>Paquetes</em> de R, que son colecciones de funciones escritas por la talentosa comunidad de desarrolladores de R, y documentación de R, que es una colección de páginas de ayuda integradas en R que explica cada función y conjunto de datos en el lenguaje.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./dice.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Proyecto 1: Dados Ponderados</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./packages.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Programación práctica con R fue escrito por Garrett Grolemund.</div>   
+    <div class="nav-footer-right">Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>

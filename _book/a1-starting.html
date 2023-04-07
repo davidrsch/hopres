@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Garrett Grolemund">
+<title>Programación práctica con R - Appendix A — Instalación de R y RStudio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./a2-packages.html" rel="next">
+<link href="./speed.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Appendix A — Instalación de R y RStudio</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programación práctica con R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rstudio-education/hopr" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenido</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dice.html" class="sidebar-item-text sidebar-link">Proyecto 1: Dados Ponderados</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cards.html" class="sidebar-item-text sidebar-link">Proyecto 2: Baraja de Cartas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modifying.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./slots.html" class="sidebar-item-text sidebar-link">Proyecto 3: Máquina Tragamonedas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./s3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Apéndices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-starting.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a2-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a3-updating.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Actualizando R y sus Paquetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a4-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a5-debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Depuración de Código de R</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+<li>
+<a href="#c%C3%B3mo-descargar-e-instalar-r" id="toc-cómo-descargar-e-instalar-r" class="nav-link active" data-scroll-target="#c%C3%B3mo-descargar-e-instalar-r"><span class="toc-section-number">A.1</span>  Cómo descargar e instalar R</a>
+  <ul class="collapse">
+<li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="toc-section-number">A.1.1</span>  Windows</a></li>
+  <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac"><span class="toc-section-number">A.1.2</span>  Mac</a></li>
+  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux"><span class="toc-section-number">A.1.3</span>  Linux</a></li>
+  </ul>
+</li>
+  <li><a href="#usando-r" id="toc-usando-r" class="nav-link" data-scroll-target="#usando-r"><span class="toc-section-number">A.2</span>  Usando R</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="toc-section-number">A.3</span>  RStudio</a></li>
+  <li><a href="#abriendo-r" id="toc-abriendo-r" class="nav-link" data-scroll-target="#abriendo-r"><span class="toc-section-number">A.4</span>  Abriendo R</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rstudio-education/hopr/edit/main/a1-starting.qmd" class="toc-action">Editar esta página</a></p><p><a href="https://github.com/rstudio-education/hopr/issues/new" class="toc-action">Informar de un problema</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="starting" class="quarto-section-identifier d-none d-lg-block">Appendix A — Instalación de R y RStudio</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>Para comenzar con R, debe adquirir su propia copia. Este apéndice le mostrará cómo descargar R así como RStudio, una aplicación de software que facilita el uso de R. Pasará de descargar R a abrir su primera sesión de R.</p>
+<p>Tanto R como RStudio son gratuitos y fáciles de descargar.</p>
+<section id="cómo-descargar-e-instalar-r" class="level2" data-number="A.1"><h2 data-number="A.1" class="anchored" data-anchor-id="cómo-descargar-e-instalar-r">
+<span class="header-section-number">A.1</span> Cómo descargar e instalar R</h2>
+<p>R es mantenido por un equipo internacional de desarrolladores que hacen que el lenguaje esté disponible a través de la página web de <a href="http://cran.r-project.org">The Comprehensive R Archive Network</a>. La parte superior de la página web proporciona tres enlaces para descargar R. Siga el enlace que describe su sistema operativo: Windows, Mac o Linux.</p>
+<section id="windows" class="level3" data-number="A.1.1"><h3 data-number="A.1.1" class="anchored" data-anchor-id="windows">
+<span class="header-section-number">A.1.1</span> Windows</h3>
+<p>Para instalar R en Windows, haga clic en el enlace “Download R for Windows”. Luego haga clic en el enlace “base”. A continuación, haga clic en el primer enlace en la parte superior de la nueva página. Este enlace debería decir algo como “Descargar R 3.0.3 para Windows”, excepto que la 3.0.3 será reemplazada por la versión más reciente de R. El enlace descarga un programa de instalación, que instala la versión más actualizada de R para Windows. Ejecute este programa y siga los pasos del asistente de instalación que aparece. El asistente instalará R en sus carpetas de archivos de programa y colocará un acceso directo en su menú Inicio. Tenga en cuenta que deberá tener todos los privilegios de administración apropiados para instalar software nuevo en su máquina.</p>
+</section><section id="mac" class="level3" data-number="A.1.2"><h3 data-number="A.1.2" class="anchored" data-anchor-id="mac">
+<span class="header-section-number">A.1.2</span> Mac</h3>
+<p>Para instalar R en una Mac, haga clic en el enlace “Download R for Mac”. A continuación, haga clic en el enlace del paquete <code>R-3.0.3</code> (o en el enlace del paquete para la versión más reciente de R). Se descargará un instalador para guiarlo a través del proceso de instalación, que es muy fácil. El instalador le permite personalizar su instalación, pero los valores predeterminados serán adecuados para la mayoría de los usuarios. Nunca he encontrado una razón para cambiarlos. Si su computadora requiere una contraseña antes de instalar nuevos programas, la necesitará aquí.</p>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Binarios versus Fuente</strong></p>
+<p>R se puede instalar a partir de archivos binarios precompilados o compilarse desde el origen en cualquier sistema operativo. Para máquinas Windows y Mac, instalar R desde binarios es extremadamente fácil. El binario viene precargado en su propio instalador. Aunque puede compilar R desde el origen en estas plataformas, el proceso es mucho más complicado y no brindará muchos beneficios a la mayoría de los usuarios. Para los sistemas Linux, ocurre lo contrario. Se pueden encontrar binarios precompilados para algunos sistemas, pero es mucho más común compilar R a partir de archivos fuente cuando se instala en Linux. Las páginas de descarga en el <a href="http://cran.r-project.org">sitio web de CRAN</a> brindan información sobre la creación de R desde el origen para las plataformas Windows, Mac y Linux.</p>
+</div>
+</div>
+</div>
+</section><section id="linux" class="level3" data-number="A.1.3"><h3 data-number="A.1.3" class="anchored" data-anchor-id="linux">
+<span class="header-section-number">A.1.3</span> Linux</h3>
+<p>R viene preinstalado en muchos sistemas Linux, pero querrá la versión más reciente de R si la suya no está actualizada. <a href="http://cran.r-project.org">El sitio web de CRAN</a> proporciona archivos para compilar R desde la fuente en los sistemas Debian, Redhat, SUSE y Ubuntu en el enlace “Descargar R para Linux”. Haga clic en el enlace y luego siga el rastro del directorio hasta la versión de Linux en la que desea instalar. El procedimiento de instalación exacto variará según el sistema Linux que utilice. CRAN guía el proceso agrupando cada conjunto de archivos fuente con documentación o archivos README que explican cómo instalar en su sistema.</p>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>32-bit Versus 64-bit</strong></p>
+<p>R viene en versiones de 32 y 64 bits. ¿Cuál deberías usar? En la mayoría de los casos, no importará. Ambas versiones usan números enteros de 32 bits, lo que significa que calculan números con la misma precisión numérica. La diferencia ocurre en la forma en que cada versión administra la memoria. R de 64 bits usa punteros de memoria de 64 bits y R de 32 bits usa punteros de memoria de 32 bits. Esto significa que R de 64 bits tiene un espacio de memoria más grande para usar (y buscar).</p>
+<p>Como regla general, las compilaciones de R de 32 bits son más rápidas que las compilaciones de 64 bits, aunque no siempre. Por otro lado, las compilaciones de 64 bits pueden manejar archivos y conjuntos de datos más grandes con menos problemas de administración de memoria. En cualquiera de las versiones, el tamaño de vector máximo permitido alcanza un máximo de alrededor de 2 mil millones de elementos. Si su sistema operativo no es compatible con programas de 64 bits, o su memoria RAM es inferior a 4 GB, la versión R de 32 bits es para usted. Los instaladores de Windows y Mac instalarán automáticamente ambas versiones si su sistema es compatible con R de 64 bits.</p>
+</div>
+</div>
+</div>
+</section></section><section id="usando-r" class="level2" data-number="A.2"><h2 data-number="A.2" class="anchored" data-anchor-id="usando-r">
+<span class="header-section-number">A.2</span> Usando R</h2>
+<p>R no es un programa que pueda abrir y comenzar a usar, como Microsoft Word o Internet Explorer. En cambio, R es un lenguaje de programación, como C, C++ o UNIX. Usas R escribiendo comandos en el lenguaje R y pidiéndole a tu computadora que los interprete. En los viejos tiempos, la gente ejecutaba código R en una ventana de terminal UNIX, como si fueran piratas informáticos en una película de los años ochenta. Ahora casi todo el mundo usa R con una aplicación llamada RStudio, y te recomiendo que tú también lo hagas.</p>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>R y UNIX</strong></p>
+<p>Todavía puede ejecutar R en una ventana de UNIX o BASH escribiendo el comando:</p>
+<pre><code>R</code></pre>
+<p>que abre un intérprete de R. Luego puede hacer su trabajo y cerrar el intérprete ejecutando <em><code><a href="https://rdrr.io/r/base/quit.html">q()</a></code></em> cuando haya terminado.</p>
+</div>
+</div>
+</div>
+</section><section id="rstudio" class="level2" data-number="A.3"><h2 data-number="A.3" class="anchored" data-anchor-id="rstudio">
+<span class="header-section-number">A.3</span> RStudio</h2>
+<p>RStudio <em>es</em> una applicación como Microsoft Word—excepto que en lugar de ayudarlo a escribir texto convencional, RStudio lo ayuda a escribir en R. Uso RStudio en todo el libro porque hace que usar R sea mucho más fácil. Además, la interfaz de RStudio tiene el mismo aspecto para Windows, Mac OS y Linux. Eso me ayudará a relacionar el libro con su experiencia personal.</p>
+<p>Puede <a href="https://posit.co/download/rstudio-desktop/">descargar RStudio</a> de fomra gratuita. Simplemente haga clic en el botón “Download RStudio” y siga las instrucciones. Una vez que haya instalado RStudio, puede abrirlo como cualquier otro programa en su computadora—generalmente haciendo clic en un ícono en su escritorio.</p>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Las interfaces gráficas de usuario de R</strong></p>
+<p>Los usuarios de Windows y Mac generalmente no programan desde una ventana de terminal, por lo que las descargas de Windows y Mac para R vienen con un programa simple que abre una ventana similar a una terminal para que pueda ejecutar el código R. Esto es lo que se abre cuando hace clic en el icono de R en su computadora con Windows o Mac. Estos programas hacen un poco más que la ventana de terminal básica, pero no mucho. Es posible que escuche que las personas se refieren a ellos como las interfarces gráficas de usuarios de R para Windows o Mac.</p>
+</div>
+</div>
+</div>
+<p>Cuando abre RStudio, aparece una ventana con tres paneles, como en la Figura <a href="#fig-layout">Figura&nbsp;<span>A.1</span></a>. El panel más grande es una ventana de consola. Aquí es donde ejecutará su código R y verá los resultados. La ventana de la consola es exactamente lo que vería si ejecutara R desde una consola UNIX o las IGU de Windows o Mac. Todo lo demás que ve es exclusivo de RStudio. Ocultos en los otros paneles hay un editor de texto, una ventana de gráficos, un depurador, un administrador de archivos y mucho más. Aprenderá acerca de estos paneles a medida que se vuelvan útiles a lo largo de este libro.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-layout" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_aa01.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;A.1: El Entorno de Desarrollo Integrado de RStudio para R.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>¿Todavía necesito descargar R?</strong></p>
+<p>Incluso si usa RStudio, aún necesitará descargar R a su computadora. RStudio lo ayuda a usar la versión de R que vive en su computadora, pero no viene con una versión de R propia.</p>
+</div>
+</div>
+</div>
+</section><section id="abriendo-r" class="level2" data-number="A.4"><h2 data-number="A.4" class="anchored" data-anchor-id="abriendo-r">
+<span class="header-section-number">A.4</span> Abriendo R</h2>
+<p>Ahora que tiene R y RStudio en su computadora, puede comenzar a usar R abriendo el programa RStudio. Abra RStudio como lo haría con cualquier programa, haciendo clic en su icono o escribiendo “RStudio” en el indicador de ejecución de Windows.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./speed.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./a2-packages.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Programación práctica con R fue escrito por Garrett Grolemund.</div>   
+    <div class="nav-footer-right">Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>

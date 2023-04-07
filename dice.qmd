@@ -1,0 +1,39 @@
+# Proyecto 1: Dados Ponderados {#dice}
+
+Las computadoras le permiten ensamblar, manipular y visualizar conjuntos de datos, todo a velocidades que habrían asombrado a los científicos de ayer. En resumen, ¡las computadoras te dan superpoderes científicos! Pero si desea usarlos, deberá adquirir algunas habilidades de programación.
+
+Como científico de datos que sabe programar, mejorará su capacidad para:
+
+-   Memorizar (almacenar) conjuntos de datos completos
+-   Recuperar valores de datos demandados
+-   Realizar cálculos complejos con grandes cantidades de datos
+-   Realizar tareas repetitivas sin descuidarse ni aburrirse
+
+Las computadoras pueden hacer todas estas cosas rápidamente y sin errores, lo que le permite a su mente hacer lo que *mejor* hace bien: tomar decisiones y asignar significado.
+
+¿Suena emocionante? ¡Estupendo! Vamos a empezar.
+
+Cuando era estudiante universitario, a veces soñaba despierto con ir a Las Vegas. Pensé que saber estadísticas podría ayudarme a ganar a lo grande. Si eso es lo que *te llevó* a la ciencia de datos, será mejor que te sientes; tengo algunas malas noticias. Incluso un estadístico perderá dinero en un casino a largo plazo. Esto se debe a que las probabilidades de cada juego siempre están a favor del casino, sin embargo, hay una laguna en esta regla. Puede ganar dinero--y también de manera confiable. Todo lo que tienes que hacer es *ser el casino*.
+
+Lo creas o no, R puede ayudarte a hacerlo. A lo largo del libro, usará R para construir tres objetos virtuales: un par de dados que puede lanzar para generar números aleatorios, una baraja de cartas que puede barajar y repartir, y una máquina tragamonedas inspirada en máquinas reales. Después de eso, solo necesitará agregar algunos gráficos de video y una cuenta bancaria (y tal vez obtener algunas licencias gubernamentales), y estará en el negocio. Te dejo esos detalles a ti.
+
+Estos proyectos son ligeros, pero también profundos. A medida que los complete, se convertirá en un experto en las habilidades que necesita para trabajar con datos como científico de datos. Aprenderá cómo almacenar datos en la memoria de su computadora, cómo acceder a los datos que ya están allí y cómo transformar los valores de los datos en la memoria cuando sea necesario. También aprenderá a escribir sus propios programas en R que puede usar para analizar datos y ejecutar simulaciones.
+
+Si simular una máquina tragamonedas (o dados o cartas) parece frívolo, piénselo de esta manera: jugar en una máquina tragamonedas es un proceso. Una vez que pueda simularlo, podrá simular otros procesos, como el muestreo de arranque, la cadena de Markov Monte Carlo y otros procedimientos de análisis de datos. Además, estos proyectos brindan ejemplos concretos para aprender todos los componentes de la programación R: objetos, tipos de datos, clases, notación, funciones, entornos, árboles `if`, bucles y vectorización. Este primer proyecto facilitará el estudio de estas cosas al enseñarle los conceptos básicos de R.
+
+Su primera misión es simple: ensamblar código R que simulará lanzar un par de dados, como en una mesa de dados. Una vez que haya hecho eso, ponderaremos un poco los dados a su favor, solo para mantener las cosas interesantes.
+
+En este proyecto, aprenderá cómo:
+
+-   Utilizar las interfaces R y RStudio
+-   Ejecutar comandos R
+-   Crear objetos R
+-   Escribir sus propias funciones y scripts de R
+-   Cargar y usar paquetes R
+-   Generar muestras aleatorias
+-   Crear gráficos de manera rápida
+-   Obtener ayuda cuando la necesite
+
+No se preocupe si parece que cubrimos mucho terreno de manera rápido. Este proyecto está diseñado para brindarle una descripción general concisa del lenguaje R. Regresará a muchos de los conceptos que aprederá en los proyectos 2 y 3, donde examinará los conceptos en profundidad.
+
+Deberá tener R y RStudio instalados en su computadora antes de poder usarlos. Ambos son gratuitos y fáciles de descargar. Consulte el [Apéndice A](#starting) para obtener instrucciones completas. Si está listo para comenzar, abra RStudio en su computadora y siga leyendo.

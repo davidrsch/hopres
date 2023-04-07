@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Garrett Grolemund">
+<title>Programación práctica con R - 3&nbsp; Objectos de R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./notation.html" rel="next">
+<link href="./cards.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programación práctica con R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rstudio-education/hopr" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenido</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dice.html" class="sidebar-item-text sidebar-link">Proyecto 1: Dados Ponderados</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cards.html" class="sidebar-item-text sidebar-link">Proyecto 2: Baraja de Cartas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modifying.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./slots.html" class="sidebar-item-text sidebar-link">Proyecto 3: Máquina Tragamonedas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./s3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Apéndices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-starting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a2-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a3-updating.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Actualizando R y sus Paquetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a4-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a5-debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Depuración de Código de R</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+<li>
+<a href="#vectores-at%C3%B3micos" id="toc-vectores-atómicos" class="nav-link active" data-scroll-target="#vectores-at%C3%B3micos"><span class="toc-section-number">3.1</span>  Vectores Atómicos</a>
+  <ul class="collapse">
+<li><a href="#dobles" id="toc-dobles" class="nav-link" data-scroll-target="#dobles"><span class="toc-section-number">3.1.1</span>  Dobles</a></li>
+  <li><a href="#enteros" id="toc-enteros" class="nav-link" data-scroll-target="#enteros"><span class="toc-section-number">3.1.2</span>  Enteros</a></li>
+  <li><a href="#caracteres" id="toc-caracteres" class="nav-link" data-scroll-target="#caracteres"><span class="toc-section-number">3.1.3</span>  Caracteres</a></li>
+  <li><a href="#l%C3%B3gicos" id="toc-lógicos" class="nav-link" data-scroll-target="#l%C3%B3gicos"><span class="toc-section-number">3.1.4</span>  Lógicos</a></li>
+  <li><a href="#complejo-y-sin-procesar" id="toc-complejo-y-sin-procesar" class="nav-link" data-scroll-target="#complejo-y-sin-procesar"><span class="toc-section-number">3.1.5</span>  Complejo y Sin Procesar</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"><span class="toc-section-number">3.2</span>  Atributos</a>
+  <ul class="collapse">
+<li><a href="#names" id="toc-names" class="nav-link" data-scroll-target="#names"><span class="toc-section-number">3.2.1</span>  Nombres</a></li>
+  <li><a href="#dimensiones" id="toc-dimensiones" class="nav-link" data-scroll-target="#dimensiones"><span class="toc-section-number">3.2.2</span>  Dimensiones</a></li>
+  </ul>
+</li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices"><span class="toc-section-number">3.3</span>  Matrices</a></li>
+  <li><a href="#arreglos" id="toc-arreglos" class="nav-link" data-scroll-target="#arreglos"><span class="toc-section-number">3.4</span>  Arreglos</a></li>
+  <li>
+<a href="#clases" id="toc-clases" class="nav-link" data-scroll-target="#clases"><span class="toc-section-number">3.5</span>  Clases</a>
+  <ul class="collapse">
+<li><a href="#fechas-y-horarios" id="toc-fechas-y-horarios" class="nav-link" data-scroll-target="#fechas-y-horarios"><span class="toc-section-number">3.5.1</span>  Fechas y Horarios</a></li>
+  <li><a href="#factores" id="toc-factores" class="nav-link" data-scroll-target="#factores"><span class="toc-section-number">3.5.2</span>  Factores</a></li>
+  </ul>
+</li>
+  <li><a href="#coerci%C3%B3n" id="toc-coerción" class="nav-link" data-scroll-target="#coerci%C3%B3n"><span class="toc-section-number">3.6</span>  Coerción</a></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="toc-section-number">3.7</span>  Listas</a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="toc-section-number">3.8</span>  Data Frames</a></li>
+  <li><a href="#loading" id="toc-loading" class="nav-link" data-scroll-target="#loading"><span class="toc-section-number">3.9</span>  Cargar Datos</a></li>
+  <li><a href="#guardar-datos" id="toc-guardar-datos" class="nav-link" data-scroll-target="#guardar-datos"><span class="toc-section-number">3.10</span>  Guardar Datos</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="toc-section-number">3.11</span>  Resumen</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rstudio-education/hopr/edit/main/objects.qmd" class="toc-action">Editar esta página</a></p><p><a href="https://github.com/rstudio-education/hopr/issues/new" class="toc-action">Informar de un problema</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="objects" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>En este capítulo, usará R para armar una baraja de 52 cartas.</p>
+<p>Comenzará construyendo objetos R simples que representan naipes y luego avanzará hasta una tabla de datos completa. En resumen, creará el equivalente a una hoja de cálculo de Excel desde cero. Cuando hayas terminado, tu mazo de cartas se verá así:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> cara    palo valor</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rey   picas    <span class="dv">13</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>reina   picas    <span class="dv">12</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> jota   picas    <span class="dv">11</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> diez   picas    <span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>nueve   picas     <span class="dv">9</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> ocho   picas     <span class="dv">8</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Necesita crear un conjunto de datos desde cero para usarlo en R? Para nada. Puede cargar la mayoría de los conjuntos de datos en R con un simple paso, consulte <a href="#loading">Cargar datos</a>. Pero este ejercicio le enseñará cómo R almacena datos y cómo puede ensamblar, o desensamblar, sus propios conjuntos de datos. También aprenderá sobre los diversos tipos de objetos disponibles para usar en R (¡no todos los objetos de R son iguales!). Considere este ejercicio como un rito de iniciación; al hacerlo, se convertirá en un experto en el almacenamiento de datos en R.</p>
+<p>Comenzaremos con lo más básico. El tipo de objeto más simple en R es un <em>vector atómico</em>. Los vectores atómicos no tienen energía nuclear, pero son muy simples y aparecen en todas partes. Si observa lo suficientemente de cerca, verá que la mayoría de las estructuras en R se construyen a partir de vectores atómicos.</p>
+<section id="vectores-atómicos" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="vectores-atómicos">
+<span class="header-section-number">3.1</span> Vectores Atómicos</h2>
+<p>Un vector atómico es solo un simple vector de datos. De hecho, ya ha creado un vector atómico, su objeto <code>dado</code> del <a href="dice.html">Proyecto 1: Dados Ponderados</a>. Puede hacer un vector atómico agrupando algunos valores de datos con <code>c</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">## 1 2 3 4 5 6</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">##  TRUE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>is.vector</strong></p>
+<p><code>is.vector</code> comprueba si un objeto es un vector atómico. Devuelve <code>TRUE</code> si el objeto es un vector atómico y <code>FALSE</code> en caso contrario.</p>
+</div>
+</div>
+</div>
+<p>También puedes hacer un vector atómico con un solo valor. R guarda valores individuales como un vector atómico de longitud 1:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cinco</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
+<span><span class="va">cinco</span></span>
+<span><span class="co">## 5</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">cinco</span><span class="op">)</span></span>
+<span><span class="co">##  TRUE</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">cinco</span><span class="op">)</span></span>
+<span><span class="co">## 1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>length</strong></p>
+<p><code>length</code> devuelve la longitud de un vector atómico.</p>
+</div>
+</div>
+</div>
+<p>Cada vector atómico almacena sus valores como un vector unidimensional y cada vector atómico solo puede almacenar un tipo de datos. Puede guardar diferentes tipos de datos en R utilizando diferentes tipos de vectores atómicos. En total, R reconoce seis tipos básicos de vectores atómicos: <em>dobles</em>, <em>enteros</em>, <em>caracteres</em>, <em>lógicos</em>, <em>complejos</em> y <em>sin procesar</em>.</p>
+<p>Para crear su mazo de cartas, necesitará usar diferentes tipos de vectores atómicos para guardar diferentes tipos de información (texto y números). Puede hacer esto usando algunas convenciones simples cuando ingresa sus datos. Por ejemplo, puede crear un vector de números enteros al incluir una <code>L</code> mayúscula con su entrada. Puede crear un vector de caracteres encerrando su entrada entre comillas:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ent</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span>
+<span><span class="va">text</span> <span class="op">&lt;-</span> <span class="st">"as"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada tipo de vector atómico tiene su propia convención (descrita a continuación). R reconocerá la convención y la usará para crear un vector atómico del tipo apropiado. Si desea crear vectores atómicos que tengan más de un elemento, puede combinar un elemento con la función <code>c</code> de <a href="packages.html">Paquetes y Páginas de ayuda</a>. Use la misma convención con cada elemento:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">5L</span><span class="op">)</span></span>
+<span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"corazon"</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Quizás se pregunte por qué R usa múltiples tipos de vectores. Los tipos de vectores ayudan a que R se comporte como cabría esperar. Por ejemplo, R hará operaciones matemáticas con vectores atómicos que contienen números, pero no con vectores atómicos que contienen cadenas de caracteres:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ent</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
+<span><span class="co">## Error in sum(text) : invalid 'type' (character) of argument</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¡Pero nos estamos adelantando! Prepárese para saludar a los seis tipos de vectores atómicos en R.</p>
+<section id="dobles" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="dobles">
+<span class="header-section-number">3.1.1</span> Dobles</h3>
+<p>Un vector doble almacena números regulares. Los números pueden ser positivos o negativos, grandes o pequeños, y tener dígitos a la derecha del lugar decimal o no. En general, R guardará cualquier número que escriba en R como un doble. Entonces, por ejemplo, el dado que hiciste en <a href="dice.html">Proyecto 1: Dados Ponderados</a> era un objeto doble:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">## 1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por lo general, sabrá con qué tipo de objeto está trabajando en R (será obvio), pero también puede preguntarle a R qué tipo de objeto es un objeto con <code>typeof</code>. Por ejemplo:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">##  "double"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Algunas funciones de R se refieren a los dobles como “numéricos”, y yo haré lo mismo con frecuencia. Doble es un término informático. Se refiere a la cantidad específica de bytes que usa su computadora para almacenar un número, pero encuentro que “numérico” es mucho más intuitivo cuando se hace ciencia de datos.</p>
+</section><section id="enteros" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="enteros">
+<span class="header-section-number">3.1.2</span> Enteros</h3>
+<p>Los vectores enteros almacenan números enteros, números que se pueden escribir sin un componente decimal. Como científico de datos, no usará el tipo de número entero con mucha frecuencia porque puede guardar los números enteros como un objeto doble.</p>
+<p>Puede crear específicamente un número entero en R escribiendo un número seguido de una <code>L</code> mayúscula. Por ejemplo:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">4L</span><span class="op">)</span></span>
+<span><span class="va">ent</span></span>
+<span><span class="co">## -1  2  4</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">ent</span><span class="op">)</span></span>
+<span><span class="co">## "integer"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tenga en cuenta que R no guardará un número como un entero a menos que incluya <code>L</code>. Los números enteros sin la <code>L</code> se guardarán como dobles. La única diferencia entre <code>4</code> y <code>4L</code> es cómo R guarda el número en la memoria de tu computadora. Los números enteros se definen con mayor precisión en la memoria de su computadora que los dobles (a menos que el número entero sea <em>muy</em> grande o pequeño).</p>
+<p>¿Por qué guardaría sus datos como un número entero en lugar de un doble? A veces, una diferencia en la precisión puede tener efectos sorprendentes. Su computadora asigna 64 bits de memoria para almacenar cada doble en un programa de R. Esto permite mucha precisión, pero algunos números no se pueden expresar exactamente en 64 bits, el equivalente a una secuencia de 64 unos y ceros. Por ejemplo, el número <span class="math inline">\(\pi\)</span> contiene una secuencia interminable de dígitos a la derecha del lugar decimal. Su computadora debe redondear <span class="math inline">\(\pi\)</span> a algo cercano, pero no exactamente igual a <span class="math inline">\(\pi\)</span> para almacenar <span class="math inline">\(\pi\)</span> en su memoria. Muchos números decimales comparten esta característica.</p>
+<p>Como resultado, cada doble tiene una precisión de unos 16 dígitos significativos. Esto introduce un pequeño error. En la mayoría de los casos, este error de redondeo pasará desapercibido. Sin embargo, en algunas situaciones, el error de redondeo puede causar resultados sorprendentes. Por ejemplo, puede esperar que el resultado de la siguiente expresión sea cero, pero no lo es:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">2</span></span>
+<span><span class="co">## 4.440892e-16</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La raíz cuadrada de dos no se puede expresar exactamente en 16 dígitos significativos. Como resultado, R tiene que redondear la cantidad y la expresión se resuelve en algo muy cercano a cero, pero no del todo.</p>
+<p>Estos errores se conocen como errores de <em>punto flotante</em>, y hacer aritmética en estas condiciones se conoce como <em>aritmética de punto flotante</em>. La aritmética de punto flotante no es una característica de R; es una característica de la programación de computadoras. Por lo general, los errores de punto flotante no serán suficientes para arruinar su día. Solo tenga en cuenta que pueden ser la causa de resultados sorprendentes.</p>
+<p>Puede evitar errores de punto flotante si evita los decimales y solo usa números enteros. Sin embargo, esta no es una opción en la mayoría de las situaciones de ciencia de datos. No puedes hacer muchas matemáticas con números enteros antes de que necesites un número no entero para expresar el resultado. Afortunadamente, los errores causados por la aritmética de punto flotante suelen ser insignificantes (y cuando no lo son, son fáciles de detectar). Como resultado, generalmente usará dobles en lugar de números enteros como científico de datos.</p>
+</section><section id="caracteres" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="caracteres">
+<span class="header-section-number">3.1.3</span> Caracteres</h3>
+<p>Un vector de caracteres almacena pequeños fragmentos de texto. Puede crear un vector de caracteres en R escribiendo un carácter o una cadena de caracteres entre comillas:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hola"</span>,  <span class="st">"Mundo"</span><span class="op">)</span></span>
+<span><span class="va">text</span></span>
+<span><span class="co">##  "Hola"  "Mundo"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
+<span><span class="co">## "character"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="st">"Hola"</span><span class="op">)</span></span>
+<span><span class="co">## "character"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los elementos individuales de un vector de caracteres se conocen como <em>cadenas</em>. Tenga en cuenta que una cadena puede contener más que solo letras. También puede ensamblar una cadena de caracteres a partir de números o símbolos.</p>
+<p><strong>Ejercicio 5.1 (Carácter or Número)</strong> ¿Puedes encontrar la diferencia entre una cadena de caracteres y un número? Aquí hay una prueba: ¿Cuáles de estos son cadenas de caracteres y cuáles son números? <code>1</code>, <code>"1"</code>, <code>"uno"</code>.</p>
+<p><em>Solución.</em> <code>"1"</code> y <code>"uno"</code> son ambos cadenas de caracteres.</p>
+<p>Las cadenas de caracteres pueden contener caracteres numéricos, pero eso no los convierte en numéricos. Son solo cadenas que tienen números en ellas. Puede distinguir cadenas de números reales porque las cadenas vienen entre comillas. De hecho, todo lo que esté entre comillas en R se tratará como una cadena de caracteres, independientemente de lo que aparezca entre las comillas.</p>
+<p>Es fácil confundir objetos de R con cadenas de caracteres. ¿Por qué? Porque ambos aparecen como fragmentos de texto en código de R. Por ejemplo, <code>x</code> es el nombre de un objeto R llamado “x”, <code>"x"</code> es una cadena de caracteres que contiene el carácter “x”. Uno es un objeto que contiene datos sin procesar, el otro es un fragmento de datos sin procesar en sí mismo.</p>
+<p>Espere un error cada vez que olvide sus comillas; R comenzará a buscar un objeto que probablemente no exista.</p>
+</section><section id="lógicos" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="lógicos">
+<span class="header-section-number">3.1.4</span> Lógicos</h3>
+<p>Los vectores lógicos almacenan <code>TRUE</code> y <code>FALSE</code>, la forma de R de datos booleanos. Los lógicos son muy útiles para hacer cosas como comparaciones:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">&gt;</span> <span class="fl">4</span></span>
+<span><span class="co">## FALSE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada vez que escriba <code>TRUE</code> o <code>FALSE</code> en letras mayúsculas (sin comillas), R tratará su entrada como datos lógicos. R también asume que <code>T</code> y <code>F</code> son abreviaturas de <code>TRUE</code> y <code>FALSE</code>, a menos que se definan en otra parte (por ejemplo, ‘T &lt;- 500’). Dado que el significado de <code>T</code> y <code>F</code> puede cambiar, es mejor quedarse con <code>TRUE</code> y <code>FALSE</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">logico</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">logico</span></span>
+<span><span class="co">##   TRUE FALSE  TRUE</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">logico</span><span class="op">)</span></span>
+<span><span class="co">## "logical"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="cn">F</span><span class="op">)</span></span>
+<span><span class="co">## "logical"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="complejo-y-sin-procesar" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="complejo-y-sin-procesar">
+<span class="header-section-number">3.1.5</span> Complejo y Sin Procesar</h3>
+<p>Dobles, enteros, caracteres y lógicos son los tipos más comunes de vectores atómicos en R, pero R también reconoce dos tipos más: complejos y sin procesar. Es dudoso que alguna vez los use para analizar datos, pero aquí están por el bien de la minuciosidad.</p>
+<p>Los vectores complejos almacenan números complejos. Para crear un vector complejo, agregue un término imaginario a un número con <code>i</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1i</span>, <span class="fl">1</span> <span class="op">+</span> <span class="fl">2i</span>, <span class="fl">1</span> <span class="op">+</span> <span class="fl">3i</span><span class="op">)</span></span>
+<span><span class="va">comp</span></span>
+<span><span class="co">## 1+1i 1+2i 1+3i</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span>
+<span><span class="co">## "complex"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los vectores sin procesar almacenan bytes de datos sin procesar. Hacer vectores sin procesar se vuelve complicado, pero puedes hacer un vector sin procesar vacío de longitud <em>n</em> con <code>raw(n)</code>. Consulte la página de ayuda de <code>raw</code> para obtener más opciones al trabajar con este tipo de datos:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/raw.html">raw</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">## 00 00 00</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/raw.html">raw</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## "raw"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ejercicio 5.2 (Vector de Cartas)</strong> Cree un vector atómico que almacene solo los nombres de las caras de las cartas en una escalera real, por ejemplo, el as de picas, el rey de picas, la reina de picas, la jota de picas y el diez de picas. El nombre de la cara del as de picas sería “as” y “picas” es el palo.</p>
+<p>¿Qué tipo de vector usarás para guardar los nombres?</p>
+<p><em>Solución.</em> Un vector de caracteres es el tipo de vector atómico más apropiado para guardar los nombres de las cartas. Puedes crear uno con la función <code>c</code> si pones cada nombre entre comillas:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mano</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"rey"</span>, <span class="st">"reina"</span>, <span class="st">"jota"</span>, <span class="st">"diez"</span><span class="op">)</span></span>
+<span><span class="va">mano</span></span>
+<span><span class="co">## "as"   "rey"  "reina" "jota"  "diez"  </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">mano</span><span class="op">)</span></span>
+<span><span class="co">## "character"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto crea un grupo unidimensional de nombres de cartas. ¡Excelente trabajo! Ahora hagamos una estructura de datos más sofisticada, una tabla bidimensional de nombres de cartas y palos. Puede construir un objeto más sofisticado a partir de un vector atómico dándole algunos atributos y asignándole una clase.</p>
+</section></section><section id="attributes" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="attributes">
+<span class="header-section-number">3.2</span> Atributos</h2>
+<p>Un atributo es una pieza de información que puede adjuntar a un vector atómico (o cualquier objeto de R). El atributo no afectará ninguno de los valores del objeto y no aparecerá cuando muestre su objeto. Puede pensar en un atributo como “metadatos”; es solo un lugar conveniente para colocar información asociada con un objeto. R normalmente ignorará estos metadatos, pero algunas funciones de R verificarán atributos específicos. Estas funciones pueden usar los atributos para hacer cosas especiales con los datos.</p>
+<p>Puedes ver qué atributos tiene un objeto con <code>attributes</code>. <code>attributes</code> devolverá <code>NULL</code> si un objeto no tiene atributos. Un vector atómico, como <code>dado</code>, no tendrá ningún atributo a menos que le des alguno:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## NULL</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>NULL</strong></p>
+<p>R usa <code>NULL</code> para representar el conjunto nulo, un objeto vacío. <code>NULL</code> a menudo es devuelto por funciones cuyos valores no están definidos. Puede crear un objeto <code>NULL</code> escribiendo <code>NULL</code> en letras mayúsculas.</p>
+</div>
+</div>
+</div>
+<section id="names" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="names">
+<span class="header-section-number">3.2.1</span> Nombres</h3>
+<p>Los atributos más comunes para dar un vector atómico son nombres, dimensiones (dim) y clases. Cada uno de estos atributos tiene su propia función auxiliar que puede usar para otorgar atributos a un objeto. También puede usar las funciones auxiliares para buscar el valor de estos atributos para los objetos que ya los tienen. Por ejemplo, puedes buscar el valor del atributo de nombres de <code>dado</code> con <code>names</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## NULL</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>NULL</code> significa que <code>dado</code> no tiene un atributo de nombres. Puedes darle uno a <code>dado</code> asignando un vector de caracteres a la salida de <code>names</code>. El vector debe incluir un nombre para cada elemento en <code>dado</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uno"</span>, <span class="st">"dos"</span>, <span class="st">"tres"</span>, <span class="st">"cuatro"</span>, <span class="st">"cinco"</span>, <span class="st">"seis"</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora <code>dado</code> tiene el atributo nombres:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## "uno"   "dos"   "tres" "cuatro"  "cinco"  "seis" </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## $names</span></span>
+<span><span class="co">## [1] "uno"   "dos"   "tres" "cuatro"  "cinco"  "seis"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R mostrará los nombres sobre los elementos de <code>dado</code> cada vez que mires el vector:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span></span>
+<span><span class="co">##  uno   dos  tres  cuatro  cinco   seis </span></span>
+<span><span class="co">##    1     2     3       4      5      6  </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, los nombres no afectarán los valores reales del vector, ni los nombres se verán afectados cuando manipule los valores del vector:</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="co">##  uno   dos  tres  cuatro  cinco   seis </span></span>
+<span><span class="co">##    2     3     4       5      6      7</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También puede usar <code>names</code> para cambiar el atributo de nombres o eliminarlo todo junto. Para cambiar los nombres, asigna un nuevo conjunto de etiquetas a <code>names</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>, <span class="st">"six"</span><span class="op">)</span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">##   one    two   three four  five   six </span></span>
+<span><span class="co">##     1      2       3    4     5     6 </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para eliminar el atributo de nombres, configúrelo en <code>NULL</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">##  1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="dimensiones" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="dimensiones">
+<span class="header-section-number">3.2.2</span> Dimensiones</h3>
+<p>Puede transformar un vector atómico en una matriz <em>n</em>-dimensional dándole un atributo de dimensiones con <code>dim</code>. Para hacer esto, establezca el atributo <code>dim</code> en un vector numérico de longitud <em>n</em>. R reorganizará los elementos del vector en <em>n</em> dimensiones. Cada dimensión tendrá tantas filas (o columnas, etc.) como el valor <em>n</em> del vector <code>dim</code>. Por ejemplo, puede reorganizar <code>dado</code> en una matriz de 2 × 3 (que tiene 2 filas y 3 columnas):</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">##      [,1] [,2] [,3]</span></span>
+<span><span class="co">## [1,]    1    3    5</span></span>
+<span><span class="co">## [2,]    2    4    6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>o en una mariz de 3 × 2 (que tiene 3 filas y 2 columnas):</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">##      [,1] [,2]</span></span>
+<span><span class="co">## [1,]    1    4</span></span>
+<span><span class="co">## [2,]    2    5</span></span>
+<span><span class="co">## [3,]    3    6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>o en hipercubo de 1 × 2 × 3 (que tiene 1 fila, 2 columnas, y 3 “rebanadas”). Esta es una estructura tridimensional, pero R necesitará mostrarla rebanada por rebanada en la pantalla bidimensional de su computadora:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">## , , 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##      [,1] [,2]</span></span>
+<span><span class="co">## [1,]    1    2</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## , , 2</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##      [,1] [,2]</span></span>
+<span><span class="co">## [1,]    3    4</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## , , 3</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##      [,1] [,2]</span></span>
+<span><span class="co">## [1,]    5    6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R siempre usará el primer valor en <code>dim</code> para el número de filas y el segundo valor para el número de columnas. En general, las filas siempre van primero en las operaciones de R que se ocupan tanto de filas como de columnas.</p>
+<p>Puede notar que no tiene mucho control sobre cómo R reorganiza los valores en filas y columnas. Por ejemplo, R siempre llena cada matriz por columnas, en lugar de por filas. Si desea tener más control sobre este proceso, puede usar una de las funciones auxiliares de R, <code>matrix</code> o <code>array</code>. Hacen lo mismo que cambiar el atributo <code>dim</code>, pero proporcionan argumentos adicionales para personalizar el proceso.</p>
+</section></section><section id="matrices" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="matrices">
+<span class="header-section-number">3.3</span> Matrices</h2>
+<p>Las matrices almacenan valores en una matriz bidimensional, como una matriz de álgebra lineal. Para crear uno, primero dale a <code>matrix</code> un vector atómico para reorganizar en una matriz. Luego, defina cuántas filas debe haber en la matriz configurando el argumento <code>nrow</code> en un número. <code>matrix</code> organizará su vector de valores en una matriz con el número especificado de filas. Alternativamente, puede establecer el argumento <code>ncol</code>, que le dice a R cuántas columnas incluir en la matriz:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">dado</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">m</span></span>
+<span><span class="co">##      [,1] [,2] [,3]</span></span>
+<span><span class="co">## [1,]    1    3    5</span></span>
+<span><span class="co">## [2,]    2    4    6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>matrix</code> llenará la matriz columna por columna por defecto, pero puedes llenar la matriz fila por fila si incluyes el argumento <code>byrow = TRUE</code>:</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">dado</span>, nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">m</span></span>
+<span><span class="co">##      [,1] [,2] [,3]</span></span>
+<span><span class="co">## [1,]    1    2    3</span></span>
+<span><span class="co">## [2,]    4    5    6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>matrix</code> también tiene otros argumentos predeterminados que puede usar para personalizar su matriz. Puede leer sobre ellos en la página de ayuda de <code>matrix</code> (accesible por <code><a href="https://rdrr.io/r/base/matrix.html">?matrix</a></code>).</p>
+</section><section id="arreglos" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="arreglos">
+<span class="header-section-number">3.4</span> Arreglos</h2>
+<p>La función <code>array</code> crea una matriz de n dimensiones. Por ejemplo, podría usar <code>array</code> para clasificar los valores en un cubo de tres dimensiones o un hipercubo en 4, 5 o <em>n</em> dimensiones. <code>array</code> no es tan personalizable como <code>matrix</code> y básicamente hace lo mismo que configurar el atributo <code>dim</code>. Para usar <code>array</code>, proporcione un vector atómico como primer argumento y un vector de dimensiones como segundo argumento, ahora llamado <code>dim</code>:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span><span class="op">:</span><span class="fl">14</span>, <span class="fl">21</span><span class="op">:</span><span class="fl">24</span>, <span class="fl">31</span><span class="op">:</span><span class="fl">34</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ar</span></span>
+<span><span class="co">## , , 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##      [,1] [,2]</span></span>
+<span><span class="co">## [1,]   11   13</span></span>
+<span><span class="co">## [2,]   12   14</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## , , 2</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##      [,1] [,2]</span></span>
+<span><span class="co">## [1,]   21   23</span></span>
+<span><span class="co">## [2,]   22   24</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## , , 3</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##      [,1] [,2]</span></span>
+<span><span class="co">## [1,]   31   33</span></span>
+<span><span class="co">## [2,]   32   34</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ejercicio 5.3 (Hacer una Matriz)</strong> Cree la siguiente matriz, que almacena el nombre y el palo de cada carta en una escalera real.</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##      [,1]       [,2]    </span></span>
+<span><span class="co">## [1,] "as"      "picas"</span></span>
+<span><span class="co">## [2,] "rey"     "picas"</span></span>
+<span><span class="co">## [3,] "reina"   "picas"</span></span>
+<span><span class="co">## [4,] "jota"    "picas"</span></span>
+<span><span class="co">## [5,] "diez"    "picas"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Solución.</em> Hay más de una forma de construir esta matriz, pero en todos los casos, deberá comenzar creando un vector de caracteres con 10 valores. Si comienza con el siguiente vector de caracteres, puede convertirlo en una matriz con cualquiera de los siguientes tres comandos:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mano1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"rey"</span>, <span class="st">"reina"</span>, <span class="st">"jota"</span>, <span class="st">"diez"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>,</span>
+<span>  <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">mano1</span>, nrow <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">mano1</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">mano1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También puede comenzar con un vector de caracteres que enumere las cartas en un orden ligeramente diferente. En este caso, deberá pedirle a R que llene la matriz fila por fila en lugar de columna por columna:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mano2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"picas"</span>, <span class="st">"rey"</span>, <span class="st">"picas"</span>, <span class="st">"reina"</span>, <span class="st">"picas"</span>, <span class="st">"jota"</span>, </span>
+<span>  <span class="st">"picas"</span>, <span class="st">"diez"</span>, <span class="st">"picas"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">mano2</span>, nrow <span class="op">=</span> <span class="fl">5</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">mano2</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="clases" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="clases">
+<span class="header-section-number">3.5</span> Clases</h2>
+<p>Tenga en cuenta que cambiar las dimensiones de su objeto no cambiará el tipo del objeto, pero <em>cambiará</em> el atributo <code>clase</code> del objeto:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">##  "double"</span></span>
+<span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">##  "matrix"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una matriz es un caso especial de un vector atómico. Por ejemplo, la matriz <code>dado</code> es un caso especial de vector doble. Cada elemento de la matriz sigue siendo un doble, pero los elementos se han organizado en una nueva estructura. R agregó un atributo de <code>clase</code> a <code>dado</code> cuando cambiaste sus dimensiones. Esta clase describe el nuevo formato de <code>dado</code>. Muchas funciones de R buscarán específicamente el atributo <code>clase</code> de un objeto y luego manejarán el objeto de una manera predeterminada en función del atributo.</p>
+<p>Tenga en cuenta que el atributo <code>clase</code> de un objeto no siempre aparecerá cuando ejecute <code>attributes</code>; es posible que deba buscarlo específicamente con <code>class</code>:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## $dim</span></span>
+<span><span class="co">## [1] 2 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede aplicar <code>class</code> a objetos que no tienen un atributo de <code>clase</code>. <code>class</code> devolverá un valor basado en el tipo atómico del objeto. Tenga en cuenta que la “clase” de un doble es “numérica”, una desviación extraña, pero por la que estoy agradecido. Creo que la propiedad más importante de un vector doble es que contiene números, una propiedad que “numeric” hace evidente:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="st">"Hola"</span><span class="op">)</span></span>
+<span><span class="co">##  "character"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">##  "numeric"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También puede usar <code>class</code> para establecer el atributo <code>clase</code> de un objeto, pero esto suele ser una mala idea. R esperará que los objetos de una clase compartan ciertas características, como atributos, que su objeto puede no poseer. Aprenderá a crear y utilizar sus propias clases en <a href="slots.html">Proyecto 3: Máquina Tragamonedas</a>.</p>
+<section id="fechas-y-horarios" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="fechas-y-horarios">
+<span class="header-section-number">3.5.1</span> Fechas y Horarios</h3>
+<p>El sistema de atributos permite que R represente más tipos de datos que solo dobles, enteros, caracteres, lógicos, complejos y sin procesar. La hora parece una cadena de caracteres cuando la visualizas, pero su tipo de datos es en realidad <code>"doble"</code>, y su clase es <code>"POSIXct"</code> <code>"POSIXt"</code> (tiene dos clases):</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ahora</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ahora</span></span>
+<span><span class="co">## "2014-03-17 12:00:00 UTC"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">ahora</span><span class="op">)</span></span>
+<span><span class="co">##  "double"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">ahora</span><span class="op">)</span></span>
+<span><span class="co">## "POSIXct" "POSIXt" </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>POSIXct es un marco ampliamente utilizado para representar fechas y horas. En el marco de POSIXct, cada hora se representa por la cantidad de segundos que han pasado entre la hora y las 12:00 a. m. del 1 de enero de 1970 (en la zona Universal Time Coordinated (UTC)). Por ejemplo, el tiempo anterior ocurre 1 395 057 600 segundos después. Entonces, en el sistema POSIXct, el tiempo se guardaría como 1395057600.</p>
+<p>R crea el objeto de tiempo construyendo un vector doble con un elemento, <code>1395057600</code>. Puede ver este vector eliminando el atributo <code>clase</code> de <code>ahora</code>, o usando la función <code>unclass</code>, que hace lo mismo:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">ahora</span><span class="op">)</span></span>
+<span><span class="co">## 1395057600</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R luego le da al vector doble un atributo <code>clase</code> que contiene dos clases, <code>"POSIXct"</code> y <code>"POSIXt"</code>. Este atributo alerta a las funciones de R de que están tratando con un tiempo POSIXct, para que puedan tratarlo de una manera especial. Por ejemplo, las funciones R usarán el estándar POSIXct para convertir la hora en una cadena de caracteres fácil de usar antes de mostrarla.</p>
+<p>Puede aprovechar este sistema dando la clase <code>POSIXct</code> a objetos R aleatorios. Por ejemplo, ¿alguna vez se ha preguntado qué día era un millón de segundos después de las 12:00 a. m. del 1 de enero de 1970?</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">millon</span> <span class="op">&lt;-</span> <span class="fl">1000000</span></span>
+<span><span class="va">millon</span></span>
+<span><span class="co">## 1e+06</span></span>
+<span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">millon</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"POSIXct"</span>, <span class="st">"POSIXt"</span><span class="op">)</span></span>
+<span><span class="va">millon</span></span>
+<span><span class="co">## "1970-01-12 13:46:40 UTC"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>12 de enero de 1970. Vaya. Un millón de segundos pasan más rápido de lo que piensas. Esta conversión funcionó bien porque la clase <code>POSIXct</code> no depende de ningún atributo adicional, pero en general, forzar la clase de un objeto es una mala idea.</p>
+<p>Hay muchas clases diferentes de datos en R y sus paquetes, y cada día se inventan nuevas clases. Sería difícil aprender sobre cada clase, pero no es necesario. La mayoría de las clases solo son útiles en situaciones específicas. Dado que cada clase viene con su propia página de ayuda, puede esperar para aprender sobre una clase hasta que la encuentre. Sin embargo, hay una clase de datos que es tan omnipresente en R que debería conocerla junto con los tipos de datos atómicos. Esa clase es <code>factores</code>.</p>
+</section><section id="factores" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="factores">
+<span class="header-section-number">3.5.2</span> Factores</h3>
+<p>Los factores son la forma en que R almacena información categórica, como el origen étnico o el color de ojos. Piense en un factor como algo así como un género; solo puede tener ciertos valores (masculino o femenino), y estos valores pueden tener su propio orden idiosincrático (damas primero). Este arreglo hace que los factores sean muy útiles para registrar los niveles de tratamiento de un estudio y otras variables categóricas.</p>
+<p>Para hacer un factor, pase un vector atómico a la función <code>factor</code>. R recodificará los datos en el vector como enteros y almacenará los resultados en un vector entero. R también agregará un atributo <code>niveles</code> (<code>levels</code> en inglés) al entero, que contiene un conjunto de etiquetas para mostrar los valores de los factores, y un atributo <code>class</code>, que contiene la clase <code>factor</code>:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">genero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"masculino"</span>, <span class="st">"femenino"</span>, <span class="st">"femenino"</span>, <span class="st">"masculino"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">genero</span><span class="op">)</span></span>
+<span><span class="co">## "integer"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">genero</span><span class="op">)</span></span>
+<span><span class="co">## $levels</span></span>
+<span><span class="co">## [1] "femenino" "masculino"  </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $class</span></span>
+<span><span class="co">## [1] "factor"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puedes ver exactamente cómo R almacena tu factor con <code>unclass</code>:</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">genero</span><span class="op">)</span></span>
+<span><span class="co">## [1] 2 1 1 2</span></span>
+<span><span class="co">## attr(,"levels")</span></span>
+<span><span class="co">## [1] "femenino" "masculino"  </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R usa el atributo de niveles cuando muestra el factor, como verá. R mostrará cada <code>1</code> como <code>femenino</code>, la primera etiqueta en el vector de niveles, y cada <code>2</code> como <code>masculino</code>, la segunda etiqueta. Si el factor incluyera <code>3</code>, se mostrarían como la tercera etiqueta, y así sucesivamente:</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">genero</span></span>
+<span><span class="co">## masculino   femenino femenino masculino  </span></span>
+<span><span class="co">## Levels: femenino masculino</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los factores facilitan la colocación de variables categóricas en un modelo estadístico porque las variables ya están codificadas como números. Sin embargo, los factores pueden resultar confusos, ya que parecen cadenas de caracteres pero se comportan como números enteros.</p>
+<p>R a menudo intentará convertir cadenas de caracteres en factores cuando cargue y cree datos. En general, tendrá una experiencia más fluida si no permite que R haga factores hasta que los solicite. Te mostraré cómo hacer esto cuando comencemos a leer datos.</p>
+<p>Puede convertir un factor en una cadena de caracteres con la función <code>as.character</code>. R conservará la versión de visualización del factor, no los números enteros almacenados en la memoria:</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">genero</span><span class="op">)</span></span>
+<span><span class="co">## "masculino"   "femenino" "femenino" "masculino" </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora que comprende las posibilidades que brindan los vectores atómicos de R, hagamos un tipo de naipe más complicado.</p>
+<p><strong>Ejercicio 5.4 (Escriba una Carta)</strong> Muchos juegos de cartas asignan un valor numérico a cada carta. Por ejemplo, en el blackjack, cada carta con figuras vale 10 puntos, cada carta con números vale entre 2 y 10 puntos, y cada as vale 1 u 11 puntos, dependiendo de la puntuación final.</p>
+<p>Haz un naipe virtual combinando “as”, “corazón” y 1 en un vector. ¿Qué tipo de vector atómico resultará? Comprueba si tienes razón.</p>
+<p><em>Solución.</em> Es posible que hayas adivinado que este ejercicio no saldría bien. Cada vector atómico solo puede almacenar un tipo de datos. Como resultado, R convierte todos sus valores en cadenas de caracteres:</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">carta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"corazones"</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">carta</span></span>
+<span><span class="co">## "as"    "corazones" "1" </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto causará problemas si desea hacer operaciones matemáticas con ese valor en puntos, por ejemplo, para ver quién ganó su juego de blackjack.</p>
+<div class="callout-warning callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Tipos de datos en vectores</strong></p>
+<p>Si intenta poner varios tipos de datos en un vector, R convertirá los elementos en un solo tipo de datos.</p>
+</div>
+</div>
+</div>
+<p>Dado que las matrices y los arreglos son casos especiales de vectores atómicos, sufren el mismo comportamiento. Cada uno solo puede almacenar un tipo de datos.</p>
+<p>Esto crea un par de problemas. Primero, muchos conjuntos de datos contienen múltiples tipos de datos. Los programas simples como Excel y Numbers pueden guardar múltiples tipos de datos en el mismo conjunto de datos, y debería esperar que R también pueda hacerlo. No te preocupes, puede.</p>
+<p>En segundo lugar, la coerción es un comportamiento común en R, por lo que querrá saber cómo funciona.</p>
+</section></section><section id="coerción" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="coerción">
+<span class="header-section-number">3.6</span> Coerción</h2>
+<p>El comportamiento de coerción de R puede parecer inconveniente, pero no es arbitrario. R siempre sigue las mismas reglas cuando obliga a los tipos de datos. Una vez que esté familiarizado con estas reglas, puede usar el comportamiento de coerción de R para hacer cosas sorprendentemente útiles.</p>
+<p>Entonces, ¿cómo coacciona R los tipos de datos? Si una cadena de caracteres está presente en un vector atómico, R convertirá todo lo demás en el vector en cadenas de caracteres. Si un vector solo contiene lógicos y números, R convertirá los lógicos en números; cada <code>TRUE</code> se convierte en 1, y cada <code>FALSE</code> se convierte en 0, como se muestra en la Figura <a href="#fig-coercion">Figura&nbsp;<span>3.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-coercion" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0301.png" class="img-fluid figure-img" width="504"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.1: R siempre usa las mismas reglas para obligar a los datos a un solo tipo. Si hay cadenas de caracteres presentes, todo se convertirá en una cadena de caracteres. De lo contrario, los lógicos se convierten en numéricos.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este arreglo preserva la información. Es fácil mirar una cadena de caracteres y decir qué información solía contener. Por ejemplo, puede detectar fácilmente los orígenes de <code>"TRUE"</code> y <code>"5"</code>. También puede volver a transformar fácilmente un vector de 1 y 0 en <code>TRUE</code> y <code>FALSE</code>.</p>
+<p>R usa las mismas reglas de coerción cuando intenta hacer operaciones matemáticas con valores lógicos. Entonces el siguiente código:</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>se convertirá:</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto significa que <code>sum</code> contará el número de <code>TRUE</code> en un vector lógico (y <code>mean</code> calculará la proporción de <code>TRUE</code>). Listo, ¿eh?</p>
+<p>Puede pedirle explícitamente a R que convierta datos de un tipo a otro con las funciones <code>as</code>. R convertirá los datos siempre que haya una forma sensata de hacerlo:</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## "1"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## TRUE</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">## 0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora sabe cómo R coacciona los tipos de datos, pero esto no lo ayudará a salvar una carta. Para hacer eso, deberá evitar la coerción por completo. Puedes hacer esto usando un nuevo tipo de objeto, una <em>lista</em>.</p>
+<p>Antes de ver las listas, abordemos una pregunta que podría tener en mente.</p>
+<p>Muchos conjuntos de datos contienen múltiples tipos de información. La incapacidad de vectores, matrices y arreglos para almacenar múltiples tipos de datos parece ser una limitación importante. Entonces, ¿por qué molestarse con ellos?</p>
+<p>En algunos casos, usar un solo tipo de datos es una gran ventaja. Los vectores, las matrices y los arreglos hacen que sea muy fácil hacer operaciones matemáticas con grandes conjuntos de números porque R sabe que puede manipular cada valor de la misma manera. Las operaciones con vectores, matrices y arreglos también tienden a ser rápidas porque los objetos son muy fáciles de almacenar en la memoria.</p>
+<p>En otros casos, permitir un solo tipo de datos no es una desventaja. Los vectores son la estructura de datos más común en R porque almacenan muy bien las variables. Cada valor de una variable mide la misma propiedad, por lo que no es necesario utilizar diferentes tipos de datos.</p>
+</section><section id="listas" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="listas">
+<span class="header-section-number">3.7</span> Listas</h2>
+<p>Las listas son como vectores atómicos porque agrupan datos en un conjunto unidimensional. Sin embargo, las listas no agrupan valores individuales; las listas agrupan objetos de R, como vectores atómicos y otras listas. Por ejemplo, puede crear una lista que contenga un vector numérico de longitud 31 en su primer elemento, un vector de caracteres de longitud 1 en su segundo elemento y una nueva lista de longitud 2 en su tercer elemento. Para hacer esto, use la función <code>list</code>.</p>
+<p><code>list</code> crea una lista de la misma manera que <code>c</code> crea un vector. Separe cada elemento de la lista con una coma:</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lista1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">100</span><span class="op">:</span><span class="fl">130</span>, <span class="st">"R"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">lista1</span></span>
+<span><span class="co">## [[1]]</span></span>
+<span><span class="co">## [1] 100 101 102 103 104 105 106 107 108 109 110 111 112</span></span>
+<span><span class="co">## [14] 113 114 115 116 117 118 119 120 121 122 123 124 125</span></span>
+<span><span class="co">## [27] 126 127 128 129 130</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## [[2]]</span></span>
+<span><span class="co">## [1] "R"</span></span>
+<span><span class="co">##</span></span>
+<span><span class="co">## [[3]]</span></span>
+<span><span class="co">## [[3]][[1]]</span></span>
+<span><span class="co">## [1] TRUE</span></span>
+<span><span class="co">##</span></span>
+<span><span class="co">## [[3]][[2]]</span></span>
+<span><span class="co">## [1] FALSE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dejé la notación <code>[1]</code> en la salida para que puedas ver cómo cambia para las listas. Los índices entre corchetes le indican qué elemento de la lista se está mostrando. Los índices de un solo paréntesis le indican qué subelemento de un elemento se muestra. Por ejemplo, <code>100</code> es el primer subelemento del primer elemento de la lista. <code>"R"</code> es el primer subelemento del segundo elemento. Esta notación de dos sistemas surge porque cada elemento de una lista puede ser <em>cualquier</em> objeto R, incluido un nuevo vector (o lista) con sus propios índices.</p>
+<p>Las listas son un tipo básico de objeto en R, a la par de los vectores atómicos. Al igual que los vectores atómicos, se utilizan como bloques de construcción para crear muchos tipos más sofisticados de objetos de R.</p>
+<p>Como puede imaginar, la estructura de las listas puede volverse bastante complicada, pero esta flexibilidad hace que las listas sean una herramienta de almacenamiento útil para todo uso en R: puede agrupar cualquier cosa con una lista.</p>
+<p>Sin embargo, no todas las listas tienen que ser complicadas. Puede almacenar una carta de juego en una lista muy simple.</p>
+<p><strong>Ejercicio 5.5 (Usar una Lista para Crear una Carta)</strong> Use una lista para almacenar una sola carta, como el as de corazones, que tiene un valor de punto de uno. La lista debe guardar la cara de la carta, el palo y el valor del punto en elementos separados.</p>
+<p><em>Solución.</em> Puedes crear tu carta así. En el siguiente ejemplo, el primer elemento de la lista es un vector de caracteres (de longitud 1). El segundo elemento también es un vector de caracteres y el tercer elemento es un vector numérico:</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">carta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"corazones"</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">carta</span></span>
+<span><span class="co">## [[1]]</span></span>
+<span><span class="co">## [1] "as"</span></span>
+<span><span class="co">##</span></span>
+<span><span class="co">## [[2]]</span></span>
+<span><span class="co">## [1] "corazones"</span></span>
+<span><span class="co">##</span></span>
+<span><span class="co">## [[3]]</span></span>
+<span><span class="co">## [1] 1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También puede usar una lista para almacenar una baraja completa de cartas. Dado que puede guardar una sola carta de juego como una lista, puede guardar una baraja de cartas de juego como una lista de 52 sublistas (una para cada carta). Pero no nos molestemos, hay una forma mucho más limpia de hacer lo mismo. Puede usar una clase especial de lista, conocida como <em>data frames</em>.</p>
+</section><section id="data-frames" class="level2" data-number="3.8"><h2 data-number="3.8" class="anchored" data-anchor-id="data-frames">
+<span class="header-section-number">3.8</span> Data Frames</h2>
+<p>Data frames son la versión bidimensional de una lista. Son, por mucho, la estructura de almacenamiento más útil para el análisis de datos y proporcionan una forma ideal de almacenar una baraja completa de cartas. Puede pensar en un data frame como el equivalente de R a la hoja de cálculo de Excel porque almacena datos en un formato similar.</p>
+<p>Data frames agrupan vectores en una tabla bidimensional. Cada vector se convierte en una columna en la tabla. Como resultado, cada columna de un data frame puede contener un tipo diferente de datos; pero dentro de una columna, cada celda debe tener el mismo tipo de datos, como en la Figura <a href="#fig-data-frame">Figura&nbsp;<span>3.2</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-data-frame" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0302.png" class="img-fluid figure-img" width="460"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.2: Data frames almacenan datos como una secuencia de columnas. Cada columna puede ser un tipo de datos diferente. Cada columna en un data frame debe tener la misma longitud.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Crear un data frame a mano requiere escribir mucho, pero puede hacerlo (si lo desea) con la función <code>data.frame</code>. Proporcione a <code>data.frame</code> cualquier número de vectores, cada uno separado por una coma. Cada vector debe establecerse igual a un nombre que describa el vector. <code>data.frame</code> convertirá cada vector en una columna del nuevo data frame:</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cara <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"dos"</span>, <span class="st">"seis"</span><span class="op">)</span>,  </span>
+<span>  palo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span><span class="op">)</span>, valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span></span>
+<span><span class="co">## cara      palo valor</span></span>
+<span><span class="co">##  as   treboles     1</span></span>
+<span><span class="co">##  dos  treboles     2</span></span>
+<span><span class="co">##  seis treboles     3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Deberá asegurarse de que cada vector tenga la misma longitud (o se puede hacer así con las reglas de reciclaje de R; consulte la figura <a href="basics.html#fig-recycle">Figura&nbsp;<span>1.4</span></a>, ya que los data frames no pueden combinar columnas de diferentes longitudes.</p>
+<p>En el código anterior, nombré los argumentos en <code>data.frame</code> <code>cara</code>, <code>palo</code> y <code>valor</code>, pero puedes nombrar los argumentos como quieras. <code>data.frame</code> utilizará los nombres de sus argumentos para etiquetar las columnas del data frame.</p>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Nombres</strong></p>
+<p>También puede dar nombres a una lista o vector cuando crea uno de estos objetos. Use la misma sintaxis que con <code>data.frame</code>:</p>
+<p><code>list(cara = "as", palo = "corazones", value = 1)</code><br><code>c(cara = "as", palo = "corazones", value = "one")</code></p>
+<p>Los nombres se almacenarán en el atributo <code>names</code> del objeto.</p>
+</div>
+</div>
+</div>
+<p>Si observa el tipo de data frame, verá que es una lista. De hecho, cada data frame es una lista con la clase <code>data.frame</code>. Puede ver qué tipos de objetos se agrupan en una lista (o data frame) con la función <code>str</code>:</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">## "list"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">## "data.frame"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">## 'data.frame':    3 obs. of  3 variables:</span></span>
+<span><span class="co">##  $ cara : Factor w/ 3 levels "as","seis","dos": 1 3 2</span></span>
+<span><span class="co">##  $ palo : Factor w/ 1 level "treboles": 1 1 1</span></span>
+<span><span class="co">##  $ valor: num  1 2 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Observe que R guardó sus cadenas de caracteres como factores. ¡Te dije que a R le gustan los factores! No es un gran problema aquí, pero puede evitar este comportamiento agregando el argumento <code>stringsAsFactors = FALSE</code> a <code>data.frame</code>:</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cara <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"as"</span>, <span class="st">"dos"</span>, <span class="st">"seis"</span><span class="op">)</span>,  </span>
+<span>  palo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span><span class="op">)</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Un data frame es una excelente manera de construir una baraja completa de cartas. Puede convertir cada fila del data frame en una carta de juego y cada columna en un tipo de valor, cada uno con su propio tipo de datos apropiado. El data frame se vería así:</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##   cara      palo valor</span></span>
+<span><span class="co">##    rey     picas    13</span></span>
+<span><span class="co">##  reina     picas    12</span></span>
+<span><span class="co">##   jota     picas    11</span></span>
+<span><span class="co">##   diez     picas    10</span></span>
+<span><span class="co">##  nueve     picas     9</span></span>
+<span><span class="co">##   ocho     picas     8</span></span>
+<span><span class="co">##  siete     picas     7</span></span>
+<span><span class="co">##   seis     picas     6</span></span>
+<span><span class="co">##  cinco     picas     5</span></span>
+<span><span class="co">## cuatro     picas     4</span></span>
+<span><span class="co">##   tres     picas     3</span></span>
+<span><span class="co">##    dos     picas     2</span></span>
+<span><span class="co">##     as     picas     1</span></span>
+<span><span class="co">##    rey  treboles    13</span></span>
+<span><span class="co">##  reina  treboles    12</span></span>
+<span><span class="co">##   jota  treboles    11</span></span>
+<span><span class="co">##   diez  treboles    10</span></span>
+<span><span class="co">##   ... y así sucesivamente.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Podría crear este data frame con <code>data.frame</code>, ¡pero mire la escritura involucrada! Necesitas escribir tres vectores, cada uno con 52 elementos:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">baraja</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  cara <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rey"</span>, <span class="st">"reina"</span>, <span class="st">"jota"</span>, <span class="st">"diez"</span>, <span class="st">"nueve"</span>, <span class="st">"ocho"</span>, <span class="st">"siete"</span>, <span class="st">"seis"</span>,</span>
+<span>    <span class="st">"cinco"</span>, <span class="st">"cuatro"</span>, <span class="st">"tres"</span>, <span class="st">"dos"</span>, <span class="st">"as"</span>, <span class="st">"rey"</span>, <span class="st">"reina"</span>, <span class="st">"jota"</span>, <span class="st">"diez"</span>, </span>
+<span>    <span class="st">"nueve"</span>, <span class="st">"ocho"</span>, <span class="st">"siete"</span>, <span class="st">"seis"</span>, <span class="st">"cinco"</span>, <span class="st">"cuatro"</span>, <span class="st">"tres"</span>, <span class="st">"dos"</span>, <span class="st">"as"</span>, </span>
+<span>    <span class="st">"rey"</span>, <span class="st">"reina"</span>, <span class="st">"jota"</span>, <span class="st">"diez"</span>, <span class="st">"nueve"</span>, <span class="st">"ocho"</span>, <span class="st">"siete"</span>, <span class="st">"seis"</span>, <span class="st">"cinco"</span>, </span>
+<span>    <span class="st">"cuatro"</span>, <span class="st">"tres"</span>, <span class="st">"dos"</span>, <span class="st">"as"</span>, <span class="st">"rey"</span>, <span class="st">"reina"</span>, <span class="st">"jota"</span>, <span class="st">"diez"</span>, <span class="st">"nueve"</span>, </span>
+<span>    <span class="st">"ocho"</span>, <span class="st">"siete"</span>, <span class="st">"seis"</span>, <span class="st">"cinco"</span>, <span class="st">"cuatro"</span>, <span class="st">"tres"</span>, <span class="st">"dos"</span>, <span class="st">"as"</span><span class="op">)</span>,  </span>
+<span>  palo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, </span>
+<span>    <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, <span class="st">"picas"</span>, </span>
+<span>    <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, </span>
+<span>    <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"treboles"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, </span>
+<span>    <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, </span>
+<span>    <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"diamantes"</span>, <span class="st">"corazones"</span>, </span>
+<span>    <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, </span>
+<span>    <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span>, <span class="st">"corazones"</span><span class="op">)</span>, </span>
+<span>  valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">11</span>, <span class="fl">10</span>, <span class="fl">9</span>, <span class="fl">8</span>, <span class="fl">7</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">11</span>, <span class="fl">10</span>, <span class="fl">9</span>, <span class="fl">8</span>, </span>
+<span>    <span class="fl">7</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">11</span>, <span class="fl">10</span>, <span class="fl">9</span>, <span class="fl">8</span>, <span class="fl">7</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">11</span>, </span>
+<span>    <span class="fl">10</span>, <span class="fl">9</span>, <span class="fl">8</span>, <span class="fl">7</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Debe evitar escribir grandes conjuntos de datos a mano siempre que sea posible. Escribir invita a errores tipográficos y errores. Siempre es mejor adquirir grandes conjuntos de datos como un archivo de computadora. Luego puede pedirle a R que lea el archivo y almacene el contenido como un objeto.</p>
+<p>Creé un archivo para que lo cargues que contiene un data frame de información de naipes, así que no te preocupes por escribir el código. En su lugar, dirija su atención hacia la carga de datos en R.</p>
+</section><section id="loading" class="level2" data-number="3.9"><h2 data-number="3.9" class="anchored" data-anchor-id="loading">
+<span class="header-section-number">3.9</span> Cargar Datos</h2>
+<p>Puede cargar el data frame <code>Mazo</code> desde el archivo <a href="https://bit.ly/mazocsv"><em>mazo.csv</em></a>. Tómese un momento para descargar el archivo antes de seguir leyendo. Visite el sitio web, haga clic en “Descargar Zip” y luego descomprima y abra la carpeta que descarga su navegador web. <em>mazo.csv</em> estará dentro.</p>
+<p><em>mazo.csv</em> es un archivo de valores separados por comas, o CSV para abreviar. Los CSV son archivos de texto sin formato, lo que significa que puede abrirlos en un editor de texto (así como en muchos otros programas). Si abre <em>mazo.csv</em>, notará que contiene una tabla de datos similar a la siguiente tabla. Cada fila de la tabla se guarda en su propia línea y se usa una coma para separar las celdas dentro de cada fila. Cada archivo CSV comparte este formato básico:</p>
+<pre><code>"cara","palo","valor"
+"rey","picas",13
+"reina","picas",12
+"jota","picas",11
+"diez","picas",10
+"nueve","picas",9
+... y así sucesivamente.</code></pre>
+<p>La mayoría de las aplicaciones de ciencia de datos pueden abrir archivos de texto sin formato y exportar datos como archivos de texto sin formato. Esto hace que los archivos de texto sin formato sean una especie de lingua franca para la ciencia de datos.</p>
+<p>Para cargar un archivo de texto sin formato en R, haga clic en el icono Import Dataset en RStudio, que se muestra en la Figura <a href="#fig-import">Figura&nbsp;<span>3.3</span></a>. Luego seleccione “From text file (base)”.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-import" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0303.png" class="img-fluid figure-img" width="599"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.3: Puede importar datos desde archivos de texto sin formato con Import Dataset de RStudio.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>RStudio le pedirá que seleccione el archivo que desea importar, luego abrirá un asistente para ayudarlo a importar los datos, como en la Figura <a href="#fig-wizard">Figura&nbsp;<span>3.4</span></a>. Utilice el asistente para decirle a RStudio qué nombre dar al conjunto de datos. También puede usar el asistente para decirle a RStudio qué carácter usa el conjunto de datos como separador, qué carácter usa para representar decimales (generalmente un punto en los Estados Unidos y una coma en Europa) y si el conjunto de datos viene o no con una fila de nombres de columna (conocido como <em>header</em>). Para ayudarlo, el asistente le muestra cómo se ve el archivo sin procesar, así como también cómo se verán los datos cargados según la configuración de entrada.</p>
+<p>También puede desmarcar la casilla “Strings as factors” en el asistente. Recomiendo hacer esto. Si lo hace, R cargará todas sus cadenas de caracteres como cadenas de caracteres. Si no lo hace, R los convertirá en factores.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-wizard" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0304.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.4: Asistente de importación de RStudio.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Una vez que todo se vea bien, haga clic en Import. RStudio leerá los datos y los guardará en un data frame. RStudio también abrirá un visor de datos, para que pueda ver sus nuevos datos en un formato de hoja de cálculo. Esta es una buena manera de verificar que todo salió como se esperaba. Si todo funcionó bien, su archivo debería aparecer en una pestaña View de RStudio, como se ve en la Figura <a href="#fig-view">Figura&nbsp;<span>3.5</span></a>. Puede examinar el data frame en la consola con <em><code>head(mazo)</code></em></p>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Datos en Línea</strong></p>
+<p>Puede cargar un archivo de texto sin formato directamente desde Internet haciendo click en Import Dataset &gt; From Text (readr) y copiando la url del archivo en la casilla “File/URL” del asistente de importación de RStudio. Para poder utlizar esta opción debera instalar el paquete readr.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-view" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0305.png" class="img-fluid figure-img" width="462"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.5: Cuando importa un conjunto de datos, RStudio guardará los datos en un data frame y luego mostrará el data frame en una pestaña View. Puede abrir cualquier data frame en una pestaña View en cualquier momento con la función View.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora es tu turno. Descargue <em>mazo.csv</em> e impórtelo a RStudio. Asegúrese de guardar la salida en un objeto de R llamado <code>mazo</code>: lo usará en los próximos capítulos. Si todo va correctamente, las primeras líneas de su data frame deberían verse así:</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mazo</span><span class="op">)</span></span>
+<span><span class="co">##  cara   palo valor</span></span>
+<span><span class="co">##   rey  picas    13</span></span>
+<span><span class="co">## reina  picas    12</span></span>
+<span><span class="co">##  jota  picas    11</span></span>
+<span><span class="co">##  diez  picas    10</span></span>
+<span><span class="co">## nueve  picas     9</span></span>
+<span><span class="co">##  ocho  picas     8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><code>head</code> y <code>tail</code> son dos funciones que proporcionan una manera fácil de echar un vistazo a grandes conjuntos de datos. <code>head</code> devolverá solo las primeras seis filas del conjunto de datos, y <code>tail</code> devolverá solo las últimas seis filas. Para ver un número diferente de filas, dé a <code>head</code> o <code>tail</code> un segundo argumento, el número de filas que le gustaría ver, por ejemplo, <code>head (mazo, 10)</code>.</p>
+</div>
+</div>
+</div>
+<p>R puede abrir muchos tipos de archivos, no solo CSV. Visite <a href="a4-data.html">Cargar y Guardar Datos en R</a> para obtener información sobre cómo abrir otros tipos comunes de archivos en R.</p>
+</section><section id="guardar-datos" class="level2" data-number="3.10"><h2 data-number="3.10" class="anchored" data-anchor-id="guardar-datos">
+<span class="header-section-number">3.10</span> Guardar Datos</h2>
+<p>Antes de continuar, guardemos una copia de <code>mazo</code> como un nuevo archivo <em>.csv</em>. De esa manera, puede enviarlo por correo electrónico a un colega, almacenarlo en una memoria USB o abrirlo en un programa diferente. Puede guardar cualquier data frame en R en un archivo <em>.csv</em> con el comando <code>write.csv</code>. Para guardar <code>mazo</code>, ejecute:</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">mazo</span>, file <span class="op">=</span> <span class="st">"cartas.csv"</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R convertirá su data frame en un archivo de texto sin formato con el formato de valores separados por comas y guardará el archivo en su directorio de trabajo. Para ver dónde está su directorio de trabajo, ejecute <em><code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code></em>. Para cambiar la ubicación de su directorio de trabajo, visite Session &gt; Set Working Directory &gt; Choose Directory en la barra de menú de RStudio.</p>
+<p>Puede personalizar el proceso de guardado con el amplio conjunto de argumentos opcionales de <code>write.csv</code> (consulte <code><a href="https://rdrr.io/r/utils/write.table.html">?write.csv</a></code> para obtener más detalles). Sin embargo, hay tres argumentos que debería usar <em>cada</em> vez que ejecute <code>write.csv</code>.</p>
+<p>Primero, debe darle a <code>write.csv</code> el nombre del data frame que desea guardar. A continuación, debe proporcionar un nombre de archivo para darle a su archivo. R tomará este nombre literalmente, así que asegúrese de proporcionar una extensión.</p>
+<p>Finalmente, debe agregar el argumento <code>row.names = FALSE</code>. Esto evitará que R agregue una columna de números al comienzo de su data frame. Estos números identificarán sus filas del 1 al 52, pero es poco probable que cualquier programa en el que abra <em>cartas.csv</em> comprenda el sistema de nombres de fila. Lo más probable es que el programa asuma que los nombres de las filas son la primera columna de datos en su data frame. De hecho, esto es exactamente lo que asumirá R si vuelve a abrir <em>cartas.csv</em>. Si guarda y abre <em>cartas.csv</em> varias veces en R, notará que se forman columnas duplicadas de números de fila al comienzo de su data frame. No puedo explicar por qué R hace esto, pero puedo explicar cómo evitarlo: use <code>row.names = FALSE</code> siempre que guarde datos con <code>write.csv</code>.</p>
+<p>Para obtener más detalles sobre cómo guardar archivos, incluido cómo comprimir archivos guardados y cómo guardar archivos en otros formatos, consulte <a href="a4-data.html">Cargar y Guardar Datos en R</a>.</p>
+<p>Buen trabajo. Ahora tiene una baraja de cartas virtual con la que trabajar. Tómese un respiro y, cuando regrese, comenzaremos a escribir algunas funciones para usar en su mazo.</p>
+</section><section id="resumen" class="level2" data-number="3.11"><h2 data-number="3.11" class="anchored" data-anchor-id="resumen">
+<span class="header-section-number">3.11</span> Resumen</h2>
+<p>Puede guardar datos en R con cinco objetos diferentes, que le permiten almacenar diferentes tipos de valores en diferentes tipos de relaciones, como en la Figura <a href="#fig-structures">Figura&nbsp;<span>3.6</span></a>. De estos objetos, los data frame son, por mucho, los más útiles para la ciencia de datos. Los data frame almacenan una de las formas de datos más comunes utilizadas en la ciencia de datos, los datos tabulares.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-structures" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/hopr_0306.png" class="img-fluid figure-img" width="512"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.6: Las estructuras de datos más comunes de R son vectores, matrices, arreglos, listas y marcos de datos.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Puede cargar datos tabulares en un data frame con el botón Import Dataset de RStudio, siempre que los datos se guarden como un archivo de texto sin formato. Este requisito no es tan limitante como parece. La mayoría de los programas de software pueden exportar datos como un archivo de texto sin formato. Entonces, si tiene un archivo de Excel (por ejemplo), puede abrir el archivo en Excel y exportar los datos como CSV para usar con R. De hecho, abrir un archivo en su programa original es una buena práctica. Los archivos de Excel usan metadatos, como hojas y fórmulas, que ayudan a Excel a trabajar con el archivo. R puede intentar extraer datos sin procesar del archivo, pero no será tan bueno para hacerlo como lo es Microsoft Excel. Ningún programa es mejor para convertir archivos de Excel que Excel. Del mismo modo, ningún programa es mejor para convertir archivos SAS Xport que SAS, y así sucesivamente.</p>
+<p>Sin embargo, es posible que se encuentre con un archivo específico del programa, pero no con el programa que lo creó. No querría comprar una licencia SAS de varios miles de dólares solo para abrir un archivo SAS. Afortunadamente, R <em>puede</em> abrir muchos tipos de archivos, incluidos archivos de otros programas y bases de datos. R incluso tiene sus propios formatos específicos del programa que pueden ayudarlo a ahorrar memoria y tiempo si sabe que trabajará completamente en R. Si desea obtener más información sobre todas sus opciones para cargar y guardar datos en R, consulte <a href="a4-data.html">Cargar y Guardar Datos en R</a>.</p>
+<p><a href="notation.html">Notación de R</a> se basará en las habilidades que aprendió en este capítulo. Aquí, aprendió cómo almacenar datos en R. En <a href="notation.html">Notación de R</a>, aprenderá cómo acceder a los valores una vez que se han almacenado. También escribirá dos funciones que le permitirán comenzar a usar su mazo, una función para barajar y una función para repartir.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./cards.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Proyecto 2: Baraja de Cartas</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./notation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Programación práctica con R fue escrito por Garrett Grolemund.</div>   
+    <div class="nav-footer-right">Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>

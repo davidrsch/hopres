@@ -1,0 +1,17 @@
+# Proyecto 3: Máquina Tragamonedas {#slots}
+
+Las máquinas tragamonedas son el juego más popular en los casinos modernos. Si nunca has visto una, una máquina tragamonedas se parece a un juego de arcade que tiene una palanca en un costado. Por una pequeña tarifa, puede tirar de la palanca y la máquina generará una combinación aleatoria de tres símbolos. Si aparece la combinación correcta, puede ganar un premio, tal vez incluso el mejor premio.
+
+Las máquinas tragamonedas generan ganancias fantásticas para los casinos porque ofrecen una tasa de pago muy baja. En muchos juegos, como el Blackjack y la Ruleta, las probabilidades están ligeramente a favor del casino. A la larga, el casino paga de 97 a 98 centavos en premios por cada dólar que gasta un jugador en estos juegos. Con las máquinas tragamonedas, es típico que un casino solo pague de 90 a 95 centavos, y el casino se queda con el resto. Si esto parece turbio, tenga en cuenta que las máquinas tragamonedas son uno de los juegos más populares en un casino; a pocas personas parece importarles. Y si considera que las loterías estatales tienen tasas de pago mucho más cercanas a los 50 centavos por dólar, las máquinas tragamonedas no se ven tan mal.
+
+En este proyecto, construirá una máquina tragamonedas real que funcione, modelada a partir de algunas Terminales de Lotería de Video de la vida real de Manitoba, Canadá. Los terminales fueron motivo de escándalo en la década de los 90. Llegarás al fondo de este escándalo escribiendo un programa que recree las máquinas tragamonedas. Luego hará algunos cálculos y ejecutará algunas simulaciones que revelarán la verdadera tasa de pago de las máquinas.
+
+Este proyecto le enseñará a escribir programas y ejecutar simulaciones en R. También aprenderá a:
+
+-   Usar una estrategia práctica para diseñar programas
+-   Usar declaraciones `if` y `else` para decirle a R qué hacer y cuando
+-   Crear tablas de búsqueda para encontrar valores
+-   Usar bucles `for`, `while` y `repeat` para automatizar operaciones repetitivas
+-   Usar métodos S3, la versión de R de Programación Orientada a Objetos
+-   Medir la velocidad del código R
+-   Escribir código R rápido y vectorizado

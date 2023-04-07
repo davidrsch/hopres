@@ -1,0 +1,686 @@
+# Modificación de Valores {#modify}
+
+¿Estás listo para jugar algunos juegos con tu mazo virtual? ¡No tan rápido! El sistema de puntos en su mazo de cartas no se alinea bien con muchos juegos de cartas. Por ejemplo, en la guerra y el póquer, los ases suelen tener una puntuación más alta que los reyes. Tendrían un valor en puntos de 14, no de 1.
+
+En esta tarea, cambiará el sistema de puntos de su mazo tres veces para que coincida con tres juegos diferentes: guerra, corazones y blackjack. Cada uno de estos juegos te enseñará algo diferente sobre cómo modificar los valores dentro de un conjunto de datos. Comience por hacer una copia de `mazo` que pueda manipular. Esto asegurará que siempre tenga una copia impecable de `mazo` a la que recurrir (en caso de que las cosas salgan mal):
+
+``` r
+mazo2 <- mazo
+```
+
+### Cambio de Valores en el Lugar
+
+Puede usar el sistema de notación de R para modificar valores dentro de un objeto de R. Primero, describa el valor (o valores) que desea modificar. Luego use el operador de asignación `<-` para sobrescribir esos valores. R actualizará los valores seleccionados *en el objeto original*. Pongamos esto en práctica con un ejemplo real:
+
+``` r
+vec <- c(0, 0, 0, 0, 0, 0)
+vec
+##  0 0 0 0 0 0
+```
+
+Así es como puede seleccionar el primer valor de `vec`:
+
+``` r
+vec[1]
+##  0
+```
+
+Y así es como puedes modificarlo:
+
+``` r
+vec[1] <- 1000
+vec
+## 1000    0    0    0    0    0
+```
+
+Puede reemplazar varios valores a la vez siempre que la cantidad de valores nuevos sea igual a la cantidad de valores seleccionados:
+
+``` r
+vec[c(1, 3, 5)] <- c(1, 1, 1)
+vec
+##  1 0 1 0 1 0
+
+vec[4:6] <- vec[4:6] + 1
+vec
+## 1 0 1 1 2 1
+```
+
+También puede crear valores que aún no existen en su objeto. R expandirá el objeto para acomodar los nuevos valores:
+
+``` r
+vec[7] <- 0
+vec
+## 1 0 1 1 2 1 0
+```
+
+Esto proporciona una excelente manera de agregar nuevas variables a su conjunto de datos:
+
+``` r
+mazo2$nuevo <- 1:52
+
+head(mazo2)
+##   cara  palo valor nuevo
+##    rey picas    13   1
+##  reina picas    12   2
+##   jota picas    11   3
+##   diez picas    10   4
+##  nueve picas     9   5
+##   ocho picas     8   6
+```
+
+También puede eliminar columnas de un data frame (y elementos de una lista) asignándoles el símbolo `NULL`:
+
+``` r
+mazo2$nuevo <- NULL
+
+head(mazo2)
+##   cara  palo valor 
+##    rey picas    13
+##  reina picas    12
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+```
+
+En el juego de la guerra, los ases son el rey (en sentido figurado). Reciben el valor más alto de todas las cartas, que sería algo así como 14. Todas las demás cartas obtienen el valor que ya tienen en el `mazo`. Para jugar a la guerra, solo necesitas cambiar los valores de tus ases del 1 al 14.
+
+Siempre que no hayas barajado tu mazo, sabes dónde están los ases. Aparecen cada 13 cartas. Por lo tanto, puede describirlos con el sistema de notación de R:
+
+``` r
+mazo2[c(13, 26, 39, 52), ]
+##  cara      palo valor
+##    as     picas     1
+##    as  treboles     1
+##    as diamantes     1
+##    as corazones     1
+```
+
+Puede seleccionar solo los *valores* de los ases subdividiendo la dimensión de las columnas de `mazo2`. O, mejor aún, puede crear un subconjunto del vector de columna `mazo2$valor`:
+
+``` r
+mazo2[c(13, 26, 39, 52), 3]
+## 1 1 1 1
+
+mazo2$valor[c(13, 26, 39, 52)]
+## 1 1 1 1
+```
+
+Ahora todo lo que tiene que hacer es asignar un nuevo conjunto de valores a estos valores antiguos. El conjunto de valores nuevos deberá tener el mismo tamaño que el conjunto de valores que está reemplazando. Por lo tanto, podría guardar `c(14, 14, 14, 14)` en los valores as, o simplemente podría guardar *`14`* y confiar en las reglas de reciclaje de R para expandir `14` a `c(14, 14, 14, 14)`:
+
+``` r
+mazo2$valor[c(13, 26, 39, 52)] <- c(14, 14, 14, 14)
+
+# or
+
+mazo2$valor[c(13, 26, 39, 52)] <- 14
+```
+
+Observe que los valores cambian *en su lugar*. No terminas con una *copia* modificada de `mazo2`; los nuevos valores aparecerán dentro de `mazo2`:
+
+``` r
+head(mazo2, 13)
+##   cara  palo valor
+##    rey picas    13
+##  reina picas    12
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas    14
+```
+
+La misma técnica funcionará ya sea que almacene sus datos en un vector, matriz, arreglo, lista o data frame. Simplemente describa los valores que desea cambiar con el sistema de notación de R, luego asigne sobre esos valores con el operador de asignación de R.
+
+Las cosas funcionaron muy fácilmente en este ejemplo porque sabías exactamente dónde estaba cada as. Las cartas se ordenaron de manera ordenada y apareció un as cada 13 filas.
+
+Pero, ¿y si se hubiera barajado la baraja? Podrías mirar todas las cartas y anotar las ubicaciones de los ases, pero eso sería tedioso. Si su data frame fuera más grande, podría ser imposible:
+
+``` r
+mazo3 <- barajar(mazo)
+```
+
+¿Dónde están los ases ahora?
+
+``` r
+head(mazo3)
+##  cara      palo valor
+## reina  treboles    12
+##   rey  treboles    13
+##    as     picas     1   # un as
+## nueve  treboles     9
+## siete     picas     7
+## reina diamantes    12
+```
+
+¿Por qué no pedirle a R que encuentre los ases por ti? Puede hacer esto con subconjuntos lógicos. La creación de subconjuntos lógicos proporciona una forma de realizar una extracción y modificación específicas con objetos R, una especie de misión de búsqueda y destrucción dentro de sus propios conjuntos de datos.
+
+### Subconjunto Lógico
+
+¿Recuerdas el sistema de índice lógico de R, [lógicos](#logicals)? Para recapitular, puede seleccionar valores con un vector de `TRUE` y `FALSE`. El vector debe tener la misma longitud que la dimensión que desea dividir en subconjuntos. R devolverá todos los elementos que coincidan con un VERDADERO:
+
+``` r
+vec
+## 1 0 1 1 2 1 0
+
+vec[c(FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE)]
+## 2
+```
+
+A primera vista, este sistema puede parecer poco práctico. ¿Quién quiere escribir largos vectores de TRUE y FALSE? Nadie. Pero no tienes que hacerlo. Puede dejar que una prueba lógica cree un vector de VERDADEROS y FALSOS para usted.
+
+#### Pruebas Lógicas
+
+Una prueba lógica es una comparación como "¿es uno menos que dos?", `1 < 2` o "¿tres son mayores que cuatro?", `3 > 4`. R proporciona siete operadores lógicos que puede usar para hacer comparaciones, que se muestran en la tabla @tbl-logop.
+
+| Operador | Sintaxis            | Pruebas                        |
+|----------|---------------------|--------------------------------|
+| `>`      | `a > b`             | ¿Es a mayor que b?             |
+| `>=`     | `a >= b`            | ¿Es a mayor que o igual que b? |
+| `<`      | `a < b`             | ¿Es a menor que b?             |
+| `<=`     | `a <= b`            | ¿Es a menor que o igual que b? |
+| `==`     | `a == b`            | ¿Es a igual que b?             |
+| `!=`     | `a != b`            | ¿Es a distinto que b?          |
+| `%in%`   | `a %in% c(a, b, c)` | ¿Es a en el grupo c(a, b, c)?  |
+
+: Operadores Lógicos de R {#tbl-logop}
+
+Cada operador devuelve un `TRUE` o un `FALSE`. Si usa un operador para comparar vectores, R hará comparaciones por elementos, tal como lo hace con los operadores aritméticos:
+
+``` r
+1 > 2
+## FALSE
+
+1 > c(0, 1, 2)
+## TRUE FALSE FALSE
+
+c(1, 2, 3) == c(3, 2, 1)
+## FALSE  TRUE FALSE
+```
+
+`%in%` es el único operador que no realiza una ejecución normal de elementos. `%in%` comprueba si los valores del lado izquierdo están en el vector del lado derecho. Si proporciona un vector en el lado izquierdo, `%in%` *no* emparejará los valores de la izquierda con los valores de la derecha y luego realizará pruebas por elementos. En su lugar, `%in%` probará de forma independiente si cada valor de la izquierda está *en algún lugar* en el vector de la derecha:
+
+``` r
+1 %in% c(3, 4, 5)
+## FALSE
+
+c(1, 2) %in% c(3, 4, 5)
+## FALSE FALSE
+
+c(1, 2, 3) %in% c(3, 4, 5)
+## FALSE FALSE  TRUE
+
+c(1, 2, 3, 4) %in% c(3, 4, 5)
+## FALSE FALSE  TRUE  TRUE
+```
+
+Tenga en cuenta que comprueba la igualdad con un signo igual doble, `==`, y no con un solo signo igual, `=`, que es otra forma de escribir `<-`. Es fácil olvidar y usar `a = b` para probar si `a` es igual a `b`. Desafortunadamente, te llevarás una desagradable sorpresa. R no devolverá un `TRUE` o `FALSE`, porque no tendrá que hacerlo: `a` *será* igual a `b`, porque acabas de ejecutar el equivalente de `a <- b`.
+
+::: callout-warning
+**`=` es un operador de asignación**
+
+Tenga cuidado de no confundir `=` con `==`. `=` hace lo mismo que `<-`: asigna un valor a un objeto.
+:::
+
+Puede comparar dos objetos R cualquiera con un operador lógico; sin embargo, los operadores lógicos tienen más sentido si compara dos objetos del mismo tipo de datos. Si compara objetos de diferentes tipos de datos, R usará sus reglas de coerción para forzar los objetos al mismo tipo antes de realizar la comparación.
+
+Ejercicio 7.1 ¿Cuántas ases? Extraiga la columna `cara` de `mazo2` y pruebe si cada valor es igual a `as`. Como desafío, use R para contar rápidamente cuántas cartas son iguales a `as`.
+
+*Solución.* Puede extraer la columna `cara` con la notación `$` de R:
+
+``` r
+mazo2$cara
+##  "rey"  "reina" "jota"  "diez"   "nueve" 
+##  "ocho" "siete" "seis"   "cinco"  "cuatro" 
+##  "tres" "dos"   "as" "rey"  "reina"
+##  "jota"  "diez"   "nueve"  "ocho" "siete"
+##  "seis"   "cinco"  "cuatro"  "tres" "dos"  
+##  "as"   "rey"  "reina" "jota"  "diez"  
+##  "nueve"  "ocho" "siete" "seis"   "cinco" 
+##  "cuatro"  "tres" "dos"   "as"   "rey" 
+##  "reina" "jota"  "diez"   "nueve"  "ocho"
+##  "siete" "seis"   "cinco"  "cuatro"  "tres"
+##  "dos"   "as"
+```
+
+A continuación, puede utilizar el operador `==` para probar si cada valor es igual a `as`. En el siguiente código, R usará sus reglas de reciclaje para comparar individualmente cada valor de `mazo2$cara` con `"as"`. Tenga en cuenta que las comillas son importantes. Si los omite, R intentará encontrar un objeto llamado `as` para compararlo con `mazo2$cara`:
+
+``` r
+mazo2$cara == "as"
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE  TRUE
+```
+
+Puede usar `sum` para contar rápidamente el número de `TRUE` en el vector anterior. Recuerde que R convertirá los lógicos en numéricos cuando haga operaciones matemáticas con ellos. R convertirá `TRUE` en unos y `FALSE` en ceros. Como resultado, sum contará el número de `TRUE`:
+
+``` r
+sum(mazo2$cara == "as")
+## 4
+```
+
+Puede usar este método para detectar y luego cambiar los ases en su mazo, incluso si ha barajado sus cartas. Primero, crea una prueba lógica que identifique los ases en tu baraja barajada:
+
+``` r
+mazo3$cara == "as"
+```
+
+Luego use la prueba para seleccionar los valores de puntos as. Dado que la prueba devuelve un vector lógico, puede usarlo como índice:
+
+``` r
+mazo3$valor[mazo3$cara == "as"]
+##  1 1 1 1
+```
+
+Finalmente, usa la asignación para cambiar los valores de as en `mazo3`:
+
+``` r
+mazo3$valor[mazo3$cara == "as"] <- 14
+
+head(mazo3)
+##  cara      palo valor
+## queen  treboles    12
+##   rey  treboles    13
+##    as     picas    14  # un as
+## nueve  treboles     9
+## siete     picas     7
+## reina diamantes    12
+```
+
+Para resumir, puede usar una prueba lógica para seleccionar valores dentro de un objeto.
+
+La creación de subconjuntos lógicos es una técnica poderosa porque le permite identificar, extraer y modificar rápidamente valores individuales en su conjunto de datos. Cuando trabaja con subconjuntos lógicos, no necesita saber *dónde* en su conjunto de datos existe un valor. Solo necesita saber cómo describir el valor con una prueba lógica.
+
+El subconjunto lógico es una de las cosas que R hace mejor. De hecho, el subconjunto lógico es un componente clave de la programación vectorizada, un estilo de codificación que le permite escribir código R rápido y eficiente, que estudiaremos en [Velocidad](#speed).
+
+Usemos subconjuntos lógicos con un nuevo juego: corazones. En corazones, cada carta tiene un valor de cero:
+
+``` r
+mazo4 <- mazo
+mazo4$valor <- 0
+
+head(mazo4, 13)
+##   cara  palo valor
+##    rey picas     0
+##  reina picas     0
+##   jota picas     0
+##   diez picas     0
+##  nueve picas     0
+##   ocho picas     0
+##  siete picas     0
+##   seis picas     0
+##  cinco picas     0
+## cuatro picas     0
+##   tres picas     0
+##    dos picas     0
+##     as picas     0
+```
+
+excepto las cartas del palo de corazones y la reina de picas. Cada carta del palo de corazones tiene un valor de 1. ¿Puedes encontrar estas cartas y reemplazar sus valores? Intentalo.
+
+**Ejercicio 7.2 (Dar Valor al Mazo para el Juego Corazones)** Asigne un valor de `1` a cada carta en `mazo4` que tenga un palo de corazones.
+
+*Solución.* Para hacer esto, primero escribe una prueba que identifique las cartas en el palo `corazones`:
+
+``` r
+mazo4$palo == "corazones"
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+##   TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##   TRUE  TRUE  TRUE
+```
+
+Luego usa tu prueba para seleccionar los valores de estas cartas:
+
+``` r
+mazo4$valor[mazo4$palo == "corazones"]
+## 0 0 0 0 0 0 0 0 0 0 0 0 0
+```
+
+Finalmente, asigne un nuevo número a estos valores:
+
+``` r
+mazo4$valor[mazo4$palo == "corazones"] <- 1
+```
+
+Ahora todas sus cartas de `corazones` han sido actualizadas:
+
+``` r
+mazo4$valor[mazo4$palo == "corazones"]
+## 1 1 1 1 1 1 1 1 1 1 1 1 1
+```
+
+En corazones, la reina de picas tiene el valor más inusual de todos: vale 13 puntos. Debería ser sencillo cambiar su valor, pero es sorprendentemente difícil de encontrar. Podrías encontrar todas las *reinas*:
+
+``` r
+mazo4[mazo4$cara == "reina", ]
+##   cara      palo valor
+##  reina     picas     0
+##  reina  treboles     0
+##  reina diamantes     0
+##  reina corazones     1
+```
+
+Pero son tres cartas de más. Por otro lado, podrías encontrar todas las cartas en *picas*:
+
+``` r
+mazo4[mazo4$palo == "picas", ]
+##   cara  palo valor
+##    rey picas     0
+##  reina picas     0
+##   jota picas     0
+##   diez picas     0
+##  nueve picas     0
+##   ocho picas     0
+##  siete picas     0
+##   seis picas     0
+##  cinco picas     0
+## cuatro picas     0
+##   tres picas     0
+##    dos picas     0
+##     as picas     0
+```
+
+Pero son 12 cartas de más. Lo que realmente quiere encontrar es todas las cartas que tienen un valor de cara igual a la reina y un valor del palo igual a las picas. Puede hacerlo con un *operador booleano*. Los operadores booleanos combinan varias pruebas lógicas en una sola prueba.
+
+#### Operadores Booleanos
+
+Los operadores booleanos son cosas como *y* (`&`) y *o* (`|`). Colapsan los resultados de múltiples pruebas lógicas en un solo `TRUE` o `FALSE`. R tiene seis operadores booleanos, que se muestran en la tabla @tbl-boole.
+
+| Operador | Sintaxis                        | Pruebas                                                                            |
+|------------------------------|-----------------------|-------------------|
+| `&`      | `cond1 & cond2`                 | ¿Son verdaderas `cond1` y `cond2`?                                                 |
+| `|`      | `cond1 | cond2`                 | ¿Es verdadera una o más de `cond1` y`cond2`?                                       |
+| `xor`    | `xor(cond1, cond2)`             | ¿Es exactamente una de `cond1` y `cond2` verdadera?                                |
+| `!`      | `!cond1`                        | ¿Es `cond1` falsa? (por ejemplo, `!` invierte los resultados de una prueba lógica) |
+| `any`    | `any(cond1, cond2, cond3, ...)` | ¿Alguna de las condiciones es verdadera?                                           |
+| `all`    | `all(cond1, cond2, cond3, ...)` | ¿Son verdaderas todas las condiciones?                                             |
+
+: Operadores Booleanos {#tbl-boole}
+
+Para usar un operador booleano, colóquelo entre dos pruebas lógicas *completas*. R ejecutará cada prueba lógica y luego usará el operador booleano para combinar los resultados en un solo `TRUE` o `FALSE`, figura @fig-boolean.
+
+::: callout-warning
+**El error más común con los operadores Booleanos**
+
+Es fácil olvidar poner una prueba completa a cada lado de un operador booleano. En español, es eficiente decir "¿Es *x* mayor que dos y menor que nueve?" Pero en R, necesitas escribir el equivalente de "¿Es *x* mayor que dos y *es x* menor que nueve?" Esto se muestra en la Figura @fig-boolean.
+:::
+
+```{r}
+#| label: fig-boolean
+#| echo: FALSE
+#| fig.cap: >
+#|   R evaluará las expresiones en cada lado de un operador booleano por 
+#|   separado y luego combinará los resultados en un solo TRUE o FALSE. 
+#|   Si no proporciona una prueba completa a cada lado del operador, R 
+#|   devolverá un error.
+
+knitr::include_graphics("images/hopr_0501.png")
+```
+
+Cuando se usan con vectores, los operadores booleanos seguirán la misma ejecución de elementos que los operadores aritméticos y lógicos:
+
+``` r
+a <- c(1, 2, 3)
+b <- c(1, 2, 3)
+c <- c(1, 2, 4)
+
+a == b
+##  TRUE TRUE TRUE
+
+b == c
+##  TRUE  TRUE FALSE
+
+a == b & b == c
+##  TRUE  TRUE FALSE
+```
+
+¿Podría usar un operador booleano para ubicar la reina de picas en su mazo? Por supuesto que puede. Desea probar cada carta para ver si es tanto una reina como una pica. Puedes escribir esta prueba en R con:
+
+``` r
+mazo4$cara == "reina" & mazo4$palo == "picas"
+##  FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  FALSE FALSE FALSE
+```
+
+Guardaré los resultados de esta prueba en su propio objeto. Eso hará que sea más fácil trabajar con los resultados:
+
+``` r
+reinaDePicas <- mazo4$cara == "reina" & mazo4$palo == "picas"
+```
+
+A continuación, puede utilizar la prueba como índice para seleccionar el valor de la reina de picas. Asegúrese de que la prueba realmente seleccione el valor correcto:
+
+``` r
+mazo4[reinaDePicas, ]
+##  cara  palo valor
+## reina picas     0
+
+mazo4$valor[reinaDePicas]
+## 0
+```
+
+Ahora que encontraste la reina de picas, puedes actualizar su valor:
+
+``` r
+mazo4$valor[reinaDePicas] <- 13
+
+mazo4[reinaDePicas, ]
+##  cara  palo valor
+## reina picas    13
+```
+
+Tu mazo está listo para jugar corazones.
+
+**Ejercicio 7.3 (Practica con Pruebas)** Si cree que domina las pruebas lógicas, intente convertir estas oraciones en pruebas escritas con código R. Para ayudarte, he definido algunos objetos de R después de las oraciones que puedes usar para probar tus respuestas:
+
+-   ¿Es `w` positivo?
+-   ¿Es `x` mayor que 10 y menor que 20?
+-   ¿Es objeto `y` la palabra Febrero?
+-   ¿Son *todos* los valores de `z` un día de la semana?
+
+``` r
+w <- c(-1, 0, 1)
+x <- c(5, 15)
+y <- "Febrero"
+z <- c("Lunes", "Martes", "Viernes")
+```
+
+*Solución.* Aquí hay algunas respuestas de ejemplo. Si se quedó atascado, asegúrese de volver a leer cómo R evalúa las pruebas lógicas que usan valores booleanos:
+
+``` r
+w > 0
+10 < x & x < 20
+y == "Febrero"
+all(z %in% c("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", 
+  "Sabado", "Domingo"))
+```
+
+Consideremos un último juego, el blackjack. En el blackjack, cada carta numérica tiene un valor igual a su valor nominal. Cada figura (rey, reina o jota) tiene un valor de 10. Finalmente, cada as tiene un valor de 11 o 1, dependiendo de los resultados finales del juego.
+
+Comencemos con una copia nueva de `mazo`; de esa manera, las cartas numéricas (`dos` a `diez`) comenzarán con el valor correcto:
+
+``` r
+mako5 <- mazo
+
+head(mazo5, 13)
+##    rey picas    13
+##  reina picas    12
+##   jota picas    11
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas     1
+```
+
+Puedes cambiar el valor de las figuras de una sola vez con `%in%`:
+
+``` r
+caracartas <- mazo5$cara %in% c("rey", "reina", "jota")
+
+mazo5[caracartas, ]
+##   cara      palo valor
+##    rey     picas    13
+##  reina     picas    12
+##   jota     picas    11
+##    rey  treboles    13
+##  reina  treboles    12
+##   jota  treboles    11
+##    rey diamantes    13
+##  reina diamantes    12
+##   jota diamantes    11
+##    rey corazones    13
+##  reina corazones    12
+##   jota corazones    11
+
+mazo5$valor[caracartas] <- 10
+
+head(mazo5, 13)
+##   cara   palo valor
+##    rey picas    10
+##  reina picas    10
+##   jota picas    10
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas     1
+```
+
+Ahora solo necesita corregir los valores de as, ¿o no? Es difícil decidir qué valor dar a los ases porque su valor exacto cambiará de una mano a otra. Al final de cada mano, un as será igual a 11 si la suma de las cartas del jugador no supera los 21. De lo contrario, el as será igual a 1. El valor real del as dependerá de las otras cartas en la mano del jugador. Este es un caso de falta de información. Por el momento, no tiene suficiente información para asignar un valor de puntos correcto a las cartas de as.
+
+### Información Faltante {#missing}
+
+Los problemas de falta de información ocurren con frecuencia en la ciencia de datos. Por lo general, son más sencillos: no conoce un valor porque la medida se perdió, se corrompió o nunca se tomó para empezar. R tiene una manera de ayudarlo a administrar estos valores faltantes.
+
+El carácter `NA` es un símbolo especial en R. Significa "no disponible" y se puede utilizar como marcador de posición para la información que falta. R tratará a NA exactamente como usted debería querer que se trate la información faltante. Por ejemplo, ¿qué resultado esperaría si suma 1 a la información que falta?
+
+``` r
+1 + NA
+## NA
+```
+
+R devolverá una segunda pieza de información faltante. No sería correcto decir que `1 + NA = 1` porque existe una buena posibilidad de que la cantidad que falta no sea cero. No tienes suficiente información para determinar el resultado.
+
+¿Qué pasa si prueba si una parte de la información que falta es igual a 1?
+
+``` r
+NA == 1
+## NA
+```
+
+Nuevamente, su respuesta sería algo como "No sé si esto es igual a uno", es decir, `NA`. Generalmente, los `NA` se propagarán cada vez que los use en una operación o función de R. Esto puede evitar que cometa errores basados en datos faltantes.
+
+#### na.rm
+
+Los valores faltantes pueden ayudarlo a solucionar los agujeros en sus conjuntos de datos, pero también pueden crear algunos problemas frustrantes. Suponga, por ejemplo, que ha recopilado 1.000 pases:\[<phrase role="keep-together">observaciones</phrase>\] y desea tomar su promedio con la función `mean` de R. Si incluso uno de los valores es `NA`, su resultado será `NA`:
+
+``` r
+c(NA, 1:50)
+## NA  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16
+## 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33
+## 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+
+mean(c(NA, 1:50))
+## NA
+```
+
+Es comprensible que prefieras un comportamiento diferente. La mayoría de las funciones de R vienen con el argumento opcional, `na.rm`, que significa remove los `NA`. R ignorará `NA`s cuando evalúa una función si agrega el argumento `na.rm = TRUE`:
+
+``` r
+mean(c(NA, 1:50), na.rm = TRUE)
+## 25.5
+```
+
+#### is.na
+
+En ocasiones, es posible que desee identificar las `NA` en su conjunto de datos con una prueba lógica, pero eso también crea un problema. ¿Cómo lo harías? Si algo es un valor faltante, cualquier prueba lógica que lo use devolverá un valor faltante, incluso esta prueba:
+
+``` r
+NA == NA
+## NA
+```
+
+Lo que significa que pruebas como esta no te ayudarán a encontrar valores faltantes:
+
+``` r
+c(1, 2, 3, NA) == NA
+## NA NA NA NA
+```
+
+Pero no te preocupes demasiado; R proporciona una función especial que puede probar si un valor es un `NA`. La función se llama sensatamente `is.na`:
+
+``` r
+is.na(NA)
+## TRUE
+
+vec <- c(1, 2, 3, NA)
+is.na(vec)
+## FALSE FALSE FALSE  TRUE
+```
+
+Establezcamos todos sus valores de as en `NA`. Esto logrará dos cosas. Primero, te recordará que no sabes el valor final de cada as. En segundo lugar, evitará que anotes accidentalmente una mano que tenga un as antes de determinar el valor final del as.
+
+Puede establecer sus valores de as en `NA` de la misma manera que los establecería en un número:
+
+``` r
+mazo5$valor[mazo5$cara == "as"] <- NA
+
+head(mazo5, 13)
+##   cara   palo valor
+##    rey picas    10
+##  reina picas    10
+##   jota picas    10
+##   diez picas    10
+##  nueve picas     9
+##   ocho picas     8
+##  siete picas     7
+##   seis picas     6
+##  cinco picas     5
+## cuatro picas     4
+##   tres picas     3
+##    dos picas     2
+##     as picas    NA
+```
+
+Felicidades. Su mazo ahora está listo para un juego de blackjack.
+
+### Resumen
+
+Puede modificar valores en su lugar dentro de un objeto de R cuando combina la sintaxis de notación de R con el operador de asignación, `<-`. Esto le permite actualizar sus datos y limpiar sus conjuntos de datos.
+
+Cuando trabaja con grandes conjuntos de datos, modificar y recuperar valores crea un problema logístico propio. ¿Cómo puede buscar en los datos para encontrar los valores que desea modificar o recuperar? Como usuario de R, puede hacer esto con subconjuntos lógicos. Cree una prueba lógica con operadores lógicos y booleanos y luego use la prueba como un índice en la notación de paréntesis de R. R devolverá los valores que está buscando, incluso si no sabe dónde están.
+
+Recuperar valores individuales no será su única preocupación como programador de R. También deberá recuperar conjuntos de datos completos; por ejemplo, puede llamar a uno en una función. [Entornos](#environment) le enseñará cómo R busca y guarda conjuntos de datos y otros objetos R en su sistema de entorno. Luego usará este conocimiento para corregir las funciones `repartir` y `barajar`.

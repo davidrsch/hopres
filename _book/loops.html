@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Garrett Grolemund">
+
+<title>Programación práctica con R - 9&nbsp; Bucles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./speed.html" rel="next">
+<link href="./s3.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programación práctica con R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rstudio-education/hopr" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenido</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dice.html" class="sidebar-item-text sidebar-link">Proyecto 1: Dados Ponderados</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cards.html" class="sidebar-item-text sidebar-link">Proyecto 2: Baraja de Cartas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modifying.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./slots.html" class="sidebar-item-text sidebar-link">Proyecto 3: Máquina Tragamonedas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./s3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Apéndices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-starting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a2-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a3-updating.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Actualizando R y sus Paquetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a4-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a5-debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Depuración de Código de R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#valores-esperados" id="toc-valores-esperados" class="nav-link active" data-scroll-target="#valores-esperados"><span class="toc-section-number">9.1</span>  Valores Esperados</a></li>
+  <li><a href="#expand.grid" id="toc-expand.grid" class="nav-link" data-scroll-target="#expand.grid"><span class="toc-section-number">9.2</span>  expand.grid</a></li>
+  <li><a href="#bucles-for" id="toc-bucles-for" class="nav-link" data-scroll-target="#bucles-for"><span class="toc-section-number">9.3</span>  Bucles for</a></li>
+  <li><a href="#bucles-while" id="toc-bucles-while" class="nav-link" data-scroll-target="#bucles-while"><span class="toc-section-number">9.4</span>  Bucles while</a></li>
+  <li><a href="#bucles-repeat" id="toc-bucles-repeat" class="nav-link" data-scroll-target="#bucles-repeat"><span class="toc-section-number">9.5</span>  Bucles repeat</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="toc-section-number">9.6</span>  Resumen</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rstudio-education/hopr/edit/main/loops.qmd" class="toc-action">Editar esta página</a></p><p><a href="https://github.com/rstudio-education/hopr/issues/new" class="toc-action">Informar de un problema</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="loops" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Los bucles son el método de R para repetir una tarea, lo que los convierte en una herramienta útil para programar simulaciones. Este capítulo le enseñará cómo usar las herramientas de bucle de R.</p>
+<p>Usemos la función <code>puntuacion</code> para resolver un problema del mundo real.</p>
+<p>Su máquina tragamonedas está modelada a partir de máquinas reales que fueron acusadas de fraude. Las máquinas parecían pagar 40 centavos por dólar, pero el fabricante afirmó que pagaban 92 centavos por dólar. Puede calcular la tasa de pago exacta de su máquina con el programa <code>puntuacion</code>. La tasa de pago será el valor esperado del premio de la máquina tragamonedas.</p>
+<section id="valores-esperados" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="valores-esperados"><span class="header-section-number">9.1</span> Valores Esperados</h2>
+<p>El valor esperado de un evento aleatorio es un tipo de promedio ponderado; es la suma de cada resultado posible del evento, ponderada por la probabilidad de que ocurra cada resultado:</p>
+<p><span class="math display">\[
+E(x) = \sum_{i = 1}^{n}\left( x_{i} \cdot P(x_{i}) \right)
+\]</span></p>
+<p>Puede pensar en el valor esperado como el premio promedio que observaría si jugara en la máquina tragamonedas una cantidad infinita de veces. Usemos la fórmula para calcular algunos valores esperados simples. Luego aplicaremos la fórmula a su máquina tragamonedas.</p>
+<p>¿Recuerdas el <code>dado</code> que creaste en <a href="dice.html">Proyecto 1: Dados Ponderados</a>?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dado <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada vez que lanzas el dado, devuelve un valor seleccionado al azar (de uno a seis). Puedes encontrar el valor esperado de tirar el dado con la fórmula:</p>
+<p><span class="math display">\[
+E(\text{dado}) = \sum_{i = 1}^{n}\left( \text{dado}_{i} \cdot P(\text{dado}_{i}) \right)
+\]</span></p>
+<p>Los <span class="math inline">\(\text{dado}_{i}\)</span> son los posibles resultados de lanzar el dado: 1, 2, 3, 4, 5 y 6; y los <span class="math inline">\(P(\text{dado}_{i})\)</span> son las probabilidades asociadas con cada uno de los resultados. Si su dado es justo, cada resultado ocurrirá con la misma probabilidad: 1/6. Entonces nuestra ecuación se simplifica a:</p>
+<p><span class="math display">\[
+\begin{array}{rl}
+E(\text{dado}) &amp; = \sum_{i = 1}^{n}\left( \text{dado}_{i} \cdot P(\text{dado}_{i}) \right)\\
+&amp; = 1 \cdot \frac{1}{6} +  2 \cdot \frac{1}{6} + 3 \cdot \frac{1}{6} + 4 \cdot \frac{1}{6} + 5 \cdot \frac{1}{6} + 6 \cdot \frac{1}{6}\\
+&amp; = 3.5\\
+\end{array}
+\]</span></p>
+<p>Por lo tanto, el valor esperado de lanzar un dado justo es 3,5. Puede notar que este es también el valor promedio del dado. El valor esperado será igual al promedio si todos los resultados tienen la misma probabilidad de ocurrir.</p>
+<p>Pero, ¿y si cada resultado tiene una probabilidad diferente de ocurrir? Por ejemplo, manipulamos nuestros dados en <a href="packages.html">Paquetes y Páginas de Ayuda</a> para que cada dado arrojara 1, 2, 3, 4 y 5 con una probabilidad de 1/8 y 6 con una probabilidad de 3/8. Puede usar la misma fórmula para calcular el valor esperado en estas condiciones:</p>
+<p><span class="math display">\[
+\begin{array}{rl}
+  E(dado) &amp; = 1 \cdot \frac{1}{8} +  2 \cdot \frac{1}{8} + 3 \cdot \frac{1}{8} + 4 \cdot \frac{1}{8} + 5 \cdot \frac{1}{8} + 6 \cdot \frac{3}{8}\\
+  &amp; = 4.125\\
+  \end{array}
+\]</span></p>
+<p>Por lo tanto, el valor esperado de un dado manipulado no es igual al valor promedio de un dado no manipulado. Si lanzaste un dado manipulado una cantidad infinita de veces, el resultado promedio sería 4.125, que es más alto de lo que esperarías de un dado justo.</p>
+<p>Observe que hicimos las mismas tres cosas para calcular estos dos valores esperados. Tenemos:</p>
+<ul>
+<li>Enumeró todos los resultados posibles</li>
+<li>Determinado el <em>valor</em> de cada resultado (aquí solo el valor del dado)</li>
+<li>Calculó la probabilidad de que ocurriera cada resultado</li>
+</ul>
+<p>Entonces, el valor esperado era solo la suma de los valores en el paso 2 multiplicada por las probabilidades en el paso 3.</p>
+<p>Puede utilizar estos pasos para calcular valores esperados más sofisticados. Por ejemplo, podría calcular el valor esperado de lanzar un par de dados ponderados. Hagamos esto paso a paso.</p>
+<p>Primero, enumere todos los resultados posibles. Pueden aparecer un total de 36 resultados diferentes cuando lanzas dos dados. Por ejemplo, puede sacar (1, 1), que anota uno en el primer dado y uno en el segundo dado. O bien, puede tirar (1, 2), uno en el primer dado y dos en el segundo. Y así. Enumerar estas combinaciones puede ser tedioso, pero R tiene una función que puede ayudar.</p>
+</section>
+<section id="expand.grid" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="expand.grid"><span class="header-section-number">9.2</span> expand.grid</h2>
+<p>La función <code>expand.grid</code> en R proporciona una forma rápida de escribir cada combinación de los elementos en <em>n</em> vectores. Por ejemplo, puede hacer una lista de todas las combinaciones de dos dados. Para hacerlo, ejecuta <code>expand.grid</code> en dos copias de <code>dado</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tiradas <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(dado, dado)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>expand.grid</code> devolverá un data frame que contiene todas las formas de emparejar un elemento del primer vector <code>dado</code> con un elemento del segundo vector <code>dado</code>. Esto capturará las 36 posibles combinaciones de valores:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tiradas</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    Var1 Var2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1     1    1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 2     2    1</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3     3    1</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ...</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 34    4    6</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 35    5    6</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 36    6    6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede usar <code>expand.grid</code> con más de dos vectores si lo desea. Por ejemplo, podría enumerar cada combinación de tirar tres dados con <code>expand.grid(dado, dado, dado)</code> y cada combinación de tirar cuatro dados con <code>expand.grid(dado, dado, dado, dado)</code>, y así en. <code>expand.grid</code> siempre devolverá un data frame que contiene cada combinación posible de <em>n</em> elementos de los <em>n</em> vectores. Cada combinación contendrá exactamente un elemento de cada vector.</p>
+<p>Puedes determinar el valor de cada tirada una vez que hayas hecho tu lista de resultados. Esta será la suma de los dos dados, que puedes calcular usando la ejecución por elementos de R:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tiradas<span class="sc">$</span>valor <span class="ot">&lt;-</span> tiradas<span class="sc">$</span>Var1 <span class="sc">+</span> tiradas<span class="sc">$</span>Var2</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tiradas, <span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 valor</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    1    1     2</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##    2    1     3</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    3    1     4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R emparejará los elementos en cada vector antes de agregarlos. Como resultado, cada elemento de <code>valor</code> se referirá a los elementos de <code>Var1</code> y <code>Var2</code> que aparecen en la misma fila.</p>
+<p>A continuación, debes determinar la probabilidad de que aparezca cada combinación. Puedes calcular esto con una regla básica de probabilidad:</p>
+<p><em>La probabilidad de que</em> n <em>eventos aleatorios independientes ocurran todos es igual al producto de las probabilidades de que ocurra cada evento aleatorio</em>.</p>
+<p>O más sucintamente:</p>
+<p><span class="math display">\[
+P(A \&amp; B \&amp; C \&amp; ...) = P(A) \cdot P(B) \cdot P(C) \cdot ...
+\]</span></p>
+<p>Entonces, la probabilidad de que saquemos (1, 1) será igual a la probabilidad de que saquemos un uno en el primer dado, 1/8, multiplicada por la probabilidad de que saquemos un uno en el segundo dado, 1/8:</p>
+<p><span class="math display">\[
+\begin{array}{rl}
+P(1 \&amp; 1) &amp; = P(1) \cdot P(1) \\
+&amp; = \frac{1}{8} \cdot \frac{1}{8}\\
+&amp; = \frac{1}{64}
+\end{array}
+\]</span></p>
+<p>Y la probabilidad de que saquemos un (1, 2) será:</p>
+<p><span class="math display">\[
+\begin{array}{rl}
+P(1 \&amp; 2) &amp; = P(1) \cdot P(2) \\
+&amp; = \frac{1}{8} \cdot \frac{1}{8}\\
+&amp; = \frac{1}{64}
+\end{array}
+\]</span></p>
+<p>Y así sucesivamente.</p>
+<p>Permítanme sugerir un proceso de tres pasos para calcular estas probabilidades en R. Primero, podemos buscar las probabilidades de rodar los valores en <code>Var1</code>. Haremos esto con la tabla de búsqueda que sigue:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="st">"2"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="st">"3"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="st">"4"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="st">"5"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="st">"6"</span> <span class="ot">=</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>prob</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##     1     2     3     4     5     6 </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.125 0.125 0.125 0.125 0.125 0.375 </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si crea un subconjunto de esta tabla con <code>tiradas$Var1</code>, obtendrá un vector de probabilidades perfectamente relacionado con los valores de <code>Var1</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tiradas<span class="sc">$</span>Var1</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4 5 6 1 2 3 4 5 6 1 2 3 4 5 6 1 2 3 4 5 6 1 2 3 4 5 6 1 2 3 4 5 6</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>prob[tiradas<span class="sc">$</span>Var1]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     1     2     3     4     5     6     1     2     3     4     5     6 </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.125 0.125 0.125 0.125 0.125 0.375 0.125 0.125 0.125 0.125 0.125 0.375 </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">##     1     2     3     4     5     6     1     2     3     4     5     6 </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.125 0.125 0.125 0.125 0.125 0.375 0.125 0.125 0.125 0.125 0.125 0.375 </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="do">##     1     2     3     4     5     6     1     2     3     4     5     6 </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.125 0.125 0.125 0.125 0.125 0.375 0.125 0.125 0.125 0.125 0.125 0.375 </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>tiradas<span class="sc">$</span>prob1 <span class="ot">&lt;-</span> prob[tiradas<span class="sc">$</span>Var1]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tiradas, <span class="dv">3</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 valor prob1</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="do">##    1    1     2 0.125</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="do">##    2    1     3 0.125</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="do">##    3    1     4 0.125</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Second, we can look up the probabilities of rolling the values in <code>Var2</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tiradas<span class="sc">$</span>prob2 <span class="ot">&lt;-</span> prob[tiradas<span class="sc">$</span>Var2]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tiradas, <span class="dv">3</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 valor prob1 prob2</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">##    1    1     2 0.125 0.125</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    2    1     3 0.125 0.125</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    3    1     4 0.125 0.125</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tercero, podemos calcular la probabilidad de obtener cada combinación multiplicando <code>prob1</code> por <code>prob2</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tiradas<span class="sc">$</span>prob <span class="ot">&lt;-</span> tiradas<span class="sc">$</span>prob1 <span class="sc">*</span> tiradas<span class="sc">$</span>prob2</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tiradas, <span class="dv">3</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 valor prob1 prob2     prob</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">##    1    1     2 0.125 0.125 0.015625</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    2    1     3 0.125 0.125 0.015625</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    3    1     4 0.125 0.125 0.015625</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Es fácil calcular el valor esperado ahora que tenemos cada resultado, el valor de cada resultado y la probabilidad de cada resultado. El valor esperado será la suma de los valores de los dados multiplicada por las probabilidades de los dados:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(tiradas<span class="sc">$</span>valor <span class="sc">*</span> tiradas<span class="sc">$</span>prob)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 8.25</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Entonces, el valor esperado de lanzar dos dados cargados es 8.25. Si lanzaste un par de dados cargados un número infinito de veces, la suma promedio sería 8.25. (Si tiene curiosidad, el valor esperado de lanzar un par de dados justos es 7, lo que explica por qué 7 juega un papel tan importante en juegos de dados como los dados).</p>
+<p>Ahora que se ha calentado, usemos nuestro método para calcular el valor esperado del premio de la máquina tragamonedas. Seguiremos los mismos pasos que acabamos de hacer:</p>
+<ul>
+<li>Enumeraremos todos los resultados posibles de jugar en la máquina. Esta será una lista de cada combinación de tres símbolos de tragamonedas.</li>
+<li>Calcularemos la probabilidad de obtener cada combinación cuando juegues en la máquina.</li>
+<li>Determinaremos el premio que ganaríamos por cada combinación.</li>
+</ul>
+<p>Cuando hayamos terminado, tendremos un conjunto de datos que se verá así:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 Var3 prob1 prob2 prob3     prob premio</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   DD   DD   DD  0.03  0.03  0.03 0.000027    800</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    7   DD   DD  0.03  0.03  0.03 0.000027      0</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  BBB   DD   DD  0.06  0.03  0.03 0.000054      0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ... y así sucesivamente.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El valor esperado será entonces la suma de los premios multiplicada por su probabilidad de ocurrencia:</p>
+<p><span class="math display">\[
+E(\text{premio}) = \sum_{i = 1}^{n}\left( \text{premio}_{i} \cdot P(\text{premio}_{i}) \right)
+\]</span></p>
+<p>¿Listo para comenzar?</p>
+<p><strong>Ejercicio 12.1 (Liste las Combinaciones)</strong> Usa <code>expand.grid</code> para crear un data frame que contenga todas las combinaciones posibles de <em>tres</em> símbolos del vector <code>rueda</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rueda <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span>, <span class="st">"7"</span>, <span class="st">"BBB"</span>, <span class="st">"BB"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"0"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Asegúrese de agregar el argumento <code>stringsAsFactors = FALSE</code> a su llamada <code>expand.grid</code>; de lo contrario, <code>expand.grid</code> guardará las combinaciones como factores, una elección desafortunada que interrumpirá la función <code>puntuacion</code></p>
+<p><em>Solución.</em> Para crear un data frame de cada combinación de <em>tres</em> símbolos, debe ejecutar <code>expand.grid</code> y darle <em>tres</em> copias de <code>wheel</code>. El resultado será un data frame con 343 filas, una para cada combinación única de tres símbolos de ranura:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>combos <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(rueda, rueda, rueda, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>combos</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   Var1 Var2 Var3</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1   DD   DD   DD</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    7   DD   DD</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 3  BBB   DD   DD</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 4   BB   DD   DD</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 5    B   DD   DD</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 6    C   DD   DD</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="do">## ...</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 341    B    0    0</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 342    C    0    0</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 343    0    0    0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora, calculemos la probabilidad de obtener cada combinación. Puedes usar las probabilidades contenidas en el argumento <code>prob</code> de <code>obt_simbolos</code> para hacer esto. Estas probabilidades determinan la frecuencia con la que se elige cada símbolo cuando su máquina tragamonedas genera símbolos. Se calcularon después de observar 345 jugadas de las terminales de video lotería de Manitoba. Los ceros tienen la mayor probabilidad de ser seleccionados (0,52) y las cerezas la menor (0,01):</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obt_simbolos</span>() <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  rueda <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span>, <span class="st">"7"</span>, <span class="st">"BBB"</span>, <span class="st">"BB"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"0"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(rueda, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.03</span>, <span class="fl">0.03</span>, <span class="fl">0.06</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>, <span class="fl">0.01</span>, <span class="fl">0.52</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ejercicio 12.2 (Haz una Tabla de Búsqueda)</strong> Aísle las probabilidades anteriores en una tabla de búsqueda. ¿Qué nombres usarás en tu tabla?</p>
+<p><em>Solución.</em> Sus nombres deben coincidir con la entrada que desea buscar. En este caso, la entrada serán las cadenas de caracteres que aparecen en <code>Var1</code>, <code>Var2</code> y <code>Var3</code>. Entonces su tabla de búsqueda debería verse así:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="fl">0.03</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="fl">0.03</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="fl">0.06</span>, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BB"</span> <span class="ot">=</span> <span class="fl">0.1</span>, <span class="st">"B"</span> <span class="ot">=</span> <span class="fl">0.25</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="fl">0.01</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="fl">0.52</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora busquemos nuestras probabilidades.</p>
+<p><strong>Ejercicio 12.3 (Buscar las Probabilidades)</strong> Busque las probabilidades de obtener los valores en <code>Var1</code>. Luego agréguelos a <code>combos</code> como una columna llamada <code>prob1</code>. Luego haga lo mismo para <code>Var2</code> (<code>prob2</code>) y <code>Var3</code> (<code>prob3</code>).</p>
+<p><em>Solución.</em> Recuerde que usa la notación de selección de R para buscar valores en una tabla de búsqueda. Los valores que resulten estarán relacionados con el índice que utilice:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>combos<span class="sc">$</span>prob1 <span class="ot">&lt;-</span> prob[combos<span class="sc">$</span>Var1]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>combos<span class="sc">$</span>prob2 <span class="ot">&lt;-</span> prob[combos<span class="sc">$</span>Var2]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>combos<span class="sc">$</span>prob3 <span class="ot">&lt;-</span> prob[combos<span class="sc">$</span>Var3]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combos, <span class="dv">3</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 Var3 prob1 prob2 prob3</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   DD   DD   DD  0.03  0.03  0.03</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    7   DD   DD  0.03  0.03  0.03</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  BBB   DD   DD  0.06  0.03  0.03</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora, ¿cómo debemos calcular la probabilidad total de cada combinación? Nuestros tres símbolos de tragamonedas se eligen de forma independiente, lo que significa que la misma regla que gobernó nuestras probabilidades de dados gobierna nuestras probabilidades de símbolos:</p>
+<p><span class="math display">\[
+P(A \&amp; B \&amp; C \&amp; ...) = P(A) \cdot P(B) \cdot P(C) \cdot ...
+\]</span></p>
+<p><strong>Ejercicio 12.4 (Calcular las Probabilidades de Cada Combinación)</strong> Calcule las probabilidades generales para cada combinación. Guárdelos como una columna llamada <code>prob</code> en <code>combos</code>, luego verifique su trabajo.</p>
+<p>Puedes comprobar que las matemáticas funcionaron sumando las probabilidades. Las probabilidades deben sumar uno, porque una de las combinaciones <em>debe</em> aparecer cuando juegas en la máquina tragamonedas. En otras palabras, aparecerá una combinación, con probabilidad de uno.</p>
+<p>Puede calcular las probabilidades de cada combinación posible de una sola vez con alguna ejecución de elementos:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>combos<span class="sc">$</span>prob <span class="ot">&lt;-</span> combos<span class="sc">$</span>prob1 <span class="sc">*</span> combos<span class="sc">$</span>prob2 <span class="sc">*</span> combos<span class="sc">$</span>prob3</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combos, <span class="dv">3</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 Var3 prob1 prob2 prob3     prob</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   DD   DD   DD  0.03  0.03  0.03 0.000027</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    7   DD   DD  0.03  0.03  0.03 0.000027</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  BBB   DD   DD  0.06  0.03  0.03 0.000054</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La suma de las probabilidades es uno, lo que sugiere que nuestra matemática es correcta:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(combos<span class="sc">$</span>prob)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Solo necesita hacer una cosa más antes de poder calcular el valor esperado: debe determinar el premio para cada combinación en <code>combos</code>. Puedes calcular el premio con <code>puntuacion</code>. Por ejemplo, podemos calcular el premio de la primera fila de <code>combos</code> así:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(combos[<span class="dv">1</span>, <span class="dv">1</span>], combos[<span class="dv">1</span>, <span class="dv">2</span>], combos[<span class="dv">1</span>, <span class="dv">3</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## "DD" "DD" "DD"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">puntuacion</span>(simbolos)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 800</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, hay 343 filas, lo que hace que el trabajo sea tedioso si planea calcular las puntuaciones manualmente. Será más rápido automatizar esta tarea y hacer que R lo haga por usted, lo que puede hacer con un bucle <code>for</code>.</p>
+</section>
+<section id="bucles-for" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="bucles-for"><span class="header-section-number">9.3</span> Bucles for</h2>
+<p>Un bucle <code>for</code> repite un trozo de código muchas veces, una vez para cada elemento en un conjunto de entrada. Los bucles <code>for</code> proporcionan una manera de decirle a R: “Haz esto para cada valor de aquello”. En sintaxis R, esto se ve así:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (valor <span class="cf">in</span> aquello) {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  esto</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El objeto <code>aquello</code> debe ser un conjunto de objetos (a menudo un vector de números o cadenas de caracteres). El bucle for ejecutará el código que aparece entre llaves una vez para cada miembro de <code>aquello</code>. Por ejemplo, el bucle for siguiente ejecuta <code>print("una ejecución")</code> una vez para cada elemento en un vector de cadenas de caracteres:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (valor <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Mi"</span>, <span class="st">"primer"</span>, <span class="st">"bucle"</span>, <span class="st">"foe"</span>)) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"una ejecución"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">## "una ejecución"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">## "una ejecución"</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## "una ejecución"</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">## "una ejecución"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El símbolo <code>valor</code> en un bucle for actúa como un argumento en una función. El bucle for creará un objeto llamado <code>valor</code> y le asignará un nuevo valor en cada ejecución del bucle. El código en su bucle puede acceder a este valor llamando al objeto <code>valor</code>.</p>
+<p>¿Qué valores asignará el bucle for a <code>valor</code>? Utilizará los elementos del conjunto en el que ejecuta el ciclo. <code>for</code> comienza con el primer elemento y luego asigna un elemento diferente a <code>valor</code> en cada ejecución del ciclo for, hasta que todos los elementos han sido asignados a <code>valor</code>. Por ejemplo, el bucle for de abajo ejecutará <code>print(valor)</code> cuatro veces e imprimirá un elemento de <code>c("Mi", "segundo", "bucle", "for")</code> cada vez:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (valor <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Mi"</span>, <span class="st">"segundo"</span>, <span class="st">"bucle"</span>, <span class="st">"for"</span>)) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(valor)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="do">## "Mi"</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="do">## "segundo"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="do">## "bucle"</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="do">## "for"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En la primera ejecución, el ciclo for sustituyó <code>"My"</code> por <code>valor</code> en <code>print(valor)</code>. En la segunda ejecución, sustituyó <code>"segundo"</code>, y así sucesivamente hasta que <code>for</code> ejecutó <code>print(valor)</code> una vez con cada elemento del conjunto:</p>
+<p>Si mira <code>valor</code> después de que se ejecuta el bucle, verá que todavía contiene el valor del último elemento del conjunto:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>valor</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## "for"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>He estado usando el símbolo <code>valor</code> en mis bucles for, pero no tiene nada de especial. Puede usar cualquier símbolo que desee en su bucle para hacer lo mismo siempre que el símbolo aparezca antes de <code>in</code> en los paréntesis que siguen a <code>for</code>. Por ejemplo, podría reescribir el bucle anterior con cualquiera de los siguientes:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (palabra <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Mi"</span>, <span class="st">"segundo"</span>, <span class="st">"bucle"</span>, <span class="st">"for"</span>)) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(palabra)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (texto <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Mi"</span>, <span class="st">"segundo"</span>, <span class="st">"bucle"</span>, <span class="st">"for"</span>)) {</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(texto)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Mi"</span>, <span class="st">"segundo"</span>, <span class="st">"bucle"</span>, <span class="st">"for"</span>)) {</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-warning callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Elige tus símbolos con cuidado</strong></p>
+<p>R ejecutará su ciclo en cualquier entorno desde el que lo llame. Estas son malas noticias si su bucle usa nombres de objetos que ya existen en el entorno. Su bucle sobrescribirá los objetos existentes con los objetos que crea. Esto también se aplica al símbolo de valor.</p>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Los bucles for se ejecutan en conjuntos</strong></p>
+<p>En muchos lenguajes de programación, los bucles <code>for</code> están diseñados para funcionar con números enteros, no con conjuntos. Le da al bucle un valor inicial y un valor final, así como un incremento para avanzar el valor entre bucles. El bucle <code>for</code> se ejecuta hasta que el valor del bucle supera el valor final.</p>
+<p>Puede recrear este efecto en R haciendo que un bucle <code>for</code> se ejecute en un conjunto de enteros, pero no pierda de vista el hecho de que los bucles <code>for</code> de R se ejecutan en miembros de un conjunto, no en secuencias de enteros.</p>
+</div>
+</div>
+</div>
+<p>Los bucles <code>for</code> son muy útiles en la programación porque te ayudan a conectar un fragmento de código con cada elemento de un conjunto. Por ejemplo, podríamos usar un ciclo <code>for</code> para ejecutar <code>puntuacion</code> una vez por cada fila en <code>combos</code>. Sin embargo, los bucles <code>for</code> de R tienen un defecto que querrá conocer antes de empezar a usarlos: los bucles <code>for</code> no devuelven salida.</p>
+<p>Los bucles <code>for</code> son como Las Vegas: lo que sucede en un bucle <code>for</code> permanece en un bucle <code>for</code>. Si desea utilizar los productos de un bucle <code>for</code>, debe escribir el bucle <code>for</code> para que guarde su propia salida a medida que avanza.</p>
+<p>Nuestros ejemplos anteriores parecían devolver la salida, pero esto era engañoso. Los ejemplos funcionaron porque llamamos <code>print</code>, que siempre imprime sus argumentos en la consola (incluso si se llama desde una función, un bucle <code>for</code> o cualquier otra cosa). Nuestros bucles <code>for</code> no devolverán nada si eliminas la llamada <code>print</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (valor <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Mi"</span>, <span class="st">"tercer"</span>, <span class="st">"bucle"</span>, <span class="st">"for"</span>)) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  valor</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para guardar la salida de un bucle <code>for</code>, debe escribir el bucle para que guarde su propia salida mientras se ejecuta. Puede hacer esto creando un vector vacío o una lista antes de ejecutar el bucle <code>for</code>. Luego use el bucle <code>for</code> para llenar el vector o la lista. Cuando finalice el bucle <code>for</code>, podrá acceder al vector o lista, que ahora tendrá todos sus resultados.</p>
+<p>Veamos esto en acción. El siguiente código crea un vector vacío de longitud 4:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>caracteres <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El siguiente ciclo lo llenará con cadenas de texto:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>palabras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mi"</span>, <span class="st">"cuarto"</span>, <span class="st">"bucle"</span>, <span class="st">"for"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  caracteres[i] <span class="ot">&lt;-</span> palabras[i]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>caracteres</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="do">## "Mi"    "cuarto" "bucle"   "for"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este enfoque generalmente requerirá que cambie los conjuntos en los que ejecuta su bucle <code>for</code>. En lugar de ejecutar en un conjunto de objetos, ejecute en un conjunto de enteros que puede usar para indexar tanto su objeto como su vector de almacenamiento. Este enfoque es muy común en R. Encontrará en la práctica que usa bucles <code>for</code> no tanto para ejecutar código, sino para llenar vectores y listas con los resultados del código.</p>
+<p>Usemos un bucle <code>for</code> para calcular el premio de cada fila en <code>combos</code>. Para comenzar, cree una nueva columna en <code>combos</code> para almacenar los resultados del bucle <code>for</code>:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>combos<span class="sc">$</span>premio <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combos, <span class="dv">3</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  Var1 Var2 Var3 prob1 prob2 prob3     prob premio</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="do">##    DD   DD   DD  0.03  0.03  0.03 0.000027     NA</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="do">##     7   DD   DD  0.03  0.03  0.03 0.000027     NA</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   BBB   DD   DD  0.06  0.03  0.03 0.000054     NA</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código crea una nueva columna llamada premio y la llena con <code>NA</code>. R usa sus reglas de reciclaje para completar cada valor de la columna con <code>NA</code>.</p>
+<p><strong>Ejercicio 12.5 (Construye un Bucle)</strong> Construya un bucle <code>for</code> que ejecutará <code>puntuacion</code> en las 343 filas de <code>combos</code>. El ciclo debe ejecutar <code>puntuacion</code> en las primeras tres entradas de la _i_ésima fila de <code>combos</code> y debe almacenar los resultados en la _i_ésima entrada de <code>combos$premio</code>.</p>
+<p><em>Solución.</em> Puedes puntuar las filas en <code>combos</code> con:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(combos)) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(combos[i, <span class="dv">1</span>], combos[i, <span class="dv">2</span>], combos[i, <span class="dv">3</span>])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  combos<span class="sc">$</span>premio[i] <span class="ot">&lt;-</span> <span class="fu">puntuacion</span>(simbolos)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Después de ejecutar el ciclo for, <code>combos$premio</code> contendrá el premio correcto para cada fila. Este ejercicio también prueba la función <code>puntuacion</code>; <code>puntuacion</code> parece funcionar correctamente para todas las combinaciones posibles de tragamonedas:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combos, <span class="dv">3</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Var1 Var2 Var3 prob1 prob2 prob3     prob premio</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   DD   DD   DD  0.03  0.03  0.03 0.000027    800</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    7   DD   DD  0.03  0.03  0.03 0.000027      0</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  BBB   DD   DD  0.06  0.03  0.03 0.000054      0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora estamos listos para calcular el valor esperado del premio. El valor esperado es la suma de <code>combos$premio</code> ponderada por <code>combos$prob</code>. Esta es también la tasa de pago de la máquina tragamonedas:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(combos<span class="sc">$</span>premio <span class="sc">*</span> combos<span class="sc">$</span>prob)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.538014</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Oh oh. El premio esperado es de aproximadamente 0,54, lo que significa que nuestra máquina tragamonedas solo paga 54 centavos por dólar a largo plazo. ¿Significa esto que el fabricante de las máquinas tragamonedas de Manitoba <em>estaba</em> mintiendo?</p>
+<p>No, porque ignoramos una característica importante de la máquina tragamonedas cuando escribimos <code>puntuacion</code>: un diamante es un comodín. Puede tratar un <code>DD</code> como cualquier otro símbolo si aumenta su premio, con una excepción. No puede convertir un <code>DD</code> en una <code>C</code> a menos que ya tenga otra <code>C</code> en sus símbolos (sería demasiado fácil si cada <code>DD</code> le otorgara automáticamente $2).</p>
+<p>Lo mejor de los <code>DD</code>s es que sus efectos son acumulativos. Por ejemplo, considere la combinación <code>B</code>, <code>DD</code>, <code>B</code>. El <code>DD</code> no solo cuenta como <code>B</code>, que ganaría un premio de $10; el <code>DD</code> también duplica el premio a $20.</p>
+<p>Agregar este comportamiento a nuestro código es un poco más difícil que lo que hemos hecho hasta ahora, pero involucra todos los mismos principios. Puede decidir que su máquina tragamonedas no use comodines y conservar el código que tenemos. En ese caso, su máquina tragamonedas tendrá una tasa de pago de alrededor del 54 por ciento. O bien, podría reescribir su código para usar comodines. Si lo hace, encontrará que su máquina tragamonedas tiene una tasa de pago del 93 por ciento, un uno por ciento más alta que la afirmación del fabricante. Puedes calcular esta tasa con el mismo método que usamos en esta sección.</p>
+<p><strong>Ejercicio 12.6 (Desafío)</strong> Hay muchas formas de modificar <code>puntuacion</code> que contarían <code>DD</code> como comodines. Si desea probar su habilidad como programador de R, intente escribir su propia versión de <code>puntuacion</code> que maneje correctamente los diamantes.</p>
+<p>Si desea un desafío más modesto, estudie el siguiente código de <code>puntuacion</code>. Da cuenta de los diamantes salvajes de una manera que me parece elegante y sucinta. Vea si puede entender cada paso en el código y cómo logra su resultado.</p>
+<p><em>Solución.</em> Aquí hay una versión de puntuacion que maneja diamantes salvajes:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>puntuacion <span class="ot">&lt;-</span> <span class="cf">function</span>(simbolos) {</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  diamantez <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"DD"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  cerezas <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># identificar caso</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># dado que los diamante son salvajes, solo</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># importan los no diamantes para tres de un </span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tipo y para todos barras</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  tragamonedas <span class="ot">&lt;-</span> simbolos[simbolos <span class="sc">!=</span> <span class="st">"DD"</span>]</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  iguales <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(tragamonedas)) <span class="sc">==</span> <span class="dv">1</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  barras <span class="ot">&lt;-</span> tragamonedas <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># asignar premio</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (diamantes <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (iguales) {</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>,</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[tragamonedas[<span class="dv">1</span>]])</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (cerezas <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># diamantes cuentan como cerezas</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># siempre y cuando haya una cereza real</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> diamantes <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># duplicar por cada diamante</span></span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>  premio <span class="sc">*</span> <span class="dv">2</span><span class="sc">^</span>diamantes</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ejercicio 12.7 (Calcular el Valor Esperado)</strong> Calcule el valor esperado de la máquina tragamonedas cuando usa la nueva función <code>puntuacion</code>. Puede usar el data frame <code>combos</code> existente, pero necesitará crear un bucle <code>for</code> para recalcular <code>combos$premio</code>.</p>
+<p>Para actualizar el valor esperado, simplemente actualice <code>combos$premio</code>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(combos)) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(combos[i, <span class="dv">1</span>], combos[i, <span class="dv">2</span>], combos[i, <span class="dv">3</span>])</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  combos<span class="sc">$</span>premio[i] <span class="ot">&lt;-</span> <span class="fu">puntuacion</span>(simbolos)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Luego vuelva a calcular el valor esperado:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(combos<span class="sc">$</span>premio <span class="sc">*</span> combos<span class="sc">$</span>prob)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.934356</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este resultado justifica la afirmación del fabricante. En todo caso, las máquinas tragamonedas parecen más generosas de lo que dijo el fabricante.</p>
+</section>
+<section id="bucles-while" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="bucles-while"><span class="header-section-number">9.4</span> Bucles while</h2>
+<p>R tiene dos compañeros del bucle <code>for</code>: el bucle <code>while</code> y el bucle <code>repeat</code>. Un bucle <code>while</code> vuelve a ejecutar un fragmento <em>mientras</em> una determinada condición permanece <code>TRUE</code>. Para crear un bucle <code>while</code>, siga <code>while</code> por una condición y un fragmento de código, como este:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (condición) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  código</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>while</code> volverá a ejecutar <code>condición</code>, que debería ser una prueba lógica, al comienzo de cada ciclo. Si <code>condición</code> se evalúa como <code>TRUE</code>, <code>while</code> ejecutará el código entre sus llaves. Si <code>condición</code> se evalúa como <code>FALSE</code>, <code>while</code> finalizará el ciclo.</p>
+<p>¿Por qué la <code>condición</code> podría cambiar de <code>TRUE</code> a <code>FALSE</code>? Presumiblemente porque el código dentro de su ciclo ha cambiado si la condición sigue siendo <code>TRUE</code>. Si el código no tiene relación con la condición, se ejecutará un ciclo <code>while</code> hasta que lo detenga. Así que ten cuidado. Puede detener un bucle <code>while</code> pulsando Escape o haciendo clic en el icono de señal de alto en la parte superior del panel de la consola de RStudio. El icono aparecerá una vez que el ciclo comience a ejecutarse.</p>
+<p>Al igual que los bucles <code>for</code>, los bucles <code>while</code> no devuelven un resultado, por lo que debe pensar en lo que quiere que devuelva el bucle y guardarlo en un objeto durante el bucle.</p>
+<p>Puede usar bucles <code>while</code> para hacer cosas que requieran un número variable de iteraciones, como calcular cuánto tiempo se tarda en ir a la quiebra jugando tragamonedas (como se indica a continuación). Sin embargo, en la práctica, los bucles <code>while</code> son mucho menos comunes que los bucles <code>for</code> en R:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>jugadas_hasta_quiebra <span class="ot">&lt;-</span> <span class="cf">function</span>(empezar_con) {</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  efectivo <span class="ot">&lt;-</span> empezar_con</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (efectivo <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    efectivo <span class="ot">&lt;-</span> efectivo <span class="sc">-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">play</span>()</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> n <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  n</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="fu">jugadas_hasta_quiebra</span>(<span class="dv">100</span>)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 260</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bucles-repeat" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="bucles-repeat"><span class="header-section-number">9.5</span> Bucles repeat</h2>
+<p>Los bucles <code>repeat</code> son incluso más básicos que los bucles <code>while</code>. Repetirán un fragmento de código hasta que les digas que se detengan (pulsando Escape) o hasta que encuentren el comando <code>break</code>, que detendrá el ciclo.</p>
+<p>Puedes usar un bucle <code>repeat</code> para recrear <code>jugadas_hasta_quiebra</code>, mi función que simula cuánto tiempo lleva perder dinero mientras juegas tragamonedas:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>jugadas_hasta_quiebra <span class="ot">&lt;-</span> <span class="cf">function</span>(empezar_con) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  efectivo <span class="ot">&lt;-</span> empezar_con</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">repeat</span> {</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    efectivo <span class="ot">&lt;-</span> efectivo <span class="sc">-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">play</span>()</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> n <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (efectivo <span class="sc">&lt;=</span> <span class="dv">0</span>) {</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  n</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">jugadas_hasta_quiebra</span>(<span class="dv">100</span>)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 237</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="resumen" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="resumen"><span class="header-section-number">9.6</span> Resumen</h2>
+<p>Puede repetir tareas en R con bucles <code>for</code>, <code>while</code> y <code>repeat</code>. Para usar <code>for</code>, dale un fragmento de código para ejecutar y un conjunto de objetos para recorrer. <code>for</code> ejecutará el fragmento de código una vez para cada objeto. Si desea guardar la salida de su bucle, puede asignarlo a un objeto que existe fuera del bucle.</p>
+<p>La repetición juega un papel importante en la ciencia de datos. Es la base para la simulación, así como para las estimaciones de varianza y probabilidad. Los bucles no son la única forma de crear repeticiones en R (considere <code>replicate</code> por ejemplo), pero son una de las formas más populares.</p>
+<p>Desafortunadamente, los bucles en R a veces pueden ser más lentos que los bucles en otros idiomas. Como resultado, los bucles de R tienen mala reputación. Esta reputación no es del todo merecida, pero resalta un tema importante. La velocidad es esencial para el análisis de datos. Cuando su código se ejecuta rápido, puede trabajar con datos más grandes y hacer más antes de que se le acabe el tiempo o la potencia computacional. <a href="speed.html">Velocidad</a> te enseñará cómo escribir bucles <code>for</code> rápidos y código rápido en general con R. Allí, aprenderás a escribir código vectorizado, un estilo de código ultrarrápido que aprovecha todas las fortalezas de R.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./s3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./speed.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Programación práctica con R fue escrito por Garrett Grolemund.</div>   
+    <div class="nav-footer-right">Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>
