@@ -10,7 +10,12 @@ Esta traducción de "Programación práctica con R" es un proyecto personal de [
 
 Señalar que esta es una traducción textual del libro por lo que cuando el autor se refiere así mismo en primera persona, será Garrett Grolemund y no el traductor, a excepción del prefacio que fue escrito por Hadley Wickham.
 
+<<<<<<< HEAD
 La traducción fue realizada usando Google Translate y fueron corregidos algunos errores gramaticales y de coherencia. Si detecta algún error relacionado con contenido de la traducción, siéntase libre de abrir un issue o un pull request en este [repositorio](https://github.com/davidrsch/hopres).
+=======
+La traducción fue realizada usando Google Translate y fueron corregidos algunos errores gramaticales y de coherencia.
+Si detecta algún error relacionado con contenido de la traducción, siéntase libre de abrir un issue o un pull request en este [repositorio](https://github.com/davidrsch/hopres).
+>>>>>>> ba8125c71b091328d94299ef3a045fedadc826da
 
 ## Sobre el original en inglés
 
@@ -30,7 +35,12 @@ This translation of "Hands-On Programming with R" is a personal project by [Davi
 
 Note that this is a textual translation of the book so when the author refers to himself in the first person, it will be Garrett Grolemund and not the translator, except for the preface which was written by Hadley Wickham.
 
+<<<<<<< HEAD
 The translation was done using Google Translate and some grammar and coherence errors were corrected. If you spot any issue related to the translation content, feel free to open an issue or pull request on this [repository](https://github.com/davidrsch/hopres).
+=======
+The translation was done using Google Translate and some grammar and coherence errors were corrected.
+If you spot any issue related to the translation content, feel free to open an issue or pull request on this [repository](https://github.com/davidrsch/hopres).
+>>>>>>> ba8125c71b091328d94299ef3a045fedadc826da
 
 ## About the original version in English
 
