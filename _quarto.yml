@@ -1,4 +1,3 @@
-lang: es
 project:
   type: book
   output-dir: _book
@@ -14,26 +13,31 @@ book:
       Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.png
   favicon: cover.png
-  site-url: https://rstudio-education.github.io/hopr/
-  repo-url: https://github.com/rstudio-education/hopr
-  repo-branch: main
-  repo-actions: [edit, issue]
+  author: 
+    - name: Garrett Grolemund
+  search: true
+  sidebar: 
+    pinned: true
+    tools: 
+      - icon: github
+        menu: 
+          - text: Original
+            url: https://github.com/rstudio-education/hopr
+          - text: Traducción
+            url: https://github.com/davidrsch/hopres
   chapters:
     - index.qmd
     - preface.qmd
-    
     - part: dice.qmd
       chapters:
         - basics.qmd
         - packages.qmd
-    
     - part: cards.qmd
       chapters:
         - objects.qmd
         - notation.qmd
         - modifying.qmd
         - environments.qmd
-    
     - part: slots.qmd
       chapters:
         - programs.qmd
@@ -53,9 +57,9 @@ format:
       - cosmo
       - hopr.scss
     code-link: true
-
     author-meta: "Garrett Grolemund"
     callout-appearance: simple
+    include-after-body: [ddrsch_script.html]
 
 editor: visual
 
