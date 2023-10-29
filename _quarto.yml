@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: _book
+  output-dir: docs
 
 book:
   title: "Programación práctica con R"
@@ -50,7 +50,9 @@ book:
     - a3-updating.qmd
     - a4-data.qmd
     - a5-debug.qmd
-  
+lang: es
+
+
 format:
   html:
     theme:
