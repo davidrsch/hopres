@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Garrett Grolemund">
-
 <title>Programación práctica con R - 1&nbsp; Lo Más Básico</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,7 +54,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -75,8 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,16 +98,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Buscar"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -123,20 +113,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Programación práctica con R</a> 
         <div class="sidebar-tools-main">
     <div class="dropdown">
       <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/rstudio-education/hopr">
             Original
             </a>
@@ -147,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -163,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bienvenido</span></a>
@@ -183,8 +169,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./basics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></span></a>
@@ -197,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./cards.html" class="sidebar-item-text sidebar-link">
@@ -206,8 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./objects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></span></a>
@@ -232,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./slots.html" class="sidebar-item-text sidebar-link">
@@ -241,8 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./programs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></span></a>
@@ -267,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -276,8 +262,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1-starting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></span></a>
@@ -308,38 +294,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Tabla de contenidos</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#la-interfaz-de-usuario-de-r" id="toc-la-interfaz-de-usuario-de-r" class="nav-link active" data-scroll-target="#la-interfaz-de-usuario-de-r"><span class="header-section-number">1.1</span> La Interfaz de Usuario de R</a></li>
+<li><a href="#la-interfaz-de-usuario-de-r" id="toc-la-interfaz-de-usuario-de-r" class="nav-link active" data-scroll-target="#la-interfaz-de-usuario-de-r"><span class="header-section-number">1.1</span> La Interfaz de Usuario de R</a></li>
   <li><a href="#objetos" id="toc-objetos" class="nav-link" data-scroll-target="#objetos"><span class="header-section-number">1.2</span> Objetos</a></li>
-  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones"><span class="header-section-number">1.3</span> Funciones</a>
+  <li>
+<a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones"><span class="header-section-number">1.3</span> Funciones</a>
   <ul class="collapse">
-  <li><a href="#muestra-con-reemplazo" id="toc-muestra-con-reemplazo" class="nav-link" data-scroll-target="#muestra-con-reemplazo"><span class="header-section-number">1.3.1</span> Muestra con reemplazo</a></li>
-  </ul></li>
-  <li><a href="#Escribir-funciones" id="toc-Escribir-funciones" class="nav-link" data-scroll-target="#Escribir-funciones"><span class="header-section-number">1.4</span> Escribiendo Sus Propias Funciones</a>
+<li><a href="#muestra-con-reemplazo" id="toc-muestra-con-reemplazo" class="nav-link" data-scroll-target="#muestra-con-reemplazo"><span class="header-section-number">1.3.1</span> Muestra con reemplazo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#Escribir-funciones" id="toc-Escribir-funciones" class="nav-link" data-scroll-target="#Escribir-funciones"><span class="header-section-number">1.4</span> Escribiendo Sus Propias Funciones</a>
   <ul class="collapse">
-  <li><a href="#el-constructor-de-funciones" id="toc-el-constructor-de-funciones" class="nav-link" data-scroll-target="#el-constructor-de-funciones"><span class="header-section-number">1.4.1</span> El Constructor de Funciones</a></li>
-  </ul></li>
+<li><a href="#el-constructor-de-funciones" id="toc-el-constructor-de-funciones" class="nav-link" data-scroll-target="#el-constructor-de-funciones"><span class="header-section-number">1.4.1</span> El Constructor de Funciones</a></li>
+  </ul>
+</li>
   <li><a href="#argumentos" id="toc-argumentos" class="nav-link" data-scroll-target="#argumentos"><span class="header-section-number">1.5</span> Argumentos</a></li>
   <li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts"><span class="header-section-number">1.6</span> Scripts</a></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">1.7</span> Resumen</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dice.html">Proyecto 1: Dados Ponderados</a></li><li class="breadcrumb-item"><a href="./basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dice.html">Proyecto 1: Dados Ponderados</a></li><li class="breadcrumb-item"><a href="./basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="Básico" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></span></h1>
 </div>
 
@@ -354,27 +338,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<p>Este capítulo proporciona una descripción general amplia del lenguaje R que lo ayudará a programar de inmediato. En él, construirás un par de dados virtuales que puedes usar para generar números aleatorios. No se preocupe si nunca ha programado antes; el capítulo le enseñará todo lo que necesita saber.</p>
+</header><p>Este capítulo proporciona una descripción general amplia del lenguaje R que lo ayudará a programar de inmediato. En él, construirás un par de dados virtuales que puedes usar para generar números aleatorios. No se preocupe si nunca ha programado antes; el capítulo le enseñará todo lo que necesita saber.</p>
 <p>Para simular un par de dados, tendrás que destilar cada dado en sus características esenciales. No puede colocar un objeto físico, como un dado, en una computadora (bueno, no sin destornillar algunos tornillos), pero puede guardar <em>información</em> sobre el objeto en la memoria de su computadora.</p>
 <p>¿Qué información debe guardar? En general, un dado tiene seis piezas importantes de información: cuando tiras un dado, solo puede dar como resultado uno de los seis números: 1, 2, 3, 4, 5 y 6. Puedes capturar las características esenciales de un dado guardando los números 1, 2, 3, 4, 5 y 6 como un grupo de valores en la memoria de su computadora.</p>
 <p>Trabajemos primero en guardar estos números y luego consideremos un método para “lanzar” nuestro dado.</p>
-<section id="la-interfaz-de-usuario-de-r" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="la-interfaz-de-usuario-de-r"><span class="header-section-number">1.1</span> La Interfaz de Usuario de R</h2>
+<section id="la-interfaz-de-usuario-de-r" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="la-interfaz-de-usuario-de-r">
+<span class="header-section-number">1.1</span> La Interfaz de Usuario de R</h2>
 <p>Antes de que pueda pedirle a su computadora que guarde algunos números, necesitará saber cómo hablarle. Ahí es donde entran R y RStudio. RStudio le brinda una manera de comunicarse con su computadora. R le brinda un idioma para hablar. Para comenzar, abra RStudio tal como abriría cualquier otra aplicación en su computadora. Cuando lo haga, debería aparecer una ventana en su pantalla como la que se muestra en la Figura <a href="#fig-console" class="quarto-xref">Figura&nbsp;<span>1.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-console" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0101.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.1: Su computadora cumple con sus órdenes cuando escribe comandos R en el indicador en la línea inferior del panel de la consola. No olvides presionar la tecla Enter. Cuando abre RStudio por primera vez, la consola aparece en el panel de su izquierda, pero puede cambiar esto con File &gt; Preferences en la barra de menú.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -441,14 +420,14 @@ Figura&nbsp;1.1: Su computadora cumple con sus órdenes cuando escribe comandos 
 Error: unexpected input in "3 % 5"
 &gt;</code></pre>
 <p>Una vez que domines la línea de comando, puedes hacer fácilmente cualquier cosa en R que harías con una calculadora. Por ejemplo, podrías hacer algo de aritmética básica:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>   </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 6</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>   </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>)   </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">*</span> <span class="fl">3</span>   </span>
+<span><span class="co">## 6</span></span>
+<span></span>
+<span><span class="fl">4</span> <span class="op">-</span> <span class="fl">1</span>   </span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fl">6</span> <span class="op">/</span> <span class="op">(</span><span class="fl">4</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>   </span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Notaste algo diferente en este código? He dejado fuera los <code>&gt;</code> y <code>[1]</code>. Esto hará que el código sea más fácil de copiar y pegar si desea colocarlo en su propia consola.</p>
 <p>R trata el carácter del hashtag, <code>#</code>, de una manera especial; R no ejecutará nada que siga a un hashtag en una línea. Esto hace que los hashtags sean muy útiles para agregar comentarios y anotaciones a su código. Los humanos podrán leer los comentarios, pero su computadora los pasará por alto. El hashtag se conoce como <em>símbolo de comentario</em> en R.</p>
 <p>En el resto del libro, usaré hashtags para mostrar los resultados de las lineas de código R. Usaré un solo hashtag para agregar mis propios comentarios y un hashtag doble, <code>##</code>, para mostrar los resultados del código. Evitaré mostrar <code>&gt;</code> y <code>[1]</code> a menos que quiera que los mires.</p>
@@ -472,31 +451,30 @@ Error: unexpected input in "3 % 5"
 </ol>
 <p>A lo largo del libro, pondré ejercicios en partes, como el de arriba. Seguiré cada ejercicio con una respuesta modelo, como la siguiente.</p>
 <p><em>Solución.</em> Puede comenzar con el número 10 y luego seguir los siguientes pasos:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 12</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> <span class="sc">*</span> <span class="dv">3</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 36</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dv">36</span> <span class="sc">-</span> <span class="dv">6</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 30</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span> <span class="sc">/</span> <span class="dv">3</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="objetos" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="objetos"><span class="header-section-number">1.2</span> Objetos</h2>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op">+</span> <span class="fl">2</span></span>
+<span><span class="co">## 12</span></span>
+<span></span>
+<span><span class="fl">12</span> <span class="op">*</span> <span class="fl">3</span></span>
+<span><span class="co">## 36</span></span>
+<span></span>
+<span><span class="fl">36</span> <span class="op">-</span> <span class="fl">6</span></span>
+<span><span class="co">## 30</span></span>
+<span></span>
+<span><span class="fl">30</span> <span class="op">/</span> <span class="fl">3</span></span>
+<span><span class="co">## 10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="objetos" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="objetos">
+<span class="header-section-number">1.2</span> Objetos</h2>
 <p>Ahora que sabes cómo usar R, usémoslo para hacer un dado virtual. El operador <code>:</code> de hace un par de páginas le brinda una buena manera de crear un grupo de números del uno al seis. El operador <code>:</code> devuelve sus resultados como un <strong>vector</strong>, un conjunto unidimensional de números:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span><span class="co">## 1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¡Eso es todo lo que hay sobre el aspecto de un dado virtual! Pero aún no has terminado. Ejecutar <code>1:6</code> generó un vector de números para que lo veas, pero no guardó ese vector en ninguna parte de la memoria de tu computadora. Lo que está viendo son básicamente las huellas de seis números que existieron brevemente y luego se fundieron de nuevo en la memoria RAM de tu computadora. Si desea volver a usar esos números, tendrá que pedirle a su computadora que los guarde en algún lugar. Puede hacerlo creando un <em>objeto</em> de R.</p>
 <p>R le permite guardar datos almacenándolos dentro de un objeto R. ¿Qué es un objeto? Solo un nombre que puede usar para recuperar datos almacenados. Por ejemplo, puede guardar datos en un objeto como <em><code>a</code></em> o <em><code>b</code></em>. Siempre que R encuentre el objeto, lo reemplazará con los datos guardados en su interior, así:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>a</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">a</span></span>
+<span><span class="co">## 1</span></span>
+<span></span>
+<span><span class="va">a</span> <span class="op">+</span> <span class="fl">2</span></span>
+<span><span class="co">## 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -513,33 +491,29 @@ Error: unexpected input in "3 % 5"
 </div>
 </div>
 <p>Entonces, para otro ejemplo, el siguiente código crearía un objeto llamado <code>dado</code> que contiene los números del uno al seis. Para ver lo que está almacenado en un objeto, simplemente escriba el nombre del objeto por sí mismo:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dado</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span></span>
+<span><span class="va">dado</span></span>
+<span><span class="co">## 1 2 3 4 5 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cuando crea un objeto, el objeto aparecerá en el panel de Environment de RStudio, como se muestra en la Figura <a href="#fig-environment" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>. Este panel le mostrará todos los objetos que ha creado desde que abrió RStudio.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-environment" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0102.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.2: El panel de Environment de RStudio realiza un seguimiento de los objetos R que crea.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Puedes nombrar un objeto en R casi como quieras, pero hay algunas reglas. Primero, un nombre no puede comenzar con un número. Segundo, un nombre no puede usar algunos símbolos especiales, como <code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, or <code>*</code>:</p>
 <table class="table">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Buenos nombres</th>
 <th>Nombres que causan error</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>a</td>
@@ -571,47 +545,43 @@ Figura&nbsp;1.2: El panel de Environment de RStudio realiza un seguimiento de lo
 <div class="callout-body-container">
 <p><strong>Mayúsculas</strong></p>
 <p>R distingue entre mayúsculas y minúsculas, por lo que <code>nombre</code> y <code>Nombre</code> se referirán a diferentes objetos:</p>
-<p><code>Nombre &lt;- 1</code><br>
-<code>nombre &lt;- 0</code></p>
-<p><code>Nombre + 1</code><br>
-<code>## 2</code></p>
+<p><code>Nombre &lt;- 1</code><br><code>nombre &lt;- 0</code></p>
+<p><code>Nombre + 1</code><br><code>## 2</code></p>
 </div>
 </div>
 </div>
 <p>Finalmente, R sobrescribirá cualquier información anterior almacenada en un objeto sin pedirle permiso. Por lo tanto, es una buena idea <em>no</em> usar nombres que ya están en uso:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>my_number </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">999</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>my_number</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 999</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_number</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">my_number</span> </span>
+<span><span class="co">## 1</span></span>
+<span></span>
+<span><span class="va">my_number</span> <span class="op">&lt;-</span> <span class="fl">999</span></span>
+<span><span class="va">my_number</span></span>
+<span><span class="co">## 999</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puedes ver qué nombres de objetos ya has usado con la función <code>ls</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## "a"         "dado"       "my_number" "nombre"     "Nombre"     </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## "a"         "dado"       "my_number" "nombre"     "Nombre"     </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>También puede ver qué nombres ha utilizado examinando el panel de environment de RStudio.</p>
 <p>Ahora tiene un dado virtual que está almacenado en la memoria de su computadora. Puedes acceder a él cuando quieras escribiendo la palabra <em><code>dado</code></em>. Entonces, ¿qué puedes hacer con este dado? Bastante. R reemplazará un objeto con su contenido siempre que el nombre del objeto aparezca en un comando. Entonces, por ejemplo, puedes hacer todo tipo de operaciones matemáticas con el dado. Las matemáticas no son tan útiles para lanzar dados, pero la manipulación de conjuntos de números será su día a día como científico de datos. Así que echemos un vistazo a cómo hacer eso:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 0 1 2 3 4 5</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.5 1.0 1.5 2.0 2.5 3.0</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">*</span> dado</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1  4  9 16 25 36</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="co">## 0 1 2 3 4 5</span></span>
+<span></span>
+<span><span class="va">dado</span> <span class="op">/</span> <span class="fl">2</span></span>
+<span><span class="co">## 0.5 1.0 1.5 2.0 2.5 3.0</span></span>
+<span></span>
+<span><span class="va">dado</span> <span class="op">*</span> <span class="va">dado</span></span>
+<span><span class="co">## 1  4  9 16 25 36</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Si eres un gran fanático del álgebra lineal (¿y quién no lo es?), puedes notar que R no siempre sigue las reglas de la multiplicación de matrices. En su lugar, R utiliza <em>ejecución por elementos</em>. Cuando manipulas un conjunto de números, R aplicará la misma operación a cada elemento del conjunto. Entonces, por ejemplo, cuando ejecuta <em><code>dado - 1</code></em>, R resta uno de cada elemento de <code>dado</code>.</p>
 <p>Cuando usa dos o más vectores en una operación, R alineará los vectores y realizará una secuencia de operaciones individuales. Por ejemplo, cuando ejecuta <em><code>dado * dado</code></em>, R alinea los dos vectores <code>dado</code> y luego multiplica el primer elemento del vector 1 por el primer elemento del vector 2. R luego multiplica el segundo elemento del vector 1 por el segundo elemento del vector 2, y así sucesivamente, hasta que se hayan multiplicado todos los elementos. El resultado será un nuevo vector de la misma longitud que los dos primeros, como se muestra en la Figura <a href="#fig-elementwise" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-elementwise" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-elementwise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-elementwise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0103.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementwise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.3: Cuando R realiza una ejecución por elementos, hace coincidir los vectores y luego manipula cada par de elementos de forma independiente.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -636,162 +606,155 @@ Figura&nbsp;1.3: Cuando R realiza una ejecución por elementos, hace coincidir l
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-recycle" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-recycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-recycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0104.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-recycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.4: R repetirá un vector corto para realizar operaciones por elementos con dos vectores de longitud desigual.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Las operaciones basadas en elementos son una característica muy útil en R porque manipulan grupos de valores de forma ordenada. Cuando comience a trabajar con conjuntos de datos, las operaciones por elementos garantizarán que los valores de una observación o caso solo se emparejen con valores de la misma observación o caso. Las operaciones basadas en elementos también facilitan la escritura de sus propios programas y funciones en R.</p>
 <p>Pero no creas que R ha renunciado a la multiplicación de matrices tradicional. Solo tienes que pedirlo cuando quieras. Puedes hacer multiplicaciones internas con el operador <code>%*%</code> y multiplicaciones externas con el operador <code>%o%</code>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">%*%</span> dado</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 91</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>dado <span class="sc">%o%</span> dado</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4] [,5] [,6]</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,]    1    2    3    4    5    6</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,]    2    4    6    8   10   12</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [3,]    3    6    9   12   15   18</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [4,]    4    8   12   16   20   24</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [5,]    5   10   15   20   25   30</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [6,]    6   12   18   24   30   36</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">dado</span></span>
+<span><span class="co">## 91</span></span>
+<span></span>
+<span><span class="va">dado</span> <span class="op"><a href="https://rdrr.io/r/base/outer.html">%o%</a></span> <span class="va">dado</span></span>
+<span><span class="co">##      [,1] [,2] [,3] [,4] [,5] [,6]</span></span>
+<span><span class="co">## [1,]    1    2    3    4    5    6</span></span>
+<span><span class="co">## [2,]    2    4    6    8   10   12</span></span>
+<span><span class="co">## [3,]    3    6    9   12   15   18</span></span>
+<span><span class="co">## [4,]    4    8   12   16   20   24</span></span>
+<span><span class="co">## [5,]    5   10   15   20   25   30</span></span>
+<span><span class="co">## [6,]    6   12   18   24   30   36</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>También puedes hacer cosas como transponer una matriz con <code>t</code> y tomar su determinante con <code>det</code>.</p>
 <p>No se preocupe si no está familiarizado con estas operaciones. Son fáciles de buscar y no los necesitará para este libro.</p>
 <p>Ahora que puede hacer operaciones matemáticas con su objeto <code>dado</code>, veamos cómo podría “tirarlo”. Lanzar el dado requerirá algo más sofisticado que la aritmética básica; deberá seleccionar aleatoriamente uno de los valores del dado. Y para eso, necesitarás una <em>función</em>.</p>
-</section>
-<section id="funciones" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="funciones"><span class="header-section-number">1.3</span> Funciones</h2>
+</section><section id="funciones" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="funciones">
+<span class="header-section-number">1.3</span> Funciones</h2>
 <p>R viene con muchas funciones que puede usar para realizar tareas sofisticadas como el muestreo aleatorio. Por ejemplo, puede redondear un número con la función <code>round</code> o calcular su factorial con la función <code>factorial</code>. Usar una función es bastante simple. Simplemente escriba el nombre de la función y luego los datos sobre los que desea que opere la función entre paréntesis::</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">3</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Los datos que pasa a la función se denominan <em>argumento</em> de la función. El argumento puede ser datos sin procesar, un objeto R o incluso los resultados de otra función R. En este último caso, R trabajará desde la función más interna hacia la más externa, como en la Figura <a href="#fig-pemdas" class="quarto-xref">Figura&nbsp;<span>1.5</span></a>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3.5</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dado)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3.5</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(dado))</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="co">## 3.5</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## 3.5</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dado</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pemdas" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pemdas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pemdas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0105.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pemdas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.5: Cuando vincula funciones, R las resolverá desde la operación más interna hasta la más externa. Aquí R primero busca el dado, luego calcula la media de uno a seis y luego redondea la media.”}
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Por suerte para nosotros, hay una función R que puede ayudar a “tirar” el dado. Puede simular una tirada del dado con la función <code>sample</code> de R. <code>sample</code> toma <em>dos</em> argumentos: un vector llamado <code>x</code> y un número llamado <code>size</code>. <code>sample</code> devolverá elementos de <code>size</code> del vector:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## 3 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Para tirar el dado y obtener un número de vuelta, establezca <code>x</code> en <code>dado</code> y muestree un elemento de él. Obtendrá un número nuevo (quizás diferente) cada vez que lo haga rodar:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> dado, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> dado, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> dado, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 1</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Muchas funciones de R toman múltiples argumentos que las ayudan a hacer su trabajo. Puede dar a una función tantos argumentos como desee siempre que separe cada argumento con una coma.</p>
 <p>Es posible que hayas notado que establecí <code>dado</code> y <code>1</code> iguales a los nombres de los argumentos en <code>sample</code>, <code>x</code> y <code>size</code>. Cada argumento en cada función de R tiene un nombre. Puede especificar qué datos deben asignarse a qué argumento estableciendo un nombre igual a data, como en el código anterior. Esto se vuelve importante a medida que comienza a pasar múltiples argumentos a la misma función; los nombres lo ayudan a evitar pasar los datos incorrectos al argumento incorrecto. Sin embargo, el uso de nombres es opcional. Notará que los usuarios de R no suelen usar el nombre del primer argumento en una función. Por lo tanto, es posible que vea el código anterior escrito como:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A menudo, el nombre del primer argumento no es muy descriptivo y, de todos modos, suele ser obvio a qué se refiere el primer dato.</p>
 <p>Pero, ¿cómo saber qué nombres de argumento usar? Si intenta usar un nombre que una función no espera, es probable que obtenga un error:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="at">corners =</span> <span class="dv">2</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in round(3.1415, corners = 2) : unused argument(s) (corners = 2)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, corners <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## Error in round(3.1415, corners = 2) : unused argument(s) (corners = 2)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Si no está seguro de qué nombres usar con una función, puede buscar los argumentos de la función con <code>args</code>. Para hacer esto, coloque el nombre de la función entre paréntesis detrás de <code>args</code>. Por ejemplo, puede ver que la función <code>round</code> toma dos argumentos, uno llamado <code>x</code> y otro llamado <code>digits</code>:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(round)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">## function (x, digits = 0) </span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">round</span><span class="op">)</span></span>
+<span><span class="co">## function (x, digits = 0) </span></span>
+<span><span class="co">## NULL</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Notaste que <code>args</code> muestra que el argumento <code>digits</code> de <code>round</code> ya está establecido en 0? Con frecuencia, una función R tomará argumentos opcionales como <code>digits</code>. Estos argumentos se consideran opcionales porque vienen con un valor predeterminado. Puede pasar un nuevo valor a un argumento opcional si así lo desea, y R utilizará el valor predeterminado si no proporciona uno nuevo. Por ejemplo, “round” redondeará su número a 0 dígitos más allá del punto decimal de forma predeterminada. Para anular el valor predeterminado, proporcione su propio valor para <code>digits</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3.14</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## 3.14</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Debe escribir los nombres de cada argumento después del primero o dos cuando llame a una función con múltiples argumentos. ¿Por qué? Primero, esto lo ayudará a usted y a otros a comprender su código. Por lo general, es obvio a qué argumento se refiere su primera entrada (y, a veces, también la segunda entrada). Sin embargo, necesitaría una memoria grande para recordar los argumentos tercero y cuarto de cada función R. En segundo lugar, y más importante, escribir los nombres de los argumentos evita errores.</p>
 <p>Si no escribe los nombres de sus argumentos, R hará coincidir sus valores con los argumentos de su función por orden. Por ejemplo, en el siguiente código, el primer valor, <code>dado</code>, coincidirá con el primer argumento de <code>sample</code>, que se llama <code>x</code>. El siguiente valor, <code>1</code>, coincidirá con el siguiente argumento, <code>size</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(dado, <span class="dv">1</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A medida que proporciona más argumentos, es más probable que su orden y el orden de R no coincidan. Como resultado, los valores pueden pasarse al argumento incorrecto. Los nombres de los argumentos evitan esto. R siempre hará coincidir un valor con el nombre de su argumento, sin importar dónde aparezca en el orden de los argumentos:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">x =</span> dado)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="muestra-con-reemplazo" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="muestra-con-reemplazo"><span class="header-section-number">1.3.1</span> Muestra con reemplazo</h3>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, x <span class="op">=</span> <span class="va">dado</span><span class="op">)</span></span>
+<span><span class="co">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="muestra-con-reemplazo" class="level3" data-number="1.3.1"><h3 data-number="1.3.1" class="anchored" data-anchor-id="muestra-con-reemplazo">
+<span class="header-section-number">1.3.1</span> Muestra con reemplazo</h3>
 <p>Si configura <code>size = 2</code>, puede <em>casi</em> simular un par de dados. Antes de ejecutar ese código, piense por un minuto por qué ese podría ser el caso. <code>sample</code> devolverá dos números, uno para cada dado:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## 3 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Dije que esto “casi” funciona porque este método hace algo divertido. Si lo usa muchas veces, notará que el segundo dado nunca tiene el mismo valor que el primero, lo que significa que nunca obtendrá algo como un par de tres o un par de unos. ¿Qué esta pasando?</p>
 <p>Por defecto, <code>sample</code> construye una muestra <em>sin reemplazo</em>. Para ver lo que esto significa, imagina que <code>sample</code> coloca todos los valores de <code>dado</code> en un frasco o urna. Luego imagine que <code>sample</code> alcanza el frasco y extrae valores uno por uno para construir su muestra. Una vez que se ha extraído un valor del frasco, <code>sample</code> lo deja a un lado. El valor no vuelve al frasco, por lo que no se puede volver a extraer. Entonces, si <code>sample</code> selecciona un seis en su primer sorteo, no podrá seleccionar un seis en el segundo sorteo; seis ya no está en el frasco para ser seleccionado. Aunque <code>sample</code> crea su muestra electrónicamente, sigue este comportamiento aparentemente físico.</p>
 <p>Un efecto secundario de este comportamiento es que cada sorteo depende de los sorteos anteriores. Sin embargo, en el mundo real, cuando lanzas un par de dados, cada dado es independiente del otro. Si el primer dado sale seis, no impide que el segundo dado salga seis. De hecho, no influye en el segundo dado de ninguna manera. Puede recrear este comportamiento en <code>sample</code> agregando el argumento <code>replace = TRUE</code>:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## 5 5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El argumento <code>replace = TRUE</code> hace que <code>sample</code> muestree <em>con reemplazo</em>. Nuestro ejemplo de frasco proporciona una buena manera de comprender la diferencia entre el muestreo con reemplazo y sin reemplazo. Cuando <code>sample</code> usa reemplazo, extrae un valor del frasco y registra el valor. Luego vuelve a poner el valor en el frasco. En otras palabras, <code>sample</code> <em>reemplaza</em> cada valor después de cada sorteo. Como resultado, <code>sample</code> puede seleccionar el mismo valor en el segundo sorteo. Cada valor tiene la posibilidad de ser seleccionado cada vez. Es como si cada sorteo fuera el primer sorteo.</p>
 <p>El muestreo con reemplazo es una manera fácil de crear <em>muestras aleatorias independientes</em>. Cada valor en su muestra será una muestra de tamaño uno que es independiente de los otros valores. Esta es la forma correcta de simular un par de dados.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## 2 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Felicítate a ti mismo; ¡Acabas de ejecutar tu primera simulación en R! Ahora tiene un método para simular el resultado de lanzar un par de dados. Si desea sumar los dados, puede ingresar su resultado directamente en la función <code>sum</code>:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>dados</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dados)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Qué pasaría si llamas <code>dados</code> varias veces? ¿Generaría R un nuevo par de valores de dados cada vez? Probemos:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dados</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>dados</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>dados</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span>
+<span></span>
+<span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span>
+<span></span>
+<span><span class="va">dados</span></span>
+<span><span class="co">## 2 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>No.&nbsp;Cada vez que llame a <code>dados</code>, R le mostrará el resultado de esa vez que llamó a <code>sample</code> y guardó la salida en <code>dados</code>. R no volverá a ejecutar <code>sample(dado, 2, replace = TRUE)</code> para crear una nueva tirada de dados. Esto es un alivio en cierto modo. Una vez que guarda un conjunto de resultados en un objeto de R, esos resultados no cambian. La programación sería bastante difícil si los valores de sus objetos cambiaran cada vez que los llama.</p>
 <p>Sin embargo, <em>sería</em> conveniente tener un objeto que pueda volver a tirar los dados cada vez que lo llames. Puede hacer tal objeto escribiendo su propia función de R.</p>
-</section>
-</section>
-<section id="Escribir-funciones" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="Escribir-funciones"><span class="header-section-number">1.4</span> Escribiendo Sus Propias Funciones</h2>
+</section></section><section id="Escribir-funciones" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="Escribir-funciones">
+<span class="header-section-number">1.4</span> Escribiendo Sus Propias Funciones</h2>
 <p>Para recapitular, ya tiene un código de R en funcionamiento que simula lanzar un par de dados:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dados)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puede volver a escribir este código en la consola en cualquier momento que desee volver a tirar los dados. Sin embargo, esta es una forma incómoda de trabajar con el código. Sería más fácil usar su código si lo envolviera en su propia función, que es exactamente lo que haremos ahora. Vamos a escribir una función llamada <code>tirar</code> que puedes usar para lanzar tus dados virtuales. Cuando hayas terminado, la función funcionará así: cada vez que llames a <code>tirar()</code>, R devolverá la suma de tirar dos dados:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 8 </span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 7</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 8 </span></span>
+<span></span>
+<span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 3</span></span>
+<span></span>
+<span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 7</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Las funciones pueden parecer misteriosas o sofisticadas, pero son solo otro tipo de objeto de R. En lugar de contener datos, contienen código. Este código se almacena en un formato especial que facilita su reutilización en situaciones nuevas. Puede escribir sus propias funciones recreando este formato.</p>
-<section id="el-constructor-de-funciones" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="el-constructor-de-funciones"><span class="header-section-number">1.4.1</span> El Constructor de Funciones</h3>
-<p>Cada función en R tiene tres partes básicas: un nombre, un cuerpo de código y un conjunto de argumentos. Para crear su propia función, debe replicar estas partes y almacenarlas en un objeto de R, esto lo puede hacer con la función <code>function</code>. Para hacer esto, llama a <code>function()</code> y sigue con un par de llaves, <code>{}</code>:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>mi_funcion <span class="ot">&lt;-</span> <span class="cf">function</span>() {}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="el-constructor-de-funciones" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="el-constructor-de-funciones">
+<span class="header-section-number">1.4.1</span> El Constructor de Funciones</h3>
+<p>Cada función en R tiene tres partes básicas: un nombre, un cuerpo de código y un conjunto de argumentos. Para crear su propia función, debe replicar estas partes y almacenarlas en un objeto de R, esto lo puede hacer con la función <code>function</code>. Para hacer esto, llama a <code>function()</code> y sigue con un par de llaves, <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mi_funcion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>function</code> construirá una función a partir de cualquier código R que coloque entre las llaves. Por ejemplo, puede convertir su código de dados en una función llamando:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tirar <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dados)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -804,101 +767,94 @@ Figura&nbsp;1.5: Cuando vincula funciones, R las resolverá desde la operación 
 </div>
 <p>Simplemente presione la tecla Enter entre cada línea después de la primera llave, <code>{</code>. R esperará a que escribas la última llave, <code>}</code>, antes de responder.</p>
 <p>No olvide guardar la salida de <code>function</code> en un objeto de R. Este objeto se convertirá en su nueva función. Para usarlo, escriba el nombre del objeto seguido de un paréntesis de apertura y cierre:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puede pensar en los paréntesis como el “disparador” que hace que R ejecute la función. Si escribe el nombre de una función <em>sin</em> los paréntesis, R le mostrará el código que está almacenado dentro de la función. Si escribe el nombre <em>con</em> los paréntesis, R ejecutará ese código:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tirar</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="do">## function() {</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   dado &lt;- 1:6</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   dados &lt;- sample(dado, size = 2, replace = TRUE)</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   sum(dados)</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="do">## }</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar</span>()</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar</span></span>
+<span><span class="co">## function() {</span></span>
+<span><span class="co">##   dado &lt;- 1:6</span></span>
+<span><span class="co">##   dados &lt;- sample(dado, size = 2, replace = TRUE)</span></span>
+<span><span class="co">##   sum(dados)</span></span>
+<span><span class="co">## }</span></span>
+<span></span>
+<span><span class="fu">tirar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El código que coloca dentro de su función se conoce como el <em>cuerpo</em> de la función. Cuando ejecuta una función en R, R ejecutará todo el código en el cuerpo y luego devolverá el resultado de la última línea de código. Si la última línea de código no devuelve un valor, tampoco lo hará su función, por lo que debe asegurarse de que su última línea de código devuelva un valor. Una forma de verificar esto es pensar en lo que sucedería si ejecutara el cuerpo del código línea por línea en la consola. ¿Mostraría R un resultado después de la última línea, o no?</p>
 <p>Aquí hay un código que mostraría un resultado:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dados</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span></span>
+<span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Y aquí hay un código que no:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">dos</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Notas el patrón? Estas líneas de código no devuelven un valor a la línea de comando; guardan un valor a un objeto.</p>
-</section>
-</section>
-<section id="argumentos" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="argumentos"><span class="header-section-number">1.5</span> Argumentos</h2>
+</section></section><section id="argumentos" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="argumentos">
+<span class="header-section-number">1.5</span> Argumentos</h2>
 <p>¿Qué pasa si eliminamos una línea de código de nuestra función y cambiamos el nombre <code>dado</code> a <code>bones</code>, así?</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>tirar2 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(bones, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dados)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">bones</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora obtendré un error cuando ejecute la función. La función necesita el objeto <code>bones</code> para hacer su trabajo, pero no se puede encontrar ningún objeto llamado <code>bones</code>:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar2</span>()</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in sample(bones, size = 2, replace = TRUE) : </span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   object 'bones' not found</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## Error in sample(bones, size = 2, replace = TRUE) : </span></span>
+<span><span class="co">##   object 'bones' not found</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puedes proporcionar <code>bones</code> cuando llamas a <code>tirar2</code> si conviertes a <code>bones</code> en un argumento de la función. Para hacer esto, pon el nombre <code>bones</code> entre los paréntesis que siguen a <code>function</code> cuando definas <code>tirar2</code>:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tirar2 <span class="ot">&lt;-</span> <span class="cf">function</span>(bones) {</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(bones, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dados)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">bones</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">bones</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora <code>tirar2</code> funcionará siempre y cuando proporciones <code>bones</code> cuando llames a la función. Puede aprovechar esto para lanzar diferentes tipos de dados cada vez que llamas <code>tirar2</code>. ¡Calabozos y Dragones, aquí vamos!</p>
 <p>Recuerda, estamos lanzando pares de dados:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar2</span>(<span class="at">bones =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  3</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar2</span>(<span class="at">bones =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 10</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 31</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span>bones <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">##  3</span></span>
+<span></span>
+<span><span class="fu">tirar2</span><span class="op">(</span>bones <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="co">## 10</span></span>
+<span></span>
+<span><span class="fu">tirar2</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="co">## 31</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Tenga en cuenta que <code>tirar2</code> seguirá dando un error si no proporciona un valor para el argumento <code>bones</code> cuando llame a <code>tirar2</code>:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar2</span>()</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in sample(bones, size = 2, replace = TRUE) : </span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   argument "bones" is missing, with no default</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## Error in sample(bones, size = 2, replace = TRUE) : </span></span>
+<span><span class="co">##   argument "bones" is missing, with no default</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puede evitar este error dando al argumento <code>bones</code> un valor predeterminado. Para hacer esto, establece <code>bones</code> igual a un valor cuando definas <code>tirar2</code>:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tirar2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">bones =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) {</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(bones, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dados)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">bones</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">bones</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora puede proporcionar un nuevo valor para <code>bones</code> si lo desea, y <code>tirar2</code> usará el valor predeterminado si no lo desea:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tirar2</span>()</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tirar2</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puede dar a sus funciones tantos argumentos como desee. Simplemente enumere sus nombres, separados por comas, entre los paréntesis que siguen a <code>function</code>.Cuando se ejecuta la función, R reemplazará cada nombre de argumento en el cuerpo de la función con el valor que el usuario proporciona para el argumento. Si el usuario no proporciona un valor, R reemplazará el nombre del argumento con el valor predeterminado del argumento (si definió uno).</p>
 <p>Para resumir, <code>function</code> te ayuda a construir tus propias funciones de R. Usted crea un cuerpo de código para que su función se ejecute escribiendo código entre las llaves que siguen a <code>function</code>. Usted crea argumentos para que su función los use proporcionando sus nombres entre los paréntesis que siguen a <code>function</code>. Finalmente, le da un nombre a su función guardando su salida en un objeto de R, como se muestra en la Figura <a href="#fig-functions" class="quarto-xref">Figura&nbsp;<span>1.6</span></a>.</p>
 <p>Una vez que haya creado su función, R la tratará como cualquier otra función en R. Piense en lo útil que es. ¿Alguna vez ha intentado crear una nueva opción de Excel y agregarla a la barra de menú de Microsoft? ¿O una nueva animación de diapositivas y agregarla a las opciones de Powerpoint? Cuando trabajas con un lenguaje de programación, puedes hacer este tipo de cosas. A medida que aprenda a programar en R, podrá crear herramientas nuevas, personalizadas y reproducibles para usted cuando lo desee. <a href="slots.html">Proyecto 3: Máquina Tragamonedas</a> te enseñará mucho más sobre escribir funciones en R.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-functions" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0106.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.6: Cada función en R tiene las mismas partes y puede usar <code>function</code> para crear estas partes. Asigne el resultado a un nombre, para que pueda llamar a la función más tarde.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
-</section>
-<section id="scripts" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="scripts"><span class="header-section-number">1.6</span> Scripts</h2>
+</section><section id="scripts" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="scripts">
+<span class="header-section-number">1.6</span> Scripts</h2>
 <p>¿Qué pasa si quieres editar <code>tirar2</code> de nuevo? Podría regresar y volver a escribir cada línea de código en <code>tirar2</code>, pero sería mucho más fácil si tuviera un borrador del código para empezar. Puede crear un borrador de su código a medida que avanza utilizando un <em>script</em> de R. Un script de R es solo un archivo de texto sin formato en el que guarda el código R. Puede abrir un script de R en RStudio yendo a <code>File&gt; New File&gt; R script</code> en la barra de menú. RStudio luego abrirá un script nuevo sobre el panel de su consola, como se muestra en la Figura <a href="#fig-script" class="quarto-xref">Figura&nbsp;<span>1.7</span></a>.</p>
 <p>Le recomiendo encarecidamente que escriba y edite todo su código de R en un script antes de ejecutarlo en la consola. ¿Por qué? Este hábito crea un registro reproducible de su trabajo. Cuando termine el día, puede guardar su secuencia de comandos y luego usarla para volver a ejecutar todo el análisis al día siguiente. Los scripts también son muy útiles para editar y corregir su código, y hacen una buena copia de su trabajo para compartir con otros. Para guardar un script, haga clic en el panel de scripts y luego vaya a <code>File &gt; Save as</code> en la barra de menú.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-script" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0107.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.7: Cuando abre un R Script (File &gt; New File &gt; R Script in the menu bar), RStudio crea un cuarto panel encima de la consola donde puede escribir y editar su código
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -907,14 +863,12 @@ Figura&nbsp;1.7: Cuando abre un R Script (File &gt; New File &gt; R Script in th
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-run" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-run-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-run-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0108.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-run-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.8: Puede ejecutar una parte resaltada del código en su secuencia de comandos si hace clic en el botón Run en la parte superior del panel de Scripts. Puede ejecutar todo el script haciendo clic en el botón Source.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -931,20 +885,15 @@ Figura&nbsp;1.8: Puede ejecutar una parte resaltada del código en su secuencia 
 </div>
 </div>
 </div>
-</section>
-<section id="resumen" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="resumen"><span class="header-section-number">1.7</span> Resumen</h2>
+</section><section id="resumen" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="resumen">
+<span class="header-section-number">1.7</span> Resumen</h2>
 <p>Ya has cubierto mucho terreno. Ahora tiene un dado virtual almacenado en la memoria de su computadora, así como su propia función de R que lanza un par de dados. También ha comenzado a hablar el lenguaje R.</p>
 <p>Como has visto, R es un lenguaje que puedes usar para hablar con tu computadora. Escribes comandos en R y los ejecutas en la línea de comandos para que tu computadora los lea. Su computadora a veces responderá–por ejemplo, cuando cometa un error–pero generalmente solo hace lo que le pide y luego muestra el resultado.</p>
 <p>Los dos componentes más importantes del lenguaje R son los objetos, que almacenan datos, y las funciones, que manipulan datos. R también usa una gran cantidad de operadores como <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> y <code>&lt;-</code> para realizar tareas básicas. Como científico de datos, usará objetos de R para almacenar datos en la memoria de su computadora y usará funciones para automatizar tareas y realizar cálculos complicados. Examinaremos los objetos con más profundidad más adelante en <a href="cards.html">Proyecto 2: Baraja de Cartas</a> y profundizaremos en las funciones en <a href="slots.html">Proyecto 3: Máquina Tragamonedas</a>. El vocabulario que ha desarrollado aquí hará que cada uno de esos proyectos sea más fácil de entender. Sin embargo, aún no hemos terminado con tus dados.</p>
 <p>En <a href="packages.html">Paquetes y páginas de ayuda</a>, , ejecutará algunas simulaciones con sus dados y construirá sus primeros gráficos en R. También verá dos de los componentes más útiles del lenguaje R: <em>Paquetes</em> de R, que son colecciones de funciones escritas por la talentosa comunidad de desarrolladores de R, y documentación de R, que es una colección de páginas de ayuda integradas en R que explica cada función y conjunto de datos en el lenguaje.</p>
 
 
-</section>
-
-</main> <!-- /main -->
-
-<script>
+</section></main><!-- /main --><script>
 
   // Chapter name
   const currentChapterFile = window.location.pathname.split('/').pop().replace('.html', '');
@@ -1011,9 +960,7 @@ Figura&nbsp;1.8: Puede ejecutar una parte resaltada del código en su secuencia 
   act_link_T.innerHTML += edit_issue_T;
 
 
-</script>
-
-<script id="quarto-html-after-body" type="application/javascript">
+</script><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1421,9 +1368,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./dice.html" class="pagination-link" aria-label="Proyecto 1: Dados Ponderados">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Proyecto 1: Dados Ponderados</span>
       </a>          
@@ -1435,8 +1380,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>Programación práctica con R fue escrito por Garrett Grolemund.</p>
 </div>   
@@ -1448,8 +1392,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>

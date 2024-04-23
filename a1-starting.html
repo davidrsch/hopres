@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Garrett Grolemund">
-
 <title>Programación práctica con R - Apéndice A — Instalación de R y RStudio</title>
 <style>
 code{white-space: pre-wrap;}
@@ -22,7 +19,6 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -41,8 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -69,16 +64,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -89,20 +79,16 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Programación práctica con R</a> 
         <div class="sidebar-tools-main">
     <div class="dropdown">
       <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/rstudio-education/hopr">
             Original
             </a>
@@ -113,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -129,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bienvenido</span></a>
@@ -149,8 +135,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></span></a>
@@ -163,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./cards.html" class="sidebar-item-text sidebar-link">
@@ -172,8 +158,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./objects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></span></a>
@@ -198,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./slots.html" class="sidebar-item-text sidebar-link">
@@ -207,8 +193,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./programs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></span></a>
@@ -233,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -242,8 +228,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1-starting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></span></a>
@@ -274,34 +260,30 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Tabla de contenidos</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#cómo-descargar-e-instalar-r" id="toc-cómo-descargar-e-instalar-r" class="nav-link active" data-scroll-target="#cómo-descargar-e-instalar-r"><span class="header-section-number">A.1</span> Cómo descargar e instalar R</a>
+<li>
+<a href="#c%C3%B3mo-descargar-e-instalar-r" id="toc-cómo-descargar-e-instalar-r" class="nav-link active" data-scroll-target="#c%C3%B3mo-descargar-e-instalar-r"><span class="header-section-number">A.1</span> Cómo descargar e instalar R</a>
   <ul class="collapse">
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">A.1.1</span> Windows</a></li>
+<li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">A.1.1</span> Windows</a></li>
   <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac"><span class="header-section-number">A.1.2</span> Mac</a></li>
   <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux"><span class="header-section-number">A.1.3</span> Linux</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#usando-r" id="toc-usando-r" class="nav-link" data-scroll-target="#usando-r"><span class="header-section-number">A.2</span> Usando R</a></li>
   <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">A.3</span> RStudio</a></li>
   <li><a href="#abriendo-r" id="toc-abriendo-r" class="nav-link" data-scroll-target="#abriendo-r"><span class="header-section-number">A.4</span> Abriendo R</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1-starting.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./a1-starting.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1-starting.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./a1-starting.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="starting" class="quarto-section-identifier">Apéndice A — Instalación de R y RStudio</span></h1>
 </div>
 
@@ -316,20 +298,16 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
-
-
-<p>Para comenzar con R, debe adquirir su propia copia. Este apéndice le mostrará cómo descargar R así como RStudio, una aplicación de software que facilita el uso de R. Pasará de descargar R a abrir su primera sesión de R.</p>
+</header><p>Para comenzar con R, debe adquirir su propia copia. Este apéndice le mostrará cómo descargar R así como RStudio, una aplicación de software que facilita el uso de R. Pasará de descargar R a abrir su primera sesión de R.</p>
 <p>Tanto R como RStudio son gratuitos y fáciles de descargar.</p>
-<section id="cómo-descargar-e-instalar-r" class="level2" data-number="A.1">
-<h2 data-number="A.1" class="anchored" data-anchor-id="cómo-descargar-e-instalar-r"><span class="header-section-number">A.1</span> Cómo descargar e instalar R</h2>
+<section id="cómo-descargar-e-instalar-r" class="level2" data-number="A.1"><h2 data-number="A.1" class="anchored" data-anchor-id="cómo-descargar-e-instalar-r">
+<span class="header-section-number">A.1</span> Cómo descargar e instalar R</h2>
 <p>R es mantenido por un equipo internacional de desarrolladores que hacen que el lenguaje esté disponible a través de la página web de <a href="http://cran.r-project.org">The Comprehensive R Archive Network</a>. La parte superior de la página web proporciona tres enlaces para descargar R. Siga el enlace que describe su sistema operativo: Windows, Mac o Linux.</p>
-<section id="windows" class="level3" data-number="A.1.1">
-<h3 data-number="A.1.1" class="anchored" data-anchor-id="windows"><span class="header-section-number">A.1.1</span> Windows</h3>
+<section id="windows" class="level3" data-number="A.1.1"><h3 data-number="A.1.1" class="anchored" data-anchor-id="windows">
+<span class="header-section-number">A.1.1</span> Windows</h3>
 <p>Para instalar R en Windows, haga clic en el enlace “Download R for Windows”. Luego haga clic en el enlace “base”. A continuación, haga clic en el primer enlace en la parte superior de la nueva página. Este enlace debería decir algo como “Descargar R 3.0.3 para Windows”, excepto que la 3.0.3 será reemplazada por la versión más reciente de R. El enlace descarga un programa de instalación, que instala la versión más actualizada de R para Windows. Ejecute este programa y siga los pasos del asistente de instalación que aparece. El asistente instalará R en sus carpetas de archivos de programa y colocará un acceso directo en su menú Inicio. Tenga en cuenta que deberá tener todos los privilegios de administración apropiados para instalar software nuevo en su máquina.</p>
-</section>
-<section id="mac" class="level3" data-number="A.1.2">
-<h3 data-number="A.1.2" class="anchored" data-anchor-id="mac"><span class="header-section-number">A.1.2</span> Mac</h3>
+</section><section id="mac" class="level3" data-number="A.1.2"><h3 data-number="A.1.2" class="anchored" data-anchor-id="mac">
+<span class="header-section-number">A.1.2</span> Mac</h3>
 <p>Para instalar R en una Mac, haga clic en el enlace “Download R for Mac”. A continuación, haga clic en el enlace del paquete <code>R-3.0.3</code> (o en el enlace del paquete para la versión más reciente de R). Se descargará un instalador para guiarlo a través del proceso de instalación, que es muy fácil. El instalador le permite personalizar su instalación, pero los valores predeterminados serán adecuados para la mayoría de los usuarios. Nunca he encontrado una razón para cambiarlos. Si su computadora requiere una contraseña antes de instalar nuevos programas, la necesitará aquí.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -342,9 +320,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-<section id="linux" class="level3" data-number="A.1.3">
-<h3 data-number="A.1.3" class="anchored" data-anchor-id="linux"><span class="header-section-number">A.1.3</span> Linux</h3>
+</section><section id="linux" class="level3" data-number="A.1.3"><h3 data-number="A.1.3" class="anchored" data-anchor-id="linux">
+<span class="header-section-number">A.1.3</span> Linux</h3>
 <p>R viene preinstalado en muchos sistemas Linux, pero querrá la versión más reciente de R si la suya no está actualizada. <a href="http://cran.r-project.org">El sitio web de CRAN</a> proporciona archivos para compilar R desde la fuente en los sistemas Debian, Redhat, SUSE y Ubuntu en el enlace “Descargar R para Linux”. Haga clic en el enlace y luego siga el rastro del directorio hasta la versión de Linux en la que desea instalar. El procedimiento de instalación exacto variará según el sistema Linux que utilice. CRAN guía el proceso agrupando cada conjunto de archivos fuente con documentación o archivos README que explican cómo instalar en su sistema.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -358,10 +335,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="usando-r" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="usando-r"><span class="header-section-number">A.2</span> Usando R</h2>
+</section></section><section id="usando-r" class="level2" data-number="A.2"><h2 data-number="A.2" class="anchored" data-anchor-id="usando-r">
+<span class="header-section-number">A.2</span> Usando R</h2>
 <p>R no es un programa que pueda abrir y comenzar a usar, como Microsoft Word o Internet Explorer. En cambio, R es un lenguaje de programación, como C, C++ o UNIX. Usas R escribiendo comandos en el lenguaje R y pidiéndole a tu computadora que los interprete. En los viejos tiempos, la gente ejecutaba código R en una ventana de terminal UNIX, como si fueran piratas informáticos en una película de los años ochenta. Ahora casi todo el mundo usa R con una aplicación llamada RStudio, y te recomiendo que tú también lo hagas.</p>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
@@ -372,13 +347,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>R y UNIX</strong></p>
 <p>Todavía puede ejecutar R en una ventana de UNIX o BASH escribiendo el comando:</p>
 <pre><code>R</code></pre>
-<p>que abre un intérprete de R. Luego puede hacer su trabajo y cerrar el intérprete ejecutando <em><code>q()</code></em> cuando haya terminado.</p>
+<p>que abre un intérprete de R. Luego puede hacer su trabajo y cerrar el intérprete ejecutando <em><code><a href="https://rdrr.io/r/base/quit.html">q()</a></code></em> cuando haya terminado.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="rstudio" class="level2" data-number="A.3">
-<h2 data-number="A.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">A.3</span> RStudio</h2>
+</section><section id="rstudio" class="level2" data-number="A.3"><h2 data-number="A.3" class="anchored" data-anchor-id="rstudio">
+<span class="header-section-number">A.3</span> RStudio</h2>
 <p>RStudio <em>es</em> una applicación como Microsoft Word—excepto que en lugar de ayudarlo a escribir texto convencional, RStudio lo ayuda a escribir en R. Uso RStudio en todo el libro porque hace que usar R sea mucho más fácil. Además, la interfaz de RStudio tiene el mismo aspecto para Windows, Mac OS y Linux. Eso me ayudará a relacionar el libro con su experiencia personal.</p>
 <p>Puede <a href="https://posit.co/download/rstudio-desktop/">descargar RStudio</a> de fomra gratuita. Simplemente haga clic en el botón “Download RStudio” y siga las instrucciones. Una vez que haya instalado RStudio, puede abrirlo como cualquier otro programa en su computadora—generalmente haciendo clic en un ícono en su escritorio.</p>
 <div class="callout callout-style-simple callout-tip">
@@ -396,14 +370,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-layout" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_aa01.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;A.1: El Entorno de Desarrollo Integrado de RStudio para R.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -418,17 +390,12 @@ Figura&nbsp;A.1: El Entorno de Desarrollo Integrado de RStudio para R.
 </div>
 </div>
 </div>
-</section>
-<section id="abriendo-r" class="level2" data-number="A.4">
-<h2 data-number="A.4" class="anchored" data-anchor-id="abriendo-r"><span class="header-section-number">A.4</span> Abriendo R</h2>
+</section><section id="abriendo-r" class="level2" data-number="A.4"><h2 data-number="A.4" class="anchored" data-anchor-id="abriendo-r">
+<span class="header-section-number">A.4</span> Abriendo R</h2>
 <p>Ahora que tiene R y RStudio en su computadora, puede comenzar a usar R abriendo el programa RStudio. Abra RStudio como lo haría con cualquier programa, haciendo clic en su icono o escribiendo “RStudio” en el indicador de ejecución de Windows.</p>
 
 
-</section>
-
-</main> <!-- /main -->
-
-<script>
+</section></main><!-- /main --><script>
 
   // Chapter name
   const currentChapterFile = window.location.pathname.split('/').pop().replace('.html', '');
@@ -495,9 +462,7 @@ Figura&nbsp;A.1: El Entorno de Desarrollo Integrado de RStudio para R.
   act_link_T.innerHTML += edit_issue_T;
 
 
-</script>
-
-<script id="quarto-html-after-body" type="application/javascript">
+</script><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -905,9 +870,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./speed.html" class="pagination-link" aria-label="Velocidad">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></span>
       </a>          
@@ -919,8 +882,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>Programación práctica con R fue escrito por Garrett Grolemund.</p>
 </div>   
@@ -932,8 +894,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>
