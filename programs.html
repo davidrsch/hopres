@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Garrett Grolemund">
+
+<title>Programación práctica con R - 7&nbsp; Programas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./s3.html" rel="next">
+<link href="./slots.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./slots.html">Proyecto 3: Máquina Tragamonedas</a></li><li class="breadcrumb-item"><a href="./programs.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programación práctica con R</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/rstudio-education/hopr">
+            Original
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/davidrsch/hopres">
+            Traducción
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenido</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proyecto 1: Dados Ponderados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proyecto 2: Baraja de Cartas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modifying.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./slots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proyecto 3: Máquina Tragamonedas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./s3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-starting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a2-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a3-updating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Actualizando R y sus Paquetes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a4-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a5-debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Depuración de Código de R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#estrategia" id="toc-estrategia" class="nav-link active" data-scroll-target="#estrategia"><span class="header-section-number">7.1</span> Estrategia</a>
+  <ul class="collapse">
+  <li><a href="#pasos-secuenciales" id="toc-pasos-secuenciales" class="nav-link" data-scroll-target="#pasos-secuenciales"><span class="header-section-number">7.1.1</span> Pasos Secuenciales</a></li>
+  <li><a href="#casos-paralelos" id="toc-casos-paralelos" class="nav-link" data-scroll-target="#casos-paralelos"><span class="header-section-number">7.1.2</span> Casos Paralelos</a></li>
+  </ul></li>
+  <li><a href="#declaraciones-if" id="toc-declaraciones-if" class="nav-link" data-scroll-target="#declaraciones-if"><span class="header-section-number">7.2</span> Declaraciones if</a></li>
+  <li><a href="#declaraciones-else" id="toc-declaraciones-else" class="nav-link" data-scroll-target="#declaraciones-else"><span class="header-section-number">7.3</span> Declaraciones else</a></li>
+  <li><a href="#tablas-de-búsqueda" id="toc-tablas-de-búsqueda" class="nav-link" data-scroll-target="#tablas-de-búsqueda"><span class="header-section-number">7.4</span> Tablas de Búsqueda</a></li>
+  <li><a href="#comentarios-de-código" id="toc-comentarios-de-código" class="nav-link" data-scroll-target="#comentarios-de-código"><span class="header-section-number">7.5</span> Comentarios de Código</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">7.6</span> Resumen</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./slots.html">Proyecto 3: Máquina Tragamonedas</a></li><li class="breadcrumb-item"><a href="./programs.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="programs" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>En este capítulo, construirá una máquina tragamonedas real y funcional que puede jugar ejecutando una función R. Cuando termines, podrás jugarlo así:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 0 0 DD</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## $0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 7 7 7</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="do">## $80</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La función <code>play</code> necesitará hacer dos cosas. Primero, necesitará generar aleatoriamente tres símbolos; y, segundo, necesitará calcular un premio basado en esos símbolos.</p>
+<p>El primer paso es fácil de simular. Puede generar aleatoriamente tres símbolos con la función <code>sample</code>, tal como “lanzó” aleatoriamente dos dados en <a href="dice.html">Proyecto 1: Dados Ponderados</a>. La siguiente función genera tres símbolos de un grupo de símbolos comunes de máquinas tragamonedas: diamantes (<code>DD</code>), sietes (<code>7</code>), barras triples (<code>BBB</code>), barras dobles (<code>BB</code>), barras simples (<code>B</code>), cerezas (<code>C</code>) y ceros (<code>0</code>). Los símbolos se seleccionan al azar y cada símbolo aparece con una probabilidad diferente:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obt_simbolos</span>() <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  rueda <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span>, <span class="st">"7"</span>, <span class="st">"BBB"</span>, <span class="st">"BB"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"0"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(rueda, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.03</span>, <span class="fl">0.03</span>, <span class="fl">0.06</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>, <span class="fl">0.01</span>, <span class="fl">0.52</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puedes usar <code>obt_simbolos()</code> para generar los símbolos usados en tu máquina tragamonedas:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obt_simbolos</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## "BBB" "0"   "C"  </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">obt_simbolos</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## "0" "0" "0"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">obt_simbolos</span>()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## "7" "0" "B"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>obt_simbolos</code> utiliza las probabilidades observadas en un grupo de Terminales de Video Lotería de Manitoba, Canadá. Estas máquinas tragamonedas se volvieron brevemente controvertidas en la década de 1990, cuando un reportero decidió probar su tasa de pago. Las máquinas parecían pagar solo 40 centavos por dólar, aunque el fabricante afirmó que pagarían 92 centavos por dólar. Los datos originales recopilados en las máquinas y una descripción de la controversia están disponibles en línea en <a href="http://bit.ly/jse_Braun">un artículo de revista de W. John Braun</a>. La controversia se calmó cuando las pruebas adicionales mostraron que el fabricante tenía razón.</p>
+<p>Las máquinas tragamonedas de Manitoba utilizan el complicado esquema de pagos que se muestra en la Tabla <a href="#tbl-prizes" class="quarto-xref">Tabla&nbsp;<span>7.1</span></a>. Un jugador ganará un premio si obtiene:</p>
+<ul>
+<li>Tres del mismo tipo de símbolo (excepto tres ceros)</li>
+<li>Tres barras (de variedad mixta)</li>
+<li>Una o más cerezas</li>
+</ul>
+<p>De lo contrario, el jugador no recibe ningún premio.</p>
+<p>El valor monetario del premio está determinado por la combinación exacta de símbolos y se modifica aún más por la presencia de diamantes. Los diamantes se tratan como “comodines”, lo que significa que pueden considerarse cualquier otro símbolo si aumentara el premio de un jugador. Por ejemplo, un jugador que lanza <code>7</code> <code>7</code> <code>DD</code> ganaría un premio por obtener tres sietes. Sin embargo, hay una excepción a esta regla: un diamante no se puede considerar una cereza a menos que el jugador también obtenga una cereza real. Esto evita que una tirada sin fondos como <code>0</code> <code>DD</code> <code>0</code> se puntúe como <code>0</code> <code>C</code> <code>0</code>.</p>
+<p>Los diamantes también son especiales de otra manera. Cada diamante que aparece en una combinación duplica el importe del premio final. Así que <code>7</code> <code>7</code> <code>DD</code> en realidad tendría una puntuación <em>más alta</em> que <code>7</code> <code>7</code> <code>7</code>. Tres sietes te darían $80, pero dos sietes y un diamante te darían $160. Un siete y dos diamantes sería aún mejor, lo que daría como resultado un premio que se ha duplicado dos veces, o $320. Un premio mayor ocurre cuando un jugador lanza <code>DD</code> <code>DD</code> <code>DD</code>. Luego, un jugador gana $100 duplicados tres veces, lo que equivale a $800.</p>
+<div id="tbl-prizes" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.1: Cada juego de la máquina tragamonedas cuesta $1. Los símbolos de un jugador determinan cuánto gana. Los diamantes (<code>DD</code>) son comodines y cada diamante duplica el premio final. * = cualquier símbolo.
+</figcaption>
+<div aria-describedby="tbl-prizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Combinación</th>
+<th>Premios($)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>DD  DD  DD</code></td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td><code>7  7  7</code></td>
+<td>80</td>
+</tr>
+<tr class="odd">
+<td><code>BBB  BBB  BBB</code></td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td><code>BB  BB  BB</code></td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td><code>B  B  B</code></td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td><code>C  C  C</code></td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Cualquier combinación de barras</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td><code>C  C  *</code></td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td><code>C  *  C</code></td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td><code>*  C  C</code></td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td><code>C  *  *</code></td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><code>*  C  *</code></td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td><code>*  *  C</code></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Para crear su función <code>play</code>, necesitará escribir un programa que pueda tomar la salida de <code>obt_simbolos</code> y calcular el premio correcto basado en Tabla <a href="#tbl-prizes" class="quarto-xref">Tabla&nbsp;<span>7.1</span></a>.</p>
+<p>En R, los programas se guardan como scripts de R o como funciones. Guardaremos su programa como una función llamada <code>puntuacion</code>. Cuando termines, podrás usar <code>puntuacion</code> para calcular un premio como este:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">puntuacion</span>(<span class="fu">c</span>(<span class="st">"DD"</span>, <span class="st">"DD"</span>, <span class="st">"DD"</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 800</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Después de eso, será fácil crear la máquina tragamonedas completa, así:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>play <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  simbolos <span class="ot">&lt;-</span> <span class="fu">obt_simbolos</span>()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(simbolos)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puntuacion</span>(simbolos)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>El comando <code>print</code> imprime su salida en la ventana de la consola, lo que hace que <code>print</code> sea una forma útil de mostrar mensajes desde el cuerpo de una función.</p>
+</div>
+</div>
+</div>
+<p>Puede notar que <code>play</code> llama a una nueva función, <code>print</code>. Esto ayudará a <code>play</code> a mostrar los tres símbolos de máquinas tragamonedas, ya que la última línea de la función no los devuelve. El comando <code>print</code> imprime su salida en la ventana de la consola, incluso si R lo llama desde dentro de una función.</p>
+<p>En <a href="dice.html">Proyecto 1: Dados Ponderados</a>, lo animé a escribir todo su código R en un script R, un archivo de texto donde puede redactar y guardar el código. Ese consejo será muy importante a medida que avance en este capítulo. Recuerde que puede abrir un script R en RStudio yendo a la barra de menú y haciendo clic en File &gt; New File &gt; R Script.</p>
+<section id="estrategia" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="estrategia"><span class="header-section-number">7.1</span> Estrategia</h2>
+<p>La puntuación de los resultados de las máquinas tragamonedas es una tarea compleja que requerirá un algoritmo complejo. Puede facilitar esta y otras tareas de codificación utilizando una estrategia simple:</p>
+<ul>
+<li>Dividir tareas complejas en subtareas simples.</li>
+<li>Utilice ejemplos concretos.</li>
+<li>Describa sus soluciones en español, luego conviértalas a R.</li>
+</ul>
+<p>Comencemos por ver cómo puede dividir un programa en subtareas con las que es fácil trabajar.</p>
+<p>Un programa es un conjunto de instrucciones paso a paso que debe seguir su computadora. En conjunto, estas instrucciones pueden lograr algo muy sofisticado. Por separado, cada paso individual probablemente será simple y directo.</p>
+<p>Puede facilitar la codificación identificando los pasos o subtareas individuales dentro de su programa. A continuación, puede trabajar en cada subtarea por separado. Si una subtarea parece complicada, intente dividirla nuevamente en subtareas pares que sean aún más simples. A menudo, puede reducir un programa de R en subtareas tan simples que cada una se puede realizar con una función preexistente.</p>
+<p>Los programas de R contienen dos tipos de subtareas: pasos secuenciales y casos paralelos.</p>
+<section id="pasos-secuenciales" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="pasos-secuenciales"><span class="header-section-number">7.1.1</span> Pasos Secuenciales</h3>
+<p>Una forma de subdividir un programa es en una serie de pasos secuenciales. La función <code>play</code> toma el enfoque que se muestra en la Figura <a href="#fig-subdivide1" class="quarto-xref">Figura&nbsp;<span>7.1</span></a>. Primero, genera tres símbolos (paso 1), luego los muestra en la ventana de la consola (paso 2) y luego los puntúa (paso 3):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>play <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step 1: genera simbolos</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  simbolos <span class="ot">&lt;-</span> <span class="fu">obt_simbolos</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step 2: muestra los simbolos</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(simbolos)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step 3: puntua los simbolos</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puntuacion</span>(simbolos)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para que R ejecute los pasos en secuencia, coloque los pasos uno tras otro en un script de R o en el cuerpo de una función.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-subdivide1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-subdivide1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0701.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-subdivide1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: La función play utiliza una serie de pasos.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="casos-paralelos" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="casos-paralelos"><span class="header-section-number">7.1.2</span> Casos Paralelos</h3>
+<p>Otra forma de dividir una tarea es detectar grupos de casos similares dentro de la tarea. Algunas tareas requieren diferentes algoritmos para diferentes grupos de entrada. Si puede identificar esos grupos, puede resolver sus algoritmos uno a la vez.</p>
+<p>Por ejemplo, <code>puntuacion</code> necesitará calcular el premio de una manera si <code>simbolos</code> contiene tres de una clase (en ese caso, <code>puntuacion</code> necesitará hacer coincidir el símbolo común con un premio). <code>puntuacion</code> necesitará calcular el premio de una segunda manera si los símbolos son todos barras (en ese caso, <code>puntuacion</code> puede asignar un premio de $5). Y, por último, <code>puntuacion</code> necesitará calcular el premio de una tercera forma si los símbolos no contienen tríos o todas las barras (en ese caso, <code>puntuacion</code> debe contar el número de cerezas presentes). <code>puntuacion</code> nunca usará estos tres algoritmos a la vez; siempre elegirá solo un algoritmo para ejecutar en función de la combinación de símbolos.</p>
+<p>Los diamantes complican todo esto porque los diamantes pueden ser tratados como comodines. Ignoremos eso por ahora y concentrémonos en el caso más simple donde los diamantes duplican el premio pero no son comodines. <code>puntuacion</code> puede duplicar el premio según sea necesario después de ejecutar uno de los siguientes algoritmos, como se muestra en la Figura <a href="#fig-subdivide2" class="quarto-xref">Figura&nbsp;<span>7.2</span></a>.</p>
+<p>Agregar los casos de <code>puntuación</code> a los pasos de <code>play</code> revela una estrategia para el programa completo de máquinas tragamonedas, como se muestra en la Figura <a href="#fig-subdivide3" class="quarto-xref">Figura&nbsp;<span>7.3</span></a>.</p>
+<p>Ya hemos resuelto los primeros pasos de esta estrategia. Nuestro programa puede obtener tres símbolos de máquinas tragamonedas con la función <code>obt_simbolos</code>. Entonces puede mostrar los símbolos con la función <code>print</code>. Ahora examinemos cómo el programa puede manejar los casos de puntuación paralela.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-subdivide2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-subdivide2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0702.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-subdivide2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: La función de puntuación debe distinguir entre casos paralelos.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-subdivide3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-subdivide3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0703.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-subdivide3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.3: La simulación completa de la máquina tragamonedas implicará subtareas que se organizan tanto en serie como en paralelo.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="declaraciones-if" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="declaraciones-if"><span class="header-section-number">7.2</span> Declaraciones if</h2>
+<p>Vincular casos en paralelo requiere un poco de estructura; su programa se enfrenta a una bifurcación en el camino cada vez que debe elegir entre casos. Puedes ayudar al programa a navegar por esta bifurcación con una instrucción <code>if</code>.</p>
+<p>Una declaración <code>if</code> le dice a R que haga una tarea determinada para un caso determinado. En español dirías algo como: “Si esto es cierto, haz aquello”. En R, dirías:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (esto) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  aquello</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El objeto <code>esto</code> debe ser una prueba lógica o una expresión de R que se evalúe a un solo <code>TRUE</code> o <code>FALSE</code>. Si <code>esto</code> se evalúa como <code>TRUE</code>, R ejecutará todo el código que aparece entre las llaves que siguen a la instrucción <code>if</code> (es decir, entre los símbolos <code>{</code> y <code>}</code>). Si <code>esto</code> se evalúa como <code>FALSE</code>, R omitirá el código entre llaves sin ejecutarlo.</p>
+<p>Por ejemplo, podría escribir una declaración <code>if</code> que asegure que algún objeto, <code>num</code>, sea positivo:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (num <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  num <span class="ot">&lt;-</span> num <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si <code>num &lt; 0</code> es <code>TRUE</code>, R multiplicará <code>num</code> por uno negativo, lo que hará que <code>num</code> sea positivo:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (num <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  num <span class="ot">&lt;-</span> num <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>num</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si <code>num &lt; 0</code> es <code>FALSE</code>, R no hará nada y <code>num</code> permanecerá como está: positivo (o cero):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (num <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  num <span class="ot">&lt;-</span> num <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>num</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La condición de una declaración <code>if</code> debe evaluarse como un <em>único</em> <code>TRUE</code> o <code>FALSE</code>. Si la condición crea un vector de <code>TRUE</code> y <code>FALSE</code> (que es más fácil de hacer de lo que piensa), su declaración <code>if</code> imprimirá un mensaje de advertencia y usará solo el primer elemento del vector. Recuerda que puedes condensar vectores de valores lógicos en un solo <code>TRUE</code> o <code>FALSE</code> con las funciones <code>any</code> y <code>all</code>.</p>
+<p>No tienes que limitar tus declaraciones <code>if</code> a una sola línea de código; puede incluir tantas líneas como desee entre las llaves. Por ejemplo, el siguiente código usa muchas líneas para asegurar que <code>num</code> sea positivo. Las líneas adicionales imprimen algunas declaraciones informativas si <code>num</code> comienza como un número negativo. R omitirá todo el bloque de código, declaraciones <code>print</code> y todo, si <code>num</code> comienza como un número positivo:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (num <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"num es negativo."</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No te preocupes, lo arreglaré."</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  num <span class="ot">&lt;-</span> num <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Ahora num es positivo."</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">## "num es negativo."</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">## "No te preocupes, lo arreglaré."</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">## "Ahora num es positivo."</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>num</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pruebe las siguientes pruebas para desarrollar su comprensión de las declaraciones <code>if</code>.</p>
+<p><strong>Ejercicio 10.1 (Cuestionario A)</strong> ¿Qué devolverá esto?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Solución.</em> El código devolverá el número 2. <code>x</code> comienza como 1, y luego R encuentra la declaración <code>if</code>. Dado que la condición se evalúa como <code>TRUE</code>, R ejecutará <code>x &lt;- 2</code>, cambiando el valor de <code>x</code>.</p>
+<p><strong>Ejercicio 10.2 (Cuestionario B)</strong> ¿Qué devolverá esto?</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="cn">TRUE</span>) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Solución.</em> Este código también devolverá el número 2. Funciona igual que el código en la prueba A, excepto que la condición en esta declaración ya es <code>TRUE</code>. R ni siquiera necesita evaluarlo. Como resultado, se ejecutará el código dentro de la instrucción <code>if</code> y <code>x</code> se establecerá en 2.</p>
+<p><strong>Ejercicio 10.3 (Cuestionario C)</strong> ¿Qué devolverá esto?</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Solución.</em> Una vez más, el código devolverá el número 2. <code>x</code> comienza como 1, y la condición de la primera declaración <code>if</code> se evaluará como <code>TRUE</code>, lo que hace que R ejecute el código en el cuerpo de la esa declaración <code>if</code>. Primero, R establece <code>x</code> igual a 2, luego R evalúa la segunda declaración <code>if</code>, que está en el cuerpo de la primera. Esta vez <code>x == 1</code> se evaluará como <code>FALSE</code> porque <code>x</code> ahora es igual a 2. Como resultado, R ignora <code>x &lt;- 3</code> y sale de ambas declaraciones <code>if</code>.</p>
+</section>
+<section id="declaraciones-else" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="declaraciones-else"><span class="header-section-number">7.3</span> Declaraciones else</h2>
+<p>Las declaraciones <code>if</code> le dicen a R qué hacer cuando su condición es <em>verdadera</em>, pero también puede decirle a R qué hacer cuando la condición es <em>falsa</em>. <code>else</code> es una contraparte de <code>if</code> que extiende una declaración <code>if</code> para incluir un segundo caso. En español, dirías: “Si esto es cierto, haz el plan A; de lo contrario, haz el plan B”. En R, dirías:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (esto) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  Plan A</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  Plan B</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cuando <code>esto</code> se evalúa como <code>TRUE</code>, R ejecutará el código en el primer conjunto de llaves, pero no el código en el segundo. Cuando <code>esto</code> se evalúa como <code>FALSE</code>, R ejecutará el código en el segundo conjunto de llaves, pero no en el primero. Puede utilizar este arreglo para cubrir todos los casos posibles. Por ejemplo, podría escribir algún código que redondee un decimal al entero más cercano.</p>
+<p>Comience con un decimal:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">3.14</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Luego aísle el componente decimal con <code>trunc</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> a <span class="sc">-</span> <span class="fu">trunc</span>(a)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dec</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.14</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><code>trunc</code> toma un número y devuelve solo la parte del número que aparece a la izquierda del lugar decimal (es decir, la parte entera del número).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><code>a - trunc(a)</code> es una forma conveniente de devolver la parte decimal de <code>a</code>.</p>
+</div>
+</div>
+</div>
+<p>Luego use un árbol <code>if else</code> para redondear el número (hacia arriba o hacia abajo):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (dec <span class="sc">&gt;=</span> <span class="fl">0.5</span>) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">trunc</span>(a) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">trunc</span>(a)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>a</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si su situación tiene más de dos casos que se excluyen mutuamente, puede unir varias declaraciones <code>if</code> y <code>else</code> agregando una nueva declaración <code>if</code> inmediatamente después de <code>else</code>. Por ejemplo:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a <span class="sc">&gt;</span> b) {</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"¡A gana!"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (a <span class="sc">&lt;</span> b) {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"¡B gana!"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Empate."</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="do">## "Empate."</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R trabajará a través de las condiciones <code>if</code> hasta que una se evalúe como <code>TRUE</code>, entonces R ignorará cualquier cláusula <code>if</code> y <code>else</code> restante en el árbol. Si ninguna condición se evalúa como <code>TRUE</code>, R ejecutará la declaración <code>else</code> final.</p>
+<p>Si dos sentencias <code>if</code> describen eventos que se excluyen mutuamente, es mejor unir las sentencias <code>if</code> con <code>else if</code> que listarlas por separado. Esto le permite a R ignorar la segunda declaración <code>if</code> siempre que la primera devuelva un <code>TRUE</code>, lo que ahorra trabajo.</p>
+<p>Puede usar <code>if</code> y <code>else</code> para vincular las subtareas en su función de máquina tragamonedas. Abra un script R nuevo y copie este código en él. El código será el esqueleto de nuestra función <code>puntuación</code> final. Compáralo con el diagrama de flujo para <code>puntuación</code> en la Figura <a href="#fig-subdivide2" class="quarto-xref">Figura&nbsp;<span>7.2</span></a>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ( <span class="co"># Caso 1: todos son iguales &lt;1&gt;) {</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># Buscar el premio &lt;3&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="er">}</span> <span class="cf">else</span> <span class="cf">if</span> ( <span class="co"># Caso 2: todos barras &lt;2&gt; ) {</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># asignar $5 &lt;4&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="er">}</span> <span class="cf">else</span> {</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># contar cerezas &lt;5&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># calcular el premio &lt;7&gt;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># contar diamantes &lt;6&gt;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario &lt;8&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nuestro esqueleto es bastante incompleto; hay muchas secciones que son solo comentarios de código en lugar de código real. Sin embargo, hemos reducido el programa a ocho subtareas simples:</p>
+<ol type="1">
+<li><p>Prueba si los símbolos son tres de una clase.</p></li>
+<li><p>Prueba si los símbolos son solo barras.</p></li>
+<li><p>Busque el premio de tres iguales según el símbolo común.</p></li>
+<li><p>Asigne un premio de $5.</p></li>
+<li><p>Cuenta el número de cerezas.</p></li>
+<li><p>Cuenta el número de diamantes.</p></li>
+<li><p>Calcula un premio basado en el número de cerezas.</p></li>
+<li><p>Ajustar el premio por diamantes.</p></li>
+</ol>
+<p>Si lo desea, puede reorganizar su diagrama de flujo en torno a estas tareas, como en la Figura <a href="#fig-subdivide4" class="quarto-xref">Figura&nbsp;<span>7.4</span></a>. El gráfico describirá la misma estrategia, pero de una manera más precisa. Usaré una forma de diamante para simbolizar una decisión <code>if else</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-subdivide4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-subdivide4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0704.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-subdivide4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.4: puntuacion puede navegar tres casos con dos decisiones if else. También podemos dividir algunas de nuestras tareas en dos pasos.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora podemos trabajar en las subtareas una a la vez, agregando código de R al árbol <code>if</code> a medida que avanzamos. Cada subtarea será fácil de resolver si configura un ejemplo concreto para trabajar e intenta describir una solución en español antes de codificar en R.</p>
+<p>La primera subtarea le pide que pruebe si los símbolos son tres de una clase. ¿Cómo debería comenzar a escribir el código para esta subtarea?</p>
+<p>Sabes que la función <code>puntuacion</code> final se verá así:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>puntuacion <span class="ot">&lt;-</span> <span class="cf">function</span>(simbolos) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calcular el premio</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  premio</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Su argumento, <code>simbolos</code>, será la salida de <code>obt_simbolos</code>, un vector que contiene tres cadenas de caracteres. Podría comenzar a escribir <code>puntuacion</code> como lo he escrito, definiendo un objeto llamado <code>puntuacion</code> y luego completando lentamente el cuerpo de la función. Sin embargo, esto sería una mala idea. La función eventual tendrá ocho partes separadas, y no funcionará correctamente hasta que <em>todas</em> esas partes estén escritas (y funcionen correctamente). Esto significa que tendría que escribir toda la función <code>puntuacion</code> antes de poder probar cualquiera de las subtareas. Si <code>puntuacion</code> no funciona, lo cual es muy probable, no sabrá qué subtarea debe corregirse.</p>
+<p>Puede ahorrarse tiempo y dolores de cabeza si se enfoca en una subtarea a la vez. Para cada subtarea, cree un ejemplo concreto en el que pueda probar su código. Por ejemplo, sabe que <code>puntuacion</code> necesitará trabajar en un vector llamado <code>simbolos</code> que contiene tres cadenas de caracteres. Si crea un vector real llamado <code>simbolos</code>, puede ejecutar el código para muchas de sus subtareas en el vector a medida que avanza:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"7"</span>, <span class="st">"7"</span>, <span class="st">"7"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si una pieza de código no funciona en <code>simbolos</code>, sabrá que necesita arreglarlo antes de continuar. Puedes cambiar el valor de <code>simbolos</code> de subtarea a subtarea para asegurarte de que tu código funcione en todas las situaciones:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"DD"</span>, <span class="st">"0"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Solo combine sus subtareas en una función de <code>puntuacion</code> una vez que cada subtarea funcione en un ejemplo concreto. Si sigue este plan, pasará más tiempo usando sus funciones y menos tratando de averiguar por qué no funcionan.</p>
+<p>Después de establecer un ejemplo concreto, intente describir cómo realizará la subtarea en español. Cuanto más precisamente pueda describir su solución, más fácil será escribir su código de R.</p>
+<p>Nuestra primera subtarea nos pide que “probemos si los símbolos son tres iguales”. Esta frase no me sugiere ningún código de R útil. Sin embargo, podría describir una prueba más precisa para el trío: tres símbolos serán iguales si el primer símbolo es igual al segundo y el segundo símbolo es igual al tercero. O, aún más precisamente:</p>
+<p><em>Un vector llamado <code>simbolos</code> contendrá tres del mismo símbolo si el primer elemento de <code>simbolos</code> es igual al segundo elemento de <code>simbolos</code> y el segundo elemento de <code>simbolos</code> es igual al tercer elemento de <code>simbolos</code></em>.</p>
+<p><strong>Ejercicio 10.4 (Escribe una Prueba)</strong> Convierta la declaración anterior en una prueba lógica escrita en R. Use su conocimiento de pruebas lógicas, operadores booleanos y subconjuntos de <a href="notation.html">Notación de R</a>. La prueba debería funcionar con el vector <code>simbolos</code> y devolver un <code>TRUE</code> <em>si y solo si</em> cada elemento en <code>simbolos</code> es el mismo. Asegúrese de probar su código en <code>simbolos</code>.</p>
+<p><em>Solución.</em> Aquí hay un par de formas de probar que <code>simbolos</code> contiene tres del mismo símbolo. El primer método es paralelo a la sugerencia en español anterior, pero hay otras formas de hacer la misma prueba. No hay una respuesta correcta o incorrecta, siempre y cuando su solución funcione, lo cual es fácil de comprobar porque ha creado un vector llamado <code>simbolos</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>simbolos</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  "7" "7" "7"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="do">## TRUE</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="do">## TRUE</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(simbolos <span class="sc">==</span> simbolos[<span class="dv">1</span>])</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="do">## TRUE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A medida que su vocabulario de funciones de R se amplíe, pensará en más formas de realizar tareas básicas. Un método que me gusta para verificar si tres son iguales es:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(simbolos)) <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La función <code>unique</code> devuelve cada término único que aparece en un vector. Si su vector <code>simbolos</code> contiene tres iguales (es decir, un término único que aparece tres veces), entonces <code>unique(simbolos)</code> devolverá un vector de longitud <code>1</code>.</p>
+<p>Ahora que tiene una prueba que funciona, puede agregarla a la secuencia de comandos de su máquina tragamonedas:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># Buscar el premio</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> ( <span class="co"># Caso 2: todos barras) {</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># asignar $5</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="er">}</span> <span class="cf">else</span> {</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># contar cerezas</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># calcular el premio</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># contar diamantes</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><code>&amp;&amp;</code> y <code>||</code> se comportan como <code>&amp;</code> y <code>|</code> pero a veces pueden ser más eficientes. Los operadores dobles no evaluarán la segunda prueba en un par de pruebas si la primera prueba aclara el resultado. Por ejemplo, si <code>simbolos[1]</code> no es igual a <code>simbolos[2]</code> en la siguiente expresión, <code>&amp;&amp;</code> no evaluará <code>simbolos[2] == simbolos[3]</code>; puede devolver inmediatamente un <code>FALSE</code> para toda la expresión (porque <code>FALSE &amp; TRUE</code> y <code>FALSE &amp; FALSE</code> ambos se evalúan como <code>FALSE</code>). Esta eficiencia puede acelerar sus programas; sin embargo, los operadores dobles no son apropiados en todas partes. <code>&amp;&amp;</code> y <code>||</code> no están vectorizados, lo que significa que solo pueden manejar una sola prueba lógica en cada lado del operador.</p>
+</div>
+</div>
+</div>
+<p>El segundo caso de premio ocurre cuando todos los símbolos son un tipo de barra, por ejemplo, <code>B</code>, <code>BB</code> y <code>BBB</code>. Empecemos por crear un ejemplo concreto con el que trabajar:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BBB"</span>, <span class="st">"BB"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ejercicio 10.5 (Probar si todos son barras)</strong> Use los operadores lógicos y booleanos de R para escribir una prueba que determinará si un vector llamado <code>simbolos</code> contiene solo símbolos que son un tipo de barra. Compruebe si su prueba funciona con nuestro vector de <code>simbolos</code> de ejemplo. Recuerde describir cómo debería funcionar la prueba en español y luego convertir la solución a R.</p>
+<p><em>Solución.</em> Al igual que con muchas cosas en R, hay varias formas de probar si los <code>simbolos</code> contienen todos barras. Por ejemplo, podría escribir una prueba muy larga que use múltiples operadores booleanos, como esta:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(simbolos[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"B"</span> <span class="sc">|</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"BB"</span> <span class="sc">|</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"BBB"</span>) <span class="sc">&amp;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  (simbolos[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">"B"</span> <span class="sc">|</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">"BB"</span> <span class="sc">|</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">"BBB"</span>) <span class="sc">&amp;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  (simbolos[<span class="dv">3</span>] <span class="sc">==</span> <span class="st">"B"</span> <span class="sc">|</span> simbolos[<span class="dv">3</span>] <span class="sc">==</span> <span class="st">"BB"</span> <span class="sc">|</span> simbolos[<span class="dv">3</span>] <span class="sc">==</span> <span class="st">"BBB"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="do">## TRUE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, esta no es una solución muy eficiente, porque R tiene que ejecutar nueve pruebas lógicas (y usted tiene que escribirlas). A menudo puede reemplazar múltiples operadores <code>|</code> con un único <code>%in%</code>. Además, puede verificar que una prueba sea verdadera para cada elemento en un vector con <code>all</code>. Estos dos cambios acortan el código anterior a:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## TRUE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agreguemos este código a nuestro script:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  prize <span class="ot">&lt;-</span> <span class="co"># Buscar el premio</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  prize <span class="ot">&lt;-</span> <span class="co"># asiganr $5</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># contar cerezas</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># calcular el premio</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co"># contar diamantes</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Es posible que haya notado que dividí esta prueba en dos pasos, <code>barras</code> y <code>all(barras)</code>. Eso es solo una cuestión de preferencia personal. Siempre que sea posible, me gusta escribir mi código para que pueda leerse con nombres de funciones y objetos que transmitan lo que hacen.</p>
+<p>También puede haber notado que nuestra prueba para el Caso 2 capturará algunos símbolos que deberían estar en el Caso 1 porque contienen tres de una clase:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="do">## TRUE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Eso no será un problema, sin embargo, porque hemos conectado nuestros casos con <code>else if</code> en el árbol <code>if</code>. Tan pronto como R llegue a un caso que se evalúe como <code>VERDADERO</code>, se saltará el resto del árbol. Piénselo de esta manera: cada <code>else</code> le dice a R que solo ejecute el código que le sigue <em>si no se ha cumplido ninguna de las condiciones anteriores</em>. Entonces, cuando tenemos tres del mismo tipo de barra, R evaluará el código para el Caso 1 y luego omitirá el código para el Caso 2 (y el Caso 3).</p>
+<p>Nuestra próxima subtarea es asignar un premio a los <code>simbolos</code>. Cuando el vector de <code>simbolos</code> contiene tres del mismo símbolo, el premio dependerá de qué símbolo haya tres. Si hay tres <code>DD</code>s, el premio será de $100; si hay tres <code>7</code>s, el premio será de $80; y así.</p>
+<p>Esto sugiere otro árbol <code>if</code>. Podrías asignar un premio con algún código como este:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  simbolo <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (simbolo <span class="sc">==</span> <span class="st">"DD"</span>) {</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    premmio <span class="ot">&lt;-</span> <span class="dv">800</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (simbolo <span class="sc">==</span> <span class="st">"7"</span>) {</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">80</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (simbolo <span class="sc">==</span> <span class="st">"BBB"</span>) {</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (simbolo <span class="sc">==</span> <span class="st">"BB"</span>) {</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (simbolo <span class="sc">==</span> <span class="st">"B"</span>) {</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (simbolo <span class="sc">==</span> <span class="st">"C"</span>) {</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (simbol <span class="sc">==</span> <span class="st">"0"</span>) {</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si bien este código funcionará, es un poco largo de escribir y leer, y puede requerir que R realice varias pruebas lógicas antes de entregar el premio correcto. Podemos hacerlo mejor con un método diferente.</p>
+</section>
+<section id="tablas-de-búsqueda" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="tablas-de-búsqueda"><span class="header-section-number">7.4</span> Tablas de Búsqueda</h2>
+<p>Muy a menudo en R, la forma más sencilla de hacer algo implicará la creación de subconjuntos. ¿Cómo podrías usar subconjuntos aquí? Como conoce la relación exacta entre los símbolos y sus premios, puede crear un vector que capture esta información. Este vector puede almacenar símbolos como nombres y valores de premios como elementos:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>pagos</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  DD   7 BBB  BB   B   C   0 </span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 100  80  40  25  10  10   0 </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora puede extraer el premio correcto para cualquier símbolo subdividiendo el vector con el nombre del símbolo:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pagos[<span class="st">"DD"</span>]</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  DD </span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 100 </span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>pagos[<span class="st">"B"</span>]</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  B</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si desea dejar atrás el nombre del símbolo al crear subconjuntos, puede ejecutar la función <code>unname</code> en la salida:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unname</span>(pagos[<span class="st">"DD"</span>])</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 100 </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>unname</code> devuelve una copia de un objeto con el atributo de nombres eliminado.</p>
+<p><code>pagos</code> es un tipo de <em>tabla de búsqueda</em>, un objeto de R que puede usar para buscar valores. Subdividir <code>pagos</code> proporciona una forma sencilla de encontrar el premio de un símbolo. No requiere muchas líneas de código y hace la misma cantidad de trabajo ya sea que su símbolo sea <code>DD</code> o <code>0</code>. Puede crear tablas de búsqueda en R mediante la creación de objetos con nombre que se pueden dividir en subconjuntos de formas inteligentes.</p>
+<p>Lamentablemente, nuestro método no es del todo automático; necesitamos decirle a R qué símbolo buscar en <code>pagos</code>. ¿Tenemos? ¿Qué pasaría si dividieras los <code>pagos</code> por <code>simbolos[1]</code>? Probemos:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"7"</span>, <span class="st">"7"</span>, <span class="st">"7"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>simbolos[<span class="dv">1</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="do">## "7"</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>pagos[simbolos[<span class="dv">1</span>]]</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 </span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 80 </span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>pagos[simbolos[<span class="dv">1</span>]]</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  C </span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>No necesita saber el símbolo exacto para buscar porque puede decirle a R que busque cualquier símbolo que esté en <code>simbolos</code>. Puede encontrar este símbolo con <code>simbolos[1]</code>, <code>simbolos[2]</code> o <code>simbolos[3]</code>, porque cada uno contiene el mismo símbolo en este caso. Ahora tiene una forma sencilla y automatizada de calcular el premio cuando los <code>simbolos</code> contienen tres iguales. Vamos a agregarlo a nuestro código y luego veamos el Caso 2:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[simbolos[<span class="dv">1</span>]])</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># asignar $5</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># contar cerezas</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># calcular el premio</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co"># contar diamantes</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El caso 2 ocurre cuando los símbolos son todos barras. En ese caso, el premio será de $5, que es fácil de asignar:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[simbolos[<span class="dv">1</span>]])</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># contar cerezas</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># calcular el premio</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># contar diamantes</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora podemos trabajar en el último caso. Aquí, necesitará saber cuántas cerezas hay en los <code>simbolos</code> antes de poder calcular un premio.</p>
+<p><strong>Ejercicio 10.6 (Encuentra las C)</strong> ¿Cómo puedes saber qué elementos de un vector llamado <code>simbolos</code> son una <code>C</code>? Diseñe una prueba y pruébela.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Desafío</strong></p>
+<p>¿Cómo podrías contar el número de ‘C’ en un vector llamado ‘símbolos’? Recuerda las reglas de coerción de R.</p>
+</div>
+</div>
+</div>
+<p><em>Solución.</em> Como siempre, trabajemos con un ejemplo real:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"DD"</span>, <span class="st">"C"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una forma de probar las cerezas sería verificar cuál de los símbolos, si alguno, es una <code>C</code>:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>simbolos <span class="sc">==</span> <span class="st">"C"</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="do">## TRUE FALSE  TRUE</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sería aún más útil contar cuántos de los símbolos son cerezas. Puede hacer esto con <code>sum</code>, que espera una entrada numérica, no lógica. Sabiendo esto, R forzará los <code>TRUE</code> y <code>FALSE</code> a <code>1</code> y <code>0</code> antes de hacer la suma. Como resultado, <code>sum</code> devolverá el número de <code>TRUE</code>, que también es el número de cerezas:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede usar el mismo método para contar la cantidad de diamantes en <code>simbolos</code>:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"DD"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agreguemos estas dos subtareas al esqueleto del programa:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[simbolos[<span class="dv">1</span>]])</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  cerezas <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="co"># calcular el premio</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>diamantes <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"DD"</span>)</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dado que el Caso 3 aparece más abajo en el árbol <code>if</code> que los Casos 1 y 2, el código del Caso 3 solo se aplicará a los jugadores que no tengan trío o todas las barras. De acuerdo con el esquema de pagos de la máquina tragamonedas, estos jugadores ganarán $5 si tienen dos cerezas y $2 si tienen una cereza. Si el jugador no tiene cerezas, obtiene un premio de $0. No necesitamos preocuparnos por tres cerezas porque ese resultado ya está cubierto en el Caso 1.</p>
+<p>Como en el Caso 1, podría escribir un árbol <code>if</code> que maneje cada combinación de cerezas, pero al igual que en el Caso 1, esta sería una solución ineficiente:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cerezas <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (cerezas <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {}</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nuevamente, creo que la mejor solución implicará subconjuntos. Si se siente ambicioso, puede intentar resolver esta solución por su cuenta, pero aprenderá con la misma rapidez trabajando mentalmente en la siguiente solución propuesta.</p>
+<p>Sabemos que nuestro premio debe ser $0 si no tenemos cerezas, $2 si tenemos una cereza y $5 si tenemos dos cerezas. Puede crear un vector que contenga esta información. Esta será una tabla de búsqueda muy simple:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora, como en el Caso 1, puede crear subconjuntos del vector para recuperar el premio correcto. En este caso, los premios no se identifican con el nombre de un símbolo, sino con el número de cerezas presentes. ¿Tenemos esa información? Sí, se almacena en <code>cerezas</code>. Podemos usar subconjuntos enteros básicos para obtener el premio correcto de la tabla de búsqueda anterior, por ejemplo, <code>c(0, 2, 5)[1]</code>.</p>
+<p><code>cerezas</code> no es exactamente adecuado para subconjuntos enteros porque podría contener un cero, pero eso es fácil de arreglar. Podemos crear un subconjunto con <code>cerezas + 1</code>. Ahora, cuando <code>cerezas</code> es igual a cero, tenemos:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>cerezas <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cuando <code>cerezas</code> es igual a uno, tenemos:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>cerezas <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y cuando <code>cerezas</code> es igual a dos, tenemos:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>cerezas <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Examine estas soluciones hasta que esté seguro de que arrojan el premio correcto por cada número de cerezas. Luego agregue el código a su secuencia de comandos, de la siguiente manera:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[simbolos[<span class="dv">1</span>]])</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  cerezas <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>diamantes <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"DD"</span>)</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Tablas de Búsqueda vs Árboles if</strong></p>
+<p>Esta es la segunda vez que creamos una tabla de búsqueda para evitar escribir un árbol <code>if</code>. ¿Por qué es útil esta técnica y por qué sigue apareciendo? Muchos árboles <code>if</code> en R son esenciales. Proporcionan una forma útil de decirle a R que use diferentes algoritmos en diferentes casos. Sin embargo, los árboles <code>if</code> no son apropiados en todas partes.</p>
+<p>Los <code>if</code> árboles tienen un par de inconvenientes. En primer lugar, requieren que R ejecute varias pruebas a medida que avanza por el árbol <code>if</code>, lo que puede generar trabajo innecesario. En segundo lugar, como verá en <a href="speed.html">Velocidad</a>, puede ser difícil usar árboles <code>if</code> en código vectorizado, un estilo de código que aprovecha las fortalezas de programación de R para crear programas rápidos. Las tablas de búsqueda no sufren ninguno de estos inconvenientes.</p>
+<p>No podrá reemplazar cada árbol <code>if</code> con una tabla de búsqueda, ni debería hacerlo. Sin embargo, generalmente puede usar tablas de búsqueda para evitar asignar variables con árboles <code>if</code>. Como regla general, use un árbol <code>if</code> si cada rama del árbol ejecuta un <em>código</em> diferente. Use una tabla de búsqueda si cada rama del árbol solo asigna un <em>valor</em> diferente.</p>
+<p>Para convertir un árbol <code>if</code> en una tabla de búsqueda, identifique los valores que se asignarán y guárdelos en un vector. A continuación, identifique los criterios de selección utilizados en las condiciones del árbol <code>if</code>. Si las condiciones usan cadenas de caracteres, proporcione los nombres de sus vectores y use subconjuntos basados en nombres. Si las condiciones usan números enteros, use subconjuntos basados en números enteros.</p>
+</div>
+</div>
+</div>
+<p>La subtarea final es duplicar el premio una vez por cada diamante presente. Esto significa que el premio final será un múltiplo del premio actual. Por ejemplo, si no hay diamantes presentes, el premio será:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>premio <span class="sc">*</span> <span class="dv">1</span>      <span class="co"># 1 = 2 ^ 0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si un diamante está presente, será:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>premio <span class="sc">*</span> <span class="dv">2</span>      <span class="co"># 2 = 2 ^ 1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si hay dos diamantes presentes, será:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>premio <span class="sc">*</span> <span class="dv">4</span>      <span class="co"># 4 = 2 ^ 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y si hay tres diamantes presentes, será:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>premio <span class="sc">*</span> <span class="dv">8</span>      <span class="co"># 8 = 2 ^ 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Puedes pensar en una manera fácil de manejar esto? ¿Qué tal algo similar a estos ejemplos?</p>
+<p><strong>Ejercicio 10.7 (Adjuste para Diamantes)</strong> Escribe un método para ajustar el <code>premio</code> basado en <code>diamantes</code>. Describa primero una solución en español y luego escriba su código.</p>
+<p><em>Solución.</em> Aquí hay una solución concisa inspirada en el patrón anterior. El premio ajustado será igual a:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>premio <span class="sc">*</span> <span class="dv">2</span> <span class="sc">^</span> diamantes</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>lo que nos da nuestro script final de <code>puntuacion</code>:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[simbolos[<span class="dv">1</span>]])</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  cerezas <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>diamantes <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"DD"</span>)</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>premio <span class="sc">*</span> <span class="dv">2</span> <span class="sc">^</span> diamantes</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="comentarios-de-código" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="comentarios-de-código"><span class="header-section-number">7.5</span> Comentarios de Código</h2>
+<p>Ahora tiene un script de puntuacion que puede guardar en una función. Sin embargo, antes de guardar su secuencia de comandos, considere agregar comentarios a su código con un <code>#</code>. Los comentarios pueden hacer que su código sea más fácil de entender al explicar <em>por qué</em> el código hace lo que hace. También puede usar comentarios para dividir programas largos en fragmentos escaneables. Por ejemplo, incluiría tres comentarios en el código <code>puntuacion</code>:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identificar caso</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># obtener premio</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (iguales) {</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[simbolos[<span class="dv">1</span>]])</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  cerezas <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  premio <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ajustar para diamantes</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>diamantes <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"DD"</span>)</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>premio <span class="sc">*</span> <span class="dv">2</span> <span class="sc">^</span> diamantes</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora que cada parte de tu código funciona, puedes envolverlo en una función con los métodos que aprendiste en <a href="#write-functions">Escribir tus propias funciones</a>. Utilice la opción Extract Function de RStudio en la barra de menú en Code, o utilice la función <code>function</code>. Asegúrese de que la última línea de la función devuelva un resultado (lo hace) e identifique los argumentos utilizados por su función. A menudo, los ejemplos concretos que utilizó para probar su código, como <code>símbolos</code>, se convertirán en los argumentos de su función. Ejecute el siguiente código para comenzar a usar la función <code>puntuacion</code>:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>puntuacion <span class="ot">&lt;-</span> <span class="cf">function</span> (simbolos) {</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># identificar caso</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  iguales <span class="ot">&lt;-</span> simbolos[<span class="dv">1</span>] <span class="sc">==</span> simbolos[<span class="dv">2</span>] <span class="sc">&amp;&amp;</span> simbolos[<span class="dv">2</span>] <span class="sc">==</span> simbolos[<span class="dv">3</span>]</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  barras <span class="ot">&lt;-</span> simbolos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"BB"</span>, <span class="st">"BBB"</span>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># obtener premio</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (iguales) {</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    pagos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DD"</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">"7"</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">"BBB"</span> <span class="ot">=</span> <span class="dv">40</span>, <span class="st">"BB"</span> <span class="ot">=</span> <span class="dv">25</span>, </span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"B"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"C"</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>)</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="fu">unname</span>(pagos[simbolos[<span class="dv">1</span>]])</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">all</span>(barras)) {</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>    cerezas <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>    premio <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)[cerezas <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ajustar para diamantes</span></span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>  diamantes <span class="ot">&lt;-</span> <span class="fu">sum</span>(simbolos <span class="sc">==</span> <span class="st">"DD"</span>)</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>  premio <span class="sc">*</span> <span class="dv">2</span> <span class="sc">^</span> diamantes</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una vez que haya definido la función <code>puntuacion</code>, la función <code>play</code> también funcionará:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>play <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  simbolos <span class="ot">&lt;-</span> <span class="fu">obt_simbolos</span>()</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(simbolos)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puntuacion</span>(simbolos)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora es fácil jugar en la máquina tragamonedas:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span>()</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="do">## "0"  "BB" "B" </span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 0</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span>()</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="do">## "DD"  "0" "B"  </span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 0</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span>()</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="do">## "BB" "BB" "B" </span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 25</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="resumen" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="resumen"><span class="header-section-number">7.6</span> Resumen</h2>
+<p>Un programa en R es un conjunto de instrucciones que su computadora debe seguir y que se ha organizado en una secuencia de pasos y casos. Esto puede hacer que los programas parezcan simples, pero no se deje engañar: puede crear resultados complicados con la combinación correcta de pasos simples (y casos).</p>
+<p>Como programador, es más probable que te engañen de la manera opuesta. Un programa puede parecer imposible de escribir cuando sabes que debe hacer algo impresionante. No se asuste en estas situaciones. Divida el trabajo que tiene delante en tareas simples y luego vuelva a dividir las tareas. Puede visualizar la relación entre las tareas con un diagrama de flujo si le ayuda. Luego trabaje en las subtareas una a la vez. Describa las soluciones en español y luego conviértalas a código de R. Pruebe cada solución con ejemplos concretos a medida que avanza. Una vez que cada una de sus subtareas funcione, combine su código en una función que pueda compartir y reutilizar.</p>
+<p>R proporciona herramientas que pueden ayudarlo a hacer esto. Puede administrar casos con declaraciones <code>if</code> y <code>else</code>. Puede crear una tabla de búsqueda con objetos y subconjuntos. Puede agregar comentarios de código con <code>#</code>. Y puede guardar sus programas como una función con <code>function</code></p>
+<p>Las cosas suelen salir mal cuando la gente escribe programas. Dependerá de usted encontrar la fuente de cualquier error que ocurra y corregirlo. Debería ser fácil encontrar la fuente de sus errores si utiliza un enfoque paso a paso para escribir funciones, escribir y luego probar, un poco a la vez. Sin embargo, si la fuente de un error se le escapa, o se encuentra trabajando con grandes fragmentos de código no probado, considere usar las herramientas de depuración integradas de R, descritas en <a href="a5-debug.html">Depuración de Código de R</a>.</p>
+<p>Los siguientes dos capítulos le enseñarán más herramientas que puede usar en sus programas. A medida que domine estas herramientas, le resultará más fácil escribir programas en R que le permitan hacer lo que desee con sus datos. En <a href="s3.html">S3</a>, aprenderá a usar el sistema S3 de R, una mano invisible que da forma a muchas partes de R. Usará el sistema para crear una clase personalizada para la salida de su máquina tragamonedas y le dirá a R cómo mostrar objetos que tienen tu clase.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+
+<script>
+
+  // Chapter name
+  const currentChapterFile = window.location.pathname.split('/').pop().replace('.html', '');
+
+  //Deffining urls
+  const originalURL = "https://github.com/rstudio-education/hopr";
+  const translationURL = "https://github.com/davidrsch/hopres";
+
+  //Deffining texts
+  const edit_text = "Editar esta página";
+  const issue_text = "Informar de un problema"
+
+  //Deffining git_i
+  const git_i = '<div><i class="bi bi-github"></i></div>';
+
+  // Adding TOC if not exist
+  const sidebarmargin = document.getElementById('quarto-margin-sidebar');
+  const buscar_TOC = document.getElementById('TOC');
+
+  if (!buscar_TOC) {
+    const crear_TOC = document.createElement('nav');
+    crear_TOC.id = 'TOC';
+    crear_TOC.role = "doc-toc";
+    crear_TOC.class = "toc-active";
+    sidebarmargin.appendChild(crear_TOC);
+  }
+
+
+  // Adding original github actions
+  const TOC = document.getElementById('TOC');
+  const originalga = document.createElement('h2');
+  originalga.textContent = "Original";
+  const toc_act_O = document.createElement('div');
+  toc_act_O.className = 'toc-actions';
+  toc_act_O.id = 'toc-act-O';
+  const act_link_O = document.createElement('div');
+  act_link_O.className='action-links';
+  act_link_O.id='act-link-O';
+  const edit_issue_O ='<p><a href="'+originalURL+'/edit/master/'+currentChapterFile+'.rmd" class="toc-action">'+edit_text+'</p><p><a href="'+originalURL+'/issues/new" class="toc-action">'+issue_text+'</p>';
+
+
+  TOC.appendChild(originalga);
+  TOC.appendChild(toc_act_O);
+  toc_act_O.innerHTML += git_i;
+  toc_act_O.appendChild(act_link_O);
+  act_link_O.innerHTML += edit_issue_O;
+
+  // Adding translation github actions
+  const translationga = document.createElement('h2');
+  translationga.textContent = "Traducción";
+  const toc_act_T = document.createElement('div');
+  toc_act_T.className = 'toc-actions';
+  toc_act_T.id = 'toc-act-T';
+  const act_link_T = document.createElement('div');
+  act_link_T.className='action-links';
+  act_link_T.id='act-link-T';
+  const edit_issue_T ='<p><a href="'+translationURL+'/edit/main/'+currentChapterFile+'.qmd" class="toc-action">'+edit_text+'</p><p><a href="'+translationURL+'/issues/new" class="toc-action">'+issue_text+'</p>';
+
+
+  TOC.appendChild(translationga);
+  TOC.appendChild(toc_act_T);
+  toc_act_T.innerHTML += git_i;
+  toc_act_T.appendChild(act_link_T);
+  act_link_T.innerHTML += edit_issue_T;
+
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./slots.html" class="pagination-link" aria-label="Proyecto 3: Máquina Tragamonedas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Proyecto 3: Máquina Tragamonedas</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./s3.html" class="pagination-link" aria-label="S3">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Programación práctica con R fue escrito por Garrett Grolemund.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Garrett Grolemund">
+
+<title>Programación práctica con R - 2&nbsp; Paquetes y páginas de ayuda</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./cards.html" rel="next">
+<link href="./basics.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dice.html">Proyecto 1: Dados Ponderados</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programación práctica con R</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/rstudio-education/hopr">
+            Original
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/davidrsch/hopres">
+            Traducción
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenido</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proyecto 1: Dados Ponderados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proyecto 2: Baraja de Cartas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objectos de R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notación de R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modifying.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modificación de Valores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Entornos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./slots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proyecto 3: Máquina Tragamonedas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./s3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">S3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bucles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Velocidad</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-starting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalación de R y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a2-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Paquetes de R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a3-updating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Actualizando R y sus Paquetes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a4-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a5-debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Depuración de Código de R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#paquetes" id="toc-paquetes" class="nav-link active" data-scroll-target="#paquetes"><span class="header-section-number">2.1</span> Paquetes</a>
+  <ul class="collapse">
+  <li><a href="#install.packages" id="toc-install.packages" class="nav-link" data-scroll-target="#install.packages"><span class="header-section-number">2.1.1</span> install.packages</a></li>
+  <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library"><span class="header-section-number">2.1.2</span> library</a></li>
+  </ul></li>
+  <li><a href="#obteniendo-ayuda-con-las-páginas-de-ayuda" id="toc-obteniendo-ayuda-con-las-páginas-de-ayuda" class="nav-link" data-scroll-target="#obteniendo-ayuda-con-las-páginas-de-ayuda"><span class="header-section-number">2.2</span> Obteniendo Ayuda con las Páginas de Ayuda</a>
+  <ul class="collapse">
+  <li><a href="#partes-de-una-página-de-ayuda" id="toc-partes-de-una-página-de-ayuda" class="nav-link" data-scroll-target="#partes-de-una-página-de-ayuda"><span class="header-section-number">2.2.1</span> Partes de una Página de Ayuda</a></li>
+  <li><a href="#obteniendo-más-ayuda" id="toc-obteniendo-más-ayuda" class="nav-link" data-scroll-target="#obteniendo-más-ayuda"><span class="header-section-number">2.2.2</span> Obteniendo Más Ayuda</a></li>
+  </ul></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">2.3</span> Resumen</a></li>
+  <li><a href="#resumen-del-proyecto-1" id="toc-resumen-del-proyecto-1" class="nav-link" data-scroll-target="#resumen-del-proyecto-1"><span class="header-section-number">2.4</span> Resumen del Proyecto 1</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dice.html">Proyecto 1: Dados Ponderados</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="packages" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Paquetes y páginas de ayuda</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Ahora tiene una función que simula lanzar un par de dados. Hagamos las cosas un poco más interesantes ponderando los dados a tu favor. La casa siempre gana, ¿verdad? Hagamos que los dados arrojen números altos un poco más a menudo que los números bajos.</p>
+<p>Antes de ponderar los dados, debemos asegurarnos de que sean justos para empezar. Dos herramientas te ayudarán a hacer esto: <em>repetición</em> y <em>visualización</em>. Por coincidencia, estas herramientas también son dos de los superpoderes más útiles en el mundo de la ciencia de datos.</p>
+<p>Repetiremos nuestras tiradas de dados con una función llamada <code>replicate</code> y visualizaremos nuestras tiradas con una función llamada <code>qplot</code>. <code>qplot</code> no viene con R cuando lo descargas; <code>qplot</code> viene en un paquete de R independiente. Muchas de las herramientas de R más útiles vienen en paquetes de R, así que tomemos un momento para ver qué son los paquetes de R y cómo puede usarlos.</p>
+<section id="paquetes" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="paquetes"><span class="header-section-number">2.1</span> Paquetes</h2>
+<p>No es la única persona que escribe sus propias funciones con R. Muchos profesores, programadores y estadísticos usan R para diseñar herramientas que pueden ayudar a las personas a analizar datos. Luego hacen que estas herramientas sean gratuitas para que cualquiera las use. Para usar estas herramientas, solo tienes que descargarlas. Vienen como colecciones preensambladas de funciones y objetos llamados paquetes. <a href="a2-packages.html">Apéndice 2: Paquetes de R</a> contiene instrucciones detalladas para descargar y actualizar paquetes R, pero aquí veremos los conceptos básicos.</p>
+<p>Vamos a usar la función <code>qplot</code> para hacer algunos gráficos rápidos. <code>qplot</code> viene en el paquete <em>ggplot2</em>, un paquete popular para hacer gráficos. Antes de que pueda usar <code>qplot</code>, o cualquier otra cosa en el paquete ggplot2, debe descargarlo e instalarlo.</p>
+<section id="install.packages" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="install.packages"><span class="header-section-number">2.1.1</span> install.packages</h3>
+<p>Cada paquete R está alojado en <a href="http://cran.r-project.org" class="uri">http://cran.r-project.org</a>, el mismo sitio web que aloja R. Sin embargo, no necesita visitar el sitio web para descargar un paquete R; puede descargar paquetes directamente desde la línea de comandos de R. Así es cómo:</p>
+<ul>
+<li>Abre RStudio.</li>
+<li>Asegúrate de estar conectado a Internet.</li>
+<li>Ejecute <em><code>install.packages("ggplot2")</code></em> en la línea de comando.</li>
+</ul>
+<p>Eso es. R hará que su computadora visite el sitio web, descargue ggplot2 e instale el paquete en su disco duro justo donde R quiere encontrarlo. Ahora tiene el paquete ggplot2. Si desea instalar otro paquete, reemplace ggplot2 con el nombre de su paquete en el código.</p>
+</section>
+<section id="library" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="library"><span class="header-section-number">2.1.2</span> library</h3>
+<p>La instalación de un paquete no pone sus funciones al alcance de su mano todavía: simplemente las coloca en su disco duro. Para usar un paquete de R, luego debe cargarlo en su sesión de R con el comando <em><code>library("ggplot2")</code></em>. Si desea cargar un paquete diferente, reemplace ggplot2 con el nombre de su paquete en el código.</p>
+<p>Para ver lo que esto hace, intente un experimento. Primero, pide a R que te muestre la función <code>qplot</code>. R no podrá encontrar <code>qplot</code> porque <code>qplot</code> vive en el paquete ggplot2, que no ha cargado:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>qplot</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: object 'qplot' not found</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora cargue el paquete ggplot2:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si instaló el paquete con <code>install.packages</code> según las instrucciones, todo debería ir bien. No se preocupe si no ve ningún resultado o mensaje. No tener noticias es una buena noticia a la hora de cargar un paquete. No se preocupe si ve un mensaje tampoco; ggplot2 a veces muestra mensajes de inicio útiles. Mientras no vea nada que diga “Error”, lo está haciendo bien.</p>
+<p>Ahora, si pide ver <code>qplot</code>, R le mostrará bastante código (<code>qplot</code> es una función larga):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>qplot</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## (quite a bit of code)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="a2-packages.html">Apéndice 2: Paquetes de R</a> contiene muchos más detalles sobre la adquisición y el uso de paquetes. Le recomiendo que lo lea si no está familiarizado con el sistema de paquetes de R. Lo más importante que debe recordar es que solo necesita instalar un paquete una vez, pero debe cargarlo con <code>library</code> cada vez que desee usarlo en una nueva sesión de R. R descargará todos sus paquetes cada vez que cierre RStudio.</p>
+<p>Ahora que ha cargado <code>qplot</code>, vamos a probarlo. <code>qplot</code> hace “gráficos rápidos”. Si le das a <code>qplot</code> dos vectores de igual longitud, <code>qplot</code> dibujará un diagrama de dispersión por ti. <code>qplot</code> usará el primer vector como un conjunto de valores x y el segundo vector como un conjunto de valores y. Busque el gráfico que aparecerá en la pestaña Gráficos del panel inferior derecho de la ventana de RStudio.</p>
+<p>El siguiente código creará el gráfico que aparece en la Figura <a href="#fig-qplot" class="quarto-xref">Figura&nbsp;<span>2.1</span></a>. Hasta ahora, hemos estado creando secuencias de números con el operador <code>:</code>; pero también puedes crear vectores de números con la función <code>c</code>. Proporcione a <code>c</code> todos los números que desea que aparezcan en el vector, separados por una coma. <code>c</code> significa <em>concatenar</em>, pero puedes pensar en ello como “recolectar” o “combinar”:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="sc">-</span><span class="fl">0.6</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## -1.0 -0.8 -0.6 -0.4 -0.2  0.0  0.2  0.4  0.6  0.8  1.0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## -1.000 -0.512 -0.216 -0.064 -0.008  0.000  0.008</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  0.064  0.216  0.512  1.000</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x, y)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-qplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0201.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.1: qplot hace un diagrama de dispersión cuando le das dos vectores.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>No necesitas nombrar tus vectores <code>x</code> e <code>y</code>. Solo hice eso para aclarar el ejemplo. Como puede ver en la figura <a href="#fig-qplot" class="quarto-xref">Figura&nbsp;<span>2.1</span></a>, un diagrama de dispersión es un conjunto de puntos, cada uno representado de acuerdo con sus valores x e y. Juntos, los vectores <code>x</code> e <code>y</code> describen un conjunto de 10 puntos. ¿Cómo hizo coincidir R los valores en <code>x</code> e <code>y</code> para hacer estos puntos? Con ejecución por elementos, como vimos en la Figura <a href="basics.html#fig-elementwise" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>.</p>
+<p>Los diagramas de dispersión son útiles para visualizar la relación entre dos variables. Sin embargo, vamos a utilizar un tipo diferente de gráfico, un <em>histograma</em>. Un histograma visualiza la distribución de una sola variable; muestra cuántos puntos de datos aparecen en cada valor de x.</p>
+<p>Echemos un vistazo a un histograma para ver si esto tiene sentido. <code>qplot</code> hará un histograma cada vez que le des solo <em>un</em> vector para graficar. El siguiente código crea el gráfico de la izquierda en la Figura <a href="#fig-hist" class="quarto-xref">Figura&nbsp;<span>2.2</span></a> (nos preocuparemos del gráfico de la derecha en un segundo). Para asegurarse de que nuestros gráficos tengan el mismo aspecto, utilice el argumento extra <em><code>binwidth = 1</code></em>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x, <span class="at">binwidth =</span> <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hist" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0202.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.2: qplot hace un histograma cuando le das un solo vector.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Este gráfico muestra que nuestro vector contiene un valor en el intervalo <code>[1, 2)</code> colocando una barra de altura 1 sobre ese intervalo. De manera similar, la gráfica muestra que el vector contiene tres valores en el intervalo <code>[2, 3)</code> colocando una barra de altura 3 en ese intervalo. Muestra que el vector contiene dos valores en el intervalo <code>[3, 4)</code> colocando una barra de altura 2 en ese intervalo. En estos intervalos, el corchete, <code>[</code>, significa que el primer número está incluido en el intervalo. El paréntesis, <code>)</code>, significa que el último número <em>no</em> está incluido.</p>
+<p>Probemos con otro histograma. Este código crea el gráfico de la derecha en la Figura <a href="#fig-hist" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>. Observe que hay cinco puntos con un valor de 1 en <code>x2</code>. El histograma muestra esto trazando una barra de altura 5 sobre el intervalo x2 = [1, 2):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x2, <span class="at">binwidth =</span> <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ejercicio 3.1 (Visualizar un Histograma)</strong> Sea <code>x3</code> el siguiente vector:</p>
+<p><code>x3 &lt;- c(0, 1, 1, 2, 2, 2, 3, 3, 4)</code></p>
+<p>Imagina cómo se vería un histograma de <code>x3</code>. Suponga que el histograma tiene un ancho de intervalo de 1. ¿Cuántas barras tendrá el histograma? ¿Dónde aparecerán? ¿Qué altura tendrá cada uno?</p>
+<p>Cuando haya terminado, trace un histograma de <code>x3</code> con <code>binwidth = 1</code>, y vea si tiene razón.</p>
+<p><em>Solución.</em> Puedes hacer un histograma de <code>x3</code> con <code>qplot(x3, binwidth = 1)</code>. El histograma se verá como una pirámide simétrica. La barra del medio tendrá una altura de 3 y aparecerá encima de <code>[2, 3)</code>, pero asegúrese de probarlo y verlo por sí mismo.</p>
+<p>Puede usar un histograma para mostrar visualmente qué tan comunes son los diferentes valores de <code>x</code>. Los números cubiertos por una barra alta son más comunes que los números cubiertos por una barra corta.</p>
+<p>¿Cómo puedes usar un histograma para verificar la precisión de tus dados?</p>
+<p>Bueno, si tiras los dados muchas veces y haces un seguimiento de los resultados, esperarás que algunos números ocurran más que otros. Esto se debe a que hay más formas de obtener algunos números sumando dos dados que de obtener otros números, como se muestra en la Figura <a href="#fig-probs" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>.</p>
+<p>Si tira los dados muchas veces y grafica los resultados con <code>qplot</code>, el histograma le mostrará con qué frecuencia apareció cada suma. Las sumas que ocurrieron con mayor frecuencia tendrán las barras más altas. El histograma debería parecerse al patrón de la Figura <a href="#fig-probs" class="quarto-xref">Figura&nbsp;<span>2.3</span></a> si los dados tienen un peso justo.</p>
+<p>Aquí es donde entra <code>replicate</code>. <code>replicate</code> proporciona una manera fácil de repetir un comando de R muchas veces. Para usarlo, primero dale a <code>replicate</code> el número de veces que deseas repetir un comando de R, y luego dale el comando que deseas repetir. <code>replicate</code> ejecutará el comando varias veces y almacenará los resultados como un vector:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">3</span>, <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 2 2</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">10</span>, <span class="fu">tirar</span>())</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3  7  5  3  6  2  3  8 11  7</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-probs" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-probs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0203.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-probs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.3: Cada combinación individual de dados debe ocurrir con la misma frecuencia. Como resultado, algunas sumas ocurrirán con más frecuencia que otras. Con dados justos, cada suma debe aparecer en proporción al número de combinaciones que la forman.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Un histograma de sus las primeras 10 tiradas de los dados probablemente no se verá como el patrón que se muestra en la Figura <a href="#fig-probs" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>. ¿Por qué no? Hay demasiada aleatoriedad involucrada. Recuerda que usamos dados en la vida real porque son generadores efectivos de números aleatorios. Los patrones de frecuencias de largo plazo solo aparecerán <em>en el largo plazo</em>. Así que simulemos 10.000 lanzamientos de dados y representemos los resultados. No te preocupes; <code>qplot</code> y <code>replicate</code> pueden manejarlo. Los resultados aparecen en la Figura <a href="#fig-fair" class="quarto-xref">Figura&nbsp;<span>2.4</span></a>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lanzamientos <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">tirar</span>())</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(lanzamientos, <span class="at">binwidth =</span> <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los resultados sugieren que los dados son justos. A la larga, cada número aparece en proporción al número de combinaciones que lo generan.</p>
+<p>Ahora, ¿cómo puedes sesgar estos resultados? El patrón anterior ocurre porque cada combinación subyacente de dados (por ejemplo, (3,4)) ocurre con la misma frecuencia. Si pudieras aumentar la probabilidad de que salga un 6 en cualquiera de los dados, entonces cualquier combinación con un seis ocurrirá con más frecuencia que cualquier combinación sin un seis. La combinación (6, 6) ocurriría más frequente que todas las demás. Esto no hará que los dados sumen 12 con más frecuencia que siete, pero sesgará los resultados hacia los números más altos</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fair" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0204.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.4: El comportamiento de nuestros dados sugiere que son justos. Siete ocurre con más frecuencia que cualquier otro número, y las frecuencias disminuyen en proporción al número de combinaciones de dados que crean cada número.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Para decirlo de otra manera, la probabilidad de sacar cualquier número en un dado justo es 1/6. Me gustaría que cambiara la probabilidad a 1/8 para cada número por debajo de seis y luego aumentara la probabilidad de sacar un seis a 3/8:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Número</th>
+<th>Probabilidad justa</th>
+<th>Probabilidad sesgada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1/6</td>
+<td>1/8</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1/6</td>
+<td>1/8</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1/6</td>
+<td>1/8</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>1/6</td>
+<td>1/8</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>1/6</td>
+<td>1/8</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>1/6</td>
+<td>3/8</td>
+</tr>
+</tbody>
+</table>
+<p>Puede cambiar las probabilidades agregando un nuevo argumento a la función <code>sample</code>. No te voy a decir cuál es el argumento; en su lugar, le indicaré la página de ayuda para la función <code>sample</code>. ¿Que es eso? ¿Las funciones de R vienen con páginas de ayuda? Sí, así que aprendamos a leer una.</p>
+</section>
+</section>
+<section id="obteniendo-ayuda-con-las-páginas-de-ayuda" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="obteniendo-ayuda-con-las-páginas-de-ayuda"><span class="header-section-number">2.2</span> Obteniendo Ayuda con las Páginas de Ayuda</h2>
+<p>Hay más de 1000 funciones en el núcleo de R, y se crean nuevas funciones todo el tiempo. ¡Esto puede ser mucho material para memorizar y aprender! Afortunadamente, cada función de R viene con su propia página de ayuda, a la que puede acceder escribiendo el nombre de la función después de un signo de interrogación. Por ejemplo, cada uno de estos comandos abrirá una página de ayuda. Busque las páginas que aparecerán en la pestaña Ayuda del panel inferior derecho de RStudio:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>?sqrt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>?log10</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>?sample</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Las páginas de ayuda contienen información útil sobre lo que hace cada función. Estas páginas de ayuda también sirven como documentación del código, por lo que leerlas puede resultar agridulce. A menudo parecen estar escritas para personas que ya entienden la función y no necesitan ayuda.</p>
+<p>No deje que esto le moleste: puede obtener mucho de una página de ayuda si la escanea buscando información que tenga sentido y pasa por alto el resto. Esta técnica inevitablemente lo llevará a la parte más útil de cada página de ayuda: la parte inferior. Aquí, casi todas las páginas de ayuda incluyen algún código de ejemplo que pone la función en acción. Ejecutar este código es una excelente manera de aprender con el ejemplo.</p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Si una función viene en un paquete R, R no podrá encontrar su página de ayuda a menos que se cargue el paquete.</p>
+</div>
+</div>
+</div>
+<section id="partes-de-una-página-de-ayuda" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="partes-de-una-página-de-ayuda"><span class="header-section-number">2.2.1</span> Partes de una Página de Ayuda</h3>
+<p>Cada página de ayuda está dividida en secciones. Las secciones que aparecen pueden variar de una página de ayuda a otra, pero normalmente puede esperar encontrar estos temas útiles</p>
+<p><strong>Descripción</strong> - Un breve resumen de lo que hace la función.</p>
+<p><strong>Uso</strong> - Un ejemplo de cómo escribiría la función. Cada argumento de la función aparecerá en el orden en que R espera que lo proporciones (si no usas nombres de argumentos).</p>
+<p><strong>Argumentos</strong> - Una lista de cada argumento que toma la función, qué tipo de información R espera que proporcione para el argumento y qué hará la función con la información.</p>
+<p><strong>Detalles</strong> - Una descripción más detallada de la función y cómo opera. La sección de detalles también le da al autor de la función la oportunidad de alertarlo sobre cualquier cosa que desee saber al usar la función.</p>
+<p><strong>Valor</strong> - Una descripción de lo que devuelve la función cuando la ejecuta.</p>
+<p><strong>Vea También</strong> - Una breve lista de funciones de R relacionadas.</p>
+<p><strong>Ejemplos</strong> - Código de ejemplo que usa la función y se garantiza que funcionará. La sección de ejemplos de una página de ayuda generalmente demuestra un par de formas diferentes de usar una función. Esto ayuda a darle una idea de lo que la función es capaz de hacer.</p>
+<p>Si desea buscar una función en la página de ayuda pero ha olvidado el nombre de la función, puede buscar por palabra clave. Para ello, escriba dos signos de interrogación seguidos de una palabra clave en la línea de comandos de R. R mostrará una lista de enlaces a páginas de ayuda relacionadas con la palabra clave. Puede pensar en esto como la página de ayuda para la página de ayuda:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>??log</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Demos un paseo por la página de ayuda de <code>sample</code>. Recuerde: estamos buscando cualquier cosa que pueda ayudarlo a cambiar las probabilidades involucradas en el proceso de muestreo. No voy a reproducir toda la página de ayuda aquí (solo las partes más jugosas), por lo que debe seguirla en su computadora.</p>
+<p>Primero, abra la página de ayuda. Aparecerá en el mismo panel en RStudio que sus gráficos (pero en la pestaña Help, no en la pestaña Plots):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>?sample</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Como verá a continuación y en su panel Help de la ventana inferior derecha de RStudio las páginas de ayuda de R solo se encuntran en idioma inglés. Por lo que las secciones, de la página de ayuda de la función <code>sample</code>, que se exponen a continuación se mostrarán en inglés. Si no posee un nivel de inglés que le permita leer y entender las páginas de ayuda de R, el traductor le recomienda traducir las mismas usando algún traductor de documentos online, aunque estos pueden ser muy textuales en ocasiones.</p>
+</div>
+</div>
+</div>
+<p>¿Que ves? Comenzando desde arriba:</p>
+<pre><code>
+Random Samples and Permutations
+
+Description
+    sample takes a sample of the specified size from the elements of x using 
+either with or without replacement.</code></pre>
+<p>Hasta ahora todo bien. Ya sabías todo eso. La siguiente sección, Uso, tiene una posible pista. Menciona un argumento llamado <code>prob</code>:</p>
+<pre><code>Usage
+    sample(x, size, replace = FALSE, prob = NULL)</code></pre>
+<p>Si se desplaza hacia abajo hasta la sección de argumentos, la descripción de +prob+ suena <em>muy</em> prometedora:</p>
+<pre><code>A vector of probability weights for obtaining the elements of the vector being 
+sampled.</code></pre>
+<p>La sección Detalles confirma nuestras sospechas. En este caso, también te indica cómo proceder:</p>
+<pre><code>The optional prob argument can be used to give a vector of weights for obtaining 
+the elements of the vector being sampled. They need not sum to one, but they 
+should be nonnegative and not all zero.</code></pre>
+<p>Aunque la página de ayuda no lo dice aquí, estos pesos se emparejaran de manera individual con los elementos que se muestrean.El primer peso describirá el primer elemento, el segundo peso el segundo elemento, y así sucesivamente. Esta es una práctica común en R.</p>
+<p>Leer:</p>
+<pre><code>If replace is true, Walker's alias method (Ripley, 1987) is used...</code></pre>
+<p>Vale, parece que es hora de empezar a hojear. Deberíamos tener suficiente información ahora para descubrir cómo manipular nuestros dados.</p>
+<p><strong>Ejercicio 3.2 (Lanzar un par de Dados)</strong> Vuelva a escribir la función <code>tirar</code> a continuación para lanzar un par de dados ponderados:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tirar <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dados)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Deberá agregar un argumento <code>prob</code> a la función <code>sample</code> dentro de <code>tirar</code>. Este argumento debería decirle a <code>sample</code> que muestree los números del uno al cinco con una probabilidad de 1/8 y el número 6 con una probabilidad de 3/8.</p>
+<p>Cuando haya terminado, siga leyendo para ver un ejemplo de respuesta.</p>
+<p><em>Solución.</em> Para ponderar sus dados, debe agregar un argumento <code>prob</code> con un vector de pesos a <code>sample</code>, como este:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tirar <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(dados)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto hará que <code>tirar</code> elija del 1 al 5 con una probabilidad de 1/8 y 6 con una probabilidad de 3/8.</p>
+<p>Sobrescriba su versión anterior de <code>tirar</code> con la nueva función (ejecutando el fragmento de código anterior en su línea de comando). Luego visualiza el nuevo comportamiento a largo plazo de tus dados. He puesto los resultados en la Figura <a href="#fig-weighted" class="quarto-xref">Figura&nbsp;<span>2.5</span></a> junto a nuestros resultados originales:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lanzamientos <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">tirar</span>())</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(lanzamientos, <span class="at">binwidth =</span> <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto confirma que efectivamente hemos ponderado los dados. Los números altos ocurren con mucha más frecuencia que los números bajos. Lo notable es que este comportamiento solo será evidente cuando examine las frecuencias a largo plazo. En cualquier tirada individual, los dados parecerán comportarse aleatoriamente. Esta es una gran noticia si juegas a Settlers of Catan (solo dile a tus amigos que perdiste los dados), pero debería ser perturbador si analizas los datos, porque significa que el sesgo puede ocurrir fácilmente sin que nadie lo note a corto plazo.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-weighted" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-weighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/hopr_0205.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.5: Los dados ahora están claramente sesgados hacia números altos, ya que las sumas altas ocurren con mucha más frecuencia que las sumas bajas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="obteniendo-más-ayuda" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="obteniendo-más-ayuda"><span class="header-section-number">2.2.2</span> Obteniendo Más Ayuda</h3>
+<p>R también viene con una comunidad súper activa de usuarios a la que puede acudir para obtener <a href="http://bit.ly/r-help">ayuda en la lista de correo de R-help</a>. Puede enviar un correo electrónico a la lista con preguntas, pero existe una gran posibilidad de que su pregunta ya haya sido respondida. Descúbrelo buscando en los <a href="http://bit.ly/R_archives">archivos</a>.</p>
+<p>Incluso mejor que la lista R-help es <a href="http://stackoverflow.com">Stack Overflow</a>, un sitio web que permite a los programadores responder preguntas y a los usuarios clasificar las respuestas según su utilidad. Personalmente, creo que el formato Stack Overflow es más fácil de usar que la lista de correo electrónico R-help (y los encuestados son más amigables con los humanos). Puede enviar su propia pregunta o buscar a través de las preguntas respondidas anteriormente de Stack Overflow relacionadas con R. Hay más de 30,000.</p>
+<p>Lo mejor de todo es <a href="http://community.rstudio.com">Posit Community</a>, un lugar amigable e inclusivo para compartir preguntas relacionadas con R. Posit Community es un foro muy activo centrado en R. No se sorprenda si hace una pregunta sobre un paquete de R y el autor del paquete aparece para dar respuesta.</p>
+<p>Para toda la lista de ayuda de R, Stack Overflow y Posit Community, es más probable que obtenga una respuesta útil si proporciona un ejemplo reproducible con su pregunta. Esto significa pegar un pequeño fragmento de código que los usuarios pueden ejecutar para llegar al error o pregunta que tiene en mente.</p>
+</section>
+</section>
+<section id="resumen" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="resumen"><span class="header-section-number">2.3</span> Resumen</h2>
+<p>Los paquetes y las páginas de ayuda de R pueden convertirlo en un programador más productivo. Viste en <a href="basics.html">Lo Más Básico</a> que R te da el poder de escribir tus propias funciones que hacen cosas específicas, pero a menudo la función que deseas escribir ya existirá en un paquete de R. Profesores, programadores y científicos han desarrollado más de 13.000 paquetes para su uso, lo que puede ahorrarle un valioso tiempo de programación. Para usar un paquete, debe instalarlo en su computadora una vez con <code>install.packages</code> y luego cargarlo en cada nueva sesión de R con <code>library</code>.</p>
+<p>Las páginas de ayuda de R lo ayudarán a dominar las funciones que aparecen en R y sus paquetes. Cada función y conjunto de datos en R tiene su propia página de ayuda. Aunque las páginas de ayuda a menudo contienen contenido avanzado, también contienen pistas y ejemplos valiosos que pueden ayudarlo a aprender a usar una función.</p>
+<p>Ya ha visto suficiente de R para aprender haciendo, que es la mejor manera de aprender R. Puede crear sus propios comandos de R, ejecutarlos y obtener ayuda cuando necesite comprender algo que no he explicado. Lo animo a que experimente con sus propias ideas en R mientras lee los próximos dos proyectos.</p>
+</section>
+<section id="resumen-del-proyecto-1" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="resumen-del-proyecto-1"><span class="header-section-number">2.4</span> Resumen del Proyecto 1</h2>
+<p>Has hecho más en este proyecto que permitir el fraude y las apuestas; también aprendió a hablarle a su computadora en el idioma de R. R es un idioma como inglés, español o alemán, excepto que R lo ayuda a hablar con computadoras, no con humanos.</p>
+<p>Has conocido los sustantivos del lenguaje R, objetos. Y espero que hayas adivinado que las funciones son los verbos (supongo que los argumentos de función serían los adverbios). Cuando combinas funciones y objetos, expresas un pensamiento completo. Al unir pensamientos en una secuencia lógica, puede construir declaraciones elocuentes e incluso artísticas. En ese sentido, R no es tan diferente de cualquier otro idioma.</p>
+<p>R comparte otra característica de los lenguajes humanos: no te sentirás muy cómodo hablando R hasta que construyas un vocabulario de comandos de R para usar. Afortunadamente, no tienes que ser tímido. Tu computadora será la única que “escuchará” “hablando” R. Tu computadora no es muy indulgente, pero tampoco juzga. No es que tengas que preocuparte; ampliará enormemente su vocabulario de R entre aquí y el final del libro.</p>
+<p>Ahora que puede usar R, es hora de convertirse en un experto en el uso de R para hacer ciencia de datos. La base de la ciencia de datos es la capacidad de almacenar grandes cantidades de datos y recuperar valores a pedido. A partir de esto, sigue todo lo demás: manipulación de datos, visualización de datos, modelado de datos y más. Sin embargo, no puede almacenar fácilmente un conjunto de datos en su mente al memorizarlo. Tampoco puede almacenar fácilmente un conjunto de datos en papel escribiéndolo. La única forma eficiente de almacenar grandes cantidades de datos es con una computadora. De hecho, las computadoras son tan eficientes que su desarrollo en las últimas tres décadas ha cambiado por completo el tipo de datos que podemos acumular y los métodos que podemos usar para analizarlos. En resumen, el almacenamiento de datos informáticos ha impulsado la revolución en la ciencia que llamamos ciencia de datos.</p>
+<p><a href="cards.html">Proyecto 2: Baraja de Cartas</a> lo hará parte de esta revolución enseñándole cómo usar R para almacenar conjuntos de datos en la memoria de su computadora y cómo recuperar y manipular datos una vez que están allí.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+
+<script>
+
+  // Chapter name
+  const currentChapterFile = window.location.pathname.split('/').pop().replace('.html', '');
+
+  //Deffining urls
+  const originalURL = "https://github.com/rstudio-education/hopr";
+  const translationURL = "https://github.com/davidrsch/hopres";
+
+  //Deffining texts
+  const edit_text = "Editar esta página";
+  const issue_text = "Informar de un problema"
+
+  //Deffining git_i
+  const git_i = '<div><i class="bi bi-github"></i></div>';
+
+  // Adding TOC if not exist
+  const sidebarmargin = document.getElementById('quarto-margin-sidebar');
+  const buscar_TOC = document.getElementById('TOC');
+
+  if (!buscar_TOC) {
+    const crear_TOC = document.createElement('nav');
+    crear_TOC.id = 'TOC';
+    crear_TOC.role = "doc-toc";
+    crear_TOC.class = "toc-active";
+    sidebarmargin.appendChild(crear_TOC);
+  }
+
+
+  // Adding original github actions
+  const TOC = document.getElementById('TOC');
+  const originalga = document.createElement('h2');
+  originalga.textContent = "Original";
+  const toc_act_O = document.createElement('div');
+  toc_act_O.className = 'toc-actions';
+  toc_act_O.id = 'toc-act-O';
+  const act_link_O = document.createElement('div');
+  act_link_O.className='action-links';
+  act_link_O.id='act-link-O';
+  const edit_issue_O ='<p><a href="'+originalURL+'/edit/master/'+currentChapterFile+'.rmd" class="toc-action">'+edit_text+'</p><p><a href="'+originalURL+'/issues/new" class="toc-action">'+issue_text+'</p>';
+
+
+  TOC.appendChild(originalga);
+  TOC.appendChild(toc_act_O);
+  toc_act_O.innerHTML += git_i;
+  toc_act_O.appendChild(act_link_O);
+  act_link_O.innerHTML += edit_issue_O;
+
+  // Adding translation github actions
+  const translationga = document.createElement('h2');
+  translationga.textContent = "Traducción";
+  const toc_act_T = document.createElement('div');
+  toc_act_T.className = 'toc-actions';
+  toc_act_T.id = 'toc-act-T';
+  const act_link_T = document.createElement('div');
+  act_link_T.className='action-links';
+  act_link_T.id='act-link-T';
+  const edit_issue_T ='<p><a href="'+translationURL+'/edit/main/'+currentChapterFile+'.qmd" class="toc-action">'+edit_text+'</p><p><a href="'+translationURL+'/issues/new" class="toc-action">'+issue_text+'</p>';
+
+
+  TOC.appendChild(translationga);
+  TOC.appendChild(toc_act_T);
+  toc_act_T.innerHTML += git_i;
+  toc_act_T.appendChild(act_link_T);
+  act_link_T.innerHTML += edit_issue_T;
+
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./basics.html" class="pagination-link" aria-label="Lo Más Básico">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./cards.html" class="pagination-link" aria-label="Proyecto 2: Baraja de Cartas">
+        <span class="nav-page-text">Proyecto 2: Baraja de Cartas</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Programación práctica con R fue escrito por Garrett Grolemund.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado usando <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
