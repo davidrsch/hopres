@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Garrett Grolemund">
 
-<title>Programación práctica con R - Apéndice D — Cargar y Guardar Datos en R</title>
+<title>Apéndice D — Cargar y Guardar Datos en R – Programación práctica con R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -113,13 +113,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1-starting.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./a4-data.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cargar y Guardar Datos en R</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="./">Programación práctica con R</a> 
         <div class="sidebar-tools-main">
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/rstudio-education/hopr">
@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./dice.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Proyecto 1: Dados Ponderados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -202,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./cards.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Proyecto 2: Baraja de Cartas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./slots.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Proyecto 3: Máquina Tragamonedas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -270,9 +270,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Apéndices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -482,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="la-familia-read" class="level3" data-number="D.3.2">
 <h3 data-number="D.3.2" class="anchored" data-anchor-id="la-familia-read"><span class="header-section-number">D.3.2</span> La Familia read</h3>
 <p>R también viene con algunos atajos preempaquetados para <code>read.table</code>, que se muestran en la Tabla <a href="#tbl-shortcuts" class="quarto-xref">Tabla&nbsp;<span>D.1</span></a>.</p>
-<div id="tbl-shortcuts" class="quarto-float anchored">
+<div id="tbl-shortcuts" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-shortcuts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;D.1: Funciones read de R. Puede sobrescribir cualquiera de los argumentos predeterminados según sea necesario.
@@ -576,7 +576,7 @@ diez      picas      10</code></pre>
 <section id="guardar-archivos-de-texto-sin-formato" class="level3" data-number="D.3.5">
 <h3 data-number="D.3.5" class="anchored" data-anchor-id="guardar-archivos-de-texto-sin-formato"><span class="header-section-number">D.3.5</span> Guardar Archivos de Texto Sin Formato</h3>
 <p>Una vez que sus datos estén en R, puede guardarlos en cualquier formato de archivo compatible con R. Si desea guardarlo como un archivo de texto sin formato, puede utilizar la familia de funciones +write+. Las tres funciones básicas de write aparecen en Table <a href="#tbl-write" class="quarto-xref">Tabla&nbsp;<span>D.2</span></a>. Use <code>write.csv</code> para guardar sus datos como un archivo <em>.csv</em> y <code>write.table</code> para guardar sus datos como un documento delimitado por tabulaciones o un documento con separadores más exóticos.</p>
-<div id="tbl-write" class="quarto-float anchored">
+<div id="tbl-write" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-write-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;D.2: R guarda conjuntos de datos en archivos de texto sin formato con la familia de funciones write.
@@ -630,7 +630,7 @@ Tabla&nbsp;D.2: R guarda conjuntos de datos en archivos de texto sin formato con
 <p>Para comprimir un archivo de texto sin formato, rodee el nombre del archivo o la ruta del archivo con la función <code>bzfile</code>, <code>gzfile</code> o <code>xzfile</code>. Por ejemplo:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(poquer, <span class="at">file =</span> <span class="fu">bzfile</span>(<span class="st">"data/poquer.csv.bz2"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cada una de estas funciones comprimirá la salida con un tipo diferente de formato de compresión, que se muestra en la Tabla <a href="#tbl-compression" class="quarto-xref">Tabla&nbsp;<span>D.3</span></a>.</p>
-<div id="tbl-compression" class="quarto-float anchored">
+<div id="tbl-compression" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-compression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;D.3: R viene con tres funciones auxiliares para comprimir archivos
@@ -754,7 +754,7 @@ Tabla&nbsp;D.3: R viene con tres funciones auxiliares para comprimir archivos
 <h2 data-number="D.6" class="anchored" data-anchor-id="cargar-archivos-desde-otros-programas"><span class="header-section-number">D.6</span> Cargar Archivos desde Otros Programas</h2>
 <p>Debe seguir el mismo consejo que le di para los archivos de Excel siempre que desee trabajar con formatos de archivo nativos de otros programas: abra el archivo en el programa original y exporte los datos como un archivo de texto sin formato, generalmente un CSV. Esto garantizará la transcripción más fiel de los datos en el archivo y, por lo general, le brindará la mayor cantidad de opciones para personalizar la forma en que se transcriben los datos.</p>
 <p>A veces, sin embargo, puede adquirir un archivo pero no el programa del que procede. Como resultado, no podrá abrir el archivo en su programa nativo y exportarlo como un archivo de texto. En este caso, puede usar una de las funciones en Tabla <a href="#tbl-others" class="quarto-xref">Tabla&nbsp;<span>D.4</span></a> para abrir el archivo. La mayoría de estas funciones vienen en el paquete <code>foreign</code> de R. Cada uno intenta leer en un formato de archivo diferente con la menor cantidad de contratiempos posible.</p>
-<div id="tbl-others" class="quarto-float anchored">
+<div id="tbl-others" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-others-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;D.4: Varias funciones intentarán leer los tipos de archivo de otros programas de análisis de datos
@@ -825,7 +825,7 @@ Tabla&nbsp;D.4: Varias funciones intentarán leer los tipos de archivo de otros 
 <h2 data-number="D.7" class="anchored" data-anchor-id="actualización"><span class="header-section-number">D.7</span> Actualización</h2>
 <p>En versiones modernas de RStudio es simple cargar archivos de Excel, SPSS, SAS y Stata usando el asistente de importación de RStudio. Para poder accerder a estas opciones se debe instalar el paquete <code>readxl</code> para los archivos de Excel y el paquete <code>haven</code> para el resto. Para realizar la operación es tan simple como dar click en el botón Import Dataset &gt; “Opción desead”(“From Excel”, “From SPSS”, “From SAS” o “From Stata”). Esto abrirá el asistente de importación de RStudio que permite visualizar el archivo a importar.</p>
 <p>Con el uso de los paquetes <code>xlsx</code> y <code>haven</code> se facilita también la forma de escribir y exportar archivos con dichas extenciones como se ve en la Tabla <a href="#tbl-actua" class="quarto-xref">Tabla&nbsp;<span>D.5</span></a>.</p>
-<div id="tbl-actua" class="quarto-float anchored">
+<div id="tbl-actua" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-actua-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;D.5: Varias funciones para escribir y guardar archivos en distintos formatos
@@ -980,18 +980,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1023,7 +1012,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1031,7 +1042,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

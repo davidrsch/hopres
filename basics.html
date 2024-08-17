@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.56">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Garrett Grolemund">
-<title>Programación práctica con R - 1&nbsp; Lo Más Básico</title>
+<title>1&nbsp; Lo Más Básico – Programación práctica con R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -103,13 +103,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dice.html">Proyecto 1: Dados Ponderados</a></li><li class="breadcrumb-item"><a href="./basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo Más Básico</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="./">Programación práctica con R</a> 
         <div class="sidebar-tools-main">
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
 <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/rstudio-education/hopr">
@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./dice.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Proyecto 1: Dados Ponderados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./cards.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Proyecto 2: Baraja de Cartas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./slots.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Proyecto 3: Máquina Tragamonedas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -256,9 +256,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Apéndices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -347,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Antes de que pueda pedirle a su computadora que guarde algunos números, necesitará saber cómo hablarle. Ahí es donde entran R y RStudio. RStudio le brinda una manera de comunicarse con su computadora. R le brinda un idioma para hablar. Para comenzar, abra RStudio tal como abriría cualquier otra aplicación en su computadora. Cuando lo haga, debería aparecer una ventana en su pantalla como la que se muestra en la Figura <a href="#fig-console" class="quarto-xref">Figura&nbsp;<span>1.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-console" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-console" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0101.png" class="img-fluid figure-img">
 </div>
@@ -498,7 +498,7 @@ Error: unexpected input in "3 % 5"
 <p>Cuando crea un objeto, el objeto aparecerá en el panel de Environment de RStudio, como se muestra en la Figura <a href="#fig-environment" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>. Este panel le mostrará todos los objetos que ha creado desde que abrió RStudio.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-environment" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-environment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0102.png" class="img-fluid figure-img">
 </div>
@@ -575,7 +575,7 @@ Figura&nbsp;1.2: El panel de Environment de RStudio realiza un seguimiento de lo
 <p>Cuando usa dos o más vectores en una operación, R alineará los vectores y realizará una secuencia de operaciones individuales. Por ejemplo, cuando ejecuta <em><code>dado * dado</code></em>, R alinea los dos vectores <code>dado</code> y luego multiplica el primer elemento del vector 1 por el primer elemento del vector 2. R luego multiplica el segundo elemento del vector 1 por el segundo elemento del vector 2, y así sucesivamente, hasta que se hayan multiplicado todos los elementos. El resultado será un nuevo vector de la misma longitud que los dos primeros, como se muestra en la Figura <a href="#fig-elementwise" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-elementwise" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-elementwise" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-elementwise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0103.png" class="img-fluid figure-img">
 </div>
@@ -605,7 +605,7 @@ Figura&nbsp;1.3: Cuando R realiza una ejecución por elementos, hace coincidir l
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  longer object length is not a multiple of shorter object length</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-recycle" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-recycle" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-recycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0104.png" class="img-fluid figure-img">
 </div>
@@ -650,7 +650,7 @@ Figura&nbsp;1.4: R repetirá un vector corto para realizar operaciones por eleme
 <span><span class="co">## 4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pemdas" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-pemdas" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pemdas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0105.png" class="img-fluid figure-img">
 </div>
@@ -832,7 +832,7 @@ Figura&nbsp;1.5: Cuando vincula funciones, R las resolverá desde la operación 
 <p>Una vez que haya creado su función, R la tratará como cualquier otra función en R. Piense en lo útil que es. ¿Alguna vez ha intentado crear una nueva opción de Excel y agregarla a la barra de menú de Microsoft? ¿O una nueva animación de diapositivas y agregarla a las opciones de Powerpoint? Cuando trabajas con un lenguaje de programación, puedes hacer este tipo de cosas. A medida que aprenda a programar en R, podrá crear herramientas nuevas, personalizadas y reproducibles para usted cuando lo desee. <a href="slots.html">Proyecto 3: Máquina Tragamonedas</a> te enseñará mucho más sobre escribir funciones en R.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-functions" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-functions" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0106.png" class="img-fluid figure-img">
 </div>
@@ -848,7 +848,7 @@ Figura&nbsp;1.6: Cada función en R tiene las mismas partes y puede usar <code>f
 <p>Le recomiendo encarecidamente que escriba y edite todo su código de R en un script antes de ejecutarlo en la consola. ¿Por qué? Este hábito crea un registro reproducible de su trabajo. Cuando termine el día, puede guardar su secuencia de comandos y luego usarla para volver a ejecutar todo el análisis al día siguiente. Los scripts también son muy útiles para editar y corregir su código, y hacen una buena copia de su trabajo para compartir con otros. Para guardar un script, haga clic en el panel de scripts y luego vaya a <code>File &gt; Save as</code> en la barra de menú.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-script" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-script" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0107.png" class="img-fluid figure-img">
 </div>
@@ -862,7 +862,7 @@ Figura&nbsp;1.7: Cuando abre un R Script (File &gt; New File &gt; R Script in th
 <p>R ejecutará cualquier línea de código en la que esté el cursor. Si tiene una sección completa resaltada, R ejecutará el código resaltado. Como alternativa, puede ejecutar todo el script haciendo clic en el botón Source. ¿No te gusta hacer clic en los botones? Puede usar Control + Enter como acceso directo para el botón Ejecutar. En Mac, eso sería Comando + Enter.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-run" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-run" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-run-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/hopr_0108.png" class="img-fluid figure-img">
 </div>
@@ -995,18 +995,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1038,7 +1027,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1046,7 +1057,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
