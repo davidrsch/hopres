@@ -154,7 +154,7 @@ qplot(lanzamientos, binwidth = 1)
 
 Los resultados sugieren que los dados son justos. A la larga, cada número aparece en proporción al número de combinaciones que lo generan.
 
-Ahora, ¿cómo puedes sesgar estos resultados? El patrón anterior ocurre porque cada combinación subyacente de dados (por ejemplo, (3,4)) ocurre con la misma frecuencia. Si pudieras aumentar la probabilidad de que salga un 6 en cualquiera de los dados, entonces cualquier combinación con un seis ocurrirá con más frecuencia que cualquier combinación sin un seis. La combinación (6, 6) ocurriría más frequente que todas las demás. Esto no hará que los dados sumen 12 con más frecuencia que siete, pero sesgará los resultados hacia los números más altos
+Ahora, ¿cómo puedes sesgar estos resultados? El patrón anterior ocurre porque cada combinación subyacente de dados (por ejemplo, (3,4)) ocurre con la misma frecuencia. Si pudieras aumentar la probabilidad de que salga un 6 en cualquiera de los dados, entonces cualquier combinación con un seis ocurrirá con más frecuencia que cualquier combinación sin un seis. La combinación (6, 6) ocurriría más frecuente que todas las demás. Esto no hará que los dados sumen 12 con más frecuencia que siete, pero sesgará los resultados hacia los números más altos
 
 ```{r}
 #| label: fig-fair
@@ -232,7 +232,7 @@ Primero, abra la página de ayuda. Aparecerá en el mismo panel en RStudio que s
 ```
 
 ::: callout-important
-Como verá a continuación y en su panel Help de la ventana inferior derecha de RStudio las páginas de ayuda de R solo se encuntran en idioma inglés. Por lo que las secciones, de la página de ayuda de la función `sample`, que se exponen a continuación se mostrarán en inglés. Si no posee un nivel de inglés que le permita leer y entender las páginas de ayuda de R, el traductor le recomienda traducir las mismas usando algún traductor de documentos online, aunque estos pueden ser muy textuales en ocasiones.
+Como verá a continuación y en su panel Help de la ventana inferior derecha de RStudio las páginas de ayuda de R solo se encuentran en idioma inglés. Por lo que las secciones, de la página de ayuda de la función `sample`, que se exponen a continuación se mostrarán en inglés. Si no posee un nivel de inglés que le permita leer y entender las páginas de ayuda de R, el traductor le recomienda traducir las mismas usando algún traductor de documentos online, aunque estos pueden ser muy textuales en ocasiones.
 :::
 
 ¿Que ves? Comenzando desde arriba:
@@ -268,7 +268,7 @@ the elements of the vector being sampled. They need not sum to one, but they
 should be nonnegative and not all zero.
 ```
 
-Aunque la página de ayuda no lo dice aquí, estos pesos se emparejaran de manera individual con los elementos que se muestrean.El primer peso describirá el primer elemento, el segundo peso el segundo elemento, y así sucesivamente. Esta es una práctica común en R.
+Aunque la página de ayuda no lo dice aquí, estos pesos se emparejarán de manera individual con los elementos que se muestrean.El primer peso describirá el primer elemento, el segundo peso el segundo elemento, y así sucesivamente. Esta es una práctica común en R.
 
 Leer:
 
