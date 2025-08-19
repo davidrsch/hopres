@@ -494,7 +494,7 @@ Si desea un desafío más modesto, estudie el siguiente código de `puntuacion`.
 ``` r
 puntuacion <- function(simbolos) {
   
-  diamantez <- sum(simbolos == "DD")
+  diamantes <- sum(simbolos == "DD")
   cerezas <- sum(simbolos == "C")
   
   # identificar caso
