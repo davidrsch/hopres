@@ -65,7 +65,7 @@ La última columna muestra cuántos segundos transcurrieron mientras R ejecutaba
 
 **Ejercicio 13.1 (¿Qué tan rápido es abs?)** Muchas funciones de R preexistentes ya están vectorizadas y se han optimizado para funcionar rápidamente. Puede hacer que su código sea más rápido confiando en estas funciones siempre que sea posible. Por ejemplo, R viene con una función de valor absoluto incorporada, `abs`.
 
-Comprueba cuánto más rápido `abs` calcula el valor absoluto de `long` que `abs_bucle` y `abs_set`.
+Comprueba cuánto más rápido `abs` calcula el valor absoluto de `largo` que `abs_bucle` y `abs_set`.
 
 *Solución.* Puedes medir la velocidad de `abs` con `system.time`. A `abs` le toma 0,05 segundos, a la velocidad del rayo, calcular el valor absoluto de 10 millones de números. Esto es 0,592 / 0,054 = 10,96 veces más rápido que `abs_set` y casi 300 veces más rápido que `abs_bucle`:
 
