@@ -221,7 +221,7 @@ $$
 
 ¿Listo para comenzar?
 
-**Ejercicio 12.1 (Liste las Combinaciones)** Usa `expand.grid` para crear un data frame que contenga todas las combinaciones posibles de *tres* símbolos del vector `rueda`:
+**Ejercicio 9.1 (Liste las Combinaciones)** Usa `expand.grid` para crear un data frame que contenga todas las combinaciones posibles de *tres* símbolos del vector `rueda`:
 
 ``` r
 rueda <- c("DD", "7", "BBB", "BB", "B", "C", "0")
@@ -229,7 +229,7 @@ rueda <- c("DD", "7", "BBB", "BB", "B", "C", "0")
 
 Asegúrese de agregar el argumento `stringsAsFactors = FALSE` a su llamada `expand.grid`; de lo contrario, `expand.grid` guardará las combinaciones como factores, una elección desafortunada que interrumpirá la función `puntuacion`
 
-*Solución.* Para crear un data frame de cada combinación de _tres_ símbolos, debe ejecutar `expand.grid` y darle _tres_ copias de `wheel`. El resultado será un data frame con 343 filas, una para cada combinación única de tres símbolos de ranura:
+*Solución.* Para crear un data frame de cada combinación de *tres* símbolos, debe ejecutar `expand.grid` y darle *tres* copias de `wheel`. El resultado será un data frame con 343 filas, una para cada combinación única de tres símbolos de ranura:
 
 ``` r
 combos <- expand.grid(rueda, rueda, rueda, stringsAsFactors = FALSE)
@@ -258,7 +258,7 @@ obt_simbolos() <- function() {
 }
 ```
 
-**Ejercicio 12.2 (Haz una Tabla de Búsqueda)** Aísle las probabilidades anteriores en una tabla de búsqueda. ¿Qué nombres usarás en tu tabla?
+**Ejercicio 9.2 (Haz una Tabla de Búsqueda)** Aísle las probabilidades anteriores en una tabla de búsqueda. ¿Qué nombres usarás en tu tabla?
 
 *Solución.* Sus nombres deben coincidir con la entrada que desea buscar. En este caso, la entrada serán las cadenas de caracteres que aparecen en `Var1`, `Var2` y `Var3`. Entonces su tabla de búsqueda debería verse así:
 
@@ -269,7 +269,7 @@ prob <- c("DD" = 0.03, "7" = 0.03, "BBB" = 0.06,
 
 Ahora busquemos nuestras probabilidades.
 
-**Ejercicio 12.3 (Buscar las Probabilidades)** Busque las probabilidades de obtener los valores en `Var1`. Luego agréguelos a `combos` como una columna llamada `prob1`. Luego haga lo mismo para `Var2` (`prob2`) y `Var3` (`prob3`).
+**Ejercicio 9.3 (Buscar las Probabilidades)** Busque las probabilidades de obtener los valores en `Var1`. Luego agréguelos a `combos` como una columna llamada `prob1`. Luego haga lo mismo para `Var2` (`prob2`) y `Var3` (`prob3`).
 
 *Solución.* Recuerde que usa la notación de selección de R para buscar valores en una tabla de búsqueda. Los valores que resulten estarán relacionados con el índice que utilice:
 
@@ -291,7 +291,7 @@ $$
 P(A \& B \& C \& ...) = P(A) \cdot P(B) \cdot P(C) \cdot ...
 $$
 
-**Ejercicio 12.4 (Calcular las Probabilidades de Cada Combinación)** Calcule las probabilidades generales para cada combinación. Guárdelos como una columna llamada `prob` en `combos`, luego verifique su trabajo.
+**Ejercicio 9.4 (Calcular las Probabilidades de Cada Combinación)** Calcule las probabilidades generales para cada combinación. Guárdelos como una columna llamada `prob` en `combos`, luego verifique su trabajo.
 
 Puedes comprobar que las matemáticas funcionaron sumando las probabilidades. Las probabilidades deben sumar uno, porque una de las combinaciones *debe* aparecer cuando juegas en la máquina tragamonedas. En otras palabras, aparecerá una combinación, con probabilidad de uno.
 
@@ -387,13 +387,13 @@ for (i in c("Mi", "segundo", "bucle", "for")) {
 
 ::: callout-warning
 **Elige tus símbolos con cuidado**
-  
+
 R ejecutará su ciclo en cualquier entorno desde el que lo llame. Estas son malas noticias si su bucle usa nombres de objetos que ya existen en el entorno. Su bucle sobrescribirá los objetos existentes con los objetos que crea. Esto también se aplica al símbolo de valor.
 :::
 
 ::: callout-tip
 **Los bucles for se ejecutan en conjuntos**
-  
+
 En muchos lenguajes de programación, los bucles `for` están diseñados para funcionar con números enteros, no con conjuntos. Le da al bucle un valor inicial y un valor final, así como un incremento para avanzar el valor entre bucles. El bucle `for` se ejecuta hasta que el valor del bucle supera el valor final.
 
 Puede recrear este efecto en R haciendo que un bucle `for` se ejecute en un conjunto de enteros, pero no pierda de vista el hecho de que los bucles `for` de R se ejecutan en miembros de un conjunto, no en secuencias de enteros.
@@ -449,7 +449,7 @@ head(combos, 3)
 
 El código crea una nueva columna llamada premio y la llena con `NA`. R usa sus reglas de reciclaje para completar cada valor de la columna con `NA`.
 
-**Ejercicio 12.5 (Construye un Bucle)** Construya un bucle `for` que ejecutará `puntuacion` en las 343 filas de `combos`. El ciclo debe ejecutar `puntuacion` en las primeras tres entradas de la \_i_ésima fila de `combos` y debe almacenar los resultados en la \_i_ésima entrada de `combos$premio`.
+**Ejercicio 9.5 (Construye un Bucle)** Construya un bucle `for` que ejecutará `puntuacion` en las 343 filas de `combos`. El ciclo debe ejecutar `puntuacion` en las primeras tres entradas de la \_i_ésima fila de `combos` y debe almacenar los resultados en la \_i_ésima entrada de `combos$premio`.
 
 *Solución.* Puedes puntuar las filas en `combos` con:
 
@@ -485,7 +485,7 @@ Lo mejor de los `DD`s es que sus efectos son acumulativos. Por ejemplo, consider
 
 Agregar este comportamiento a nuestro código es un poco más difícil que lo que hemos hecho hasta ahora, pero involucra todos los mismos principios. Puede decidir que su máquina tragamonedas no use comodines y conservar el código que tenemos. En ese caso, su máquina tragamonedas tendrá una tasa de pago de alrededor del 54 por ciento. O bien, podría reescribir su código para usar comodines. Si lo hace, encontrará que su máquina tragamonedas tiene una tasa de pago del 93 por ciento, un uno por ciento más alta que la afirmación del fabricante. Puedes calcular esta tasa con el mismo método que usamos en esta sección.
 
-**Ejercicio 12.6 (Desafío)** Hay muchas formas de modificar `puntuacion` que contarían `DD` como comodines. Si desea probar su habilidad como programador de R, intente escribir su propia versión de `puntuacion` que maneje correctamente los diamantes.
+**Ejercicio 9.6 (Desafío)** Hay muchas formas de modificar `puntuacion` que contarían `DD` como comodines. Si desea probar su habilidad como programador de R, intente escribir su propia versión de `puntuacion` que maneje correctamente los diamantes.
 
 Si desea un desafío más modesto, estudie el siguiente código de `puntuacion`. Da cuenta de los diamantes salvajes de una manera que me parece elegante y sucinta. Vea si puede entender cada paso en el código y cómo logra su resultado.
 
@@ -527,7 +527,7 @@ puntuacion <- function(simbolos) {
 }
 ```
 
-**Ejercicio 12.7 (Calcular el Valor Esperado)** Calcule el valor esperado de la máquina tragamonedas cuando usa la nueva función `puntuacion`. Puede usar el data frame `combos` existente, pero necesitará crear un bucle `for` para recalcular `combos$premio`.
+**Ejercicio 9.7 (Calcular el Valor Esperado)** Calcule el valor esperado de la máquina tragamonedas cuando usa la nueva función `puntuacion`. Puede usar el data frame `combos` existente, pero necesitará crear un bucle `for` para recalcular `combos$premio`.
 
 Para actualizar el valor esperado, simplemente actualice `combos$premio`:
 

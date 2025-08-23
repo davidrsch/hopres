@@ -98,14 +98,14 @@ knitr::include_graphics("images/hopr_0202.png")
 
 Este gráfico muestra que nuestro vector contiene un valor en el intervalo `[1, 2)` colocando una barra de altura 1 sobre ese intervalo. De manera similar, la gráfica muestra que el vector contiene tres valores en el intervalo `[2, 3)` colocando una barra de altura 3 en ese intervalo. Muestra que el vector contiene dos valores en el intervalo `[3, 4)` colocando una barra de altura 2 en ese intervalo. En estos intervalos, el corchete, `[`, significa que el primer número está incluido en el intervalo. El paréntesis, `)`, significa que el último número *no* está incluido.
 
-Probemos con otro histograma. Este código crea el gráfico de la derecha en la Figura @fig-hist. Observe que hay cinco puntos con un valor de 1 en `x2`. El histograma muestra esto trazando una barra de altura 5 sobre el intervalo x2 = [1, 2):
+Probemos con otro histograma. Este código crea el gráfico de la derecha en la Figura @fig-hist. Observe que hay cinco puntos con un valor de 1 en `x2`. El histograma muestra esto trazando una barra de altura 5 sobre el intervalo x2 = \[1, 2):
 
 ``` r
 x2 <- c(1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4)
 qplot(x2, binwidth = 1)
 ```
 
-**Ejercicio 3.1 (Visualizar un Histograma)** Sea `x3` el siguiente vector:
+**Ejercicio 2.1 (Visualizar un Histograma)** Sea `x3` el siguiente vector:
 
 `x3 <- c(0, 1, 1, 2, 2, 2, 3, 3, 4)`
 
@@ -278,7 +278,7 @@ If replace is true, Walker's alias method (Ripley, 1987) is used...
 
 Vale, parece que es hora de empezar a hojear. Deberíamos tener suficiente información ahora para descubrir cómo manipular nuestros dados.
 
-**Ejercicio 3.2 (Lanzar un par de Dados)** Vuelva a escribir la función `tirar` a continuación para lanzar un par de dados ponderados:
+**Ejercicio 2.2 (Lanzar un par de Dados)** Vuelva a escribir la función `tirar` a continuación para lanzar un par de dados ponderados:
 
 ``` r
 tirar <- function() {

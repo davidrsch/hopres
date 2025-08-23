@@ -381,7 +381,7 @@ repartir <- function() {
 
 Tenga en cuenta que `repartir` ya no toma un argumento y llama al objeto `mazo`, que vive en el entorno global.
 
-**Ejercicio 8.1 (¿Funcionará repartir?)** ¿Podrá R encontrar `mazo` y devolver una respuesta cuando llame a la nueva versión de `repartir`, como `repartir()`?
+**Ejercicio 6.1 (¿Funcionará repartir?)** ¿Podrá R encontrar `mazo` y devolver una respuesta cuando llame a la nueva versión de `repartir`, como `repartir()`?
 
 *Solución.* Sí. `repartir` seguirá funcionando igual que antes. R ejecutará `repartir` en un entorno de tiempo de ejecución que es un elemento secundario del entorno global. ¿Por qué será un hijo del entorno global? Debido a que el entorno global es el entorno de origen de `repartir` (definimos `repartir` en el entorno global):
 
@@ -458,7 +458,7 @@ Este código no funcionará porque R estará en un entorno de tiempo de ejecuci�
 knitr::include_graphics("images/hopr_0606.png")
 ```
 
-Ejercicio 8.2 (Sobreescribir el mazo) Vuelva a escribir la línea `mazo <- mazo[-1, ]` de `repartir` para *asignar* `mazo[-1, ]` a un objeto llamado `mazo` en el entorno global. Sugerencia: considere la función `assign`.
+**Ejercicio 6.2 (Sobreescribir el mazo)** Vuelva a escribir la línea `mazo <- mazo[-1, ]` de `repartir` para *asignar* `mazo[-1, ]` a un objeto llamado `mazo` en el entorno global. Sugerencia: considere la función `assign`.
 
 *Solución.* Puede asignar un objeto a un entorno específico con la función `assign`:
 
@@ -521,7 +521,7 @@ head(a, 3)
 
 Este comportamiento es ahora indeseable de dos maneras. Primero, `barajr` falla al barajar `mazo`. En segundo lugar, `barajar` devuelve una copia de `mazo`, a la que pueden faltarle las cartas que se han repartido. Sería mejor si `barajar` devolviera las cartas repartidas a la baraja y luego se barajaran. Esto es lo que sucede cuando barajas una baraja de cartas en la vida real.
 
-Ejercicio 8.3 (Rescribir barajr) Vuelva a escribir `barajar` para que reemplace la copia de `mazo` que vive en el entorno global con una versión barajada de `MAZO`, la copia intacta de `mazo` que también vive en el entorno global. La nueva versión de `barajar` no debería tener argumentos y no devolver ningún resultado.
+**Ejercicio 6.3 (Rescribir barajar)** Vuelva a escribir `barajar` para que reemplace la copia de `mazo` que vive en el entorno global con una versión barajada de `MAZO`, la copia intacta de `mazo` que también vive en el entorno global. La nueva versión de `barajar` no debería tener argumentos y no devolver ningún resultado.
 
 *Solución.* Puede actualizar `barajar` de la misma manera que actualizó `repartir`. La siguiente versión hará el trabajo:
 

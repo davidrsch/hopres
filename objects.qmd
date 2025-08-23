@@ -157,7 +157,7 @@ typeof("Hola")
 
 Los elementos individuales de un vector de caracteres se conocen como *cadenas*. Tenga en cuenta que una cadena puede contener más que solo letras. También puede ensamblar una cadena de caracteres a partir de números o símbolos.
 
-**Ejercicio 5.1 (Carácter or Número)** ¿Puedes encontrar la diferencia entre una cadena de caracteres y un número? Aquí hay una prueba: ¿Cuáles de estos son cadenas de caracteres y cuáles son números? `1`, `"1"`, `"uno"`.
+**Ejercicio 3.1 (Carácter or Número)** ¿Puedes encontrar la diferencia entre una cadena de caracteres y un número? Aquí hay una prueba: ¿Cuáles de estos son cadenas de caracteres y cuáles son números? `1`, `"1"`, `"uno"`.
 
 *Solución.* `"1"` y `"uno"` son ambos cadenas de caracteres.
 
@@ -215,7 +215,7 @@ typeof(raw(3))
 ## "raw"
 ```
 
-**Ejercicio 5.2 (Vector de Cartas)** Cree un vector atómico que almacene solo los nombres de las caras de las cartas en una escalera real, por ejemplo, el as de picas, el rey de picas, la reina de picas, la jota de picas y el diez de picas. El nombre de la cara del as de picas sería "as" y "picas" es el palo.
+**Ejercicio 3.2 (Vector de Cartas)** Cree un vector atómico que almacene solo los nombres de las caras de las cartas en una escalera real, por ejemplo, el as de picas, el rey de picas, la reina de picas, la jota de picas y el diez de picas. El nombre de la cara del as de picas sería "as" y "picas" es el palo.
 
 ¿Qué tipo de vector usarás para guardar los nombres?
 
@@ -406,7 +406,7 @@ ar
 ## [2,]   32   34
 ```
 
-**Ejercicio 5.3 (Hacer una Matriz)** Cree la siguiente matriz, que almacena el nombre y el palo de cada carta en una escalera real.
+**Ejercicio 3.3 (Hacer una Matriz)** Cree la siguiente matriz, que almacena el nombre y el palo de cada carta en una escalera real.
 
 ``` r
 ##      [,1]       [,2]    
@@ -566,7 +566,7 @@ as.character(genero)
 
 Ahora que comprende las posibilidades que brindan los vectores atómicos de R, hagamos un tipo de naipe más complicado.
 
-**Ejercicio 5.4 (Escriba una Carta)** Muchos juegos de cartas asignan un valor numérico a cada carta. Por ejemplo, en el blackjack, cada carta con figuras vale 10 puntos, cada carta con números vale entre 2 y 10 puntos, y cada as vale 1 u 11 puntos, dependiendo de la puntuación final.
+**Ejercicio 3.4 (Escriba una Carta)** Muchos juegos de cartas asignan un valor numérico a cada carta. Por ejemplo, en el blackjack, cada carta con figuras vale 10 puntos, cada carta con números vale entre 2 y 10 puntos, y cada as vale 1 u 11 puntos, dependiendo de la puntuación final.
 
 Haz un naipe virtual combinando "as", "corazón" y 1 en un vector. ¿Qué tipo de vector atómico resultará? Comprueba si tienes razón.
 
@@ -682,7 +682,7 @@ Como puede imaginar, la estructura de las listas puede volverse bastante complic
 
 Sin embargo, no todas las listas tienen que ser complicadas. Puede almacenar una carta de juego en una lista muy simple.
 
-**Ejercicio 5.5 (Usar una Lista para Crear una Carta)** Use una lista para almacenar una sola carta, como el as de corazones, que tiene un valor de punto de uno. La lista debe guardar la cara de la carta, el palo y el valor del punto en elementos separados.
+**Ejercicio 3.5 (Usar una Lista para Crear una Carta)** Use una lista para almacenar una sola carta, como el as de corazones, que tiene un valor de punto de uno. La lista debe guardar la cara de la carta, el palo y el valor del punto en elementos separados.
 
 *Solución.* Puedes crear tu carta así. En el siguiente ejemplo, el primer elemento de la lista es un vector de caracteres (de longitud 1). El segundo elemento también es un vector de caracteres y el tercer elemento es un vector numérico:
 

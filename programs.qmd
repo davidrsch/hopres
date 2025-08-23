@@ -243,7 +243,7 @@ num
 
 Pruebe las siguientes pruebas para desarrollar su comprensión de las declaraciones `if`.
 
-**Ejercicio 10.1 (Cuestionario A)** ¿Qué devolverá esto?
+**Ejercicio 7.1 (Cuestionario A)** ¿Qué devolverá esto?
 
 ``` r
 x <- 1
@@ -255,7 +255,7 @@ x
 
 *Solución.* El código devolverá el número 2. `x` comienza como 1, y luego R encuentra la declaración `if`. Dado que la condición se evalúa como `TRUE`, R ejecutará `x <- 2`, cambiando el valor de `x`.
 
-**Ejercicio 10.2 (Cuestionario B)** ¿Qué devolverá esto?
+**Ejercicio 7.2 (Cuestionario B)** ¿Qué devolverá esto?
 
 ``` r
 x <- 1
@@ -267,7 +267,7 @@ x
 
 *Solución.* Este código también devolverá el número 2. Funciona igual que el código en la prueba A, excepto que la condición en esta declaración ya es `TRUE`. R ni siquiera necesita evaluarlo. Como resultado, se ejecutará el código dentro de la instrucción `if` y `x` se establecerá en 2.
 
-**Ejercicio 10.3 (Cuestionario C)** ¿Qué devolverá esto?
+**Ejercicio 7.3 (Cuestionario C)** ¿Qué devolverá esto?
 
 ``` r
 x <- 1
@@ -435,7 +435,7 @@ Nuestra primera subtarea nos pide que "probemos si los símbolos son tres iguale
 
 *Un vector llamado `simbolos` contendrá tres del mismo símbolo si el primer elemento de `simbolos` es igual al segundo elemento de `simbolos` y el segundo elemento de `simbolos` es igual al tercer elemento de `simbolos`*.
 
-**Ejercicio 10.4 (Escribe una Prueba)** Convierta la declaración anterior en una prueba lógica escrita en R. Use su conocimiento de pruebas lógicas, operadores booleanos y subconjuntos de [Notación de R](#notation). La prueba debería funcionar con el vector `simbolos` y devolver un `TRUE` *si y solo si* cada elemento en `simbolos` es el mismo. Asegúrese de probar su código en `simbolos`.
+**Ejercicio 7.4 (Escribe una Prueba)** Convierta la declaración anterior en una prueba lógica escrita en R. Use su conocimiento de pruebas lógicas, operadores booleanos y subconjuntos de [Notación de R](#notation). La prueba debería funcionar con el vector `simbolos` y devolver un `TRUE` *si y solo si* cada elemento en `simbolos` es el mismo. Asegúrese de probar su código en `simbolos`.
 
 *Solución.* Aquí hay un par de formas de probar que `simbolos` contiene tres del mismo símbolo. El primer método es paralelo a la sugerencia en español anterior, pero hay otras formas de hacer la misma prueba. No hay una respuesta correcta o incorrecta, siempre y cuando su solución funcione, lo cual es fácil de comprobar porque ha creado un vector llamado `simbolos`:
 
@@ -489,7 +489,7 @@ El segundo caso de premio ocurre cuando todos los símbolos son un tipo de barra
 simbolos <- c("B", "BBB", "BB")
 ```
 
-**Ejercicio 10.5 (Probar si todos son barras)** Use los operadores lógicos y booleanos de R para escribir una prueba que determinará si un vector llamado `simbolos` contiene solo símbolos que son un tipo de barra. Compruebe si su prueba funciona con nuestro vector de `simbolos` de ejemplo. Recuerde describir cómo debería funcionar la prueba en español y luego convertir la solución a R.
+**Ejercicio 7.5 (Probar si todos son barras)** Use los operadores lógicos y booleanos de R para escribir una prueba que determinará si un vector llamado `simbolos` contiene solo símbolos que son un tipo de barra. Compruebe si su prueba funciona con nuestro vector de `simbolos` de ejemplo. Recuerde describir cómo debería funcionar la prueba en español y luego convertir la solución a R.
 
 *Solución.* Al igual que con muchas cosas en R, hay varias formas de probar si los `simbolos` contienen todos barras. Por ejemplo, podría escribir una prueba muy larga que use múltiples operadores booleanos, como esta:
 
@@ -661,7 +661,7 @@ if (iguales) {
 
 Ahora podemos trabajar en el último caso. Aquí, necesitará saber cuántas cerezas hay en los `simbolos` antes de poder calcular un premio.
 
-**Ejercicio 10.6 (Encuentra las C)** ¿Cómo puedes saber qué elementos de un vector llamado `simbolos` son una `C`? Diseñe una prueba y pruébela.
+**Ejercicio 7.6 (Encuentra las C)** ¿Cómo puedes saber qué elementos de un vector llamado `simbolos` son una `C`? Diseñe una prueba y pruébela.
 
 ::: callout-note
 **Desafío**
@@ -830,7 +830,7 @@ premio * 8      # 8 = 2 ^ 3
 
 ¿Puedes pensar en una manera fácil de manejar esto? ¿Qué tal algo similar a estos ejemplos?
 
-**Ejercicio 10.7 (Adjuste para Diamantes)** Escribe un método para ajustar el `premio` basado en `diamantes`. Describa primero una solución en español y luego escriba su código.
+**Ejercicio 7.7 (Adjuste para Diamantes)** Escribe un método para ajustar el `premio` basado en `diamantes`. Describa primero una solución en español y luego escriba su código.
 
 *Solución.* Aquí hay una solución concisa inspirada en el patrón anterior. El premio ajustado será igual a:
 

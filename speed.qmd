@@ -63,7 +63,7 @@ Las primeras dos columnas de la salida de `system.time` informan cuántos segund
 
 La última columna muestra cuántos segundos transcurrieron mientras R ejecutaba la expresión. Los resultados muestran que `abs_set` calculó el valor absoluto 30 veces más rápido que `abs_bucle` cuando se aplicó a un vector de 10 millones de números. Puede esperar aceleraciones similares siempre que escriba código vectorizado.
 
-**Ejercicio 13.1 (¿Qué tan rápido es abs?)** Muchas funciones de R preexistentes ya están vectorizadas y se han optimizado para funcionar rápidamente. Puede hacer que su código sea más rápido confiando en estas funciones siempre que sea posible. Por ejemplo, R viene con una función de valor absoluto incorporada, `abs`.
+**Ejercicio 10.1 (¿Qué tan rápido es abs?)** Muchas funciones de R preexistentes ya están vectorizadas y se han optimizado para funcionar rápidamente. Puede hacer que su código sea más rápido confiando en estas funciones siempre que sea posible. Por ejemplo, R viene con una función de valor absoluto incorporada, `abs`.
 
 Comprueba cuánto más rápido `abs` calcula el valor absoluto de `largo` que `abs_bucle` y `abs_set`.
 
@@ -125,7 +125,7 @@ Finalmente, puede usar el operador de asignación de R, que también está vecto
 knitr::include_graphics("images/hopr_1002.png")
 ```
 
-**Ejercicio 13.2 (Vectorizar una función)** La siguiente función convierte un vector de símbolos de tragamonedas en un vector de nuevos símbolos de tragamonedas. ¿Puedes vectorizarlo? ¿Cuánto más rápido funciona la versión vectorizada?
+**Ejercicio 10.2 (Vectorizar una función)** La siguiente función convierte un vector de símbolos de tragamonedas en un vector de nuevos símbolos de tragamonedas. ¿Puedes vectorizarlo? ¿Cuánto más rápido funciona la versión vectorizada?
 
 ``` r
 cambiar_simbolos <- function(vec){
@@ -392,9 +392,9 @@ simbolos
 
 Luego puede ejecutar cada línea de `puntuacion_muchas` contra el ejemplo y examinar los resultados a medida que avanza.
 
-**Ejercicio 13.3 (Pon a Prueba tu Comprensión)** Estudie la función del modelo `puntuaciio_muchas` hasta que esté satisfecho de que entiende cómo funciona y podría escribir una función similar usted mismo.
+**Ejercicio 10.3 (Pon a Prueba tu Comprensión)** Estudie la función del modelo `puntuaciio_muchas` hasta que esté satisfecho de que entiende cómo funciona y podría escribir una función similar usted mismo.
 
-**Ejercicio 13.4 (Desafío Avanzado)** En lugar de examinar la respuesta modelo, escriba su propia versión vectorizada de `puntuacion`. Suponga que los datos se almacenan en un *n* × 3 matriz donde cada fila de la matriz contiene una combinación de ranuras para puntuar.
+**Ejercicio 10.4 (Desafío Avanzado)** En lugar de examinar la respuesta modelo, escriba su propia versión vectorizada de `puntuacion`. Suponga que los datos se almacenan en un *n* × 3 matriz donde cada fila de la matriz contiene una combinación de ranuras para puntuar.
 
 Puede usar la versión de `puntuacion` que trata a los diamantes como comodines o la versión de `puntuacion` que no lo hace. Sin embargo, la respuesta de ejemplo usará la versión que trata a los diamantes como comodines.
 

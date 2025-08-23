@@ -230,7 +230,7 @@ Tenga cuidado de no confundir `=` con `==`. `=` hace lo mismo que `<-`: asigna u
 
 Puede comparar dos objetos R cualquiera con un operador lógico; sin embargo, los operadores lógicos tienen más sentido si compara dos objetos del mismo tipo de datos. Si compara objetos de diferentes tipos de datos, R usará sus reglas de coerción para forzar los objetos al mismo tipo antes de realizar la comparación.
 
-Ejercicio 7.1 ¿Cuántas ases? Extraiga la columna `cara` de `mazo2` y pruebe si cada valor es igual a `as`. Como desafío, use R para contar rápidamente cuántas cartas son iguales a `as`.
+**Ejercicio 5.1 ¿Cuántas ases?** Extraiga la columna `cara` de `mazo2` y pruebe si cada valor es igual a `as`. Como desafío, use R para contar rápidamente cuántas cartas son iguales a `as`.
 
 *Solución.* Puede extraer la columna `cara` con la notación `$` de R:
 
@@ -329,7 +329,7 @@ head(mazo4, 13)
 
 excepto las cartas del palo de corazones y la reina de picas. Cada carta del palo de corazones tiene un valor de 1. ¿Puedes encontrar estas cartas y reemplazar sus valores? Intentalo.
 
-**Ejercicio 7.2 (Dar Valor al Mazo para el Juego Corazones)** Asigne un valor de `1` a cada carta en `mazo4` que tenga un palo de corazones.
+**Ejercicio 5.2 (Dar Valor al Mazo para el Juego Corazones)** Asigne un valor de `1` a cada carta en `mazo4` que tenga un palo de corazones.
 
 *Solución.* Para hacer esto, primero escribe una prueba que identifique las cartas en el palo `corazones`:
 
@@ -402,14 +402,14 @@ Pero son 12 cartas de más. Lo que realmente quiere encontrar es todas las carta
 
 Los operadores booleanos son cosas como *y* (`&`) y *o* (`|`). Colapsan los resultados de múltiples pruebas lógicas en un solo `TRUE` o `FALSE`. R tiene seis operadores booleanos, que se muestran en la tabla @tbl-boole.
 
-| Operador | Sintaxis                        | Pruebas                                                                            |
+| Operador | Sintaxis | Pruebas |
 |------------------------------|-----------------------|-------------------|
-| `&`      | `cond1 & cond2`                 | ¿Son verdaderas `cond1` y `cond2`?                                                 |
-| `|`      | `cond1 | cond2`                 | ¿Es verdadera una o más de `cond1` y`cond2`?                                       |
-| `xor`    | `xor(cond1, cond2)`             | ¿Es exactamente una de `cond1` y `cond2` verdadera?                                |
-| `!`      | `!cond1`                        | ¿Es `cond1` falsa? (por ejemplo, `!` invierte los resultados de una prueba lógica) |
-| `any`    | `any(cond1, cond2, cond3, ...)` | ¿Alguna de las condiciones es verdadera?                                           |
-| `all`    | `all(cond1, cond2, cond3, ...)` | ¿Son verdaderas todas las condiciones?                                             |
+| `&` | `cond1 & cond2` | ¿Son verdaderas `cond1` y `cond2`? |
+| `|` | `cond1 | cond2` | ¿Es verdadera una o más de `cond1` y`cond2`? |
+| `xor` | `xor(cond1, cond2)` | ¿Es exactamente una de `cond1` y `cond2` verdadera? |
+| `!` | `!cond1` | ¿Es `cond1` falsa? (por ejemplo, `!` invierte los resultados de una prueba lógica) |
+| `any` | `any(cond1, cond2, cond3, ...)` | ¿Alguna de las condiciones es verdadera? |
+| `all` | `all(cond1, cond2, cond3, ...)` | ¿Son verdaderas todas las condiciones? |
 
 : Operadores Booleanos {#tbl-boole}
 
@@ -493,7 +493,7 @@ mazo4[reinaDePicas, ]
 
 Tu mazo está listo para jugar corazones.
 
-**Ejercicio 7.3 (Practica con Pruebas)** Si cree que domina las pruebas lógicas, intente convertir estas oraciones en pruebas escritas con código R. Para ayudarte, he definido algunos objetos de R después de las oraciones que puedes usar para probar tus respuestas:
+**Ejercicio 5.3 (Practica con Pruebas)** Si cree que domina las pruebas lógicas, intente convertir estas oraciones en pruebas escritas con código R. Para ayudarte, he definido algunos objetos de R después de las oraciones que puedes usar para probar tus respuestas:
 
 -   ¿Es `w` positivo?
 -   ¿Es `x` mayor que 10 y menor que 20?

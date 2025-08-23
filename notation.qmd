@@ -232,7 +232,7 @@ mazo[ , "valor"]
 
 Ahora que conoce los conceptos básicos del sistema de notación de R, pongámoslo en práctica.
 
-**Ejercicio 6.1 (Repartir una Carta)** Complete el siguiente código para crear una función que devuelva la primera fila de un data frame:
+**Ejercicio 4.1 (Repartir una Carta)** Complete el siguiente código para crear una función que devuelva la primera fila de un data frame:
 
 ``` r
 repartir <- function(cartas) {
@@ -324,7 +324,7 @@ head(mazo4)
 
 Ahora el nuevo conjunto está verdaderamente barajado. Terminará una vez que ajuste estos pasos en una función.
 
-Ejercicio 6.2 (Barajar el Mazo) Usa las ideas anteriores para escribir una función `barajar`. `barajar` debe tomar un data frame y devolver una copia aleatoria del data frame.
+**Ejercicio 4.2 (Barajar el Mazo)** Usa las ideas anteriores para escribir una función `barajar`. `barajar` debe tomar un data frame y devolver una copia aleatoria del data frame.
 
 *Solución.* Su función `barajar` se verá como la siguiente:
 

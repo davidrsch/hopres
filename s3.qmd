@@ -158,7 +158,7 @@ a_play + 1
 ##  "B" "0" "B"
 ```
 
-**Ejercicio 11.1 (Añade un Atributo)** Modifique `play` para devolver un premio que contenga los símbolos asociados a él como un atributo denominado `simbolos`. Elimine la llamada redundante a `print(simbolos)`:
+**Ejercicio 8.1 (Añade un Atributo)** Modifique `play` para devolver un premio que contenga los símbolos asociados a él como un atributo denominado `simbolos`. Elimine la llamada redundante a `print(simbolos)`:
 
 ``` r
 play <- function() {
@@ -477,7 +477,7 @@ Si le das a `print` un objeto cuya clase o clases no tienen un método de impres
 
 Usemos este sistema para escribir un mejor método de impresión para la salida de la máquina tragamonedas.
 
-Ejercicio 11.2 (Hacer un Método de print) Escriba un nuevo método de print para la clase de tragamonedas. El método debería llamar a `mostrat_tragamoneda` para devolver una salida de máquina tragamonedas bien formateada.
+**Ejercicio 8.2 (Hacer un método de print)** Escriba un nuevo método de print para la clase de tragamonedas. El método debería llamar a `mostrat_tragamoneda` para devolver una salida de máquina tragamonedas bien formateada.
 
 ¿Qué nombre debe usar para este método?
 
@@ -499,7 +499,7 @@ a_play
 
 Asegurémonos de que cada salida de la máquina tragamonedas tenga la clase `tragamonedas`.
 
-**Ejercicio 11.3 (Añadir una Clase)** Modifique la función `play` para que asigne `tragamonedas` al atributo `class` de su salida:
+**Ejercicio 8.3 (Añadir una Clase)** Modifique la función `play` para que asigne `tragamonedas` al atributo `class` de su salida:
 
 ``` r
 play <- function() {
