@@ -575,21 +575,21 @@ Figura&nbsp;7.3: La simulación completa de la máquina tragamonedas implicará 
 <span><span class="va">num</span></span>
 <span><span class="co">## 1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pruebe las siguientes pruebas para desarrollar su comprensión de las declaraciones <code>if</code>.</p>
-<p><strong>Ejercicio 10.1 (Cuestionario A)</strong> ¿Qué devolverá esto?</p>
+<p><strong>Ejercicio 7.1 (Cuestionario A)</strong> ¿Qué devolverá esto?</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fl">3</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">x</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Solución.</em> El código devolverá el número 2. <code>x</code> comienza como 1, y luego R encuentra la declaración <code>if</code>. Dado que la condición se evalúa como <code>TRUE</code>, R ejecutará <code>x &lt;- 2</code>, cambiando el valor de <code>x</code>.</p>
-<p><strong>Ejercicio 10.2 (Cuestionario B)</strong> ¿Qué devolverá esto?</p>
+<p><strong>Ejercicio 7.2 (Cuestionario B)</strong> ¿Qué devolverá esto?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">x</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Solución.</em> Este código también devolverá el número 2. Funciona igual que el código en la prueba A, excepto que la condición en esta declaración ya es <code>TRUE</code>. R ni siquiera necesita evaluarlo. Como resultado, se ejecutará el código dentro de la instrucción <code>if</code> y <code>x</code> se establecerá en 2.</p>
-<p><strong>Ejercicio 10.3 (Cuestionario C)</strong> ¿Qué devolverá esto?</p>
+<p><strong>Ejercicio 7.3 (Cuestionario C)</strong> ¿Qué devolverá esto?</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
@@ -712,7 +712,7 @@ Figura&nbsp;7.4: puntuacion puede navegar tres casos con dos decisiones if else.
 <p>Después de establecer un ejemplo concreto, intente describir cómo realizará la subtarea en español. Cuanto más precisamente pueda describir su solución, más fácil será escribir su código de R.</p>
 <p>Nuestra primera subtarea nos pide que “probemos si los símbolos son tres iguales”. Esta frase no me sugiere ningún código de R útil. Sin embargo, podría describir una prueba más precisa para el trío: tres símbolos serán iguales si el primer símbolo es igual al segundo y el segundo símbolo es igual al tercero. O, aún más precisamente:</p>
 <p><em>Un vector llamado <code>simbolos</code> contendrá tres del mismo símbolo si el primer elemento de <code>simbolos</code> es igual al segundo elemento de <code>simbolos</code> y el segundo elemento de <code>simbolos</code> es igual al tercer elemento de <code>simbolos</code></em>.</p>
-<p><strong>Ejercicio 10.4 (Escribe una Prueba)</strong> Convierta la declaración anterior en una prueba lógica escrita en R. Use su conocimiento de pruebas lógicas, operadores booleanos y subconjuntos de <a href="notation.html">Notación de R</a>. La prueba debería funcionar con el vector <code>simbolos</code> y devolver un <code>TRUE</code> <em>si y solo si</em> cada elemento en <code>simbolos</code> es el mismo. Asegúrese de probar su código en <code>simbolos</code>.</p>
+<p><strong>Ejercicio 7.4 (Escribe una Prueba)</strong> Convierta la declaración anterior en una prueba lógica escrita en R. Use su conocimiento de pruebas lógicas, operadores booleanos y subconjuntos de <a href="notation.html">Notación de R</a>. La prueba debería funcionar con el vector <code>simbolos</code> y devolver un <code>TRUE</code> <em>si y solo si</em> cada elemento en <code>simbolos</code> es el mismo. Asegúrese de probar su código en <code>simbolos</code>.</p>
 <p><em>Solución.</em> Aquí hay un par de formas de probar que <code>simbolos</code> contiene tres del mismo símbolo. El primer método es paralelo a la sugerencia en español anterior, pero hay otras formas de hacer la misma prueba. No hay una respuesta correcta o incorrecta, siempre y cuando su solución funcione, lo cual es fácil de comprobar porque ha creado un vector llamado <code>simbolos</code>:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simbolos</span></span>
 <span><span class="co">##  "7" "7" "7"</span></span>
@@ -754,7 +754,7 @@ Figura&nbsp;7.4: puntuacion puede navegar tres casos con dos decisiones if else.
 </div>
 <p>El segundo caso de premio ocurre cuando todos los símbolos son un tipo de barra, por ejemplo, <code>B</code>, <code>BB</code> y <code>BBB</code>. Empecemos por crear un ejemplo concreto con el que trabajar:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simbolos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"BBB"</span>, <span class="st">"BB"</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Ejercicio 10.5 (Probar si todos son barras)</strong> Use los operadores lógicos y booleanos de R para escribir una prueba que determinará si un vector llamado <code>simbolos</code> contiene solo símbolos que son un tipo de barra. Compruebe si su prueba funciona con nuestro vector de <code>simbolos</code> de ejemplo. Recuerde describir cómo debería funcionar la prueba en español y luego convertir la solución a R.</p>
+<p><strong>Ejercicio 7.5 (Probar si todos son barras)</strong> Use los operadores lógicos y booleanos de R para escribir una prueba que determinará si un vector llamado <code>simbolos</code> contiene solo símbolos que son un tipo de barra. Compruebe si su prueba funciona con nuestro vector de <code>simbolos</code> de ejemplo. Recuerde describir cómo debería funcionar la prueba en español y luego convertir la solución a R.</p>
 <p><em>Solución.</em> Al igual que con muchas cosas en R, hay varias formas de probar si los <code>simbolos</code> contienen todos barras. Por ejemplo, podría escribir una prueba muy larga que use múltiples operadores booleanos, como esta:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">simbolos</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="st">"B"</span> <span class="op">|</span> <span class="va">simbolos</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="st">"BB"</span> <span class="op">|</span> <span class="va">simbolos</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="st">"BBB"</span><span class="op">)</span> <span class="op">&amp;</span></span>
 <span>  <span class="op">(</span><span class="va">simbolos</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">==</span> <span class="st">"B"</span> <span class="op">|</span> <span class="va">simbolos</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">==</span> <span class="st">"BB"</span> <span class="op">|</span> <span class="va">simbolos</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">==</span> <span class="st">"BBB"</span><span class="op">)</span> <span class="op">&amp;</span></span>
@@ -874,7 +874,7 @@ Figura&nbsp;7.4: puntuacion puede navegar tres casos con dos decisiones if else.
 <span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># contar diamantes</span></span>
 <span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicar el premio si es necesario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora podemos trabajar en el último caso. Aquí, necesitará saber cuántas cerezas hay en los <code>simbolos</code> antes de poder calcular un premio.</p>
-<p><strong>Ejercicio 10.6 (Encuentra las C)</strong> ¿Cómo puedes saber qué elementos de un vector llamado <code>simbolos</code> son una <code>C</code>? Diseñe una prueba y pruébela.</p>
+<p><strong>Ejercicio 7.6 (Encuentra las C)</strong> ¿Cómo puedes saber qué elementos de un vector llamado <code>simbolos</code> son una <code>C</code>? Diseñe una prueba y pruébela.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -985,7 +985,7 @@ Figura&nbsp;7.4: puntuacion puede navegar tres casos con dos decisiones if else.
 <p>Y si hay tres diamantes presentes, será:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">premio</span> <span class="op">*</span> <span class="fl">8</span>      <span class="co"># 8 = 2 ^ 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Puedes pensar en una manera fácil de manejar esto? ¿Qué tal algo similar a estos ejemplos?</p>
-<p><strong>Ejercicio 10.7 (Adjuste para Diamantes)</strong> Escribe un método para ajustar el <code>premio</code> basado en <code>diamantes</code>. Describa primero una solución en español y luego escriba su código.</p>
+<p><strong>Ejercicio 7.7 (Adjuste para Diamantes)</strong> Escribe un método para ajustar el <code>premio</code> basado en <code>diamantes</code>. Describa primero una solución en español y luego escriba su código.</p>
 <p><em>Solución.</em> Aquí hay una solución concisa inspirada en el patrón anterior. El premio ajustado será igual a:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">premio</span> <span class="op">*</span> <span class="fl">2</span> <span class="op">^</span> <span class="va">diamantes</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>lo que nos da nuestro script final de <code>puntuacion</code>:</p>

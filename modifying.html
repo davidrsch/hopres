@@ -524,7 +524,7 @@ Tabla&nbsp;5.1: Operadores Lógicos de R
 </div>
 </div>
 <p>Puede comparar dos objetos R cualquiera con un operador lógico; sin embargo, los operadores lógicos tienen más sentido si compara dos objetos del mismo tipo de datos. Si compara objetos de diferentes tipos de datos, R usará sus reglas de coerción para forzar los objetos al mismo tipo antes de realizar la comparación.</p>
-<p>Ejercicio 7.1 ¿Cuántas ases? Extraiga la columna <code>cara</code> de <code>mazo2</code> y pruebe si cada valor es igual a <code>as</code>. Como desafío, use R para contar rápidamente cuántas cartas son iguales a <code>as</code>.</p>
+<p><strong>Ejercicio 5.1 ¿Cuántas ases?</strong> Extraiga la columna <code>cara</code> de <code>mazo2</code> y pruebe si cada valor es igual a <code>as</code>. Como desafío, use R para contar rápidamente cuántas cartas son iguales a <code>as</code>.</p>
 <p><em>Solución.</em> Puede extraer la columna <code>cara</code> con la notación <code>$</code> de R:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mazo2</span><span class="op">$</span><span class="va">cara</span></span>
 <span><span class="co">##  "rey"  "reina" "jota"  "diez"   "nueve" </span></span>
@@ -590,7 +590,7 @@ Tabla&nbsp;5.1: Operadores Lógicos de R
 <span><span class="co">##    dos picas     0</span></span>
 <span><span class="co">##     as picas     0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>excepto las cartas del palo de corazones y la reina de picas. Cada carta del palo de corazones tiene un valor de 1. ¿Puedes encontrar estas cartas y reemplazar sus valores? Intentalo.</p>
-<p><strong>Ejercicio 7.2 (Dar Valor al Mazo para el Juego Corazones)</strong> Asigne un valor de <code>1</code> a cada carta en <code>mazo4</code> que tenga un palo de corazones.</p>
+<p><strong>Ejercicio 5.2 (Dar Valor al Mazo para el Juego Corazones)</strong> Asigne un valor de <code>1</code> a cada carta en <code>mazo4</code> que tenga un palo de corazones.</p>
 <p><em>Solución.</em> Para hacer esto, primero escribe una prueba que identifique las cartas en el palo <code>corazones</code>:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mazo4</span><span class="op">$</span><span class="va">palo</span> <span class="op">==</span> <span class="st">"corazones"</span></span>
 <span><span class="co">##  FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
@@ -750,7 +750,7 @@ Figura&nbsp;5.1: R evaluará las expresiones en cada lado de un operador boolean
 <span><span class="co">##  cara  palo valor</span></span>
 <span><span class="co">## reina picas    13</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Tu mazo está listo para jugar corazones.</p>
-<p><strong>Ejercicio 7.3 (Practica con Pruebas)</strong> Si cree que domina las pruebas lógicas, intente convertir estas oraciones en pruebas escritas con código R. Para ayudarte, he definido algunos objetos de R después de las oraciones que puedes usar para probar tus respuestas:</p>
+<p><strong>Ejercicio 5.3 (Practica con Pruebas)</strong> Si cree que domina las pruebas lógicas, intente convertir estas oraciones en pruebas escritas con código R. Para ayudarte, he definido algunos objetos de R después de las oraciones que puedes usar para probar tus respuestas:</p>
 <ul>
 <li>¿Es <code>w</code> positivo?</li>
 <li>¿Es <code>x</code> mayor que 10 y menor que 20?</li>

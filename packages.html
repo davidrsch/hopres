@@ -413,7 +413,7 @@ Figura&nbsp;2.2: qplot hace un histograma cuando le das un solo vector.
 <p>Probemos con otro histograma. Este código crea el gráfico de la derecha en la Figura <a href="#fig-hist" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>. Observe que hay cinco puntos con un valor de 1 en <code>x2</code>. El histograma muestra esto trazando una barra de altura 5 sobre el intervalo x2 = [1, 2):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="fu">qplot</span><span class="op">(</span><span class="va">x2</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Ejercicio 3.1 (Visualizar un Histograma)</strong> Sea <code>x3</code> el siguiente vector:</p>
+<p><strong>Ejercicio 2.1 (Visualizar un Histograma)</strong> Sea <code>x3</code> el siguiente vector:</p>
 <p><code>x3 &lt;- c(0, 1, 1, 2, 2, 2, 3, 3, 4)</code></p>
 <p>Imagina cómo se vería un histograma de <code>x3</code>. Suponga que el histograma tiene un ancho de intervalo de 1. ¿Cuántas barras tendrá el histograma? ¿Dónde aparecerán? ¿Qué altura tendrá cada uno?</p>
 <p>Cuando haya terminado, trace un histograma de <code>x3</code> con <code>binwidth = 1</code>, y vea si tiene razón.</p>
@@ -562,7 +562,7 @@ should be nonnegative and not all zero.</code></pre>
 <p>Leer:</p>
 <pre><code>If replace is true, Walker's alias method (Ripley, 1987) is used...</code></pre>
 <p>Vale, parece que es hora de empezar a hojear. Deberíamos tener suficiente información ahora para descubrir cómo manipular nuestros dados.</p>
-<p><strong>Ejercicio 3.2 (Lanzar un par de Dados)</strong> Vuelva a escribir la función <code>tirar</code> a continuación para lanzar un par de dados ponderados:</p>
+<p><strong>Ejercicio 2.2 (Lanzar un par de Dados)</strong> Vuelva a escribir la función <code>tirar</code> a continuación para lanzar un par de dados ponderados:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tirar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
 <span>  <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, size <span class="op">=</span> <span class="fl">2</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>

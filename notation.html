@@ -514,7 +514,7 @@ Figura&nbsp;4.2: Puede usar vectores de TRUE y FALSE para decirle a R exactament
 </section></section><section id="repartir-una-carta" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="repartir-una-carta">
 <span class="header-section-number">4.2</span> Repartir una Carta</h2>
 <p>Ahora que conoce los conceptos básicos del sistema de notación de R, pongámoslo en práctica.</p>
-<p><strong>Ejercicio 6.1 (Repartir una Carta)</strong> Complete el siguiente código para crear una función que devuelva la primera fila de un data frame:</p>
+<p><strong>Ejercicio 4.1 (Repartir una Carta)</strong> Complete el siguiente código para crear una función que devuelva la primera fila de un data frame:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repartir</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">cartas</span><span class="op">)</span> <span class="op">{</span></span>
 <span>   <span class="co"># ?</span></span>
 <span><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -578,7 +578,7 @@ Figura&nbsp;4.2: Puede usar vectores de TRUE y FALSE para decirle a R exactament
 <span><span class="co">##  nueve  trevoles     9</span></span>
 <span><span class="co">##   jota diamantes    11</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora el nuevo conjunto está verdaderamente barajado. Terminará una vez que ajuste estos pasos en una función.</p>
-<p>Ejercicio 6.2 (Barajar el Mazo) Usa las ideas anteriores para escribir una función <code>barajar</code>. <code>barajar</code> debe tomar un data frame y devolver una copia aleatoria del data frame.</p>
+<p><strong>Ejercicio 4.2 (Barajar el Mazo)</strong> Usa las ideas anteriores para escribir una función <code>barajar</code>. <code>barajar</code> debe tomar un data frame y devolver una copia aleatoria del data frame.</p>
 <p><em>Solución.</em> Su función <code>barajar</code> se verá como la siguiente:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">barajar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">cartas</span><span class="op">)</span> <span class="op">{</span> </span>
 <span>  <span class="va">aleatorio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">52</span>, size <span class="op">=</span> <span class="fl">52</span><span class="op">)</span></span>

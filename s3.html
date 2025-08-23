@@ -455,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  1</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,"simbolos")</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  "B" "0" "B"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Ejercicio 11.1 (Añade un Atributo)</strong> Modifique <code>play</code> para devolver un premio que contenga los símbolos asociados a él como un atributo denominado <code>simbolos</code>. Elimine la llamada redundante a <code>print(simbolos)</code>:</p>
+<p><strong>Ejercicio 8.1 (Añade un Atributo)</strong> Modifique <code>play</code> para devolver un premio que contenga los símbolos asociados a él como un atributo denominado <code>simbolos</code>. Elimine la llamada redundante a <code>print(simbolos)</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>play <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  simbolos <span class="ot">&lt;-</span> <span class="fu">obt_simbolos</span>()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(simbolos)</span>
@@ -679,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>UseMethod</code> primero buscará un método que coincida con la primera clase listada en el vector de clase del objeto. Si <code>UseMethod</code> no puede encontrar uno, buscará el método que coincida con la segunda clase (y así sucesivamente si hay más clases en el vector de clase de un objeto).</p>
 <p>Si le das a <code>print</code> un objeto cuya clase o clases no tienen un método de impresión, <code>UseMethod</code> llamará a <code>print.default</code>, un método especial escrito para manejar casos generales.</p>
 <p>Usemos este sistema para escribir un mejor método de impresión para la salida de la máquina tragamonedas.</p>
-<p>Ejercicio 11.2 (Hacer un Método de print) Escriba un nuevo método de print para la clase de tragamonedas. El método debería llamar a <code>mostrat_tragamoneda</code> para devolver una salida de máquina tragamonedas bien formateada.</p>
+<p><strong>Ejercicio 8.2 (Hacer un método de print)</strong> Escriba un nuevo método de print para la clase de tragamonedas. El método debería llamar a <code>mostrat_tragamoneda</code> para devolver una salida de máquina tragamonedas bien formateada.</p>
 <p>¿Qué nombre debe usar para este método?</p>
 <p><em>Solución.</em> Es sorprendentemente fácil escribir un buen método <code>print.tragamonedas</code> porque ya hicimos todo el trabajo duro cuando escribimos <code>mostrat_tragamoneda</code>. Por ejemplo, el siguiente método funcionará. Solo asegúrese de que el método se llame <code>print.tragamonedas</code> para que <code>UseMethod</code> pueda encontrarlo, y asegúrese de que toma los mismos argumentos que <code>print</code> para que <code>UseMethod</code> pueda pasar esos argumentos a <code>print.tragamonedas</code> sin ningún problema:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>print.tragamonedas <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
@@ -690,7 +690,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="do">## B 0 B</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="do">## $0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Asegurémonos de que cada salida de la máquina tragamonedas tenga la clase <code>tragamonedas</code>.</p>
-<p><strong>Ejercicio 11.3 (Añadir una Clase)</strong> Modifique la función <code>play</code> para que asigne <code>tragamonedas</code> al atributo <code>class</code> de su salida:</p>
+<p><strong>Ejercicio 8.3 (Añadir una Clase)</strong> Modifique la función <code>play</code> para que asigne <code>tragamonedas</code> al atributo <code>class</code> de su salida:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>play <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  simbolos <span class="ot">&lt;-</span> <span class="fu">get_simbolos</span>()</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">structure</span>(<span class="fu">puntuacion</span>(simbolos), <span class="at">simbolos =</span> simbolos)</span>
