@@ -164,7 +164,7 @@ head(tiradas, 3)
 ##    3    1     4 0.125
 ```
 
-Second, we can look up the probabilities of rolling the values in `Var2`:
+En segundo lugar, podemos buscar las probabilidades de obtener los valores en `Var2`:
 
 ``` r
 tiradas$prob2 <- prob[tiradas$Var2]
